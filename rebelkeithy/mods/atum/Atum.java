@@ -1,5 +1,6 @@
 package rebelkeithy.mods.atum;
 
+import rebelkeithy.mods.atum.world.AtumWorldProvider;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.server.MinecraftServer;
@@ -41,7 +42,8 @@ public class Atum
 	@Init
 	public void init(FMLInitializationEvent event)
 	{
-		DimensionManager.registerDimension(Atum.dimensionID , 0);
+		DimensionManager.registerProviderType(Atum.dimensionID, AtumWorldProvider.class, true);
+		DimensionManager.registerDimension(Atum.dimensionID , Atum.dimensionID);
 		//DimensionManager.setWorld(Atum.dimensionID, new AtumWorld)
 		//DimensionManager.
 		/*
