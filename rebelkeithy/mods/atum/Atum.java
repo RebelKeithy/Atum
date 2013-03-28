@@ -43,10 +43,12 @@ public class Atum
 	{
 		DimensionManager.registerDimension(Atum.dimensionID , 0);
 		//DimensionManager.
+		/*
 		WorldProvider atumProvider = DimensionManager.createProviderFor(Atum.dimensionID);
-        //MinecraftServer minecraftserver = MinecraftServer.getServer();
-        //WorldServer worldserver1 = minecraftserver.worldServerForDimension(Atum.dimensionID);
-        //worldserver1.
+        MinecraftServer minecraftserver = MinecraftServer.getServer();
+        WorldServer worldserver1 = minecraftserver.worldServerForDimension(Atum.dimensionID);
+        worldserver1.field_85177_Q = new AtumTeleporter(worldserver1);
+        */
 		//DimensionManager.registerProviderType(Atum.dimensionID, atumProvider, true);
 	}
 	

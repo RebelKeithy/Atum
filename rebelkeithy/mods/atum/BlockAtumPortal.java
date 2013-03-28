@@ -287,7 +287,7 @@ public class BlockAtumPortal extends BlockBreakable
                 if(dimID == Atum.dimensionID)
                 {
                 	minecraftserver.getConfigurationManager().transferEntityToWorld(par5Entity, 0, worldserver1, worldserver, new AtumTeleporter(worldserver));
-                    par5Entity.travelToDimension(0);
+                    //par5Entity.travelToDimension(0);
                 } else {
                 	//System.out.println("teleporting");
                 	minecraftserver.getConfigurationManager().transferEntityToWorld(par5Entity, dimID, worldserver, worldserver1, new AtumTeleporter(worldserver1));
