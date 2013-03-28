@@ -42,6 +42,7 @@ public class Atum
 	public void init(FMLInitializationEvent event)
 	{
 		DimensionManager.registerDimension(Atum.dimensionID , 0);
+		//DimensionManager.setWorld(Atum.dimensionID, new AtumWorld)
 		//DimensionManager.
 		/*
 		WorldProvider atumProvider = DimensionManager.createProviderFor(Atum.dimensionID);

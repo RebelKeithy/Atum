@@ -282,16 +282,18 @@ public class BlockAtumPortal extends BlockBreakable
         		par5Entity.timeUntilPortal = 100;
         		MinecraftServer minecraftserver = MinecraftServer.getServer();
         		int dimID = par5Entity.dimension;
-                WorldServer worldserver = minecraftserver.worldServerForDimension(dimID);
+                WorldServer worldserver = minecraftserver.worldServerForDimension(0);
                 WorldServer worldserver1 = minecraftserver.worldServerForDimension(Atum.dimensionID);
                 if(dimID == Atum.dimensionID)
                 {
-                	minecraftserver.getConfigurationManager().transferEntityToWorld(par5Entity, 0, worldserver1, worldserver, new AtumTeleporter(worldserver));
+                	((EntityPlayerMP)par5Entity).sendChatToPlayer("Going from " + dimID + " to dimension 0");
+                	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, 0, new AtumTeleporter(worldserver));
                     //par5Entity.travelToDimension(0);
                 } else {
                 	//System.out.println("teleporting");
-                	minecraftserver.getConfigurationManager().transferEntityToWorld(par5Entity, dimID, worldserver, worldserver1, new AtumTeleporter(worldserver1));
-                    par5Entity.travelToDimension(Atum.dimensionID);
+                	((EntityPlayerMP)par5Entity).sendChatToPlayer("Going to from " + dimID + " to dimension 17");
+                	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, Atum.dimensionID, new AtumTeleporter(worldserver1));
+                    //par5Entity.travelToDimension(Atum.dimensionID);
                 }
                 //par5Entity.travelToDimension(Atum.dimensionID);
         	}
