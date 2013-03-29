@@ -25,6 +25,7 @@ import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.Ev
 
 import java.util.Random;
 
+import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.world.WorldGenAtumTrees;
 import rebelkeithy.mods.atum.world.decorators.WorldGenShrub;
 
@@ -208,13 +209,20 @@ public class BiomeDecoratorAtum extends BiomeDecorator
             worldgenerator1.generate(this.currentWorld, this.randomGenerator, k, l, i1);
         }
 
-        doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, DEAD_BUSH);
         if(randomGenerator.nextFloat() < shrubChance)
         {
             k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             l = this.randomGenerator.nextInt(128);
             i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            (new WorldGenShrub(Block.deadBush.blockID)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
+            (new WorldGenShrub(Atum.atumShrub.blockID, 8)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
+        }
+
+        if(randomGenerator.nextFloat() < shrubChance)
+        {
+            k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
+            l = this.randomGenerator.nextInt(128);
+            i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
+            (new WorldGenShrub(Atum.atumWeed.blockID, 8)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
         }
 
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, LILYPAD);

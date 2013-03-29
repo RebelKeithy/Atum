@@ -17,6 +17,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import rebelkeithy.mods.atum.blocks.AtumStone;
+import rebelkeithy.mods.atum.blocks.BlockAtumLeaves;
+import rebelkeithy.mods.atum.blocks.BlockAtumLog;
 import rebelkeithy.mods.atum.blocks.BlockAtumPortal;
 import rebelkeithy.mods.atum.blocks.BlockAtumSand;
 import rebelkeithy.mods.atum.blocks.BlockAtumSlab;
@@ -70,8 +72,12 @@ public class Atum
 	public static Block atumFurnaceActive;
 	
 	public static Block atumShrub;
+	public static Block atumWeed;
 	
-	public static Item portalSpawner;
+	public static Block atumLog;
+	public static Block atumLeaves;
+	
+	public static Item itemScarab;
 
 	public static int dimensionID = 17;
 	
@@ -96,6 +102,10 @@ public class Atum
 		atumLargeStoneStairs = (new BlockAtumStairs(ConfigAtum.largeStoneStairsID, atumLargeBrick, 0)).setUnlocalizedName("Atum:LargeStoneStair");
 		atumSmallStoneStairs = (new BlockAtumStairs(ConfigAtum.smallStoneStairsID, atumSmallBrick, 0)).setUnlocalizedName("Atum:SmallStoneStair");
 		atumShrub = (new BlockShrub(ConfigAtum.shrubID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Shrub");
+		atumWeed = (new BlockShrub(ConfigAtum.weedID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Weed");
+		
+		atumLog = new BlockAtumLog(ConfigAtum.logID).setHardness(1F).setStepSound(Block.soundWoodFootstep);
+		atumLeaves = new BlockAtumLeaves(ConfigAtum.leavesID).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("AtumLeaves");
 		
 		ForgeHooks.canToolHarvestBlock(atumSand, 0, new ItemStack(Item.shovelSteel));
 		MinecraftForge.setBlockHarvestLevel(atumSand, "shovel", 0);
@@ -122,6 +132,9 @@ public class Atum
 		GameRegistry.registerBlock(atumLargeStoneStairs, "AtumLargeStoneStairs");
 		GameRegistry.registerBlock(atumSmallStoneStairs, "AtumSmallStoneStairs");
 		GameRegistry.registerBlock(atumShrub, "AtumShrub");
+		GameRegistry.registerBlock(atumLog, "AtumLog");
+		GameRegistry.registerBlock(atumLeaves, "AtumLeaves");
+		GameRegistry.registerBlock(atumWeed, "AtumWeed");
 		//GameRegistry.registerBlock(atumSlabs, ItemSlab.class);
 		GameRegistry.registerBlock(cursedChest, "BlockCursedChest");
 		GameRegistry.registerTileEntity(TileEntityChestSpawner.class, "CursedChest");
@@ -130,7 +143,7 @@ public class Atum
         Item.itemsList[atumDoubleSlab.blockID] = (new ItemSlab(atumDoubleSlab.blockID - 256, atumSlabs, atumDoubleSlab, true)).setUnlocalizedName("woodSlab");
         
 		
-		portalSpawner = new ItemPortalSpawner(ConfigAtum.portalSpawnerID).setUnlocalizedName("stick").setCreativeTab(CreativeTabs.tabTools);
+		itemScarab = new ItemPortalSpawner(ConfigAtum.portalSpawnerID).setUnlocalizedName("Atum:Scarab").setCreativeTab(CreativeTabs.tabTools);
 		atumDesert = (new BiomeGenAtumDesert(ConfigAtum.biomeAtumDesertID)).setColor(16421912).setBiomeName("AtumDesert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.1F, 0.2F);
 	}
 	

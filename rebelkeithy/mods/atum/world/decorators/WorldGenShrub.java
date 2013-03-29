@@ -12,16 +12,17 @@ public class WorldGenShrub extends WorldGenerator
 {
     /** stores the ID for WorldGenDeadBush */
     private int deadBushID;
+    private int groupSize;
 
-    public WorldGenShrub(int par1)
+    public WorldGenShrub(int par1, int par2)
     {
         this.deadBushID = par1;
+        this.groupSize = par2;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
-    	System.out.println("generating shrub");
-    	int size = par2Random.nextInt(4) + 5;
+    	int size = par2Random.nextInt(groupSize/2) + groupSize/2;
         for (int i1 = 0; i1 < size; ++i1)
         {
         	int range = 6;
@@ -31,7 +32,7 @@ public class WorldGenShrub extends WorldGenerator
             
             if (par1World.isAirBlock(x, y, z) && Atum.atumShrub.canBlockStay(par1World, x, y, z))
             {
-                par1World.setBlock(x, y, z, Atum.atumShrub.blockID, 0, 2);
+                par1World.setBlock(x, y, z, deadBushID, 0, 2);
             }
         }
 

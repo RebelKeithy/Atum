@@ -21,4 +21,7 @@ public class ConfigAtum
 	public static int largeStoneStairsID = 1037;
 	public static int smallStoneStairsID = 1038;
 	public static int shrubID = 1039;
+	public static int logID = 1040;
+	public static int leavesID = 1041;
+	public static int weedID = 1042;
 }

@@ -2,6 +2,8 @@ package rebelkeithy.mods.atum.world.decorators;
 
 import java.util.Random;
 
+import rebelkeithy.mods.atum.Atum;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.util.Direction;
@@ -94,49 +96,43 @@ public class WorldGenPalm extends WorldGenerator
             {
                 i1 = par1World.getBlockId(par3, par4 - 1, par5);
                 Block soil = Block.blocksList[i1];
-                boolean isSoil = (soil != null && soil.canSustainPlant(par1World, par3, par4 - 1, par5, ForgeDirection.UP, (BlockSapling)Block.sapling));
-
-                if (isSoil && par4 < 256 - l - 1)
+                
+                if (par4 < 256 - l - 1)
                 {
-                    soil.onPlantGrow(par1World, par3, par4 - 1, par5, par3, par4, par5);
+                	if(soil != null)
+                		soil.onPlantGrow(par1World, par3, par4 - 1, par5, par3, par4, par5);
                     b0 = 3;
                     byte b1 = 0;
                     int i2;
                     int j2;
-                    int k2;
+                    int k2;                    
 
-                    for (j1 = par4 - b0 + l; j1 <= par4 + l; ++j1)
-                    {
-                        k1 = j1 - (par4 + l);
-                        i2 = b1 + 1 - k1 / 2;
-
-                        for (j2 = par3 - i2; j2 <= par3 + i2; ++j2)
-                        {
-                            k2 = j2 - par3;
-
-                            for (int l2 = par5 - i2; l2 <= par5 + i2; ++l2)
-                            {
-                                int i3 = l2 - par5;
-
-                                if (Math.abs(k2) != i2 || Math.abs(i3) != i2 || par2Random.nextInt(2) != 0 && k1 != 0)
-                                {
-                                    int j3 = par1World.getBlockId(j2, j1, l2);
-                                    Block block = Block.blocksList[j3];
-
-                                    if (block == null || block.canBeReplacedByLeaves(par1World, j2, j1, l2))
-                                    {
-                                        this.setBlockAndMetadata(par1World, j2, j1, l2, Block.leaves.blockID, this.metaLeaves);
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    spawnLeaf(par1World, par3, par4+l+1, par5);
                     
-
-                    /*if (block == null || block.canBeReplacedByLeaves(par1World, j2, j1, l2))
+                    for(int x = -1; x <= 1; x++)
                     {
-                        this.setBlockAndMetadata(par1World, par3, l+1, par5, Block.leaves.blockID, this.metaLeaves);
-                    }*/
+                    	for(int z = -1; z <= 1; z++)
+                        {
+                        	if(x != 0 || z != 0)
+                        	{
+                        		spawnLeaf(par1World, par3 + x, par4+l, par5 + z);
+                        	}
+                        }
+                	}
+                    System.out.println("treee!!");
+                    spawnLeaf(par1World, par3+2, par4+l, par5);
+                    spawnLeaf(par1World, par3-2, par4+l, par5);
+                    spawnLeaf(par1World, par3, par4+l, par5+2);
+                    spawnLeaf(par1World, par3, par4+l, par5-2);
+                    spawnLeaf(par1World, par3, par4+l-1, par5-2);
+                    spawnLeaf(par1World, par3, par4+l-1, par5+2);
+                    spawnLeaf(par1World, par3+2, par4+l-1, par5);
+                    spawnLeaf(par1World, par3-2, par4+l-1, par5);
+
+                    spawnLeaf(par1World, par3, par4+l-1, par5-3);
+                    spawnLeaf(par1World, par3, par4+l-1, par5+3);
+                    spawnLeaf(par1World, par3+3, par4+l-1, par5);
+                    spawnLeaf(par1World, par3-3, par4+l-1, par5);
 
                     for (j1 = 0; j1 < l; ++j1)
                     {
@@ -146,7 +142,7 @@ public class WorldGenPalm extends WorldGenerator
 
                         if (k1 == 0 || block == null || block.isLeaves(par1World, par3, par4 + j1, par5))
                         {
-                            this.setBlockAndMetadata(par1World, par3, par4 + j1, par5, Block.wood.blockID, this.metaWood);
+                            this.setBlockAndMetadata(par1World, par3, par4 + j1, par5, Atum.atumLog.blockID, this.metaWood);
                         }
                     }
 
@@ -161,6 +157,18 @@ public class WorldGenPalm extends WorldGenerator
         else
         {
             return false;
+        }
+    }
+    
+    public void spawnLeaf(World par1World, int x, int y, int z)
+    {
+        int j3 = par1World.getBlockId(x, y, z);
+        Block block = Block.blocksList[j3];
+        System.out.println("testing leaf" + x + " " + y + " " + z);
+        if (block == null || block.canBeReplacedByLeaves(par1World, x, y, z))
+        {
+        	System.out.println("spawning leaf");
+            this.setBlockAndMetadata(par1World, x, y, z, Atum.atumLeaves.blockID, this.metaLeaves);
         }
     }
 }
