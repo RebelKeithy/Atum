@@ -1,12 +1,16 @@
 package rebelkeithy.mods.atum;
 
-import rebelkeithy.mods.atum.world.AtumWorldProvider;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldServer;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
+import rebelkeithy.mods.atum.blocks.BlockAtumSand;
+import rebelkeithy.mods.atum.cursedchest.BlockChestSpawner;
+import rebelkeithy.mods.atum.cursedchest.TileEntityChestSpawner;
+import rebelkeithy.mods.atum.world.AtumWorldProvider;
+import rebelkeithy.mods.atum.world.biome.BiomeGenAtumDesert;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -16,6 +20,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 
 @Mod(modid="Atum", name="Atum", version="0.0.0.1")
@@ -28,15 +33,34 @@ public class Atum
 	public static CommonProxy proxy;
 	
 	public static BlockAtumPortal portal;
+	public static Block cursedChest;
+	public static Block atumSand;
+	public static Block atumStone;
+	public static Block atumCobble;
+	
 	public static Item portalSpawner;
 
 	public static int dimensionID = 17;
+	
+	public static BiomeGenBase atumDesert;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		portal = new BlockAtumPortal(ConfigAtum.portalBlockID);
+		cursedChest = new BlockChestSpawner(ConfigAtum.cursedChestID).setCreativeTab(CreativeTabs.tabDecorations);
+		atumSand = new BlockAtumSand(ConfigAtum.sandID).setUnlocalizedName("Atum:AtumSand").setCreativeTab(CreativeTabs.tabBlock);
+		atumStone = new Block(ConfigAtum.stoneID, Material.rock).setUnlocalizedName("Atum:AtumStone").setCreativeTab(CreativeTabs.tabBlock);
+		atumCobble = new Block(ConfigAtum.cobbleID, Material.rock).setUnlocalizedName("Atum:AtumCobble").setCreativeTab(CreativeTabs.tabBlock);
+		
+		GameRegistry.registerBlock(atumSand, "AtumSand");
+		GameRegistry.registerBlock(atumStone, "AtumStone");
+		GameRegistry.registerBlock(atumCobble, "AtumCobble");
+		GameRegistry.registerBlock(cursedChest, "BlockCursedChest");
+		GameRegistry.registerTileEntity(TileEntityChestSpawner.class, "CursedChest");
+		
 		portalSpawner = new ItemPortalSpawner(ConfigAtum.portalSpawnerID).setUnlocalizedName("stick").setCreativeTab(CreativeTabs.tabTools);
+		atumDesert = (new BiomeGenAtumDesert(ConfigAtum.biomeAtumDesertID)).setColor(16421912).setBiomeName("AtumDesert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.1F, 0.2F);
 	}
 	
 	@Init

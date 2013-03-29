@@ -86,6 +86,9 @@ public class AtumChunkProvider implements IChunkProvider
     private MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
     private MapGenScatteredFeature scatteredFeatureGenerator = new MapGenScatteredFeature();
 
+    
+    WorldGenAtumTrees treeGenerator;
+    
     /** Holds ravine generator */
     private MapGenBase ravineGenerator = new MapGenRavine();
 
@@ -120,6 +123,8 @@ public class AtumChunkProvider implements IChunkProvider
         mineshaftGenerator = (MapGenMineshaft) TerrainGen.getModdedMapGen(mineshaftGenerator, MINESHAFT);
         scatteredFeatureGenerator = (MapGenScatteredFeature) TerrainGen.getModdedMapGen(scatteredFeatureGenerator, SCATTERED_FEATURE);
         ravineGenerator = TerrainGen.getModdedMapGen(ravineGenerator, RAVINE);
+        
+        treeGenerator = new WorldGenAtumTrees(true);
     }
 
     public AtumChunkProvider(World par1World, long par2, boolean par4)
@@ -338,10 +343,8 @@ public class AtumChunkProvider implements IChunkProvider
         byte[] abyte = new byte[32768];
         this.generateTerrain(par1, par2, abyte);
         this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, par1 * 16, par2 * 16, 16, 16);
+        //this.biomesForGeneration = new BiomeGenBase[] {BiomeGenBase.desert};
         this.replaceBlocksForBiome(par1, par2, abyte, this.biomesForGeneration);
-        this.caveGenerator.generate(this, this.worldObj, par1, par2, abyte);
-        this.caveGenerator.generate(this, this.worldObj, par1, par2, abyte);
-        this.caveGenerator.generate(this, this.worldObj, par1, par2, abyte);
         this.caveGenerator.generate(this, this.worldObj, par1, par2, abyte);
         this.ravineGenerator.generate(this, this.worldObj, par1, par2, abyte);
 
@@ -551,33 +554,27 @@ public class AtumChunkProvider implements IChunkProvider
             flag = this.villageGenerator.generateStructuresInChunk(this.worldObj, this.rand, par2, par3);
             this.strongholdGenerator.generateStructuresInChunk(this.worldObj, this.rand, par2, par3);
             this.scatteredFeatureGenerator.generateStructuresInChunk(this.worldObj, this.rand, par2, par3);
+
         }
 
         int k1;
         int l1;
         int i2;
-
-        if (TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, LAKE) && 
-                !flag && this.rand.nextInt(4) == 0)
-        {
-            k1 = k + this.rand.nextInt(16) + 8;
-            l1 = this.rand.nextInt(128);
-            i2 = l + this.rand.nextInt(16) + 8;
-            (new WorldGenLakes(Block.waterStill.blockID)).generate(this.worldObj, this.rand, k1, l1, i2);
-        }
-
-        if (TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, LAVA) &&
-                !flag && this.rand.nextInt(8) == 0)
+       
+        if (TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, LAVA) && !flag && this.rand.nextInt(8) == 0)
         {
             k1 = k + this.rand.nextInt(16) + 8;
             l1 = this.rand.nextInt(this.rand.nextInt(120) + 8);
             i2 = l + this.rand.nextInt(16) + 8;
-
+            
+            
             if (l1 < 63 || this.rand.nextInt(10) == 0)
             {
                 (new WorldGenLakes(Block.lavaStill.blockID)).generate(this.worldObj, this.rand, k1, l1, i2);
             }
         }
+        
+        
 
         boolean doGen = TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, DUNGEON);
         for (k1 = 0; doGen && k1 < 8; ++k1)
