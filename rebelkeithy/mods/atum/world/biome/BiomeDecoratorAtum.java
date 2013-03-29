@@ -26,6 +26,7 @@ import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.Ev
 import java.util.Random;
 
 import rebelkeithy.mods.atum.world.WorldGenAtumTrees;
+import rebelkeithy.mods.atum.world.decorators.WorldGenShrub;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -50,7 +51,9 @@ import net.minecraftforge.event.terraingen.TerrainGen;
 public class BiomeDecoratorAtum extends BiomeDecorator
 {    
 
-    public BiomeDecoratorAtum(BiomeGenBase par1BiomeGenBase)
+    private float shrubChance;
+
+	public BiomeDecoratorAtum(BiomeGenBase par1BiomeGenBase)
     {
     	super(par1BiomeGenBase);
         this.sandGen = new WorldGenSand(7, Block.sand.blockID);
@@ -75,7 +78,8 @@ public class BiomeDecoratorAtum extends BiomeDecorator
         this.treesPerChunk = 0;
         this.flowersPerChunk = 2;
         this.grassPerChunk = 1;
-        this.deadBushPerChunk = 0;
+        this.deadBushPerChunk = 1;
+        this.shrubChance = 0.3F;
         this.mushroomsPerChunk = 0;
         this.reedsPerChunk = 0;
         this.cactiPerChunk = 0;
@@ -205,12 +209,12 @@ public class BiomeDecoratorAtum extends BiomeDecorator
         }
 
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, DEAD_BUSH);
-        for (j = 0; doGen && j < this.deadBushPerChunk; ++j)
+        if(randomGenerator.nextFloat() < shrubChance)
         {
             k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             l = this.randomGenerator.nextInt(128);
             i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            (new WorldGenDeadBush(Block.deadBush.blockID)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
+            (new WorldGenShrub(Block.deadBush.blockID)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
         }
 
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, LILYPAD);

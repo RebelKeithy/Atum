@@ -2,19 +2,26 @@ package rebelkeithy.mods.atum;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import rebelkeithy.mods.atum.blocks.AtumStone;
 import rebelkeithy.mods.atum.blocks.BlockAtumPortal;
 import rebelkeithy.mods.atum.blocks.BlockAtumSand;
+import rebelkeithy.mods.atum.blocks.BlockAtumSlab;
+import rebelkeithy.mods.atum.blocks.BlockAtumStairs;
+import rebelkeithy.mods.atum.blocks.BlockShrub;
 import rebelkeithy.mods.atum.cursedchest.BlockChestSpawner;
 import rebelkeithy.mods.atum.cursedchest.TileEntityChestSpawner;
 import rebelkeithy.mods.atum.entities.EntityMummy;
@@ -49,12 +56,27 @@ public class Atum
 	public static Block atumSand;
 	public static Block atumStone;
 	public static Block atumCobble;
+	public static Block atumLargeBrick;
+	public static Block atumSmallBrick;
+	public static Block atumCarvedBrick;
+	public static BlockAtumSlab atumSlabs;
+	public static BlockAtumSlab atumDoubleSlab;
+	public static Block atumSmoothStairs;
+	public static Block atumCobbleStairs;
+	public static Block atumLargeStoneStairs;
+	public static Block atumSmallStoneStairs;
+	
+	public static Block atumFurnaceIdle;
+	public static Block atumFurnaceActive;
+	
+	public static Block atumShrub;
 	
 	public static Item portalSpawner;
 
 	public static int dimensionID = 17;
 	
 	public static BiomeGenBase atumDesert;
+
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
@@ -64,11 +86,21 @@ public class Atum
 		atumSand = new BlockAtumSand(ConfigAtum.sandID).setUnlocalizedName("Atum:AtumSand").setHardness(0.5F).setCreativeTab(CreativeTabs.tabBlock);
 		atumStone = new AtumStone(ConfigAtum.stoneID).setUnlocalizedName("Atum:AtumStone").setHardness(1.5F).setCreativeTab(CreativeTabs.tabBlock);
 		atumCobble = new Block(ConfigAtum.cobbleID, Material.rock).setUnlocalizedName("Atum:AtumCobble").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
+		atumLargeBrick = new Block(ConfigAtum.largeBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickLarge").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
+		atumSmallBrick = new Block(ConfigAtum.smallBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickSmall").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
+		atumCarvedBrick = new Block(ConfigAtum.carvedBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickCarved").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
+		atumSlabs = (BlockAtumSlab) new BlockAtumSlab(ConfigAtum.slabID, false, Material.rock).setUnlocalizedName("Atum:AtumSlab").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
+		atumDoubleSlab = (BlockAtumSlab) new BlockAtumSlab(ConfigAtum.doubleSlabID, true, Material.rock).setUnlocalizedName("Atum:AtumDoubleSlab").setHardness(2.0F);
+		atumSmoothStairs = (new BlockAtumStairs(ConfigAtum.smoothStairsID, atumStone, 0)).setUnlocalizedName("Atum:SmoothStair");
+		atumCobbleStairs = (new BlockAtumStairs(ConfigAtum.cobbleStairsID, atumCobble, 0)).setUnlocalizedName("Atum:CobbleStair");
+		atumLargeStoneStairs = (new BlockAtumStairs(ConfigAtum.largeStoneStairsID, atumLargeBrick, 0)).setUnlocalizedName("Atum:LargeStoneStair");
+		atumSmallStoneStairs = (new BlockAtumStairs(ConfigAtum.smallStoneStairsID, atumSmallBrick, 0)).setUnlocalizedName("Atum:SmallStoneStair");
+		atumShrub = (new BlockShrub(ConfigAtum.shrubID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Shrub");
 		
 		ForgeHooks.canToolHarvestBlock(atumSand, 0, new ItemStack(Item.shovelSteel));
 		MinecraftForge.setBlockHarvestLevel(atumSand, "shovel", 0);
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderLiving(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderLiving(new ModelZombie(), 0.5F));
 		
 		LanguageRegistry.addName(atumStone, "Limestone");
 		LanguageRegistry.addName(atumSand, "Limestone sand");
@@ -81,8 +113,22 @@ public class Atum
 		GameRegistry.registerBlock(atumSand, "AtumSand");
 		GameRegistry.registerBlock(atumStone, "AtumStone");
 		GameRegistry.registerBlock(atumCobble, "AtumCobble");
+		GameRegistry.registerBlock(atumLargeBrick, "AtumBrickLarge");
+		GameRegistry.registerBlock(atumSmallBrick, "AtumBrickSmall");
+		GameRegistry.registerBlock(atumCarvedBrick, "AtumBrickCarved");
+		GameRegistry.registerBlock(atumSlabs, "AtumSlabs");
+		GameRegistry.registerBlock(atumSmoothStairs, "AtumSmoothStairs");
+		GameRegistry.registerBlock(atumCobbleStairs, "AtumCobbleStairs");
+		GameRegistry.registerBlock(atumLargeStoneStairs, "AtumLargeStoneStairs");
+		GameRegistry.registerBlock(atumSmallStoneStairs, "AtumSmallStoneStairs");
+		GameRegistry.registerBlock(atumShrub, "AtumShrub");
+		//GameRegistry.registerBlock(atumSlabs, ItemSlab.class);
 		GameRegistry.registerBlock(cursedChest, "BlockCursedChest");
 		GameRegistry.registerTileEntity(TileEntityChestSpawner.class, "CursedChest");
+		
+		Item.itemsList[ConfigAtum.slabID] = (new ItemSlab(atumSlabs.blockID - 256, atumSlabs, atumDoubleSlab, false)).setUnlocalizedName("woodSlab");
+        Item.itemsList[atumDoubleSlab.blockID] = (new ItemSlab(atumDoubleSlab.blockID - 256, atumSlabs, atumDoubleSlab, true)).setUnlocalizedName("woodSlab");
+        
 		
 		portalSpawner = new ItemPortalSpawner(ConfigAtum.portalSpawnerID).setUnlocalizedName("stick").setCreativeTab(CreativeTabs.tabTools);
 		atumDesert = (new BiomeGenAtumDesert(ConfigAtum.biomeAtumDesertID)).setColor(16421912).setBiomeName("AtumDesert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.1F, 0.2F);
@@ -93,20 +139,23 @@ public class Atum
 	{
 		DimensionManager.registerProviderType(Atum.dimensionID, AtumWorldProvider.class, true);
 		DimensionManager.registerDimension(Atum.dimensionID , Atum.dimensionID);
-		//DimensionManager.setWorld(Atum.dimensionID, new AtumWorld)
-		//DimensionManager.
-		/*
-		WorldProvider atumProvider = DimensionManager.createProviderFor(Atum.dimensionID);
-        MinecraftServer minecraftserver = MinecraftServer.getServer();
-        WorldServer worldserver1 = minecraftserver.worldServerForDimension(Atum.dimensionID);
-        worldserver1.field_85177_Q = new AtumTeleporter(worldserver1);
-        */
-		//DimensionManager.registerProviderType(Atum.dimensionID, atumProvider, true);
+
+
+		addRecipes();
 	}
 	
 	@PostInit
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		
+	}
+	
+	public void addRecipes()
+	{
+		FurnaceRecipes.smelting().addSmelting(atumCobble.blockID, new ItemStack(atumStone), 0.1F);
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumLargeBrick, 4), "XX", "XX", 'X', atumStone));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumSmallBrick, 4), "XX", "XX", 'X', atumCobble));
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(atumCarvedBrick, 1), atumStone));
 	}
 }

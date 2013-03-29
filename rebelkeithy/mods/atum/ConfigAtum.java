@@ -10,4 +10,15 @@ public class ConfigAtum
 	public static int stoneID = 1027;
 	public static int cobbleID = 1028;
 	public static int mummyID = 87;
+	public static int largeBrickID = 1029;
+	public static int smallBrickID = 1030;
+	public static int carvedBrickID = 1031;
+	public static int stoneStairs = 1032;
+	public static int slabID = 1033;
+	public static int doubleSlabID = 1034;
+	public static int smoothStairsID = 1035;
+	public static int cobbleStairsID = 1036;
+	public static int largeStoneStairsID = 1037;
+	public static int smallStoneStairsID = 1038;
+	public static int shrubID = 1039;
 }

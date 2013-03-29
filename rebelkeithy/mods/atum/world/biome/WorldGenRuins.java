@@ -2,11 +2,10 @@ package rebelkeithy.mods.atum.world.biome;
 
 import java.util.Random;
 
-import rebelkeithy.mods.atum.Atum;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import rebelkeithy.mods.atum.Atum;
 
 public class WorldGenRuins extends WorldGenerator
 {
@@ -48,7 +47,25 @@ public class WorldGenRuins extends WorldGenerator
 					if(x == x2 || z == z2 || x == i || z == k || y == -1)
 					{
 						if(y < wallHeight)
-							world.setBlock(x, y + height, z, Block.sandStone.blockID);
+						{
+							if(random.nextFloat() > 0.1)
+							{
+								world.setBlock(x, y + height, z, Atum.atumLargeBrick.blockID);
+							} else {
+								world.setBlock(x, y + height, z, Atum.atumSmallBrick.blockID);
+							}
+						} else if(y == wallHeight)
+						{
+							if(random.nextFloat() > 0.7)
+							{
+								if(random.nextFloat() > 0.1)
+								{
+									world.setBlock(x, y + height, z, Atum.atumSlabs.blockID, 2, 2);
+								} else {
+									world.setBlock(x, y + height, z, Atum.atumSlabs.blockID, 3, 2);
+								}
+							}
+						}
 					} else {
 						world.setBlockToAir(x, y + height, z);
 					}
