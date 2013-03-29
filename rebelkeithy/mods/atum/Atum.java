@@ -2,15 +2,25 @@ package rebelkeithy.mods.atum;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.MinecraftForge;
+import rebelkeithy.mods.atum.blocks.AtumStone;
+import rebelkeithy.mods.atum.blocks.BlockAtumPortal;
 import rebelkeithy.mods.atum.blocks.BlockAtumSand;
 import rebelkeithy.mods.atum.cursedchest.BlockChestSpawner;
 import rebelkeithy.mods.atum.cursedchest.TileEntityChestSpawner;
+import rebelkeithy.mods.atum.entities.EntityMummy;
 import rebelkeithy.mods.atum.world.AtumWorldProvider;
 import rebelkeithy.mods.atum.world.biome.BiomeGenAtumDesert;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -20,7 +30,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 
 @Mod(modid="Atum", name="Atum", version="0.0.0.1")
@@ -49,9 +61,22 @@ public class Atum
 	{
 		portal = new BlockAtumPortal(ConfigAtum.portalBlockID);
 		cursedChest = new BlockChestSpawner(ConfigAtum.cursedChestID).setCreativeTab(CreativeTabs.tabDecorations);
-		atumSand = new BlockAtumSand(ConfigAtum.sandID).setUnlocalizedName("Atum:AtumSand").setCreativeTab(CreativeTabs.tabBlock);
-		atumStone = new Block(ConfigAtum.stoneID, Material.rock).setUnlocalizedName("Atum:AtumStone").setCreativeTab(CreativeTabs.tabBlock);
-		atumCobble = new Block(ConfigAtum.cobbleID, Material.rock).setUnlocalizedName("Atum:AtumCobble").setCreativeTab(CreativeTabs.tabBlock);
+		atumSand = new BlockAtumSand(ConfigAtum.sandID).setUnlocalizedName("Atum:AtumSand").setHardness(0.5F).setCreativeTab(CreativeTabs.tabBlock);
+		atumStone = new AtumStone(ConfigAtum.stoneID).setUnlocalizedName("Atum:AtumStone").setHardness(1.5F).setCreativeTab(CreativeTabs.tabBlock);
+		atumCobble = new Block(ConfigAtum.cobbleID, Material.rock).setUnlocalizedName("Atum:AtumCobble").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
+		
+		ForgeHooks.canToolHarvestBlock(atumSand, 0, new ItemStack(Item.shovelSteel));
+		MinecraftForge.setBlockHarvestLevel(atumSand, "shovel", 0);
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderLiving(new ModelBiped(), 0.5F));
+		
+		LanguageRegistry.addName(atumStone, "Limestone");
+		LanguageRegistry.addName(atumSand, "Limestone sand");
+		LanguageRegistry.addName(atumCobble, "Cracked Limestone");
+		
+		//EntityRegistry.registerModEntity(EntityMummy.class, "AtumMummy", ConfigAtum.mummyID, this, 16, 20, true);
+		EntityRegistry.registerGlobalEntityID(EntityMummy.class, "AtumMummy", ConfigAtum.mummyID);
+		EntityList.addMapping(EntityMummy.class, "AtumMummy", ConfigAtum.mummyID, 0x770000, 0x220000);
 		
 		GameRegistry.registerBlock(atumSand, "AtumSand");
 		GameRegistry.registerBlock(atumStone, "AtumStone");

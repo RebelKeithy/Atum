@@ -8,23 +8,29 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenDesertWells;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.world.WorldGenAtumTrees;
 
 public class BiomeGenAtumDesert extends BiomeGenBase
 {
 	public WorldGenerator treeGenerator;
+	public WorldGenerator ruinsGenerator;
+	
+	public short sTopBlock;
+	public short sFillerBlock;
 	
     public BiomeGenAtumDesert(int par1)
     {
         super(par1);
         this.spawnableCreatureList.clear();
-        this.topBlock = (byte)Block.sand.blockID;
-        this.fillerBlock = (byte)Block.sand.blockID;
+        this.sTopBlock = (short) Atum.atumSand.blockID;
+        this.sFillerBlock = (short) Atum.atumSand.blockID;
         this.theBiomeDecorator.treesPerChunk = 1;
         this.theBiomeDecorator.deadBushPerChunk = 5;
         this.theBiomeDecorator.reedsPerChunk = 0;
         this.theBiomeDecorator.cactiPerChunk = 0;
         this.treeGenerator = new WorldGenAtumTrees(true);
+        ruinsGenerator = new WorldGenRuins();
     }
 
 
@@ -50,6 +56,13 @@ public class BiomeGenAtumDesert extends BiomeGenBase
     {
         super.decorate(par1World, par2Random, par3, par4);
 
+        if (par2Random.nextInt(5) == 0)
+        {
+            int k = par3 + par2Random.nextInt(16) + 8;
+            int l = par4 + par2Random.nextInt(16) + 8;
+            ruinsGenerator.generate(par1World, par2Random, k, par1World.getHeightValue(k, l) + 1, l);
+        }
+        
         if (par2Random.nextInt(1000) == 0)
         {
             int k = par3 + par2Random.nextInt(16) + 8;

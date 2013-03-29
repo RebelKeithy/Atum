@@ -36,7 +36,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
 
     TileEntityChestSpawner()
     {
-    	chestSpawner.setMobID("Zombie");
+    	chestSpawner.setMobID("AtumMummy");
     }
     
     /**

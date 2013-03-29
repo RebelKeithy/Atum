@@ -1,6 +1,9 @@
-package rebelkeithy.mods.atum;
+package rebelkeithy.mods.atum.blocks;
 
 import java.util.Random;
+
+import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumTeleporter;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
@@ -69,7 +72,7 @@ public class BlockAtumPortal extends BlockBreakable
     {
         float f;
         float f1;
-
+        /*
         if (par1IBlockAccess.getBlockId(par2 - 1, par3, par4) != this.blockID && par1IBlockAccess.getBlockId(par2 + 1, par3, par4) != this.blockID)
         {
             f = 0.125F;
@@ -81,7 +84,7 @@ public class BlockAtumPortal extends BlockBreakable
             f = 0.5F;
             f1 = 0.125F;
             this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f1, 0.5F + f, 1.0F, 0.5F + f1);
-        }
+        }*/
     }
 
     /**
@@ -98,7 +101,7 @@ public class BlockAtumPortal extends BlockBreakable
      */
     public boolean renderAsNormalBlock()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -106,25 +109,7 @@ public class BlockAtumPortal extends BlockBreakable
      */
     public boolean tryToCreatePortal(World par1World, int par2, int par3, int par4)
     {
-        byte b0 = 0;
-        byte b1 = 0;
-
-        if (par1World.getBlockId(par2 - 1, par3, par4) == Block.sandStone.blockID || par1World.getBlockId(par2 + 1, par3, par4) == Block.sandStone.blockID)
-        {
-            b0 = 1;
-        }
-
-        if (par1World.getBlockId(par2, par3, par4 - 1) == Block.sandStone.blockID || par1World.getBlockId(par2, par3, par4 + 1) == Block.sandStone.blockID)
-        {
-            b1 = 1;
-        }
-
-        if (b0 == b1)
-        {
-            return false;
-        }
-        else
-        {
+        	/*
             if (par1World.getBlockId(par2 - b0, par3, par4 - b1) == 0)
             {
                 par2 -= b0;
@@ -157,18 +142,40 @@ public class BlockAtumPortal extends BlockBreakable
                         }
                     }
                 }
-            }
+            }*/
 
-            for (l = 0; l < 2; ++l)
+        int id0 = par1World.getBlockId(par2, par3-1, par4);
+            int id1 = par1World.getBlockId(par2 - 2, par3 + 0, par4);
+            int id2 = par1World.getBlockId(par2 - 2, par3 + 1, par4);
+            int id3 = par1World.getBlockId(par2, par3 + 0, par4 - 2);
+            int id4 = par1World.getBlockId(par2, par3 + 1, par4 - 2);
+            int id5 = par1World.getBlockId(par2, par3 + 0, par4 + 2);
+            int id6 = par1World.getBlockId(par2, par3 + 1, par4 + 2);
+            int id7 = par1World.getBlockId(par2 + 2, par3 + 0, par4);
+            int id8 = par1World.getBlockId(par2 + 2, par3 + 1, par4);
+            int id9 = par1World.getBlockId(par2 - 1, par3 + 2, par4);
+            int id10 = par1World.getBlockId(par2, par3 + 2, par4 - 1);
+            int id11 = par1World.getBlockId(par2, par3 + 2, par4 + 1);
+            int id12 = par1World.getBlockId(par2 + 1, par3 + 2, par4);
+            System.out.println(id0 + " " +id1+" "+id2 + " " + id3 + " " + id4);
+            if(id1 == id2 && id2 == id3 && id3 == id4 && id4 == id5 && id6 == id7 && id7 == id8 && id8 == id9 && id9 == id10 && id10 == id11 && id11 == id12 && id12 == Block.sandStone.blockID)
+            {
+                par1World.setBlock(par2, par3, par4, Atum.portal.blockID, 0, 2);
+                par1World.setBlock(par2, par3 + 1, par4, Atum.portal.blockID, 0, 2);
+                par1World.setBlock(par2, par3 + 2, par4, Atum.portal.blockID, 0, 2);
+                return true;
+            }
+            
+
+            /*for (l = 0; l < 2; ++l)
             {
                 for (i1 = 0; i1 < 3; ++i1)
                 {
                     par1World.setBlock(par2 + b0 * l, par3 + i1, par4 + b1 * l, Atum.portal.blockID, 0, 2);
                 }
-            }
+            }*/
 
-            return true;
-        }
+            return false;
     }
 
     /**
@@ -293,7 +300,7 @@ public class BlockAtumPortal extends BlockBreakable
                 	//System.out.println("teleporting");
                 	((EntityPlayerMP)par5Entity).sendChatToPlayer("Going to from " + dimID + " to dimension 17");
                 	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, Atum.dimensionID, new AtumTeleporter(worldserver1));
-                    //par5Entity.travelToDimension(Atum.dimensionID);
+                    par5Entity.travelToDimension(Atum.dimensionID);
                 }
                 //par5Entity.travelToDimension(Atum.dimensionID);
         	}

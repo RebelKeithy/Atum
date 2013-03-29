@@ -20,7 +20,21 @@ public class ItemPortalSpawner extends Item
         int blockID = par3World.getBlockId(par4, par5, par6);
         if(blockID == Block.sandStone.blockID)
         {
-        	Atum.portal.tryToCreatePortal(par3World, par4, par5 + 1, par6);
+        	if(!Atum.portal.tryToCreatePortal(par3World, par4, par5 + 1, par6))
+        	{
+        		par3World.setBlock(par4+2, par5+1, par6, Block.sandStone.blockID);
+        		par3World.setBlock(par4+2, par5+2, par6, Block.sandStone.blockID);
+        		par3World.setBlock(par4-2, par5+1, par6, Block.sandStone.blockID);
+        		par3World.setBlock(par4-2, par5+2, par6, Block.sandStone.blockID);
+        		par3World.setBlock(par4, par5+1, par6+2, Block.sandStone.blockID);
+        		par3World.setBlock(par4, par5+2, par6+2, Block.sandStone.blockID);
+        		par3World.setBlock(par4, par5+1, par6-2, Block.sandStone.blockID);
+        		par3World.setBlock(par4, par5+2, par6-2, Block.sandStone.blockID);
+        		par3World.setBlock(par4, par5+3, par6+1, Block.sandStone.blockID);
+        		par3World.setBlock(par4, par5+3, par6-1, Block.sandStone.blockID);
+        		par3World.setBlock(par4-1, par5+3, par6, Block.sandStone.blockID);
+        		par3World.setBlock(par4+1, par5+3, par6, Block.sandStone.blockID);
+        	}
         }
         return true;
     }

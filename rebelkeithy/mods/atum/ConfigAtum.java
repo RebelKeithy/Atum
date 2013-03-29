@@ -9,4 +9,5 @@ public class ConfigAtum
 	public static int sandID = 1026;
 	public static int stoneID = 1027;
 	public static int cobbleID = 1028;
+	public static int mummyID = 87;
 }

@@ -8,7 +8,6 @@ import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.STRO
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.VILLAGE;
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.DUNGEON;
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ICE;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAKE;
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAVA;
 
 import java.util.List;
@@ -40,6 +39,8 @@ import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
+import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.world.biome.BiomeGenAtumDesert;
 
 public class AtumChunkProvider implements IChunkProvider
 {
@@ -155,7 +156,7 @@ public class AtumChunkProvider implements IChunkProvider
      * Generates the shape of the terrain for the chunk though its all stone though the water is frozen if the
      * temperature is low enough
      */
-    public void generateTerrain(int par1, int par2, byte[] par3ArrayOfByte)
+    public void generateTerrain(int par1, int par2, short[] par3ArrayOfByte)
     {
         byte b0 = 4;
         byte b1 = 16;
@@ -203,11 +204,11 @@ public class AtumChunkProvider implements IChunkProvider
                             {
                                 if ((d16 += d15) > 0.0D)
                                 {
-                                    par3ArrayOfByte[j2 += short1] = (byte)Block.stone.blockID;
+                                    par3ArrayOfByte[j2 += short1] = (short)Atum.atumStone.blockID;
                                 }
                                 else if (k1 * 8 + l1 < b2)
                                 {
-                                    par3ArrayOfByte[j2 += short1] = (byte)Block.waterStill.blockID;
+                                    par3ArrayOfByte[j2 += short1] = (short)Block.waterStill.blockID;
                                 }
                                 else
                                 {
@@ -232,11 +233,11 @@ public class AtumChunkProvider implements IChunkProvider
     /**
      * Replaces the stone that was placed in with blocks that match the biome
      */
-    public void replaceBlocksForBiome(int par1, int par2, byte[] par3ArrayOfByte, BiomeGenBase[] par4ArrayOfBiomeGenBase)
+    public void replaceBlocksForBiome(int par1, int par2, short[] par3ArrayOfByte, BiomeGenBase[] par4ArrayOfBiomeGenBase)
     {
-        ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks(this, par1, par2, par3ArrayOfByte, par4ArrayOfBiomeGenBase);
-        MinecraftForge.EVENT_BUS.post(event);
-        if (event.getResult() == Result.DENY) return;
+        //ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks(this, par1, par2, par3ArrayOfByte, par4ArrayOfBiomeGenBase);
+        //MinecraftForge.EVENT_BUS.post(event);
+        //if (event.getResult() == Result.DENY) return;
 
         byte b0 = 63;
         double d0 = 0.03125D;
@@ -250,8 +251,8 @@ public class AtumChunkProvider implements IChunkProvider
                 float f = biomegenbase.getFloatTemperature();
                 int i1 = (int)(this.stoneNoise[k + l * 16] / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
                 int j1 = -1;
-                byte b1 = biomegenbase.topBlock;
-                byte b2 = biomegenbase.fillerBlock;
+                short b1 = ((BiomeGenAtumDesert)biomegenbase).sTopBlock;
+                short b2 = ((BiomeGenAtumDesert)biomegenbase).sFillerBlock;
 
                 for (int k1 = 127; k1 >= 0; --k1)
                 {
@@ -263,36 +264,36 @@ public class AtumChunkProvider implements IChunkProvider
                     }
                     else
                     {
-                        byte b3 = par3ArrayOfByte[l1];
+                        short b3 = par3ArrayOfByte[l1];
 
                         if (b3 == 0)
                         {
                             j1 = -1;
                         }
-                        else if (b3 == Block.stone.blockID)
+                        else if (b3 == Atum.atumStone.blockID)
                         {
                             if (j1 == -1)
                             {
                                 if (i1 <= 0)
                                 {
                                     b1 = 0;
-                                    b2 = (byte)Block.stone.blockID;
+                                    b2 = (short)Atum.atumStone.blockID;
                                 }
                                 else if (k1 >= b0 - 4 && k1 <= b0 + 1)
                                 {
-                                    b1 = biomegenbase.topBlock;
-                                    b2 = biomegenbase.fillerBlock;
+                                    b1 = ((BiomeGenAtumDesert)biomegenbase).sTopBlock;
+                                    b2 = ((BiomeGenAtumDesert)biomegenbase).sFillerBlock;
                                 }
 
                                 if (k1 < b0 && b1 == 0)
                                 {
                                     if (f < 0.15F)
                                     {
-                                        b1 = (byte)Block.ice.blockID;
+                                        b1 = (short)Block.ice.blockID;
                                     }
                                     else
                                     {
-                                        b1 = (byte)Block.waterStill.blockID;
+                                        b1 = (short)Block.waterStill.blockID;
                                     }
                                 }
 
@@ -312,10 +313,10 @@ public class AtumChunkProvider implements IChunkProvider
                                 --j1;
                                 par3ArrayOfByte[l1] = b2;
 
-                                if (j1 == 0 && b2 == Block.sand.blockID)
+                                if (j1 == 0 && b2 == Atum.atumSand.blockID)
                                 {
                                     j1 = this.rand.nextInt(4);
-                                    b2 = (byte)Block.sandStone.blockID;
+                                    b2 = (short)Atum.atumStone.blockID;
                                 }
                             }
                         }
@@ -340,23 +341,39 @@ public class AtumChunkProvider implements IChunkProvider
     public Chunk provideChunk(int par1, int par2)
     {
         this.rand.setSeed((long)par1 * 341873128712L + (long)par2 * 132897987541L);
-        byte[] abyte = new byte[32768];
+        short[] abyte = new short[32768];
         this.generateTerrain(par1, par2, abyte);
         this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, par1 * 16, par2 * 16, 16, 16);
         //this.biomesForGeneration = new BiomeGenBase[] {BiomeGenBase.desert};
         this.replaceBlocksForBiome(par1, par2, abyte, this.biomesForGeneration);
-        this.caveGenerator.generate(this, this.worldObj, par1, par2, abyte);
-        this.ravineGenerator.generate(this, this.worldObj, par1, par2, abyte);
+        //this.caveGenerator.generate(this, this.worldObj, par1, par2, abyte);
+        //this.ravineGenerator.generate(this, this.worldObj, par1, par2, abyte);
 
         if (this.mapFeaturesEnabled)
         {
-            this.mineshaftGenerator.generate(this, this.worldObj, par1, par2, abyte);
-            this.villageGenerator.generate(this, this.worldObj, par1, par2, abyte);
-            this.strongholdGenerator.generate(this, this.worldObj, par1, par2, abyte);
-            this.scatteredFeatureGenerator.generate(this, this.worldObj, par1, par2, abyte);
+            //this.mineshaftGenerator.generate(this, this.worldObj, par1, par2, abyte);
+            //this.villageGenerator.generate(this, this.worldObj, par1, par2, abyte);
+            //this.strongholdGenerator.generate(this, this.worldObj, par1, par2, abyte);
+            //this.scatteredFeatureGenerator.generate(this, this.worldObj, par1, par2, abyte);
         }
 
-        Chunk chunk = new Chunk(this.worldObj, abyte, par1, par2);
+        
+        short[] ashort = new short[32768];
+        int yMax = 32768/256;
+        for(int x = 0; x < 16; x++)
+        {
+        	for(int z = 0; z < 16; z++)
+        	{
+        		for(int y = 0; y < yMax; y++)
+        		{
+                    int idx = y << 8 | z << 4 | x;
+                    int ido = x << 11 | z << 7 | y;
+                    ashort[idx] = abyte[ido];
+        		}
+        	}
+        }
+        
+        Chunk chunk = new Chunk(this.worldObj, ashort, new byte[32768], par1, par2);
         byte[] abyte1 = chunk.getBiomeArray();
 
         for (int k = 0; k < abyte1.length; ++k)
