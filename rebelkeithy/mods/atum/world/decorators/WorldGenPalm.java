@@ -119,7 +119,6 @@ public class WorldGenPalm extends WorldGenerator
                         	}
                         }
                 	}
-                    System.out.println("treee!!");
                     spawnLeaf(par1World, par3+2, par4+l, par5);
                     spawnLeaf(par1World, par3-2, par4+l, par5);
                     spawnLeaf(par1World, par3, par4+l, par5+2);
@@ -164,10 +163,8 @@ public class WorldGenPalm extends WorldGenerator
     {
         int j3 = par1World.getBlockId(x, y, z);
         Block block = Block.blocksList[j3];
-        System.out.println("testing leaf" + x + " " + y + " " + z);
         if (block == null || block.canBeReplacedByLeaves(par1World, x, y, z))
         {
-        	System.out.println("spawning leaf");
             this.setBlockAndMetadata(par1World, x, y, z, Atum.atumLeaves.blockID, this.metaLeaves);
         }
     }

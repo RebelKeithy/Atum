@@ -9,6 +9,7 @@ import net.minecraft.world.gen.feature.WorldGenDesertWells;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.world.WorldGenAtumTrees;
+import rebelkeithy.mods.atum.world.decorators.WorldGenOasis;
 import rebelkeithy.mods.atum.world.decorators.WorldGenPalm;
 
 public class BiomeGenAtumDesert extends BiomeGenBase
@@ -58,6 +59,13 @@ public class BiomeGenAtumDesert extends BiomeGenBase
     {
         super.decorate(par1World, par2Random, par3, par4);
 
+        if (par2Random.nextInt(5) == 0)
+        {
+            int k = par3 + par2Random.nextInt(16) + 8;
+            int l = par4 + par2Random.nextInt(16) + 8;
+            (new WorldGenOasis(false)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
+        }
+        
         if (par2Random.nextInt(5) == 0)
         {
             int k = par3 + par2Random.nextInt(16) + 8;
