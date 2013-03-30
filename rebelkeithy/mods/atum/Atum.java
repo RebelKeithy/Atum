@@ -13,7 +13,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.src.ModLoader;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ForgeHooks;
@@ -21,13 +20,18 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import rebelkeithy.mods.atum.blocks.AtumStone;
+import rebelkeithy.mods.atum.blocks.BlockArrowTrap;
 import rebelkeithy.mods.atum.blocks.BlockAtumLeaves;
 import rebelkeithy.mods.atum.blocks.BlockAtumLog;
 import rebelkeithy.mods.atum.blocks.BlockAtumPortal;
 import rebelkeithy.mods.atum.blocks.BlockAtumSand;
 import rebelkeithy.mods.atum.blocks.BlockAtumSlab;
 import rebelkeithy.mods.atum.blocks.BlockAtumStairs;
+import rebelkeithy.mods.atum.blocks.BlockAtumStone;
+import rebelkeithy.mods.atum.blocks.BlockSandLayered;
 import rebelkeithy.mods.atum.blocks.BlockShrub;
+import rebelkeithy.mods.atum.blocks.ItemSandLayered;
+import rebelkeithy.mods.atum.blocks.TileEntityArrowTrap;
 import rebelkeithy.mods.atum.cursedchest.BlockChestSpawner;
 import rebelkeithy.mods.atum.cursedchest.TileEntityChestSpawner;
 import rebelkeithy.mods.atum.entities.EntityBanditArcher;
@@ -79,6 +83,7 @@ public class Atum
 	public static Block atumCobbleStairs;
 	public static Block atumLargeStoneStairs;
 	public static Block atumSmallStoneStairs;
+	public static Block atumSandLayered;
 	
 	public static Block atumFurnaceIdle;
 	public static Block atumFurnaceActive;
@@ -88,6 +93,8 @@ public class Atum
 	
 	public static Block atumLog;
 	public static Block atumLeaves;
+	
+	public static Block atumTrapArrow;
 	
 	public static Item itemScarab;
 	public static Item itemScimitar;
@@ -103,12 +110,12 @@ public class Atum
 	{
 		portal = new BlockAtumPortal(ConfigAtum.portalBlockID);
 		cursedChest = new BlockChestSpawner(ConfigAtum.cursedChestID).setCreativeTab(CreativeTabs.tabDecorations);
-		atumSand = new BlockAtumSand(ConfigAtum.sandID).setUnlocalizedName("Atum:AtumSand").setHardness(0.5F).setCreativeTab(CreativeTabs.tabBlock);
+		atumSand = new BlockAtumSand(ConfigAtum.sandID).setUnlocalizedName("Atum:AtumSand").setStepSound(Block.soundSandFootstep).setHardness(0.5F).setCreativeTab(CreativeTabs.tabBlock);
 		atumStone = new AtumStone(ConfigAtum.stoneID).setUnlocalizedName("Atum:AtumStone").setHardness(1.5F).setCreativeTab(CreativeTabs.tabBlock);
 		atumCobble = new Block(ConfigAtum.cobbleID, Material.rock).setUnlocalizedName("Atum:AtumCobble").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
-		atumLargeBrick = new Block(ConfigAtum.largeBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickLarge").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
-		atumSmallBrick = new Block(ConfigAtum.smallBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickSmall").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
-		atumCarvedBrick = new Block(ConfigAtum.carvedBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickCarved").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
+		atumLargeBrick = new BlockAtumStone(ConfigAtum.largeBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickLarge").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
+		atumSmallBrick = new BlockAtumStone(ConfigAtum.smallBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickSmall").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
+		atumCarvedBrick = new BlockAtumStone(ConfigAtum.carvedBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickCarved").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
 		atumSlabs = (BlockAtumSlab) new BlockAtumSlab(ConfigAtum.slabID, false, Material.rock).setUnlocalizedName("Atum:AtumSlab").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
 		atumDoubleSlab = (BlockAtumSlab) new BlockAtumSlab(ConfigAtum.doubleSlabID, true, Material.rock).setUnlocalizedName("Atum:AtumDoubleSlab").setHardness(2.0F);
 		atumSmoothStairs = (new BlockAtumStairs(ConfigAtum.smoothStairsID, atumStone, 0)).setUnlocalizedName("Atum:SmoothStair");
@@ -117,9 +124,14 @@ public class Atum
 		atumSmallStoneStairs = (new BlockAtumStairs(ConfigAtum.smallStoneStairsID, atumSmallBrick, 0)).setUnlocalizedName("Atum:SmallStoneStair");
 		atumShrub = (new BlockShrub(ConfigAtum.shrubID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Shrub");
 		atumWeed = (new BlockShrub(ConfigAtum.weedID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Weed");
-		
+
+	    atumSandLayered = (new BlockSandLayered(ConfigAtum.sandLayeredID)).setHardness(0.1F).setStepSound(Block.soundSnowFootstep).setUnlocalizedName("SandLayered").setLightOpacity(0);
+	    
 		atumLog = new BlockAtumLog(ConfigAtum.logID).setHardness(1F).setStepSound(Block.soundWoodFootstep);
 		atumLeaves = new BlockAtumLeaves(ConfigAtum.leavesID).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("AtumLeaves");
+		
+		atumTrapArrow = new BlockArrowTrap(ConfigAtum.trapArrowID).setHardness(0.2F);
+		
 		
 		ForgeHooks.canToolHarvestBlock(atumSand, 0, new ItemStack(Item.shovelSteel));
 		MinecraftForge.setBlockHarvestLevel(atumSand, "shovel", 0);
@@ -165,9 +177,12 @@ public class Atum
 		GameRegistry.registerBlock(atumLog, "AtumLog");
 		GameRegistry.registerBlock(atumLeaves, "AtumLeaves");
 		GameRegistry.registerBlock(atumWeed, "AtumWeed");
-		//GameRegistry.registerBlock(atumSlabs, ItemSlab.class);
+		GameRegistry.registerBlock(atumTrapArrow, "AtumArmorTrap");
 		GameRegistry.registerBlock(cursedChest, "BlockCursedChest");
+		GameRegistry.registerBlock(atumSandLayered, ItemSandLayered.class, "BlockSandLayered");
+		
 		GameRegistry.registerTileEntity(TileEntityChestSpawner.class, "CursedChest");
+		GameRegistry.registerTileEntity(TileEntityArrowTrap.class, "ArrowTrap");
 		
 		Item.itemsList[ConfigAtum.slabID] = (new ItemSlab(atumSlabs.blockID - 256, atumSlabs, atumDoubleSlab, false)).setUnlocalizedName("woodSlab");
         Item.itemsList[atumDoubleSlab.blockID] = (new ItemSlab(atumDoubleSlab.blockID - 256, atumSlabs, atumDoubleSlab, true)).setUnlocalizedName("woodSlab");

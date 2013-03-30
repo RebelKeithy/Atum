@@ -301,7 +301,7 @@ public class BlockAtumPortal extends BlockBreakable
                 	//System.out.println("teleporting");
                 	((EntityPlayerMP)par5Entity).sendChatToPlayer("Going to from " + dimID + " to dimension 17");
                 	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, Atum.dimensionID, new AtumTeleporter(worldserver1));
-                    par5Entity.travelToDimension(Atum.dimensionID);
+                    //par5Entity.travelToDimension(Atum.dimensionID);
                 }
                 //par5Entity.travelToDimension(Atum.dimensionID);
         	}

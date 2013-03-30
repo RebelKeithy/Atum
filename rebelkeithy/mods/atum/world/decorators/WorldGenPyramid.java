@@ -62,7 +62,7 @@ public class WorldGenPyramid extends WorldGenerator
 				{
 					//int id = world.getBlockId(x+i, y+j+3, z+k);
 					//if(id == 0 || id == Atum.atumSand.blockID)
-					world.setBlock(x+i, y+j+3, z+k, Atum.atumLargeBrick.blockID);
+					world.setBlock(x+i, y+j+3, z+k, Atum.atumLargeBrick.blockID, 1, 2);
 				}
 			}
 		}
@@ -76,15 +76,16 @@ public class WorldGenPyramid extends WorldGenerator
 					world.setBlock(x+i, j-1, z+k, Atum.atumStone.blockID);
 					if(!maze[x][z])
 					{
-						world.setBlock(x+i, j, z+k, Atum.atumLargeBrick.blockID);
-						world.setBlock(x+i, j+1, z+k, Atum.atumLargeBrick.blockID);
-						world.setBlock(x+i, j+2, z+k, Atum.atumLargeBrick.blockID);
+						world.setBlock(x+i, j, z+k, Atum.atumLargeBrick.blockID, 1, 2);
+						world.setBlock(x+i, j+1, z+k, Atum.atumLargeBrick.blockID, 1, 2);
+						world.setBlock(x+i, j+2, z+k, Atum.atumLargeBrick.blockID, 1, 2);
 					} else {
-						world.setBlockToAir(x+i, j, z+k);
+						int meta = random.nextInt(5);
+						world.setBlock(x+i, j, z+k, Atum.atumSandLayered.blockID, meta, 2);
 						world.setBlockToAir(x+i, j+1, z+k);
 						world.setBlockToAir(x+i, j+2, z+k);
 					}
-					world.setBlock(x+i, j+3, z+k, Atum.atumLargeBrick.blockID);
+					world.setBlock(x+i, j+3, z+k, Atum.atumLargeBrick.blockID, 1, 2);
 				}
 			}
 		}

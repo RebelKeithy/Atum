@@ -22,6 +22,8 @@ public class ConfigAtum
 	public static int logID = 1040;
 	public static int leavesID = 1041;
 	public static int weedID = 1042;
+	public static int trapArrowID = 1043;
+	public static int sandLayeredID = 1044;
 	
 	public static int portalSpawnerID = 5000;
 	public static int scimitarID = 5001;
