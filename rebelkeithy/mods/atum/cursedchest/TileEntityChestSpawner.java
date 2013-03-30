@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
@@ -215,6 +216,18 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
+
+        double d0 = 8.0D;
+        double d1 = 5.0D;
+        List list = this.worldObj.getEntitiesWithinAABB(EntityMob.class, AxisAlignedBB.getAABBPool().getAABB((double)xCoord - d0, (double)yCoord - d1, (double)zCoord - d0, (double)xCoord + d0, (double)yCoord + d1, (double)zCoord + d0));
+        
+        if(!list.isEmpty())
+        {
+        	if(!this.worldObj.isRemote)
+        		par1EntityPlayer.sendChatToPlayer("There are too many enemies nearby to search this chest");
+        	return false;
+        }
+        	
         return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
     }
 

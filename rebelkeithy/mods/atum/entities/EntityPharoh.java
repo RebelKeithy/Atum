@@ -5,10 +5,10 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class EntityMummy extends EntityMob
+public class EntityPharoh extends EntityMob
 {
 
-	public EntityMummy(World par1World) 
+	public EntityPharoh(World par1World) 
 	{
 		super(par1World);
 	}
@@ -21,24 +21,16 @@ public class EntityMummy extends EntityMob
 
     public String getTexture()
     {
-    	return "/mods/Atum/textures/mobs/Mummy.png";
+    	return "/mods/Atum/textures/mobs/PharaohBlue.png";
     }
     
     public float getSpeedModifier()
     {
-    	if(this.isBurning())
-    		return super.getSpeedModifier() * 1.5F;
-    	
-		return super.getSpeedModifier() * 0.5F;
+		return super.getSpeedModifier();
     }
     
     public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
-    	if(par1DamageSource.isFireDamage())
-    	{
-    		par2 += 1;
-    	}
-
 		return super.attackEntityFrom(par1DamageSource, par2);
     }
 

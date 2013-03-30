@@ -40,6 +40,19 @@ public class WorldGenOasis extends WorldGenerator
         int width = par2Random.nextInt(6) + 6;
         int depth = par2Random.nextInt(5) + 5;
         
+        int id = world.getBlockId(par3, par4-1, par5);
+        if(id != Atum.atumSand.blockID)
+        	return false;
+        id = world.getBlockId(par3+width, world.getHeightValue(par3+width, par5)-1, par5);
+        if(id != Atum.atumSand.blockID)
+        	return false;
+        id = world.getBlockId(par3, world.getHeightValue(par3, par5+depth)-1, par5+depth);
+        if(id != Atum.atumSand.blockID)
+        	return false;
+        id = world.getBlockId(par3+width, world.getHeightValue(par3+width, par5+depth)-1, par5+depth);
+        if(id != Atum.atumSand.blockID)
+        	return false;
+        
         int minHeight = world.getHeightValue(par3, par5);
         int maxHeight = world.getHeightValue(par3, par5);
         int height;
@@ -63,7 +76,7 @@ public class WorldGenOasis extends WorldGenerator
         	maxHeight = height;
         if((maxHeight - minHeight) < 6)
         {
-        	System.out.println("Starting Oasis Generation");
+        	//System.out.println("Starting Oasis Generation");
             //System.out.println("oasis" + par3 + " " + par5 + " size " + width + " " + depth);
 			float radius = width / 2.0F;
 			float radius2 = depth / 2.0F;
@@ -76,7 +89,7 @@ public class WorldGenOasis extends WorldGenerator
         			if( check <= 1)
         			{
         				int y = world.getHeightValue(x+par3, z+par5);
-        				System.out.println("water at + " + (x+par3) + " " + y + " " + (z+par5));
+        				//System.out.println("water at + " + (x+par3) + " " + y + " " + (z+par5));
         				world.setBlock(x+par3, y-1, z+par5, Block.waterStill.blockID);
         			} else {
 

@@ -2,14 +2,18 @@ package rebelkeithy.mods.atum;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelZombie;
+import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
+import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.src.ModLoader;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ForgeHooks;
@@ -26,7 +30,13 @@ import rebelkeithy.mods.atum.blocks.BlockAtumStairs;
 import rebelkeithy.mods.atum.blocks.BlockShrub;
 import rebelkeithy.mods.atum.cursedchest.BlockChestSpawner;
 import rebelkeithy.mods.atum.cursedchest.TileEntityChestSpawner;
+import rebelkeithy.mods.atum.entities.EntityBanditArcher;
+import rebelkeithy.mods.atum.entities.EntityBanditWarrior;
 import rebelkeithy.mods.atum.entities.EntityMummy;
+import rebelkeithy.mods.atum.entities.EntityPharoh;
+import rebelkeithy.mods.atum.entities.RenderBandit;
+import rebelkeithy.mods.atum.items.ItemAtumBow;
+import rebelkeithy.mods.atum.items.ItemScimitar;
 import rebelkeithy.mods.atum.world.AtumWorldProvider;
 import rebelkeithy.mods.atum.world.biome.BiomeGenAtumDesert;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -42,6 +52,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 
 @Mod(modid="Atum", name="Atum", version="0.0.0.1")
@@ -78,6 +90,8 @@ public class Atum
 	public static Block atumLeaves;
 	
 	public static Item itemScarab;
+	public static Item itemScimitar;
+	public static Item itemBow;
 
 	public static int dimensionID = 17;
 	
@@ -110,7 +124,6 @@ public class Atum
 		ForgeHooks.canToolHarvestBlock(atumSand, 0, new ItemStack(Item.shovelSteel));
 		MinecraftForge.setBlockHarvestLevel(atumSand, "shovel", 0);
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderLiving(new ModelZombie(), 0.5F));
 		
 		LanguageRegistry.addName(atumStone, "Limestone");
 		LanguageRegistry.addName(atumSand, "Limestone sand");
@@ -118,7 +131,24 @@ public class Atum
 		
 		//EntityRegistry.registerModEntity(EntityMummy.class, "AtumMummy", ConfigAtum.mummyID, this, 16, 20, true);
 		EntityRegistry.registerGlobalEntityID(EntityMummy.class, "AtumMummy", ConfigAtum.mummyID);
-		EntityList.addMapping(EntityMummy.class, "AtumMummy", ConfigAtum.mummyID, 0x770000, 0x220000);
+		EntityList.addMapping(EntityMummy.class, "AtumMummy", ConfigAtum.mummyID, 0x515838, 0x868F6B);
+		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderLiving(new ModelZombie(), 0.5F));
+
+		EntityRegistry.registerGlobalEntityID(EntityBanditWarrior.class, "AtumBanditWarrior", ConfigAtum.banditWarriorID);
+		EntityList.addMapping(EntityBanditWarrior.class, "AtumBanditWarrior", ConfigAtum.banditWarriorID, 0xC2C2C2, 0x040F85);
+		RenderingRegistry.registerEntityRenderingHandler(EntityBanditWarrior.class, new RenderBiped(new ModelBiped(), 0.5F));
+
+		EntityRegistry.registerGlobalEntityID(EntityBanditArcher.class, "AtumBanditArcher", ConfigAtum.banditArcherID);
+		EntityList.addMapping(EntityBanditArcher.class, "AtumBanditArcher", ConfigAtum.banditArcherID, 0xC2C2C2, 0x7E0C0C);
+		RenderingRegistry.registerEntityRenderingHandler(EntityBanditArcher.class, new RenderBandit(new ModelBiped(), 0.5F));
+
+		EntityRegistry.registerGlobalEntityID(EntityPharoh.class, "AtumPharaoh", ConfigAtum.pharaohID);
+		EntityList.addMapping(EntityPharoh.class, "AtumPharaoh", ConfigAtum.pharaohID, 0xD4BC37, 0x3A4BE0);
+		RenderingRegistry.registerEntityRenderingHandler(EntityPharoh.class, new RenderBiped(new ModelBiped(1.2F), 0.5F));
+		
+		TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
+		
+		//EntityList.addMapping(EntityBandit.class, "AtumBanditArcher", ConfigAtum.banditArcherID, 0xC2C2C2, 0x070C0C);
 		
 		GameRegistry.registerBlock(atumSand, "AtumSand");
 		GameRegistry.registerBlock(atumStone, "AtumStone");
@@ -145,6 +175,10 @@ public class Atum
 		
 		itemScarab = new ItemPortalSpawner(ConfigAtum.portalSpawnerID).setUnlocalizedName("Atum:Scarab").setCreativeTab(CreativeTabs.tabTools);
 		atumDesert = (new BiomeGenAtumDesert(ConfigAtum.biomeAtumDesertID)).setColor(16421912).setBiomeName("AtumDesert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.1F, 0.2F);
+
+		//EnumToolMaterial scimitarEnum = EnumHelper.addToolMaterial("Scimitar", 2, 250, 6.0F, 2, 14);
+		itemScimitar = (new ItemScimitar(ConfigAtum.scimitarID, EnumToolMaterial.IRON)).setUnlocalizedName("Atum:Scimitar").setCreativeTab(CreativeTabs.tabCombat);
+		itemBow = (new ItemAtumBow(ConfigAtum.bowID)).setUnlocalizedName("Atum:Bow").setCreativeTab(CreativeTabs.tabCombat);
 	}
 	
 	@Init

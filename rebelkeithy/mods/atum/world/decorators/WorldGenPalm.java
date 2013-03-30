@@ -40,7 +40,9 @@ public class WorldGenPalm extends WorldGenerator
         int l = par2Random.nextInt(3) + this.minTreeHeight;
         boolean flag = true;
 
-        if (par4 >= 1 && par4 + l + 1 <= 256)
+        int id = par1World.getBlockId(par3, par4, par5);
+        
+        if ((id == Atum.atumSand.blockID) && par4 >= 1 && par4 + l + 1 <= 256)
         {
             int i1;
             byte b0;
