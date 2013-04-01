@@ -37,7 +37,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
 
     TileEntityChestSpawner()
     {
-    	int entityID = (int) (Math.random() * 4);
+    	int entityID = (int) (Math.random() * 6);
     	if(entityID == 0)
     		chestSpawner.setMobID("AtumMummy");
     	if(entityID == 1)
@@ -46,6 +46,10 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     		chestSpawner.setMobID("AtumBanditArcher");
     	if(entityID == 3)
     		chestSpawner.setMobID("AtumDustySkeleton");
+    	if(entityID == 4)
+    		chestSpawner.setMobID("AtumDesertGhost");
+    	if(entityID == 5)
+    		chestSpawner.setMobID("AtumStoneSoldier");
     }
     
     public void setSpawnerEntity(String name)
