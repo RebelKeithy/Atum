@@ -3,8 +3,6 @@ package rebelkeithy.mods.atum.blocks;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.common.network.Player;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityMob;
@@ -16,6 +14,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Vec3;
 
 public class TileEntityArrowTrap extends TileEntity implements IInventory
 {
@@ -46,9 +45,6 @@ public class TileEntityArrowTrap extends TileEntity implements IInventory
     @Override
     public void updateEntity() 
     {
-        double d0 = 2.0D;
-        double d1 = 2.0D;
-        List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityMob.class, AxisAlignedBB.getAABBPool().getAABB((double)xCoord - d0, (double)yCoord - d1, (double)zCoord - d0, (double)xCoord + d0, (double)yCoord + d1, (double)zCoord + d0));
         EntityPlayer p = worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 4);
         int range = 1;
         int xMin = xCoord;
@@ -68,6 +64,8 @@ public class TileEntityArrowTrap extends TileEntity implements IInventory
         
 
         AxisAlignedBB bb = AxisAlignedBB.getAABBPool().getAABB((double)xMin, (double)yMin, (double)zMin, (double)xMax, (double)yMax, (double)zMax);
+
+        List<Entity> list = this.worldObj.getEntitiesWithinAABB(EntityMob.class, bb);
         
         if(p != null)
         {
@@ -85,7 +83,8 @@ public class TileEntityArrowTrap extends TileEntity implements IInventory
         	if(facing == EnumFacing.UP && p.posY < zCoord+1)
         		return;
         	*/
-        	if(p.boundingBox.intersectsWith(bb))
+        	//if(p.boundingBox.intersectsWith(bb))
+        	if(bb.isVecInside(Vec3.createVectorHelper(p.posX, p.posY+0.5, p.posZ)))
         	{
         		p.setFire(2);
         		spawnFlames();

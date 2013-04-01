@@ -26,7 +26,7 @@ import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.Ev
 import java.util.Random;
 
 import rebelkeithy.mods.atum.Atum;
-import rebelkeithy.mods.atum.world.WorldGenAtumTrees;
+import rebelkeithy.mods.atum.world.decorators.WorldGenAtumTrees;
 import rebelkeithy.mods.atum.world.decorators.WorldGenShrub;
 
 import net.minecraft.block.Block;
@@ -57,7 +57,7 @@ public class BiomeDecoratorAtum extends BiomeDecorator
 	public BiomeDecoratorAtum(BiomeGenBase par1BiomeGenBase)
     {
     	super(par1BiomeGenBase);
-        this.sandGen = new WorldGenSand(7, Block.sand.blockID);
+        this.sandGen = new WorldGenSand(7, Atum.atumSand.blockID);
         this.gravelAsSandGen = new WorldGenSand(6, Block.gravel.blockID);
         this.dirtGen = new WorldGenMinable(Block.dirt.blockID, 32);
         this.gravelGen = new WorldGenMinable(Block.gravel.blockID, 32);
@@ -182,23 +182,6 @@ public class BiomeDecoratorAtum extends BiomeDecorator
 
         int i1;
 
-        doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, FLOWERS);
-        for (j = 0; doGen && j < this.flowersPerChunk; ++j)
-        {
-            k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            l = this.randomGenerator.nextInt(128);
-            i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            this.plantYellowGen.generate(this.currentWorld, this.randomGenerator, k, l, i1);
-
-            if (this.randomGenerator.nextInt(4) == 0)
-            {
-                k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-                l = this.randomGenerator.nextInt(128);
-                i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-                this.plantRedGen.generate(this.currentWorld, this.randomGenerator, k, l, i1);
-            }
-        }
-
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, GRASS);
         for (j = 0; doGen && j < this.grassPerChunk; ++j)
         {
@@ -225,56 +208,6 @@ public class BiomeDecoratorAtum extends BiomeDecorator
             (new WorldGenShrub(Atum.atumWeed.blockID, 8)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
         }
 
-        doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, LILYPAD);
-        for (j = 0; doGen && j < this.waterlilyPerChunk; ++j)
-        {
-            k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-
-            for (i1 = this.randomGenerator.nextInt(128); i1 > 0 && this.currentWorld.getBlockId(k, i1 - 1, l) == 0; --i1)
-            {
-                ;
-            }
-
-            this.waterlilyGen.generate(this.currentWorld, this.randomGenerator, k, i1, l);
-        }
-
-        doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, SHROOM);
-        for (j = 0; doGen && j < this.mushroomsPerChunk; ++j)
-        {
-            if (this.randomGenerator.nextInt(4) == 0)
-            {
-                k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-                l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-                i1 = this.currentWorld.getHeightValue(k, l);
-                this.mushroomBrownGen.generate(this.currentWorld, this.randomGenerator, k, i1, l);
-            }
-
-            if (this.randomGenerator.nextInt(8) == 0)
-            {
-                k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-                l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-                i1 = this.randomGenerator.nextInt(128);
-                this.mushroomRedGen.generate(this.currentWorld, this.randomGenerator, k, i1, l);
-            }
-        }
-
-        if (doGen && this.randomGenerator.nextInt(4) == 0)
-        {
-            j = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            k = this.randomGenerator.nextInt(128);
-            l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            this.mushroomBrownGen.generate(this.currentWorld, this.randomGenerator, j, k, l);
-        }
-
-        if (doGen && this.randomGenerator.nextInt(8) == 0)
-        {
-            j = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            k = this.randomGenerator.nextInt(128);
-            l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            this.mushroomRedGen.generate(this.currentWorld, this.randomGenerator, j, k, l);
-        }
-
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, REED);
         for (j = 0; doGen && j < this.reedsPerChunk; ++j)
         {
@@ -284,43 +217,17 @@ public class BiomeDecoratorAtum extends BiomeDecorator
             this.reedGen.generate(this.currentWorld, this.randomGenerator, k, i1, l);
         }
 
-        for (j = 0; doGen && j < 10; ++j)
+        /*for (j = 0; doGen && j < 10; ++j)
         {
             k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             l = this.randomGenerator.nextInt(128);
             i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
             this.reedGen.generate(this.currentWorld, this.randomGenerator, k, l, i1);
-        }
-
-        doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, PUMPKIN);
-        if (doGen && this.randomGenerator.nextInt(32) == 0)
-        {
-            j = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            k = this.randomGenerator.nextInt(128);
-            l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            (new WorldGenPumpkin()).generate(this.currentWorld, this.randomGenerator, j, k, l);
-        }
-
-        doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, CACTUS);
-        for (j = 0; doGen && j < this.cactiPerChunk; ++j)
-        {
-            k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            l = this.randomGenerator.nextInt(128);
-            i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            this.cactusGen.generate(this.currentWorld, this.randomGenerator, k, l, i1);
-        }
+        }*/
 
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, LAKE);
         if (doGen && this.generateLakes)
         {
-            for (j = 0; j < 50; ++j)
-            {
-                k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-                l = this.randomGenerator.nextInt(this.randomGenerator.nextInt(120) + 8);
-                i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-                (new WorldGenLiquids(Block.waterMoving.blockID)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
-            }
-
             for (j = 0; j < 20; ++j)
             {
                 k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;

@@ -40,9 +40,9 @@ public class WorldGenPalm extends WorldGenerator
         int l = par2Random.nextInt(3) + this.minTreeHeight;
         boolean flag = true;
 
-        int id = par1World.getBlockId(par3, par4, par5);
-        
-        if ((id == Atum.atumSand.blockID) && par4 >= 1 && par4 + l + 1 <= 256)
+        int id = par1World.getBlockId(par3, par4 - 1, par5);
+
+        if ((id == Atum.atumSand.blockID || id == Block.grass.blockID || id == Block.dirt.blockID) && par4 >= 1 && par4 + l + 1 <= 256)
         {
             int i1;
             byte b0;
@@ -135,7 +135,7 @@ public class WorldGenPalm extends WorldGenerator
                     spawnLeaf(par1World, par3+3, par4+l-1, par5);
                     spawnLeaf(par1World, par3-3, par4+l-1, par5);
 
-                    for (j1 = 0; j1 < l; ++j1)
+                    for (j1 = 0; j1 <= l; ++j1)
                     {
                         k1 = par1World.getBlockId(par3, par4 + j1, par5);
 

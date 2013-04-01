@@ -2,6 +2,7 @@ package rebelkeithy.mods.atum.cursedchest;
 
 import java.util.Iterator;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.entity.monster.EntityMob;
@@ -12,13 +13,12 @@ import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
 
 public class TileEntityChestSpawner extends TileEntityChest implements IInventory
 {
-    private final TileEntityMobSpawnerLogic chestSpawner = new TileEntityMobSpawnerLogic(this);
+    private final CursedChestSpawnerLogic chestSpawner = new CursedChestSpawnerLogic(this);
     private ItemStack[] chestContents = new ItemStack[36];
 
     /** The current angle of the lid (between 0 and 1) */
@@ -37,7 +37,36 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
 
     TileEntityChestSpawner()
     {
-    	chestSpawner.setMobID("AtumMummy");
+    	int entityID = (int) (Math.random() * 4);
+    	if(entityID == 0)
+    		chestSpawner.setMobID("AtumMummy");
+    	if(entityID == 1)
+    		chestSpawner.setMobID("AtumBanditWarrior");
+    	if(entityID == 2)
+    		chestSpawner.setMobID("AtumBanditArcher");
+    	if(entityID == 3)
+    		chestSpawner.setMobID("AtumDustySkeleton");
+    }
+    
+    public void setSpawnerEntity(String name)
+    {
+    	chestSpawner.setMobID(name);
+    }
+    
+    public void setMaxEntities(int max)
+    {
+    	chestSpawner.numEntities = max;
+    }
+    
+    public void setDelay(int min, int max)
+    {
+    	chestSpawner.minSpawnDelay = min;
+    	chestSpawner.maxSpawnDelay = max;
+    }
+    
+    public void setRange(int range)
+    {
+    	chestSpawner.SpawnRange = range;
     }
     
     /**
@@ -217,8 +246,8 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
 
-        double d0 = 8.0D;
-        double d1 = 5.0D;
+        double d0 = 4.0D;
+        double d1 = 3.0D;
         List list = this.worldObj.getEntitiesWithinAABB(EntityMob.class, AxisAlignedBB.getAABBPool().getAABB((double)xCoord - d0, (double)yCoord - d1, (double)zCoord - d0, (double)xCoord + d0, (double)yCoord + d1, (double)zCoord + d0));
         
         if(!list.isEmpty())
@@ -390,4 +419,9 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
 
         return this.field_94046_i;
     }
+
+	public void forceSpawn() 
+	{
+		chestSpawner.forceSpawn = true;
+	}
 }

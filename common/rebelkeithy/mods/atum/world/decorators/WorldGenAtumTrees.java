@@ -1,4 +1,4 @@
-package rebelkeithy.mods.atum.world;
+package rebelkeithy.mods.atum.world.decorators;
 
 import java.util.Random;
 

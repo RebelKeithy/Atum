@@ -158,7 +158,6 @@ public class BlockAtumPortal extends BlockBreakable
             int id10 = par1World.getBlockId(par2, par3 + 2, par4 - 1);
             int id11 = par1World.getBlockId(par2, par3 + 2, par4 + 1);
             int id12 = par1World.getBlockId(par2 + 1, par3 + 2, par4);
-            System.out.println(id0 + " " +id1+" "+id2 + " " + id3 + " " + id4);
             if(id1 == id2 && id2 == id3 && id3 == id4 && id4 == id5 && id6 == id7 && id7 == id8 && id8 == id9 && id9 == id10 && id10 == id11 && id11 == id12 && id12 == Block.sandStone.blockID)
             {
                 par1World.setBlock(par2, par3, par4, Atum.portal.blockID, 0, 2);

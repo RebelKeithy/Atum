@@ -26,19 +26,24 @@ public class ConfigAtum
 	public static int sandLayeredID = 1044;
 	public static int furnaceIdleID = 1045;
 	public static int furnaceBurningID = 1046;
+	public static int plankID = 1047;
 	
 	public static int portalSpawnerID = 5000;
 	public static int scimitarID = 5001;
 	public static int bowID = 5002;
 	public static int ptahsPickID = 5003;
+	public static int soteksRageID = 5004;
+	public static int osirisWillID = 5005;
+	public static int akersToilID = 5006;
+	public static int gabsBlessingID = 5008;
 	public static int rasGloryID = 5009;
 	public static int sekhmetsWrathID = 5010;
 	public static int nutsAgilityID = 5011;
 	public static int horusFlightID = 5012;
 
-	public static int mummyID = 87;
-	public static int banditWarriorID = 88;
-	public static int banditArcherID = 89;
-	public static int pharaohID = 90;
-	public static int dustySkeletonID = 91;
+	public static int mummyID = 387;
+	public static int banditWarriorID = 388;
+	public static int banditArcherID = 389;
+	public static int pharaohID = 390;
+	public static int dustySkeletonID = 391;
 }

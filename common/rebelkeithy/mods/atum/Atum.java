@@ -1,6 +1,10 @@
 package rebelkeithy.mods.atum;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockWood;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelZombie;
@@ -8,6 +12,7 @@ import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
@@ -18,13 +23,18 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import rebelkeithy.mods.atum.artifacts.HorusFlight;
+import rebelkeithy.mods.atum.artifacts.ItemAkersToil;
+import rebelkeithy.mods.atum.artifacts.ItemGabsBlessing;
 import rebelkeithy.mods.atum.artifacts.ItemNutsAgility;
+import rebelkeithy.mods.atum.artifacts.ItemOsirisWill;
 import rebelkeithy.mods.atum.artifacts.ItemPtahsDecadence;
 import rebelkeithy.mods.atum.artifacts.ItemRasGlory;
 import rebelkeithy.mods.atum.artifacts.ItemSekhmetsWrath;
+import rebelkeithy.mods.atum.artifacts.ItemSoteksRage;
 import rebelkeithy.mods.atum.blocks.AtumStone;
 import rebelkeithy.mods.atum.blocks.BlockArrowTrap;
 import rebelkeithy.mods.atum.blocks.BlockAtumLeaves;
@@ -98,14 +108,12 @@ public class Atum
 	public static Block atumSmallStoneStairs;
 	public static Block atumSandLayered;
 	
-	public static Block atumFurnaceIdle;
-	public static Block atumFurnaceActive;
-	
 	public static Block atumShrub;
 	public static Block atumWeed;
 	
 	public static Block atumLog;
 	public static Block atumLeaves;
+	public static Block atumPlanks;
 	
 	public static Block atumTrapArrow;
 	
@@ -114,6 +122,10 @@ public class Atum
 	public static Item itemBow;
 	
 	public static Item ptahsPick;
+	public static Item soteksRage;
+	public static Item osirisWill;
+	public static Item akersToil;
+	public static Item gabsBlessing;
 	public static Item rasGlory;
 	public static Item sekhmetsWrath;
 	public static Item nutsAgility;
@@ -151,6 +163,7 @@ public class Atum
 	    
 		atumLog = new BlockAtumLog(ConfigAtum.logID).setHardness(1F).setStepSound(Block.soundWoodFootstep);
 		atumLeaves = new BlockAtumLeaves(ConfigAtum.leavesID).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("AtumLeaves");
+	    atumPlanks = (new Block(ConfigAtum.plankID, Material.wood)).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("Atum:Planks").setCreativeTab(CreativeTabs.tabBlock);
 		
 		atumTrapArrow = new BlockArrowTrap(ConfigAtum.trapArrowID).setHardness(0.2F);
 	    furnaceIdle = (new BlockLimeStoneFurnace(ConfigAtum.furnaceIdleID, false)).setHardness(3.5F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("limestonefurnaceidle").setCreativeTab(CreativeTabs.tabDecorations);
@@ -166,25 +179,47 @@ public class Atum
 		LanguageRegistry.addName(atumCobble, "Cracked Limestone");
 		
 		//EntityRegistry.registerModEntity(EntityMummy.class, "AtumMummy", ConfigAtum.mummyID, this, 16, 20, true);
-		EntityRegistry.registerGlobalEntityID(EntityMummy.class, "AtumMummy", ConfigAtum.mummyID);
-		EntityList.addMapping(EntityMummy.class, "AtumMummy", ConfigAtum.mummyID, 0x515838, 0x868F6B);
+		
+		ArrayList<BiomeGenBase> biomeList = new ArrayList<BiomeGenBase>();
+		for(int i = 0; i < BiomeGenBase.biomeList.length; i++)
+		{
+			if(BiomeGenBase.biomeList[i] != null && BiomeGenBase.biomeList[i].biomeID != ConfigAtum.biomeAtumDesertID)
+			{
+				biomeList.add(BiomeGenBase.biomeList[i]);
+			}
+		}
+		
+		int entityID;
+		entityID = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerGlobalEntityID(EntityMummy.class, "AtumMummy", entityID);
+		EntityList.addMapping(EntityMummy.class, "AtumMummy", entityID, 0x515838, 0x868F6B);
 		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderLiving(new ModelZombie(), 0.5F));
 
-		EntityRegistry.registerGlobalEntityID(EntityBanditWarrior.class, "AtumBanditWarrior", ConfigAtum.banditWarriorID);
-		EntityList.addMapping(EntityBanditWarrior.class, "AtumBanditWarrior", ConfigAtum.banditWarriorID, 0xC2C2C2, 0x040F85);
+		entityID = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerGlobalEntityID(EntityBanditWarrior.class, "AtumBanditWarrior", entityID);
+		EntityList.addMapping(EntityBanditWarrior.class, "AtumBanditWarrior", entityID, 0xC2C2C2, 0x040F85);
 		RenderingRegistry.registerEntityRenderingHandler(EntityBanditWarrior.class, new RenderBiped(new ModelBiped(), 0.5F));
 
-		EntityRegistry.registerGlobalEntityID(EntityBanditArcher.class, "AtumBanditArcher", ConfigAtum.banditArcherID);
-		EntityList.addMapping(EntityBanditArcher.class, "AtumBanditArcher", ConfigAtum.banditArcherID, 0xC2C2C2, 0x7E0C0C);
+		entityID = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerGlobalEntityID(EntityBanditArcher.class, "AtumBanditArcher", entityID);
+		EntityList.addMapping(EntityBanditArcher.class, "AtumBanditArcher", entityID, 0xC2C2C2, 0x7E0C0C);
 		RenderingRegistry.registerEntityRenderingHandler(EntityBanditArcher.class, new RenderBandit(new ModelBiped(), 0.5F));
 
-		EntityRegistry.registerGlobalEntityID(EntityPharoh.class, "AtumPharaoh", ConfigAtum.pharaohID);
-		EntityList.addMapping(EntityPharoh.class, "AtumPharaoh", ConfigAtum.pharaohID, 0xD4BC37, 0x3A4BE0);
+		entityID = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerGlobalEntityID(EntityPharoh.class, "AtumPharaoh", entityID);
+		EntityList.addMapping(EntityPharoh.class, "AtumPharaoh", entityID, 0xD4BC37, 0x3A4BE0);
 		RenderingRegistry.registerEntityRenderingHandler(EntityPharoh.class, new RenderBiped(new ModelBiped(), 0.5F));
 
-		EntityRegistry.registerGlobalEntityID(EntityDustySkeleton.class, "AtumDustySkeleton", ConfigAtum.dustySkeletonID);
-		EntityList.addMapping(EntityDustySkeleton.class, "AtumDustySkeleton", ConfigAtum.dustySkeletonID, 0xB59C7D, 0x6F5C43);
+		entityID = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerGlobalEntityID(EntityDustySkeleton.class, "AtumDustySkeleton", entityID);
+		EntityList.addMapping(EntityDustySkeleton.class, "AtumDustySkeleton", entityID, 0xB59C7D, 0x6F5C43);
 		RenderingRegistry.registerEntityRenderingHandler(EntityDustySkeleton.class, new RenderBiped(new ModelDustySkeleton(), 0.5F));
+
+		LanguageRegistry.instance().addStringLocalization("entity.AtumMummy.name", "Mummy");
+		LanguageRegistry.instance().addStringLocalization("entity.AtumBanditWarrior.name", "Bandit Warrior");
+		LanguageRegistry.instance().addStringLocalization("entity.AtumBanditArcher.name", "Bandit Archer");
+		LanguageRegistry.instance().addStringLocalization("entity.AtumPharaoh.name", "Pharaoh");
+		LanguageRegistry.instance().addStringLocalization("entity.AtumDustySkeleton.name", "Dusty Skeleton");
 		
 		TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);		
 		TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
@@ -205,6 +240,7 @@ public class Atum
 		GameRegistry.registerBlock(atumShrub, "AtumShrub");
 		GameRegistry.registerBlock(atumLog, "AtumLog");
 		GameRegistry.registerBlock(atumLeaves, "AtumLeaves");
+		GameRegistry.registerBlock(atumPlanks, "AtumPlanks");
 		GameRegistry.registerBlock(atumWeed, "AtumWeed");
 		GameRegistry.registerBlock(atumTrapArrow, "AtumArmorTrap");
 		GameRegistry.registerBlock(cursedChest, "BlockCursedChest");
@@ -228,12 +264,49 @@ public class Atum
 		itemBow = (new ItemAtumBow(ConfigAtum.bowID)).setUnlocalizedName("Atum:Bow").setCreativeTab(CreativeTabs.tabCombat);
 		
 		ptahsPick = new ItemPtahsDecadence(ConfigAtum.ptahsPickID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:PtahsDecadence").setCreativeTab(CreativeTabs.tabTools);
+		soteksRage = new ItemSoteksRage(ConfigAtum.soteksRageID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:SoteksRage").setCreativeTab(CreativeTabs.tabTools);
+		osirisWill = new ItemOsirisWill(ConfigAtum.osirisWillID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:OsirisWill").setCreativeTab(CreativeTabs.tabTools);
+		akersToil = new ItemAkersToil(ConfigAtum.akersToilID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:AkersToil").setCreativeTab(CreativeTabs.tabTools);
+		gabsBlessing = new ItemGabsBlessing(ConfigAtum.gabsBlessingID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:GabsBlessing").setCreativeTab(CreativeTabs.tabTools);
 		rasGlory = new ItemRasGlory(ConfigAtum.rasGloryID, EnumArmorMaterial.DIAMOND, 0, 0).setTextureFile("EgyptianArmor").setUnlocalizedName("Atum:RasGlory").setCreativeTab(CreativeTabs.tabCombat);
 		sekhmetsWrath = new ItemSekhmetsWrath(ConfigAtum.sekhmetsWrathID, EnumArmorMaterial.DIAMOND, 1, 1).setTextureFile("EgyptianArmor").setUnlocalizedName("Atum:SekhmetsWrath").setCreativeTab(CreativeTabs.tabCombat);
 		nutsAgility = new ItemNutsAgility(ConfigAtum.nutsAgilityID, EnumArmorMaterial.DIAMOND, 2, 2).setTextureFile("EgyptianArmor").setUnlocalizedName("Atum:NutsAgility").setCreativeTab(CreativeTabs.tabCombat);
 		horusFlight = new HorusFlight(ConfigAtum.horusFlightID, EnumArmorMaterial.DIAMOND, 3, 3).setTextureFile("EgyptianArmor").setUnlocalizedName("Atum:HorusFlight").setCreativeTab(CreativeTabs.tabCombat);
 		
+		MinecraftForge.setToolClass(akersToil, "shovel", 4);
+
+		LanguageRegistry.addName(atumSand, "Strange Sand");
+		LanguageRegistry.addName(atumStone, "Limestone");
+		LanguageRegistry.addName(atumCobble, "Cracked Limestone");
+		LanguageRegistry.addName(atumLargeBrick, "Large Limestone Bricks");
+		LanguageRegistry.addName(atumSmallBrick, "Small Limestone Bricks");
+		LanguageRegistry.addName(atumCarvedBrick, "Carved Limestone");		
+		LanguageRegistry.addName(atumSmoothStairs, "Limestone Stairs");
+		LanguageRegistry.addName(atumCobbleStairs, "Cracked Limestone Stairs");
+		LanguageRegistry.addName(atumLargeStoneStairs, "Large Limestone Brick Stairs");
+		LanguageRegistry.addName(atumSmallStoneStairs, "Small Limestone Brick Stairs");
+		LanguageRegistry.addName(atumShrub, "Desert Shrub");
+		LanguageRegistry.addName(atumLog, "Palm Log");
+		LanguageRegistry.addName(atumLeaves, "Palm Leaves");
+		LanguageRegistry.addName(atumWeed, "Desert Shrub");
+		LanguageRegistry.addName(atumTrapArrow, "Fire Trap");
+		LanguageRegistry.addName(cursedChest, "Cursed Chest");
+		LanguageRegistry.addName(atumSandLayered, "Strange Sand");
+		LanguageRegistry.addName(furnaceIdle, "Limestone Furnace");
+		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 0), "Limestone Slabs");
+		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 1), "Cracked Limestone Slabs");
+		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 2), "Large Limestone Brick Slabs");
+		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 3), "Small Limestone Brick Slabs");
+		
+		LanguageRegistry.addName(itemScarab, "Golden Scarab");
+		LanguageRegistry.addName(itemScimitar, "Scimitar");
+		LanguageRegistry.addName(itemBow, "Desert Bow");
+		
 		LanguageRegistry.addName(ptahsPick, "Ptah's Decadence");
+		LanguageRegistry.addName(soteksRage, "Sotek's Rage");
+		LanguageRegistry.addName(osirisWill, "Osiris's Will");
+		LanguageRegistry.addName(akersToil, "Aker's Toil");
+		LanguageRegistry.addName(gabsBlessing, "Gab's Blessing");
 		LanguageRegistry.addName(rasGlory, "Ra's Glory");
 		LanguageRegistry.addName(sekhmetsWrath, "Sekhmet's Wrath");
 		LanguageRegistry.addName(nutsAgility, "Nut's Agility");
@@ -241,6 +314,7 @@ public class Atum
 		
 		proxy.registerParticles();
 		
+		MinecraftForge.EVENT_BUS.register(new FallDamageListener());
 		NetworkRegistry.instance().registerGuiHandler(this, new AtumGuiHandler());
 	}
 	
@@ -267,5 +341,21 @@ public class Atum
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumLargeBrick, 4), "XX", "XX", 'X', atumStone));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumSmallBrick, 4), "XX", "XX", 'X', atumCobble));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(atumCarvedBrick, 1), atumStone));
+		GameRegistry.addRecipe(new ItemStack(atumSmoothStairs, 6), "X  ", "XX ", "XXX", 'X', atumStone);
+		GameRegistry.addRecipe(new ItemStack(atumCobbleStairs, 6), "X  ", "XX ", "XXX", 'X', atumCobble);
+		GameRegistry.addRecipe(new ItemStack(atumLargeStoneStairs, 6), "X  ", "XX ", "XXX", 'X', atumLargeBrick);
+		GameRegistry.addRecipe(new ItemStack(atumSmallStoneStairs, 6), "X  ", "XX ", "XXX", 'X', atumSmallBrick);
+		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 0), "XXX", 'X', atumStone);
+		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 1), "XXX", 'X', atumCobble);
+		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 2), "XXX", 'X', atumLargeBrick);
+		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 3), "XXX", 'X', atumSmallBrick);
+		
+		GameRegistry.addRecipe(new ItemStack(furnaceIdle), "XXX", "X X", "XXX", 'X', atumStone);
+		
+		GameRegistry.addRecipe(new ItemStack(itemScarab), " G ", "GDG", " G ", 'G', Item.ingotGold, 'D', Item.diamond);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(atumPlanks, 4), atumLog);
+		OreDictionary.registerOre("plankWood", atumPlanks);
+		OreDictionary.registerOre("logWood", atumLog);
 	}
 }

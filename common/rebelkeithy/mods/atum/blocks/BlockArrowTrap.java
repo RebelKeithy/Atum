@@ -2,6 +2,8 @@ package rebelkeithy.mods.atum.blocks;
 
 import java.util.Random;
 
+import rebelkeithy.mods.atum.Atum;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockPistonBase;
@@ -48,6 +50,18 @@ public class BlockArrowTrap extends BlockContainer
     {
         super(par1, Material.rock);
         this.setCreativeTab(CreativeTabs.tabRedstone);
+    }
+
+	/**
+     * Returns the block hardness at a location. Args: world, x, y, z
+     */
+    public float getBlockHardness(World par1World, int par2, int par3, int par4)
+    {
+    	if(par1World.getBlockId(par2, par3, par4) == Atum.atumLargeBrick.blockID && par1World.getBlockMetadata(par2, par3+1, par4) == 1)
+    		return -1;
+    	
+    	return this.blockHardness;
+    	
     }
 
     /**

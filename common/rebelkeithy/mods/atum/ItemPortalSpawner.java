@@ -11,6 +11,7 @@ public class ItemPortalSpawner extends Item
 	public ItemPortalSpawner(int id)
 	{
 		super(id);
+		this.maxStackSize = 1;
 	}
 	
 
@@ -22,18 +23,23 @@ public class ItemPortalSpawner extends Item
         {
         	if(!Atum.portal.tryToCreatePortal(par3World, par4, par5 + 1, par6))
         	{
-        		par3World.setBlock(par4+2, par5+1, par6, Block.sandStone.blockID);
-        		par3World.setBlock(par4+2, par5+2, par6, Block.sandStone.blockID);
-        		par3World.setBlock(par4-2, par5+1, par6, Block.sandStone.blockID);
-        		par3World.setBlock(par4-2, par5+2, par6, Block.sandStone.blockID);
-        		par3World.setBlock(par4, par5+1, par6+2, Block.sandStone.blockID);
-        		par3World.setBlock(par4, par5+2, par6+2, Block.sandStone.blockID);
-        		par3World.setBlock(par4, par5+1, par6-2, Block.sandStone.blockID);
-        		par3World.setBlock(par4, par5+2, par6-2, Block.sandStone.blockID);
-        		par3World.setBlock(par4, par5+3, par6+1, Block.sandStone.blockID);
-        		par3World.setBlock(par4, par5+3, par6-1, Block.sandStone.blockID);
-        		par3World.setBlock(par4-1, par5+3, par6, Block.sandStone.blockID);
-        		par3World.setBlock(par4+1, par5+3, par6, Block.sandStone.blockID);
+        		if(par2EntityPlayer.capabilities.isCreativeMode)
+        		{
+	        		par3World.setBlock(par4+2, par5+1, par6, Block.sandStone.blockID);
+	        		par3World.setBlock(par4+2, par5+2, par6, Block.sandStone.blockID);
+	        		par3World.setBlock(par4-2, par5+1, par6, Block.sandStone.blockID);
+	        		par3World.setBlock(par4-2, par5+2, par6, Block.sandStone.blockID);
+	        		par3World.setBlock(par4, par5+1, par6+2, Block.sandStone.blockID);
+	        		par3World.setBlock(par4, par5+2, par6+2, Block.sandStone.blockID);
+	        		par3World.setBlock(par4, par5+1, par6-2, Block.sandStone.blockID);
+	        		par3World.setBlock(par4, par5+2, par6-2, Block.sandStone.blockID);
+	        		par3World.setBlock(par4, par5+3, par6+1, Block.sandStone.blockID);
+	        		par3World.setBlock(par4, par5+3, par6-1, Block.sandStone.blockID);
+	        		par3World.setBlock(par4-1, par5+3, par6, Block.sandStone.blockID);
+	        		par3World.setBlock(par4+1, par5+3, par6, Block.sandStone.blockID);
+        		}
+        	} else {
+        		par2EntityPlayer.getCurrentEquippedItem().stackSize--;
         	}
         }
         return true;

@@ -5,11 +5,11 @@ import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.WeightedRandomMinecart;
 import net.minecraft.world.World;
 
-class TileEntityMobSpawnerLogic extends MobSpawnerBaseLogic
+class CursedChestSpawnerLogic extends CursedChestBaseLogic
 {
     final TileEntityChestSpawner field_98295_a;
 
-    TileEntityMobSpawnerLogic(TileEntityChestSpawner tileEntityChestSpawner)
+    CursedChestSpawnerLogic(TileEntityChestSpawner tileEntityChestSpawner)
     {
         this.field_98295_a = tileEntityChestSpawner;
     }

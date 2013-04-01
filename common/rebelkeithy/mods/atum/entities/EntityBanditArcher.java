@@ -59,6 +59,24 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
         }
     }
 
+
+    /**
+     * Checks if the entity's current position is a valid location to spawn this entity.
+     */
+    public boolean getCanSpawnHere()
+    {
+    	//System.out.println("light level mummy " + this.isValidLightLevel() + " " + super.getCanSpawnHere());
+    	return this.worldObj.checkIfAABBIsClear(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+        //return true || super.getCanSpawnHere();
+    }
+    /**
+     * Checks to make sure the light is not too bright where the mob is spawning
+     */
+    protected boolean isValidLightLevel()
+    {
+        return true;
+    }
+
     protected void entityInit()
     {
         super.entityInit();
@@ -104,6 +122,11 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
     {
         super.addRandomArmor();
         this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemBow));
+        
+        for (int i = 0; i < this.equipmentDropChances.length; ++i)
+        {
+            this.equipmentDropChances[i] = 0F;
+        }
     }
 
     @SideOnly(Side.CLIENT)

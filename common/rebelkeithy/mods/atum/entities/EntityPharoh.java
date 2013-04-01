@@ -1,6 +1,7 @@
 package rebelkeithy.mods.atum.entities;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,7 +19,7 @@ public class EntityPharoh extends EntityMob implements IBossDisplayData
 	@Override
 	public int getMaxHealth() 
 	{
-		return 40;
+		return 100;
 	}
 
     public String getEntityName()
@@ -29,6 +30,14 @@ public class EntityPharoh extends EntityMob implements IBossDisplayData
     public String getTexture()
     {
     	return "/mods/Atum/textures/mobs/PharaohBlue.png";
+    }
+
+    /**
+     * Get this Entity's EnumCreatureAttribute
+     */
+    public EnumCreatureAttribute getCreatureAttribute()
+    {
+        return EnumCreatureAttribute.UNDEAD;
     }
     
     public float getSpeedModifier()
@@ -46,7 +55,7 @@ public class EntityPharoh extends EntityMob implements IBossDisplayData
      */
     public int getAttackStrength(Entity par1Entity)
     {
-        return 2;
+        return 4;
     }
     
 

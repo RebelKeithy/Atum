@@ -50,7 +50,7 @@ public class RenderBandit extends RenderBiped
     {
         float f1 = 1.0F;
         GL11.glColor3f(f1, f1, f1);
-        super.renderEquippedItems(par1EntityLiving, par2);
+        //super.renderEquippedItems(par1EntityLiving, par2);
         ItemStack itemstack = par1EntityLiving.getHeldItem();
         ItemStack itemstack1 = par1EntityLiving.getCurrentArmor(3);
         float f2;
@@ -122,12 +122,10 @@ public class RenderBandit extends RenderBiped
             else if (itemstack.itemID == Atum.itemBow.itemID)
             {
                 f2 = 0.625F;
-                float r1 = -20.0F;
-                float r2 = -100.0F;
                 GL11.glTranslatef(0.0F, 0.125F, 0.3125F);
-                GL11.glRotatef(r1, 0.0F, 1.0F, 0.0F);
+                GL11.glRotatef(-20.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glScalef(f2, -f2, f2);
-                GL11.glRotatef(r2, 1.0F, 0.0F, 0.0F);
+                GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
             }
             else if (Item.itemsList[itemstack.itemID].isFull3D())

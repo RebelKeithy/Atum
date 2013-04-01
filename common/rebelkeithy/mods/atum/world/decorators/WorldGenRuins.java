@@ -1,11 +1,13 @@
-package rebelkeithy.mods.atum.world.biome;
+package rebelkeithy.mods.atum.world.decorators;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumLoot;
 
 public class WorldGenRuins extends WorldGenerator
 {
@@ -100,6 +102,8 @@ public class WorldGenRuins extends WorldGenerator
 		}
 		int chestY = world.getHeightValue(chestX, chestZ);
 		world.setBlock(chestX, chestY, chestZ, Atum.cursedChest.blockID, 0, 2);
+		IInventory chest = (IInventory) world.getBlockTileEntity(chestX, chestY, chestZ);
+		AtumLoot.fillChest(chest, 5);
 		
 		return false;
 	}

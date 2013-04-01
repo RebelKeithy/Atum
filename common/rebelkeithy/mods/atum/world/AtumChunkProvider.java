@@ -41,6 +41,7 @@ import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.world.biome.BiomeGenAtumDesert;
+import rebelkeithy.mods.atum.world.decorators.WorldGenAtumTrees;
 
 public class AtumChunkProvider implements IChunkProvider
 {
@@ -208,7 +209,7 @@ public class AtumChunkProvider implements IChunkProvider
                                 }
                                 else if (k1 * 8 + l1 < b2)
                                 {
-                                    par3ArrayOfByte[j2 += short1] = (short)Block.waterStill.blockID;
+                                    par3ArrayOfByte[j2 += short1] = (short)Atum.atumStone.blockID;
                                 }
                                 else
                                 {

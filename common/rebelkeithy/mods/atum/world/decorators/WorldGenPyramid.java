@@ -5,15 +5,17 @@ import static net.minecraftforge.common.ForgeDirection.NORTH;
 import static net.minecraftforge.common.ForgeDirection.SOUTH;
 import static net.minecraftforge.common.ForgeDirection.WEST;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Random;
 
-import rebelkeithy.mods.atum.Atum;
-
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumLoot;
+import rebelkeithy.mods.atum.cursedchest.TileEntityChestSpawner;
+import rebelkeithy.mods.atum.entities.EntityPharoh;
 
 public class WorldGenPyramid extends WorldGenerator
 {
@@ -79,7 +81,10 @@ public class WorldGenPyramid extends WorldGenerator
 					world.setBlock(x+i, j-1, z+k, Atum.atumStone.blockID);
 					if(!maze[x][z])
 					{
-						world.setBlock(x+i, j, z+k, Atum.atumLargeBrick.blockID, 1, 2);
+						if(random.nextFloat() > 0.1F)
+							world.setBlock(x+i, j, z+k, Atum.atumLargeBrick.blockID, 1, 2);
+						else
+							placeTrap(world, x+i, j, z+k);
 						world.setBlock(x+i, j+1, z+k, Atum.atumLargeBrick.blockID, 1, 2);
 						world.setBlock(x+i, j+2, z+k, Atum.atumLargeBrick.blockID, 1, 2);
 					} else {
@@ -115,20 +120,81 @@ public class WorldGenPyramid extends WorldGenerator
 		
 		world.setBlock(i+11, j+6, k+7, Block.torchWood.blockID, 2, 0);
 		world.setBlock(i+11, j+6, k+10, Block.torchWood.blockID, 2, 0);
-				
-		if(world.isAirBlock(i+7, j, k+7))
+		
+		world.setBlock(i+ 10, j + 4, k + 8, Atum.cursedChest.blockID);
+		try
+		{
+			TileEntityChestSpawner te = (TileEntityChestSpawner) world.getBlockTileEntity(i+ 10, j + 4, k + 8);
+			te.setSpawnerEntity("AtumPharaoh");
+			te.setMaxEntities(1);
+			te.setDelay(200, 800);
+			te.setRange(1);
+			te.forceSpawn();
+			//Entity entity = new EntityPharoh(world);
+			//entity.setPosition(i+ 10, j + 4, k + 8);
+			//world.spawnEntityInWorld(entity);
+			AtumLoot.fillChest(te, 15);
+		} catch(ClassCastException e){}		
+		if(world.isAirBlock(i+7, j+1, k+7))
 		{
 			placeLadders(world, i+7, j, k+7, 4);
-		}else if(world.isAirBlock(i+7+1, j, k+7)) {
-			placeLadders(world, i+7+1, j, k+7, 4);
-		}else if(world.isAirBlock(i+7-1, j, k+7)) {
-			placeLadders(world, i+7-1, j, k+7, 4);
-		}else if(world.isAirBlock(i+7, j, k+7+1)) {
-			placeLadders(world, i+7, j, k+7+1, 4);
-		}else if(world.isAirBlock(i+7+1, j, k+7-1)) {
-			placeLadders(world, i+7, j, k+7-1, 4);
+		}else{
+			boolean found = false;
+			for(int dx = -1; dx <= 1; dx++)
+			{
+				if(found)
+					break;
+				
+				for(int dz = -1; dz <= 1; dz++)
+				{
+					if(world.isAirBlock(i+7+dx, j+1, k+7+dz))
+					{
+						placeLadders(world, i+7+dx, j, k+7+dz, 3);
+						found = true;
+						break;
+					}
+				}
+			}
 		}
+			
+			
+			/*if(world.isAirBlock(i+7+1, j+1, k+7)) {
+		}
+			placeLadders(world, i+7+1, j+1, k+7, 4);
+		}else if(world.isAirBlock(i+7-1, j+1, k+7)) {
+			placeLadders(world, i+7-1, j+1, k+7, 4);
+		}else if(world.isAirBlock(i+7, j+1, k+7+1)) {
+			placeLadders(world, i+7, j+1, k+7+1, 4);
+		}else if(world.isAirBlock(i+7, j+1, k+7-1)) {
+			placeLadders(world, i+7, j+1, k+7-1, 4);
+		}*/
 		return false;
+	}
+	
+	public void placeTrap(World world, int x, int y, int z)
+	{
+        int meta = 0;
+        if (world.isBlockSolidOnSide(x, y, z + 1, NORTH))
+        {
+            meta = 2;;
+        }
+
+        if (world.isBlockSolidOnSide(x, y, z - 1, SOUTH))
+        {
+            meta = 3;
+        }
+
+        if (world.isBlockSolidOnSide(x + 1, y, z, WEST))
+        {
+            meta = 4;
+        }
+
+        if (world.isBlockSolidOnSide(x - 1, y, z, EAST))
+        {
+            meta = 5;
+        }
+
+        world.setBlock(x, y, z, Atum.atumTrapArrow.blockID, meta, 0);
 	}
 	
 	public void placeLadders(World world, int x, int y, int z, int height)
@@ -155,8 +221,7 @@ public class WorldGenPyramid extends WorldGenerator
         }
 
         for(int i = 0; i < height; i++)
-        	world.setBlock(x, y + i, z, Block.ladder.blockID, meta, 0);
-
+        	world.setBlock(x, y+i, z, Block.ladder.blockID, meta, 0);
 	}
 	
 	public void generateMaze(boolean[][] array, Random random, int x, int y)

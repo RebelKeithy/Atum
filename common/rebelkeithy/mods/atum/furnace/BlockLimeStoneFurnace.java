@@ -129,19 +129,16 @@ public class BlockLimeStoneFurnace extends BlockContainer
      */
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
-    	System.out.println("check");
         if (par1World.isRemote)
         {
             return true;
         }
         else
         {
-        	System.out.println("check2");
             TileEntityLimestoneFurnace TileEntityLimestoneFurnace = (TileEntityLimestoneFurnace)par1World.getBlockTileEntity(par2, par3, par4);
 
             if (TileEntityLimestoneFurnace != null)
             {
-            	System.out.println("check3");
                 //par5EntityPlayer.displayGUIFurnace(TileEntityLimestoneFurnace);
                 par5EntityPlayer.openGui(Atum.instance, 0, par1World, par2, par3, par4);
             }

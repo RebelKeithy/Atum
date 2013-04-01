@@ -2,14 +2,13 @@ package rebelkeithy.mods.atum.world.decorators;
 
 import java.util.Random;
 
-import rebelkeithy.mods.atum.Atum;
-
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSapling;
-import net.minecraft.util.Direction;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.ForgeDirection;
+import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumLoot;
 
 public class WorldGenOasis extends WorldGenerator
 {
@@ -89,8 +88,12 @@ public class WorldGenOasis extends WorldGenerator
         			if( check <= 1)
         			{
         				int y = world.getHeightValue(x+par3, z+par5);
-        				//System.out.println("water at + " + (x+par3) + " " + y + " " + (z+par5));
         				world.setBlock(x+par3, y-1, z+par5, Block.waterStill.blockID);
+        				if(check < 0.6)
+        				{
+            				y = world.getHeightValue(x+par3, z+par5);
+            				world.setBlock(x+par3, y-2, z+par5, Block.waterStill.blockID);
+        				}
         			} else {
 
             			check = (x*x)/((radius+4)*(radius+4)) + (z*z)/((radius2+4)*(radius2+4));
@@ -101,6 +104,38 @@ public class WorldGenOasis extends WorldGenerator
         		}
         	}
         }
+        
+        int treeCount = 0;
+        for(int i = 0; i < 6; i++)
+        {
+        	int x = par2Random.nextInt(width);
+        	int z = par2Random.nextInt(depth);
+        	
+        	id = world.getBlockId(par3+x, world.getHeightValue(par3+x, par5+z)-1, par5+z);
+        	if(id == Block.grass.blockID || id == Block.dirt.blockID)
+        	{
+        		(new WorldGenPalm(true, 5, 0, 0)).generate(world, par2Random, par3+x, world.getHeightValue(par3+x, par5+z), par5+z);
+        		treeCount++;
+        	}
+        	if(treeCount > 2)
+        		break;
+        }
+        
+        for(int i = 0; i < 10; i++)
+        {
+        	int x = par2Random.nextInt(width);
+        	int z = par2Random.nextInt(depth);
+        	
+        	id = world.getBlockId(par3+x, world.getHeightValue(par3+x, par5+z)-1, par5+z);
+        	if(id == Block.grass.blockID || id == Block.dirt.blockID)
+        	{
+        		world.setBlock(par3+x, world.getHeightValue(par3+x, par5+z), par5+z, Block.chest.blockID);
+        		TileEntity te = world.getBlockTileEntity(par3+x, world.getHeightValue(par3+x, par5+z), par5+z);
+        		AtumLoot.fillChest((IInventory) te, 27);
+        		break;
+        	}
+        }
+        
 		return false;
         	
     }
