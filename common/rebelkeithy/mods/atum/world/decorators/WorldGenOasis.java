@@ -131,7 +131,7 @@ public class WorldGenOasis extends WorldGenerator
         	{
         		world.setBlock(par3+x, world.getHeightValue(par3+x, par5+z), par5+z, Block.chest.blockID);
         		TileEntity te = world.getBlockTileEntity(par3+x, world.getHeightValue(par3+x, par5+z), par5+z);
-        		AtumLoot.fillChest((IInventory) te, 27);
+        		AtumLoot.fillChest((IInventory) te, 5);
         		break;
         	}
         }
