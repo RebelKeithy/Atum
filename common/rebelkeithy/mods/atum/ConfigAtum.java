@@ -1,5 +1,10 @@
 package rebelkeithy.mods.atum;
 
+import java.io.File;
+import java.io.IOException;
+
+import net.minecraftforge.common.Configuration;
+
 public class ConfigAtum 
 {
 	public static int portalBlockID = 1024;
@@ -41,9 +46,62 @@ public class ConfigAtum
 	public static int nutsAgilityID = 5011;
 	public static int horusFlightID = 5012;
 
-	public static int mummyID = 387;
-	public static int banditWarriorID = 388;
-	public static int banditArcherID = 389;
-	public static int pharaohID = 390;
-	public static int dustySkeletonID = 391;
+	
+	public void initConfig()
+	{
+
+		//File fileDir = new File(Atum.proxy.getMinecraftDir() + "/config/Atum");
+    	//fileDir.mkdir();
+    	File cfgFile = new File(Atum.proxy.getMinecraftDir() + "/config/Atum.cfg");
+    	
+        try
+        {
+            cfgFile.createNewFile();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        
+		Configuration config = new Configuration(cfgFile);
+		config.load();
+
+		biomeAtumDesertID = config.get("Boime", "Atum Biome ID", biomeAtumDesertID).getInt();
+
+		portalBlockID = config.getBlock("Portal Block", portalBlockID).getInt();
+		cursedChestID = config.getBlock("CursedChest", cursedChestID).getInt();
+		sandID = config.getBlock("Strange Sand", sandID).getInt();
+		stoneID = config.getBlock("Limestone", stoneID).getInt();
+		cobbleID = config.getBlock("Cracked Limestone", cobbleID).getInt();
+		largeBrickID = config.getBlock("Large Brick", largeBrickID).getInt();
+		smallBrickID = config.getBlock("Small Brick", smallBrickID).getInt();
+		carvedBrickID = config.getBlock("Carved Limestone", carvedBrickID).getInt();
+		slabID = config.getBlock("Limestone Slabs", slabID).getInt();
+		doubleSlabID = config.getBlock("Double Limestone Slabs", doubleSlabID).getInt();
+		smoothStairsID = config.getBlock("Limestone Stairs", smoothStairsID).getInt();
+		cobbleStairsID = config.getBlock("Cracked Stairs", cobbleStairsID).getInt();
+		largeStoneStairsID = config.getBlock("Large Brick Stairs", largeStoneStairsID).getInt();
+		smallStoneStairsID = config.getBlock("Small Brick Stairs", smallStoneStairsID).getInt();
+		shrubID = config.getBlock("Desert Shrub", shrubID).getInt();
+		logID = config.getBlock("Palm Log", logID).getInt();
+		leavesID = config.getBlock("Palm Leaves", leavesID).getInt();
+		weedID = config.getBlock("Desert Plant", weedID).getInt();
+		trapArrowID = config.getBlock("Fire Trap", trapArrowID).getInt();
+		furnaceIdleID = config.getBlock("Limestone Furnace Idle", furnaceIdleID).getInt();
+		furnaceBurningID = config.getBlock("Limestone Furnace Burning", furnaceBurningID).getInt();
+		plankID = config.getBlock("Palm Planks", plankID).getInt();
+
+		portalSpawnerID = config.getItem("Scarab", portalSpawnerID).getInt();
+		scimitarID = config.getItem("Scimitar", scimitarID).getInt();
+		bowID = config.getItem("Deser Bow", bowID).getInt();
+		ptahsPickID = config.getItem("Ptah's Pick", ptahsPickID).getInt();
+		soteksRageID = config.getItem("Sotek's Rage", soteksRageID).getInt();
+		osirisWillID = config.getItem("Osiris's Will", osirisWillID).getInt();
+		akersToilID = config.getItem("Aker's Toil", akersToilID).getInt();
+		gabsBlessingID = config.getItem("Gab's Blessing", gabsBlessingID).getInt();
+		rasGloryID = config.getItem("Ra's Glory", rasGloryID).getInt();
+		sekhmetsWrathID = config.getItem("Sekhmet's Wrath", sekhmetsWrathID).getInt();
+		nutsAgilityID = config.getItem("Nut's Agility", nutsAgilityID).getInt();
+		horusFlightID = config.getItem("Horus's Flight", horusFlightID).getInt();
+		
+		config.save();
+	}
 }

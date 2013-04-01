@@ -104,46 +104,38 @@ public abstract class CursedChestBaseLogic
                 
                 for (int i = 0; i < this.numEntities; ++i)
                 {
-                	boolean spawned = true;
-                	if(forceSpawn)
-                		spawned = false;
-                	
-                	do
-                	{
-	                    Entity entity = EntityList.createEntityByName(this.func_98276_e(), this.getSpawnerWorld());
-	                    if (entity == null)
-	                    {
-	                        return;
-	                    }
-	
-	                    int j = this.getSpawnerWorld().getEntitiesWithinAABB(entity.getClass(), AxisAlignedBB.getAABBPool().getAABB((double)this.getSpawnerX(), (double)this.getSpawnerY(), (double)this.getSpawnerZ(), (double)(this.getSpawnerX() + 1), (double)(this.getSpawnerY() + 1), (double)(this.getSpawnerZ() + 1)).expand((double)(this.SpawnRange * 2), 4.0D, (double)(this.SpawnRange * 2))).size();
-	
-	                    if (j >= this.maxNearbyEntities)
-	                    {
-	                        this.func_98273_j();
-	                        return;
-	                    }
-	
-	                    d0 = (double)this.getSpawnerX() + (this.getSpawnerWorld().rand.nextDouble() - this.getSpawnerWorld().rand.nextDouble()) * (double)this.SpawnRange;
-	                    double d3 = (double)(this.getSpawnerY() + this.getSpawnerWorld().rand.nextInt(3) - 1);
-	                    double d4 = (double)this.getSpawnerZ() + (this.getSpawnerWorld().rand.nextDouble() - this.getSpawnerWorld().rand.nextDouble()) * (double)this.SpawnRange;
-	                    EntityLiving entityliving = entity instanceof EntityLiving ? (EntityLiving)entity : null;
-	                    entity.setLocationAndAngles(d0, d3, d4, this.getSpawnerWorld().rand.nextFloat() * 360.0F, 0.0F);
-	
-	                    if (entityliving == null || entityliving.getCanSpawnHere())
-	                    {
-	                        this.func_98265_a(entity);
-	                        this.getSpawnerWorld().playAuxSFX(2004, this.getSpawnerX(), this.getSpawnerY(), this.getSpawnerZ(), 0);
-	
-	                        if (entityliving != null)
-	                        {
-	                            entityliving.spawnExplosionParticle();
-	                        }
-	
-	                        flag = true;
-	                        spawned = true;
-	                    }
-                	}while(!spawned);
+                    Entity entity = EntityList.createEntityByName(this.func_98276_e(), this.getSpawnerWorld());
+                    if (entity == null)
+                    {
+                        return;
+                    }
+
+                    int j = this.getSpawnerWorld().getEntitiesWithinAABB(entity.getClass(), AxisAlignedBB.getAABBPool().getAABB((double)this.getSpawnerX(), (double)this.getSpawnerY(), (double)this.getSpawnerZ(), (double)(this.getSpawnerX() + 1), (double)(this.getSpawnerY() + 1), (double)(this.getSpawnerZ() + 1)).expand((double)(this.SpawnRange * 2), 4.0D, (double)(this.SpawnRange * 2))).size();
+
+                    if (j >= this.maxNearbyEntities)
+                    {
+                        this.func_98273_j();
+                        return;
+                    }
+
+                    d0 = (double)this.getSpawnerX() + (this.getSpawnerWorld().rand.nextDouble() - this.getSpawnerWorld().rand.nextDouble()) * (double)this.SpawnRange;
+                    double d3 = (double)(this.getSpawnerY() + this.getSpawnerWorld().rand.nextInt(3) - 1);
+                    double d4 = (double)this.getSpawnerZ() + (this.getSpawnerWorld().rand.nextDouble() - this.getSpawnerWorld().rand.nextDouble()) * (double)this.SpawnRange;
+                    EntityLiving entityliving = entity instanceof EntityLiving ? (EntityLiving)entity : null;
+                    entity.setLocationAndAngles(d0, d3, d4, this.getSpawnerWorld().rand.nextFloat() * 360.0F, 0.0F);
+
+                    if (entityliving == null || entityliving.getCanSpawnHere())
+                    {
+                        this.func_98265_a(entity);
+                        this.getSpawnerWorld().playAuxSFX(2004, this.getSpawnerX(), this.getSpawnerY(), this.getSpawnerZ(), 0);
+
+                        if (entityliving != null)
+                        {
+                            entityliving.spawnExplosionParticle();
+                        }
+
+                        flag = true;
+                    }
                 }
 
                 if (flag)

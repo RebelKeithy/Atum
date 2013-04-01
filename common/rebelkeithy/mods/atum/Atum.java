@@ -1,18 +1,11 @@
 package rebelkeithy.mods.atum;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockWood;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelZombie;
-import net.minecraft.client.renderer.entity.RenderBiped;
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
@@ -53,17 +46,16 @@ import rebelkeithy.mods.atum.cursedchest.TileEntityChestSpawner;
 import rebelkeithy.mods.atum.entities.EntityBanditArcher;
 import rebelkeithy.mods.atum.entities.EntityBanditWarrior;
 import rebelkeithy.mods.atum.entities.EntityDustySkeleton;
+import rebelkeithy.mods.atum.entities.EntityGhost;
 import rebelkeithy.mods.atum.entities.EntityMummy;
 import rebelkeithy.mods.atum.entities.EntityPharoh;
-import rebelkeithy.mods.atum.entities.ModelDustySkeleton;
-import rebelkeithy.mods.atum.entities.RenderBandit;
+import rebelkeithy.mods.atum.entities.EntityStoneSoldier;
 import rebelkeithy.mods.atum.furnace.BlockLimeStoneFurnace;
 import rebelkeithy.mods.atum.furnace.TileEntityLimestoneFurnace;
 import rebelkeithy.mods.atum.items.ItemAtumBow;
 import rebelkeithy.mods.atum.items.ItemScimitar;
 import rebelkeithy.mods.atum.world.AtumWorldProvider;
 import rebelkeithy.mods.atum.world.biome.BiomeGenAtumDesert;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -161,11 +153,11 @@ public class Atum
 
 	    atumSandLayered = (new BlockSandLayered(ConfigAtum.sandLayeredID)).setHardness(0.1F).setStepSound(Block.soundSnowFootstep).setUnlocalizedName("SandLayered").setLightOpacity(0);
 	    
-		atumLog = new BlockAtumLog(ConfigAtum.logID).setHardness(1F).setStepSound(Block.soundWoodFootstep);
-		atumLeaves = new BlockAtumLeaves(ConfigAtum.leavesID).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("AtumLeaves");
-	    atumPlanks = (new Block(ConfigAtum.plankID, Material.wood)).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("Atum:Planks").setCreativeTab(CreativeTabs.tabBlock);
+		atumLog = new BlockAtumLog(ConfigAtum.logID).setUnlocalizedName("AtumLogs").setHardness(1F).setStepSound(Block.soundWoodFootstep);
+		atumLeaves = new BlockAtumLeaves(ConfigAtum.leavesID).setUnlocalizedName("AtumLeaves").setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("AtumLeaves");
+	    atumPlanks = (new Block(ConfigAtum.plankID, Material.wood)).setUnlocalizedName("AtumPlanks").setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("Atum:Planks").setCreativeTab(CreativeTabs.tabBlock);
 		
-		atumTrapArrow = new BlockArrowTrap(ConfigAtum.trapArrowID).setHardness(0.2F);
+		atumTrapArrow = new BlockArrowTrap(ConfigAtum.trapArrowID).setUnlocalizedName("FireTrap").setHardness(0.2F);
 	    furnaceIdle = (new BlockLimeStoneFurnace(ConfigAtum.furnaceIdleID, false)).setHardness(3.5F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("limestonefurnaceidle").setCreativeTab(CreativeTabs.tabDecorations);
 	    furnaceBurning = (new BlockLimeStoneFurnace(ConfigAtum.furnaceBurningID, true)).setHardness(3.5F).setStepSound(Block.soundStoneFootstep).setLightValue(0.875F).setUnlocalizedName("limestonefurnaceactive");
 		
@@ -193,33 +185,40 @@ public class Atum
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(EntityMummy.class, "AtumMummy", entityID);
 		EntityList.addMapping(EntityMummy.class, "AtumMummy", entityID, 0x515838, 0x868F6B);
-		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderLiving(new ModelZombie(), 0.5F));
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(EntityBanditWarrior.class, "AtumBanditWarrior", entityID);
 		EntityList.addMapping(EntityBanditWarrior.class, "AtumBanditWarrior", entityID, 0xC2C2C2, 0x040F85);
-		RenderingRegistry.registerEntityRenderingHandler(EntityBanditWarrior.class, new RenderBiped(new ModelBiped(), 0.5F));
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(EntityBanditArcher.class, "AtumBanditArcher", entityID);
 		EntityList.addMapping(EntityBanditArcher.class, "AtumBanditArcher", entityID, 0xC2C2C2, 0x7E0C0C);
-		RenderingRegistry.registerEntityRenderingHandler(EntityBanditArcher.class, new RenderBandit(new ModelBiped(), 0.5F));
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(EntityPharoh.class, "AtumPharaoh", entityID);
 		EntityList.addMapping(EntityPharoh.class, "AtumPharaoh", entityID, 0xD4BC37, 0x3A4BE0);
-		RenderingRegistry.registerEntityRenderingHandler(EntityPharoh.class, new RenderBiped(new ModelBiped(), 0.5F));
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(EntityDustySkeleton.class, "AtumDustySkeleton", entityID);
 		EntityList.addMapping(EntityDustySkeleton.class, "AtumDustySkeleton", entityID, 0xB59C7D, 0x6F5C43);
-		RenderingRegistry.registerEntityRenderingHandler(EntityDustySkeleton.class, new RenderBiped(new ModelDustySkeleton(), 0.5F));
 
+		entityID = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerGlobalEntityID(EntityGhost.class, "AtumDesertGhost", entityID);
+		EntityList.addMapping(EntityGhost.class, "AtumDesertGhost", entityID, 0xE7DBC8, 0xAD9467);
+
+		entityID = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerGlobalEntityID(EntityStoneSoldier.class, "AtumStoneSoldier", entityID);
+		EntityList.addMapping(EntityStoneSoldier.class, "AtumStoneSoldier", entityID, 0x918354, 0x695D37);
+
+		proxy.registerModelRenderers();
+		
 		LanguageRegistry.instance().addStringLocalization("entity.AtumMummy.name", "Mummy");
 		LanguageRegistry.instance().addStringLocalization("entity.AtumBanditWarrior.name", "Bandit Warrior");
 		LanguageRegistry.instance().addStringLocalization("entity.AtumBanditArcher.name", "Bandit Archer");
 		LanguageRegistry.instance().addStringLocalization("entity.AtumPharaoh.name", "Pharaoh");
 		LanguageRegistry.instance().addStringLocalization("entity.AtumDustySkeleton.name", "Dusty Skeleton");
+		LanguageRegistry.instance().addStringLocalization("entity.AtumDesertGhost.name", "Desert Ghost");
+		LanguageRegistry.instance().addStringLocalization("entity.AtumStoneSoldier.name", "Stone Soldier");
 		
 		TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);		
 		TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
@@ -287,6 +286,7 @@ public class Atum
 		LanguageRegistry.addName(atumSmallStoneStairs, "Small Limestone Brick Stairs");
 		LanguageRegistry.addName(atumShrub, "Desert Shrub");
 		LanguageRegistry.addName(atumLog, "Palm Log");
+		LanguageRegistry.addName(atumPlanks, "Palm Planks");
 		LanguageRegistry.addName(atumLeaves, "Palm Leaves");
 		LanguageRegistry.addName(atumWeed, "Desert Shrub");
 		LanguageRegistry.addName(atumTrapArrow, "Fire Trap");

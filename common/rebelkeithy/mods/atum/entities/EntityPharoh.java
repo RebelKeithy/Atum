@@ -19,7 +19,7 @@ public class EntityPharoh extends EntityMob implements IBossDisplayData
 	@Override
 	public int getMaxHealth() 
 	{
-		return 100;
+		return 200;
 	}
 
     public String getEntityName()
