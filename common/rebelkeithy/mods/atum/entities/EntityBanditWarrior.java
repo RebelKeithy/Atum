@@ -23,6 +23,8 @@ public class EntityBanditWarrior extends EntityMob {
 		return 20;
 	}
 
+	@Override
+    protected void addRandomArmor() { }
 
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
