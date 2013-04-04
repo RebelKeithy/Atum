@@ -73,6 +73,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
+// Start of post-modjam branch
 
 @Mod(modid="Atum", name="Atum", version="0.0.0.1")
 @NetworkMod(channels = {"Atum"}, clientSideRequired = true, serverSideRequired = false)
