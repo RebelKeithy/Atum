@@ -61,7 +61,7 @@ public class AtumLoot
 		return artifacts.get(0);
 	}
 
-	public static void fillChest(IInventory inventory, int multiplier) 
+	public static void fillChest(IInventory inventory, int multiplier, float quality) 
 	{
 		if(inventory == null)
 		{
@@ -77,7 +77,7 @@ public class AtumLoot
 			int slot = rand.nextInt(inventory.getSizeInventory());
 			float roll = rand.nextFloat();
 			ItemStack stack = new ItemStack(0, 0, 0);
-			if(rand.nextFloat() > 0.5)
+			if(rand.nextFloat() < quality)
 			{
 				if(roll > 0.62)
 				{

@@ -42,13 +42,15 @@ import rebelkeithy.mods.atum.blocks.BlockShrub;
 import rebelkeithy.mods.atum.blocks.ItemSandLayered;
 import rebelkeithy.mods.atum.blocks.TileEntityArrowTrap;
 import rebelkeithy.mods.atum.cursedchest.BlockChestSpawner;
+import rebelkeithy.mods.atum.cursedchest.PharaohChest;
 import rebelkeithy.mods.atum.cursedchest.TileEntityChestSpawner;
+import rebelkeithy.mods.atum.cursedchest.TileEntityPharaohChest;
 import rebelkeithy.mods.atum.entities.EntityBanditArcher;
 import rebelkeithy.mods.atum.entities.EntityBanditWarrior;
 import rebelkeithy.mods.atum.entities.EntityDustySkeleton;
 import rebelkeithy.mods.atum.entities.EntityGhost;
 import rebelkeithy.mods.atum.entities.EntityMummy;
-import rebelkeithy.mods.atum.entities.EntityPharoh;
+import rebelkeithy.mods.atum.entities.EntityPharaoh;
 import rebelkeithy.mods.atum.entities.EntityStoneSoldier;
 import rebelkeithy.mods.atum.furnace.BlockLimeStoneFurnace;
 import rebelkeithy.mods.atum.furnace.TileEntityLimestoneFurnace;
@@ -109,6 +111,7 @@ public class Atum
 	public static Block atumPlanks;
 	
 	public static Block atumTrapArrow;
+	public static Block atumPharaohChest;
 	
 	public static Item itemScarab;
 	public static Item itemScimitar;
@@ -136,7 +139,8 @@ public class Atum
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		portal = new BlockAtumPortal(ConfigAtum.portalBlockID);
-		cursedChest = new BlockChestSpawner(ConfigAtum.cursedChestID).setCreativeTab(CreativeTabs.tabDecorations);
+		cursedChest = new BlockChestSpawner(ConfigAtum.cursedChestID).setUnlocalizedName("AtumCursedChest").setHardness(4.0F).setCreativeTab(CreativeTabs.tabDecorations);
+		atumPharaohChest = new PharaohChest(ConfigAtum.pharaohChestID).setUnlocalizedName("AtumPharaohChest").setHardness(4.0F).setCreativeTab(CreativeTabs.tabDecorations);
 		atumSand = new BlockAtumSand(ConfigAtum.sandID).setUnlocalizedName("Atum:AtumSand").setStepSound(Block.soundSandFootstep).setHardness(0.5F).setCreativeTab(CreativeTabs.tabBlock);
 		atumStone = new AtumStone(ConfigAtum.stoneID).setUnlocalizedName("Atum:AtumStone").setHardness(1.5F).setCreativeTab(CreativeTabs.tabBlock);
 		atumCobble = new Block(ConfigAtum.cobbleID, Material.rock).setUnlocalizedName("Atum:AtumCobble").setHardness(2.0F).setCreativeTab(CreativeTabs.tabBlock);
@@ -196,8 +200,8 @@ public class Atum
 		EntityList.addMapping(EntityBanditArcher.class, "AtumBanditArcher", entityID, 0xC2C2C2, 0x7E0C0C);
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
-		EntityRegistry.registerGlobalEntityID(EntityPharoh.class, "AtumPharaoh", entityID);
-		EntityList.addMapping(EntityPharoh.class, "AtumPharaoh", entityID, 0xD4BC37, 0x3A4BE0);
+		EntityRegistry.registerGlobalEntityID(EntityPharaoh.class, "AtumPharaoh", entityID);
+		EntityList.addMapping(EntityPharaoh.class, "AtumPharaoh", entityID, 0xD4BC37, 0x3A4BE0);
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(EntityDustySkeleton.class, "AtumDustySkeleton", entityID);
@@ -244,11 +248,13 @@ public class Atum
 		GameRegistry.registerBlock(atumWeed, "AtumWeed");
 		GameRegistry.registerBlock(atumTrapArrow, "AtumArmorTrap");
 		GameRegistry.registerBlock(cursedChest, "BlockCursedChest");
+		GameRegistry.registerBlock(atumPharaohChest, "BlockPharaohChest");
 		GameRegistry.registerBlock(atumSandLayered, ItemSandLayered.class, "BlockSandLayered");
 		GameRegistry.registerBlock(furnaceIdle, "limestonefurnaceidle");
 		GameRegistry.registerBlock(furnaceBurning, "limestonefurnaceburning");
 		
 		GameRegistry.registerTileEntity(TileEntityChestSpawner.class, "CursedChest");
+		GameRegistry.registerTileEntity(TileEntityPharaohChest.class, "PharaohChest");
 		GameRegistry.registerTileEntity(TileEntityArrowTrap.class, "ArrowTrap");
 		GameRegistry.registerTileEntity(TileEntityLimestoneFurnace.class, "LimestoneFurnace");
 		
@@ -292,6 +298,7 @@ public class Atum
 		LanguageRegistry.addName(atumWeed, "Desert Shrub");
 		LanguageRegistry.addName(atumTrapArrow, "Fire Trap");
 		LanguageRegistry.addName(cursedChest, "Cursed Chest");
+		LanguageRegistry.addName(atumPharaohChest, "Pharaoh's Chest");
 		LanguageRegistry.addName(atumSandLayered, "Strange Sand");
 		LanguageRegistry.addName(furnaceIdle, "Limestone Furnace");
 		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 0), "Limestone Slabs");
