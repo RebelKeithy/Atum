@@ -60,7 +60,7 @@ public class EntityStoneSoldier extends EntityMob
     
     public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
-		return super.attackEntityFrom(DamageSource.generic, par2);
+		return super.attackEntityFrom(par1DamageSource, par2);
     }
 
     /**
