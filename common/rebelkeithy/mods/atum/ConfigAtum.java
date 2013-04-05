@@ -46,6 +46,12 @@ public class ConfigAtum
 	public static int nutsAgilityID = 5011;
 	public static int horusFlightID = 5012;
 
+	public static int limestoneShovelID = 5013;
+	public static int limestonePickaxeID = 5014;
+	public static int limestoneAxeID = 5015;
+	public static int limestoneSwordID = 5016;
+	public static int limestoneHoeID = 5017;
+	public static int limestonePaxelID = 5018;
 	
 	public void initConfig()
 	{
@@ -101,6 +107,13 @@ public class ConfigAtum
 		sekhmetsWrathID = config.getItem("Sekhmet's Wrath", sekhmetsWrathID).getInt();
 		nutsAgilityID = config.getItem("Nut's Agility", nutsAgilityID).getInt();
 		horusFlightID = config.getItem("Horus's Flight", horusFlightID).getInt();
+		
+		limestoneShovelID = config.getItem("Limestone Shovel", limestoneShovelID).getInt();;
+		limestonePickaxeID = config.getItem("Limestone Pickaxe", limestonePickaxeID).getInt();;
+		limestoneAxeID = config.getItem("Limestone Axe", limestoneAxeID).getInt();
+		limestoneSwordID = config.getItem("Limestone Sword", limestoneSwordID).getInt();
+		limestoneHoeID = config.getItem("Limestone Hoe", limestoneHoeID).getInt();
+		limestonePaxelID = config.getItem("Limestone Paxel", limestonePaxelID).getInt();
 		
 		config.save();
 	}

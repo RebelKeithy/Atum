@@ -54,6 +54,12 @@ import rebelkeithy.mods.atum.furnace.BlockLimeStoneFurnace;
 import rebelkeithy.mods.atum.furnace.TileEntityLimestoneFurnace;
 import rebelkeithy.mods.atum.items.ItemAtumBow;
 import rebelkeithy.mods.atum.items.ItemScimitar;
+import rebelkeithy.mods.atum.tools.LimestoneAxe;
+import rebelkeithy.mods.atum.tools.LimestoneHoe;
+import rebelkeithy.mods.atum.tools.LimestonePaxel;
+import rebelkeithy.mods.atum.tools.LimestonePickaxe;
+import rebelkeithy.mods.atum.tools.LimestoneShovel;
+import rebelkeithy.mods.atum.tools.LimestoneSword;
 import rebelkeithy.mods.atum.world.AtumWorldProvider;
 import rebelkeithy.mods.atum.world.biome.BiomeGenAtumDesert;
 import cpw.mods.fml.common.Mod;
@@ -83,6 +89,8 @@ public class Atum
 	
 	@SidedProxy(clientSide = "rebelkeithy.mods.atum.ClientProxy", serverSide = "rebelkeithy.mods.atum.CommonProxy")
 	public static CommonProxy proxy;
+	
+	public static AtumTab tabs = new AtumTab("Atum");
 	
 	public static BlockAtumPortal portal;
 	public static Block cursedChest;
@@ -122,7 +130,14 @@ public class Atum
 	public static Item sekhmetsWrath;
 	public static Item nutsAgility;
 	public static Item horusFlight;
-
+	
+	public static Item limestoneShovel;
+	public static Item limestonePickaxe;
+	public static Item limestoneAxe;
+	public static Item limestoneSword;
+	public static Item limestoneHoe;
+	public static Item limestonePaxel;
+	
 	public static int dimensionID = 17;
 	
 	public static BiomeGenBase atumDesert;
@@ -255,22 +270,29 @@ public class Atum
         Item.itemsList[atumDoubleSlab.blockID] = (new ItemSlab(atumDoubleSlab.blockID - 256, atumSlabs, atumDoubleSlab, true)).setUnlocalizedName("woodSlab");
         
 		
-		itemScarab = new ItemPortalSpawner(ConfigAtum.portalSpawnerID).setUnlocalizedName("Atum:Scarab").setCreativeTab(CreativeTabs.tabTools);
+		itemScarab = new ItemPortalSpawner(ConfigAtum.portalSpawnerID).setUnlocalizedName("Atum:Scarab").setCreativeTab(tabs);
 		atumDesert = (new BiomeGenAtumDesert(ConfigAtum.biomeAtumDesertID)).setColor(16421912).setBiomeName("AtumDesert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.1F, 0.2F);
 
 		//EnumToolMaterial scimitarEnum = EnumHelper.addToolMaterial("Scimitar", 2, 250, 6.0F, 2, 14);
 		itemScimitar = (new ItemScimitar(ConfigAtum.scimitarID, EnumToolMaterial.IRON)).setUnlocalizedName("Atum:Scimitar").setCreativeTab(CreativeTabs.tabCombat);
 		itemBow = (new ItemAtumBow(ConfigAtum.bowID)).setUnlocalizedName("Atum:Bow").setCreativeTab(CreativeTabs.tabCombat);
 		
-		ptahsPick = new ItemPtahsDecadence(ConfigAtum.ptahsPickID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:PtahsDecadence").setCreativeTab(CreativeTabs.tabTools);
-		soteksRage = new ItemSoteksRage(ConfigAtum.soteksRageID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:SoteksRage").setCreativeTab(CreativeTabs.tabTools);
-		osirisWill = new ItemOsirisWill(ConfigAtum.osirisWillID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:OsirisWill").setCreativeTab(CreativeTabs.tabTools);
-		akersToil = new ItemAkersToil(ConfigAtum.akersToilID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:AkersToil").setCreativeTab(CreativeTabs.tabTools);
-		gabsBlessing = new ItemGabsBlessing(ConfigAtum.gabsBlessingID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:GabsBlessing").setCreativeTab(CreativeTabs.tabTools);
+		ptahsPick = new ItemPtahsDecadence(ConfigAtum.ptahsPickID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:PtahsDecadence").setCreativeTab(tabs);
+		soteksRage = new ItemSoteksRage(ConfigAtum.soteksRageID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:SoteksRage").setCreativeTab(tabs);
+		osirisWill = new ItemOsirisWill(ConfigAtum.osirisWillID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:OsirisWill").setCreativeTab(tabs);
+		akersToil = new ItemAkersToil(ConfigAtum.akersToilID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:AkersToil").setCreativeTab(tabs);
+		gabsBlessing = new ItemGabsBlessing(ConfigAtum.gabsBlessingID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:GabsBlessing").setCreativeTab(tabs);
 		rasGlory = new ItemRasGlory(ConfigAtum.rasGloryID, EnumArmorMaterial.DIAMOND, 0, 0).setTextureFile("EgyptianArmor").setUnlocalizedName("Atum:RasGlory").setCreativeTab(CreativeTabs.tabCombat);
 		sekhmetsWrath = new ItemSekhmetsWrath(ConfigAtum.sekhmetsWrathID, EnumArmorMaterial.DIAMOND, 1, 1).setTextureFile("EgyptianArmor").setUnlocalizedName("Atum:SekhmetsWrath").setCreativeTab(CreativeTabs.tabCombat);
 		nutsAgility = new ItemNutsAgility(ConfigAtum.nutsAgilityID, EnumArmorMaterial.DIAMOND, 2, 2).setTextureFile("EgyptianArmor").setUnlocalizedName("Atum:NutsAgility").setCreativeTab(CreativeTabs.tabCombat);
 		horusFlight = new HorusFlight(ConfigAtum.horusFlightID, EnumArmorMaterial.DIAMOND, 3, 3).setTextureFile("EgyptianArmor").setUnlocalizedName("Atum:HorusFlight").setCreativeTab(CreativeTabs.tabCombat);
+		
+		limestoneShovel = new LimestoneShovel(ConfigAtum.limestoneShovelID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneShovel").setCreativeTab(tabs);
+		limestonePickaxe = new LimestonePickaxe(ConfigAtum.limestonePickaxeID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestonePickaxe").setCreativeTab(tabs);
+		limestoneAxe = new LimestoneAxe(ConfigAtum.limestoneAxeID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneAxe").setCreativeTab(tabs);
+		limestoneSword = new LimestoneSword(ConfigAtum.limestoneSwordID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneSword").setCreativeTab(tabs);
+		limestoneHoe = new LimestoneHoe(ConfigAtum.limestoneHoeID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneHoe").setCreativeTab(tabs);
+		limestonePaxel = new LimestonePaxel(ConfigAtum.limestonePaxelID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestonePaxel").setCreativeTab(tabs);
 		
 		MinecraftForge.setToolClass(akersToil, "shovel", 4);
 
@@ -312,6 +334,13 @@ public class Atum
 		LanguageRegistry.addName(nutsAgility, "Nut's Agility");
 		LanguageRegistry.addName(horusFlight, "Horus's Flight");
 		
+		LanguageRegistry.addName(limestoneShovel, "Limestone Shovel");
+		LanguageRegistry.addName(limestonePickaxe, "Limestone Pickaxe");
+		LanguageRegistry.addName(limestoneAxe, "Limestone Axe");
+		LanguageRegistry.addName(limestoneSword, "Limestone Sword");
+		LanguageRegistry.addName(limestoneHoe, "Limestone Hoe");
+		LanguageRegistry.addName(limestonePaxel, "Limestone Paxel");
+		
 		proxy.registerParticles();
 		
 		MinecraftForge.EVENT_BUS.register(new FallDamageListener());
@@ -350,7 +379,14 @@ public class Atum
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 2), "XXX", 'X', atumLargeBrick);
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 3), "XXX", 'X', atumSmallBrick);
 		
-		GameRegistry.addRecipe(new ItemStack(furnaceIdle), "XXX", "X X", "XXX", 'X', atumStone);
+		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 3), "XXX", 'X', atumSmallBrick);
+		
+		GameRegistry.addRecipe(new ItemStack(limestoneShovel), " L ", " S ", " S ", 'L', atumStone, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(limestonePickaxe), "LLL", " S ", " S ", 'L', atumStone, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(limestoneAxe), "LL ", "LS ", " S ", 'L', atumStone, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(limestoneSword), " L ", " S ", " S ", 'L', atumStone, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(limestoneHoe), "LLL", " S ", " S ", 'L', atumStone, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(limestonePaxel), "HPA", " S ", " S ", 'H', limestoneShovel, 'P', limestonePickaxe, 'A', limestoneAxe, 'S', Item.stick);
 		
 		GameRegistry.addRecipe(new ItemStack(itemScarab), " G ", "GDG", " G ", 'G', Item.ingotGold, 'D', Item.diamond);
 		
