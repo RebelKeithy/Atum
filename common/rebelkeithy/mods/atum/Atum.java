@@ -366,6 +366,7 @@ public class Atum
 	public void addRecipes()
 	{
 		FurnaceRecipes.smelting().addSmelting(atumCobble.blockID, new ItemStack(atumStone), 0.1F);
+		FurnaceRecipes.smelting().addSmelting(atumSand.blockID, new ItemStack(Block.glass), 0.1F);
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumLargeBrick, 4), "XX", "XX", 'X', atumStone));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumSmallBrick, 4), "XX", "XX", 'X', atumCobble));
