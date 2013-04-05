@@ -38,7 +38,6 @@ public class BlockChestSpawner extends BlockContainer
     {
         super(par1, Material.wood);
         this.field_94443_a = 0;
-        this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
     }
 
