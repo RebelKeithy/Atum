@@ -15,6 +15,7 @@ public class EntityDustySkeleton extends EntityMob
 	public EntityDustySkeleton(World par1World) 
 	{
 		super(par1World);
+		this.isImmuneToFire = true;
 	}
 
 	@Override
