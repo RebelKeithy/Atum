@@ -3,9 +3,8 @@ package rebelkeithy.mods.atum.entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 public class EntityStoneSoldier extends EntityMob
@@ -14,6 +13,7 @@ public class EntityStoneSoldier extends EntityMob
 	public EntityStoneSoldier(World par1World) 
 	{
 		super(par1World);
+		this.isImmuneToFire = true;
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class EntityStoneSoldier extends EntityMob
     
     public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
-		return super.attackEntityFrom(par1DamageSource, par2);
+		return super.attackEntityFrom(DamageSource.generic, par2);
     }
 
     /**

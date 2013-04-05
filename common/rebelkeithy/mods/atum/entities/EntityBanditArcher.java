@@ -222,4 +222,27 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
             this.setCombatTask();
         }
     }
+    
+    
+    /**
+     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
+     * par2 - Level of Looting used to kill this mob.
+     */
+    protected void dropFewItems(boolean par1, int par2)
+    {
+    	if(this.rand.nextInt(4) <= 2){
+    	 switch (this.rand.nextInt(3))
+         {
+             case 0:
+                 this.dropItem(Item.arrow.itemID, 1);
+                 break;
+             case 1:
+                 this.dropItem(Item.arrow.itemID, 2);
+                 break;
+             case 2:
+            	 this.dropItem(Item.arrow.itemID, 3);
+            	 break;
+         }
+    	}
+    }
 }

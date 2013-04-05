@@ -1,7 +1,9 @@
 package rebelkeithy.mods.atum.entities;
 
 import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.ConfigAtum;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -51,4 +53,17 @@ public class EntityBanditWarrior extends EntityMob {
         }
     }
 
+    /**
+     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
+     * par2 - Level of Looting used to kill this mob.
+     */
+    protected void dropFewItems(boolean par1, int par2)
+    {
+    	 switch (this.rand.nextInt(10))
+         {
+             case 0:
+                 this.dropItem(ConfigAtum.scimitarID, 1);
+                 break;
+         }
+    }
 }
