@@ -2,11 +2,12 @@
 package rebelkeithy.mods.atum;
 
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ImageBufferDownload;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.PotionEffect;
 import rebelkeithy.mods.particleregistry.ParticleRegistry;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
@@ -18,6 +19,22 @@ public class TickHandler implements ITickHandler
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) 
 	{
+		if(Minecraft.getMinecraft().theWorld != null && Minecraft.getMinecraft().theWorld.loadedEntityList.size() > 0)
+		{
+			List<EntityPlayer> players = Minecraft.getMinecraft().theWorld.playerEntities;
+			for(EntityPlayer player : players)
+			{
+				if(player != null && player.getEntityName() == "RebelKeithy")
+				{
+					String cloakURL = "http://images.mccapes.com/capes/standardmc/" + player.username + ".png";
+					if(player.cloakUrl != cloakURL)
+						player.cloakUrl = cloakURL;
+					
+					Minecraft.getMinecraft().renderEngine.obtainImageData(player.cloakUrl, new ImageBufferDownload());
+				}
+			}
+		}
+		
 		if(type.equals(EnumSet.of(TickType.PLAYER)))
 		{
 			EntityPlayer player = (EntityPlayer) tickData[0];

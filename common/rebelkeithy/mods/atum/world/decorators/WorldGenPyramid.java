@@ -9,13 +9,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.AtumLoot;
-import rebelkeithy.mods.atum.cursedchest.TileEntityChestSpawner;
-import rebelkeithy.mods.atum.entities.EntityPharoh;
+import rebelkeithy.mods.atum.cursedchest.TileEntityPharaohChest;
 
 public class WorldGenPyramid extends WorldGenerator
 {
@@ -121,19 +119,11 @@ public class WorldGenPyramid extends WorldGenerator
 		world.setBlock(i+11, j+6, k+7, Block.torchWood.blockID, 2, 0);
 		world.setBlock(i+11, j+6, k+10, Block.torchWood.blockID, 2, 0);
 		
-		world.setBlock(i+ 10, j + 4, k + 8, Atum.cursedChest.blockID);
+		world.setBlock(i+ 10, j + 4, k + 8, Atum.atumPharaohChest.blockID);
 		try
 		{
-			TileEntityChestSpawner te = (TileEntityChestSpawner) world.getBlockTileEntity(i+ 10, j + 4, k + 8);
-			te.setSpawnerEntity("AtumPharaoh");
-			te.setMaxEntities(1);
-			te.setDelay(200, 800);
-			te.setRange(1);
-			te.forceSpawn();
-			//Entity entity = new EntityPharoh(world);
-			//entity.setPosition(i+ 10, j + 4, k + 8);
-			//world.spawnEntityInWorld(entity);
-			AtumLoot.fillChest(te, 15);
+			TileEntityPharaohChest te = (TileEntityPharaohChest) world.getBlockTileEntity(i+ 10, j + 4, k + 8);
+			AtumLoot.fillChest(te, 15, 0.9f);
 		} catch(ClassCastException e){}		
 		if(world.isAirBlock(i+7, j+1, k+7))
 		{

@@ -103,7 +103,7 @@ public class WorldGenRuins extends WorldGenerator
 		int chestY = world.getHeightValue(chestX, chestZ);
 		world.setBlock(chestX, chestY, chestZ, Atum.cursedChest.blockID, 0, 2);
 		IInventory chest = (IInventory) world.getBlockTileEntity(chestX, chestY, chestZ);
-		AtumLoot.fillChest(chest, 5);
+		AtumLoot.fillChest(chest, 5, 0.5F);
 		
 		return false;
 	}

@@ -120,8 +120,8 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
      */
     protected void addRandomArmor()
     {
-        super.addRandomArmor();
         this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemBow));
+        
         
         for (int i = 0; i < this.equipmentDropChances.length; ++i)
         {

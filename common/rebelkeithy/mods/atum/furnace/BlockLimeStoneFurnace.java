@@ -108,7 +108,7 @@ public class BlockLimeStoneFurnace extends BlockContainer
      */
     public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
     {
-        return par1 == 1 ? this.field_94458_cO : (par1 == 0 ? this.field_94458_cO : (par1 != par2 ? this.blockIcon : this.field_94459_cP));
+        return par1 == 1 ? this.field_94458_cO : (par1 == 0 ? this.field_94458_cO : (par1 != 3 ? this.blockIcon : this.field_94459_cP));
     }
 
     @SideOnly(Side.CLIENT)

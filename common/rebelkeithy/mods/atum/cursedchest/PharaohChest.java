@@ -1,7 +1,7 @@
 package rebelkeithy.mods.atum.cursedchest;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import static net.minecraftforge.common.ForgeDirection.DOWN;
+
 import java.util.Iterator;
 import java.util.Random;
 
@@ -10,43 +10,43 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.MobSpawnerBaseLogic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import rebelkeithy.mods.atum.entities.EntityPharaoh;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-import static net.minecraftforge.common.ForgeDirection.*;
-
-public class BlockChestSpawner extends BlockContainer
+public class PharaohChest extends BlockContainer
 {
 	
     private final Random random = new Random();
     public final int field_94443_a;
 
-    public BlockChestSpawner(int par1)
+    public PharaohChest(int par1)
     {
         super(par1, Material.wood);
         this.field_94443_a = 0;
+        this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
     }
-
 
     public int idDropped(int par1, Random par2Random, int par3)
     {
     	return Block.chest.blockID;
     }
-
+    
     /**
      * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
      * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
@@ -149,7 +149,7 @@ public class BlockChestSpawner extends BlockContainer
 
         if (par6ItemStack.hasDisplayName())
         {
-            ((TileEntityChestSpawner)par1World.getBlockTileEntity(par2, par3, par4)).func_94043_a(par6ItemStack.getDisplayName());
+            ((TileEntityPharaohChest)par1World.getBlockTileEntity(par2, par3, par4)).func_94043_a(par6ItemStack.getDisplayName());
         }
     }
 
@@ -158,7 +158,12 @@ public class BlockChestSpawner extends BlockContainer
      */
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
-        par1World.func_96440_m(par2, par3, par4, par5);
+        TileEntityPharaohChest TileEntityPharaohChest = (TileEntityPharaohChest)par1World.getBlockTileEntity(par2, par3, par4);
+
+        if (TileEntityPharaohChest != null)
+        {
+            par1World.func_96440_m(par2, par3, par4, par5);
+        }
 
         super.breakBlock(par1World, par2, par3, par4, par5, par6);
     }
@@ -174,6 +179,16 @@ public class BlockChestSpawner extends BlockContainer
         }
         else
         {
+        	TileEntity te = par1World.getBlockTileEntity(par2, par3, par4);
+        	if(te instanceof TileEntityPharaohChest)
+        	{
+        		TileEntityPharaohChest tepc = (TileEntityPharaohChest) te;
+        		if(!tepc.hasSpawned())
+        		{
+        			tepc.spawn();
+        		}
+        	}
+        	
             IInventory iinventory = this.func_94442_h_(par1World, par2, par3, par4);
 
             if (iinventory != null)
@@ -187,7 +202,7 @@ public class BlockChestSpawner extends BlockContainer
 
     public IInventory func_94442_h_(World par1World, int par2, int par3, int par4)
     {
-        Object object = (TileEntityChestSpawner)par1World.getBlockTileEntity(par2, par3, par4);
+        Object object = (TileEntityPharaohChest)par1World.getBlockTileEntity(par2, par3, par4);
 
         if (object == null)
         {
@@ -212,8 +227,8 @@ public class BlockChestSpawner extends BlockContainer
      */
     public TileEntity createNewTileEntity(World par1World)
     {
-        TileEntityChestSpawner TileEntityChestSpawner = new TileEntityChestSpawner();
-        return TileEntityChestSpawner;
+        TileEntityPharaohChest TileEntityPharaohChest = new TileEntityPharaohChest();
+        return TileEntityPharaohChest;
     }
 
     /**
@@ -237,7 +252,7 @@ public class BlockChestSpawner extends BlockContainer
         }
         else
         {
-            int i1 = ((TileEntityChestSpawner)par1IBlockAccess.getBlockTileEntity(par2, par3, par4)).numUsingPlayers;
+            int i1 = ((TileEntityPharaohChest)par1IBlockAccess.getBlockTileEntity(par2, par3, par4)).numUsingPlayers;
             return MathHelper.clamp_int(i1, 0, 15);
         }
     }
