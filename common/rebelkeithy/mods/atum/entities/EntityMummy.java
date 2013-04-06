@@ -3,6 +3,7 @@ package rebelkeithy.mods.atum.entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumSkyBlock;
@@ -77,5 +78,19 @@ public class EntityMummy extends EntityMob
     public int getAttackStrength(Entity par1Entity)
     {
         return 2;
+    }
+    
+    /**
+     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
+     * par2 - Level of Looting used to kill this mob.
+     */
+    protected void dropFewItems(boolean par1, int par2)
+    {
+    	 switch (this.rand.nextInt(4))
+         {
+             case 0:
+                 this.dropItem(Item.rottenFlesh.itemID, 1);
+                 break;
+         }
     }
 }
