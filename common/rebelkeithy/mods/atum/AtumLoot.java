@@ -53,6 +53,11 @@ public class AtumLoot
 		
 	}
 	
+	public static void addArtifact(ItemStack stack)
+	{
+		artifacts.add(stack);
+	}
+	
 	public static ItemStack getRandomLoot()
 	{
 		if(artifacts == null)
