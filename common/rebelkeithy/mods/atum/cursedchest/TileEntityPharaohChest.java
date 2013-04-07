@@ -226,7 +226,6 @@ public class TileEntityPharaohChest extends TileEntityChest implements IInventor
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {        	
-    	System.out.println("is openable = " + isOpenable);
     	if(this.isOpenable == false)
     		return false;
     	
@@ -394,7 +393,6 @@ public class TileEntityPharaohChest extends TileEntityChest implements IInventor
     
     public void setOpenable()
     {
-    	System.out.println("allowing chest to be opened");
     	isOpenable = true;
     }
 

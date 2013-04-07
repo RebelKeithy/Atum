@@ -55,10 +55,10 @@ import rebelkeithy.mods.atum.entities.EntityStoneSoldier;
 import rebelkeithy.mods.atum.furnace.BlockLimeStoneFurnace;
 import rebelkeithy.mods.atum.furnace.TileEntityLimestoneFurnace;
 import rebelkeithy.mods.atum.items.ItemAtumBow;
+import rebelkeithy.mods.atum.items.ItemLoot;
 import rebelkeithy.mods.atum.items.ItemScimitar;
 import rebelkeithy.mods.atum.tools.LimestoneAxe;
 import rebelkeithy.mods.atum.tools.LimestoneHoe;
-import rebelkeithy.mods.atum.tools.LimestonePaxel;
 import rebelkeithy.mods.atum.tools.LimestonePickaxe;
 import rebelkeithy.mods.atum.tools.LimestoneShovel;
 import rebelkeithy.mods.atum.tools.LimestoneSword;
@@ -78,8 +78,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 // Start of post-modjam branch
 
@@ -124,6 +122,7 @@ public class Atum
 	public static Item itemScarab;
 	public static Item itemScimitar;
 	public static Item itemBow;
+	public static Item itemLoot;
 	
 	public static Item ptahsPick;
 	public static Item soteksRage;
@@ -140,7 +139,6 @@ public class Atum
 	public static Item limestoneAxe;
 	public static Item limestoneSword;
 	public static Item limestoneHoe;
-	public static Item limestonePaxel;
 	
 	public static int dimensionID = 17;
 	
@@ -240,9 +238,6 @@ public class Atum
 		LanguageRegistry.instance().addStringLocalization("entity.AtumDesertGhost.name", "Desert Ghost");
 		LanguageRegistry.instance().addStringLocalization("entity.AtumStoneSoldier.name", "Stone Soldier");
 		
-		TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);		
-		TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
-		
 		//EntityList.addMapping(EntityBandit.class, "AtumBanditArcher", ConfigAtum.banditArcherID, 0xC2C2C2, 0x070C0C);
 		
 		GameRegistry.registerBlock(atumSand, "AtumSand");
@@ -279,7 +274,8 @@ public class Atum
 		
 		itemScarab = new ItemPortalSpawner(ConfigAtum.portalSpawnerID).setUnlocalizedName("Atum:Scarab").setCreativeTab(tabs);
 		atumDesert = (new BiomeGenAtumDesert(ConfigAtum.biomeAtumDesertID)).setColor(16421912).setBiomeName("AtumDesert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.1F, 0.2F);
-
+		itemLoot = new ItemLoot(ConfigAtum.lootID).setCreativeTab(CreativeTabs.tabMisc);
+		
 		//EnumToolMaterial scimitarEnum = EnumHelper.addToolMaterial("Scimitar", 2, 250, 6.0F, 2, 14);
 		itemScimitar = (new ItemScimitar(ConfigAtum.scimitarID, EnumToolMaterial.IRON)).setUnlocalizedName("Atum:Scimitar").setCreativeTab(tabs);
 		itemBow = (new ItemAtumBow(ConfigAtum.bowID)).setUnlocalizedName("Atum:Bow").setCreativeTab(tabs);
@@ -299,9 +295,10 @@ public class Atum
 		limestoneAxe = new LimestoneAxe(ConfigAtum.limestoneAxeID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneAxe").setCreativeTab(tabs);
 		limestoneSword = new LimestoneSword(ConfigAtum.limestoneSwordID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneSword").setCreativeTab(tabs);
 		limestoneHoe = new LimestoneHoe(ConfigAtum.limestoneHoeID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneHoe").setCreativeTab(tabs);
-		limestonePaxel = new LimestonePaxel(ConfigAtum.limestonePaxelID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestonePaxel").setCreativeTab(tabs);
 		
 		MinecraftForge.setToolClass(akersToil, "shovel", 4);
+		MinecraftForge.setToolClass(limestoneShovel, "shovel", 1);
+		MinecraftForge.setToolClass(limestoneAxe, "axe", 1);
 
 		LanguageRegistry.addName(atumSand, "Strange Sand");
 		LanguageRegistry.addName(atumStone, "Limestone");
@@ -347,10 +344,10 @@ public class Atum
 		LanguageRegistry.addName(limestoneAxe, "Limestone Axe");
 		LanguageRegistry.addName(limestoneSword, "Limestone Sword");
 		LanguageRegistry.addName(limestoneHoe, "Limestone Hoe");
-		LanguageRegistry.addName(limestonePaxel, "Limestone Paxel");
 		
+		proxy.registerTickHandlers();
+		proxy.preloadImages();
 		proxy.registerParticles();
-		
 		MinecraftForge.EVENT_BUS.register(new FallDamageListener());
 		NetworkRegistry.instance().registerGuiHandler(this, new AtumGuiHandler());
 	}
@@ -395,7 +392,6 @@ public class Atum
 		GameRegistry.addRecipe(new ItemStack(limestoneAxe), "LL ", "LS ", " S ", 'L', atumStone, 'S', Item.stick);
 		GameRegistry.addRecipe(new ItemStack(limestoneSword), " L ", " S ", " S ", 'L', atumStone, 'S', Item.stick);
 		GameRegistry.addRecipe(new ItemStack(limestoneHoe), "LLL", " S ", " S ", 'L', atumStone, 'S', Item.stick);
-		GameRegistry.addRecipe(new ItemStack(limestonePaxel), "HPA", " S ", " S ", 'H', limestoneShovel, 'P', limestonePickaxe, 'A', limestoneAxe, 'S', Item.stick);
 		
 		GameRegistry.addRecipe(new ItemStack(itemScarab), " G ", "GDG", " G ", 'G', Item.ingotGold, 'D', Item.diamond);
 		

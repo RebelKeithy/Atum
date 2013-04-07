@@ -32,24 +32,4 @@ public class ItemNutsAgility extends ItemArmor implements IArmorTextureProvider
 		return "/armor/" + texture + ".png";
 	}
 	
-    public void onUpdate(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean par5) 
-    {
-    	/*
-    	if(par2World.isRemote)
-    		return;
-    	
-    	System.out.println("update");
-    	if(par3Entity instanceof EntityPlayer)
-    	{
-    		if(((EntityPlayer)par3Entity).getCurrentArmor(3) != null)
-    		{
-	    		if(((EntityPlayer)par3Entity).getCurrentArmor(3).itemID == this.itemID)
-	    		{
-	    			if(!((EntityPlayer) par3Entity).isPotionActive(16))
-	    				((EntityPlayer) par3Entity).addPotionEffect(new PotionEffect(16, 20, 0, true));
-	    		}
-    		}
-    	}*/
-    }
-
 }

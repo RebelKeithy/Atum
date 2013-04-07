@@ -168,52 +168,58 @@ public class AtumChunkProvider implements IChunkProvider
         this.biomesForGeneration = this.worldObj.getWorldChunkManager().getBiomesForGeneration(this.biomesForGeneration, par1 * 4 - 2, par2 * 4 - 2, k + 5, l + 5);
         this.noiseArray = this.initializeNoiseField(this.noiseArray, par1 * b0, 0, par2 * b0, k, b3, l);
 
-        for (int i1 = 0; i1 < b0; ++i1)
+        for (int x1 = 0; x1 < b0; ++x1)
         {
-            for (int j1 = 0; j1 < b0; ++j1)
+            for (int z1 = 0; z1 < b0; ++z1)
             {
-                for (int k1 = 0; k1 < b1; ++k1)
+                for (int y1 = 0; y1 < b1; ++y1)
                 {
                     double d0 = 0.125D;
-                    double d1 = this.noiseArray[((i1 + 0) * l + j1 + 0) * b3 + k1 + 0];
-                    double d2 = this.noiseArray[((i1 + 0) * l + j1 + 1) * b3 + k1 + 0];
-                    double d3 = this.noiseArray[((i1 + 1) * l + j1 + 0) * b3 + k1 + 0];
-                    double d4 = this.noiseArray[((i1 + 1) * l + j1 + 1) * b3 + k1 + 0];
-                    double d5 = (this.noiseArray[((i1 + 0) * l + j1 + 0) * b3 + k1 + 1] - d1) * d0;
-                    double d6 = (this.noiseArray[((i1 + 0) * l + j1 + 1) * b3 + k1 + 1] - d2) * d0;
-                    double d7 = (this.noiseArray[((i1 + 1) * l + j1 + 0) * b3 + k1 + 1] - d3) * d0;
-                    double d8 = (this.noiseArray[((i1 + 1) * l + j1 + 1) * b3 + k1 + 1] - d4) * d0;
+                    double d1 = this.noiseArray[((x1 + 0) * l + z1 + 0) * b3 + y1 + 0];
+                    double d2 = this.noiseArray[((x1 + 0) * l + z1 + 1) * b3 + y1 + 0];
+                    double d3 = this.noiseArray[((x1 + 1) * l + z1 + 0) * b3 + y1 + 0];
+                    double d4 = this.noiseArray[((x1 + 1) * l + z1 + 1) * b3 + y1 + 0];
+                    double d5 = (this.noiseArray[((x1 + 0) * l + z1 + 0) * b3 + y1 + 1] - d1) * d0;
+                    double d6 = (this.noiseArray[((x1 + 0) * l + z1 + 1) * b3 + y1 + 1] - d2) * d0;
+                    double d7 = (this.noiseArray[((x1 + 1) * l + z1 + 0) * b3 + y1 + 1] - d3) * d0;
+                    double d8 = (this.noiseArray[((x1 + 1) * l + z1 + 1) * b3 + y1 + 1] - d4) * d0;
 
-                    for (int l1 = 0; l1 < 8; ++l1)
+                    for (int y2 = 0; y2 < 8; ++y2)
                     {
-                        double d9 = 0.25D;
                         double d10 = d1;
                         double d11 = d2;
-                        double d12 = (d3 - d1) * d9;
-                        double d13 = (d4 - d2) * d9;
+                        double d12 = (d3 - d1) * 0.25D;
+                        double d13 = (d4 - d2) * 0.25D;
 
-                        for (int i2 = 0; i2 < 4; ++i2)
+                        for (int x2 = 0; x2 < 4; ++x2)
                         {
-                            int j2 = i2 + i1 * 4 << 11 | 0 + j1 * 4 << 7 | k1 * 8 + l1;
-                            short short1 = 128;
-                            j2 -= short1;
-                            double d14 = 0.25D;
-                            double d15 = (d11 - d10) * d14;
+                            //int index = x2 + x1 * 4 << 11 | 0 + z1 * 4 << 7 | y1 * 8 + y2;
+                            //index = 0;
+                            int index = y1 * 8 + y2 << 8 | 0 + z1 * 4 << 4 | x2 + x1 * 4;
+                            int dy = 1 << 4;
+                            index -= dy;
+                            double d15 = (d11 - d10) * 0.25D;
                             double d16 = d10 - d15;
 
-                            for (int k2 = 0; k2 < 4; ++k2)
+                            for (int n = 0; n < 4; ++n)
                             {
                                 if ((d16 += d15) > 0.0D)
                                 {
-                                    par3ArrayOfByte[j2 += short1] = (short)Atum.atumStone.blockID;
+                                	if(index + dy >= par3ArrayOfByte.length)
+                                		continue;
+                                    par3ArrayOfByte[index += dy] = (short)Atum.atumStone.blockID;
                                 }
-                                else if (k1 * 8 + l1 < b2)
+                                else if (y1 * 8 + y2 < b2)
                                 {
-                                    par3ArrayOfByte[j2 += short1] = (short)Atum.atumStone.blockID;
+                                	if(index + dy >= par3ArrayOfByte.length)
+                                		continue;
+                                    par3ArrayOfByte[index += dy] = (short)Atum.atumStone.blockID;
                                 }
                                 else
                                 {
-                                    par3ArrayOfByte[j2 += short1] = 0;
+                                	if(index + dy >= par3ArrayOfByte.length)
+                                		continue;
+                                    par3ArrayOfByte[index += dy] = 0;
                                 }
                             }
 
@@ -244,22 +250,23 @@ public class AtumChunkProvider implements IChunkProvider
         double d0 = 0.03125D;
         this.stoneNoise = this.noiseGen4.generateNoiseOctaves(this.stoneNoise, par1 * 16, par2 * 16, 0, 16, 16, 1, d0 * 2.0D, d0 * 2.0D, d0 * 2.0D);
 
-        for (int k = 0; k < 16; ++k)
+        for (int z = 0; z < 16; ++z)
         {
-            for (int l = 0; l < 16; ++l)
+            for (int x = 0; x < 16; ++x)
             {
-                BiomeGenBase biomegenbase = par4ArrayOfBiomeGenBase[l + k * 16];
+                BiomeGenBase biomegenbase = par4ArrayOfBiomeGenBase[x + z * 16];
                 float f = biomegenbase.getFloatTemperature();
-                int i1 = (int)(this.stoneNoise[k + l * 16] / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
+                int i1 = (int)(this.stoneNoise[z + x * 16] / 3.0D + 3.0D + this.rand.nextDouble() * 0.25D);
                 int j1 = -1;
                 short b1 = ((BiomeGenAtumDesert)biomegenbase).sTopBlock;
                 short b2 = ((BiomeGenAtumDesert)biomegenbase).sFillerBlock;
 
-                for (int k1 = 127; k1 >= 0; --k1)
+                for (int y = 127; y >= 0; --y)
                 {
-                    int l1 = (l * 16 + k) * 128 + k1;
-
-                    if (k1 <= 0 + this.rand.nextInt(5))
+                    //int l1 = (x * 16 + z) * 128 + y;
+                    int l1 = y << 8 | z << 4 | x;
+                    
+                    if (y <= 0 + this.rand.nextInt(5))
                     {
                         par3ArrayOfByte[l1] = (byte)Block.bedrock.blockID;
                     }
@@ -280,13 +287,13 @@ public class AtumChunkProvider implements IChunkProvider
                                     b1 = 0;
                                     b2 = (short)Atum.atumStone.blockID;
                                 }
-                                else if (k1 >= b0 - 4 && k1 <= b0 + 1)
+                                else if (y >= b0 - 4 && y <= b0 + 1)
                                 {
                                     b1 = ((BiomeGenAtumDesert)biomegenbase).sTopBlock;
                                     b2 = ((BiomeGenAtumDesert)biomegenbase).sFillerBlock;
                                 }
 
-                                if (k1 < b0 && b1 == 0)
+                                if (y < b0 && b1 == 0)
                                 {
                                     if (f < 0.15F)
                                     {
@@ -300,7 +307,7 @@ public class AtumChunkProvider implements IChunkProvider
 
                                 j1 = i1;
 
-                                if (k1 >= b0 - 1)
+                                if (y >= b0 - 1)
                                 {
                                     par3ArrayOfByte[l1] = b1;
                                 }
@@ -341,6 +348,7 @@ public class AtumChunkProvider implements IChunkProvider
      */
     public Chunk provideChunk(int par1, int par2)
     {
+    	long time = System.currentTimeMillis();
         this.rand.setSeed((long)par1 * 341873128712L + (long)par2 * 132897987541L);
         short[] abyte = new short[32768];
         this.generateTerrain(par1, par2, abyte);
@@ -359,7 +367,7 @@ public class AtumChunkProvider implements IChunkProvider
         }
 
         
-        short[] ashort = new short[32768];
+        /*short[] ashort = new short[32768];
         int yMax = 32768/256;
         for(int x = 0; x < 16; x++)
         {
@@ -372,9 +380,9 @@ public class AtumChunkProvider implements IChunkProvider
                     ashort[idx] = abyte[ido];
         		}
         	}
-        }
+        }*/
         
-        Chunk chunk = new Chunk(this.worldObj, ashort, new byte[32768], par1, par2);
+        Chunk chunk = new Chunk(this.worldObj, abyte, new byte[32768], par1, par2);
         byte[] abyte1 = chunk.getBiomeArray();
 
         for (int k = 0; k < abyte1.length; ++k)
@@ -383,6 +391,7 @@ public class AtumChunkProvider implements IChunkProvider
         }
 
         chunk.generateSkylightMap();
+        //System.out.println("Providing Chunk: " + (System.currentTimeMillis() - time) + "ms");
         return chunk;
     }
 
@@ -554,6 +563,7 @@ public class AtumChunkProvider implements IChunkProvider
      */
     public void populate(IChunkProvider par1IChunkProvider, int par2, int par3)
     {
+    	long time = System.currentTimeMillis();
         BlockSand.fallInstantly = true;
         int k = par2 * 16;
         int l = par3 * 16;
@@ -634,6 +644,8 @@ public class AtumChunkProvider implements IChunkProvider
         MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(par1IChunkProvider, worldObj, rand, par2, par3, flag));
 
         BlockSand.fallInstantly = false;
+        
+        //System.out.println("Populating chunk: " + (System.currentTimeMillis() - time) + "ms");
     }
 
     /**

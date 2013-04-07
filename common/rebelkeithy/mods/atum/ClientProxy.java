@@ -7,6 +7,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraftforge.client.MinecraftForgeClient;
 import rebelkeithy.mods.atum.entities.EntityBanditArcher;
 import rebelkeithy.mods.atum.entities.EntityBanditWarrior;
 import rebelkeithy.mods.atum.entities.EntityDustySkeleton;
@@ -18,6 +19,8 @@ import rebelkeithy.mods.atum.entities.ModelDustySkeleton;
 import rebelkeithy.mods.atum.entities.RenderBandit;
 import rebelkeithy.mods.particleregistry.ParticleRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 public class ClientProxy extends CommonProxy 
 {
@@ -29,6 +32,15 @@ public class ClientProxy extends CommonProxy
 	public File getMinecraftDir() 
 	{
 		return Minecraft.getMinecraftDir();
+	}
+	
+	public void preloadImages()
+	{
+	}
+	
+	public void registerTickHandlers()
+	{
+		TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);	
 	}
 
 	public void registerModelRenderers() 

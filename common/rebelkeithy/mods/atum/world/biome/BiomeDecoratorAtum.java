@@ -127,21 +127,17 @@ public class BiomeDecoratorAtum extends BiomeDecorator
         int j;
         int k;
 
+        long time;
+        
         boolean doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, SAND);
         for (i = 0; doGen && i < this.sandPerChunk2; ++i)
         {
             j = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             k = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
+            time = System.nanoTime();
             this.sandGen.generate(this.currentWorld, this.randomGenerator, j, this.currentWorld.getTopSolidOrLiquidBlock(j, k), k);
+            //System.out.println("Gen Sand: " + (System.nanoTime() - time));
             //this.treeGenerator.generate(this.currentWorld, this.randomGenerator, j, this.currentWorld.getTopSolidOrLiquidBlock(j, k), k);
-        }
-
-        doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, CLAY);
-        for (i = 0; doGen && i < this.clayPerChunk; ++i)
-        {
-            j = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            k = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            this.clayGen.generate(this.currentWorld, this.randomGenerator, j, this.currentWorld.getTopSolidOrLiquidBlock(j, k), k);
         }
 
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, SAND_PASS2);
@@ -149,7 +145,9 @@ public class BiomeDecoratorAtum extends BiomeDecorator
         {
             j = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             k = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
+            time = System.nanoTime();
             this.sandGen.generate(this.currentWorld, this.randomGenerator, j, this.currentWorld.getTopSolidOrLiquidBlock(j, k), k);
+            //System.out.println("Gen More Sand: " + (System.nanoTime() - time));
         }
 
         i = this.treesPerChunk;
@@ -169,19 +167,14 @@ public class BiomeDecoratorAtum extends BiomeDecorator
             l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
             WorldGenerator worldgenerator = this.biome.getRandomWorldGenForTrees(this.randomGenerator);
             worldgenerator.setScale(1.0D, 1.0D, 1.0D);
+            time = System.nanoTime();
             worldgenerator.generate(this.currentWorld, this.randomGenerator, k, this.currentWorld.getHeightValue(k, l), l);
-        }
-
-        doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, BIG_SHROOM);
-        for (j = 0; doGen && j < this.bigMushroomsPerChunk; ++j)
-        {
-            k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            this.bigMushroomGen.generate(this.currentWorld, this.randomGenerator, k, this.currentWorld.getHeightValue(k, l), l);
+            //System.out.println("Gen Trees: " + (System.nanoTime() - time));
         }
 
         int i1;
 
+        time = System.nanoTime();
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, GRASS);
         for (j = 0; doGen && j < this.grassPerChunk; ++j)
         {
@@ -191,13 +184,15 @@ public class BiomeDecoratorAtum extends BiomeDecorator
             WorldGenerator worldgenerator1 = this.biome.getRandomWorldGenForGrass(this.randomGenerator);
             worldgenerator1.generate(this.currentWorld, this.randomGenerator, k, l, i1);
         }
-
+        
         if(randomGenerator.nextFloat() < shrubChance)
         {
             k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             l = this.randomGenerator.nextInt(128);
             i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
+            time = System.nanoTime();
             (new WorldGenShrub(Atum.atumShrub.blockID, 8)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
+            //System.out.println("Gen Shrub: " + (System.nanoTime() - time));
         }
 
         if(randomGenerator.nextFloat() < shrubChance)
@@ -205,7 +200,9 @@ public class BiomeDecoratorAtum extends BiomeDecorator
             k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
             l = this.randomGenerator.nextInt(128);
             i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
+            time = System.nanoTime();
             (new WorldGenShrub(Atum.atumWeed.blockID, 8)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
+            //System.out.println("Gen Weeds: " + (System.nanoTime() - time));
         }
 
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, REED);
@@ -233,7 +230,9 @@ public class BiomeDecoratorAtum extends BiomeDecorator
                 k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
                 l = this.randomGenerator.nextInt(this.randomGenerator.nextInt(this.randomGenerator.nextInt(112) + 8) + 8);
                 i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
+                time = System.nanoTime();
                 (new WorldGenLiquids(Block.lavaMoving.blockID)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
+                //System.out.println("Gen Lava: " + (System.nanoTime() - time));
             }
         }
 

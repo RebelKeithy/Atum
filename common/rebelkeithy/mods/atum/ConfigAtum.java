@@ -53,6 +53,7 @@ public class ConfigAtum
 	public static int limestoneSwordID = 5016;
 	public static int limestoneHoeID = 5017;
 	public static int limestonePaxelID = 5018;
+	public static int lootID = 5019;
 	
 	public void initConfig()
 	{
@@ -99,7 +100,7 @@ public class ConfigAtum
 
 		portalSpawnerID = config.getItem("Scarab", portalSpawnerID).getInt();
 		scimitarID = config.getItem("Scimitar", scimitarID).getInt();
-		bowID = config.getItem("Deser Bow", bowID).getInt();
+		bowID = config.getItem("Desert Bow", bowID).getInt();
 		ptahsPickID = config.getItem("Ptah's Pick", ptahsPickID).getInt();
 		soteksRageID = config.getItem("Sotek's Rage", soteksRageID).getInt();
 		osirisWillID = config.getItem("Osiris's Will", osirisWillID).getInt();
@@ -116,6 +117,8 @@ public class ConfigAtum
 		limestoneSwordID = config.getItem("Limestone Sword", limestoneSwordID).getInt();
 		limestoneHoeID = config.getItem("Limestone Hoe", limestoneHoeID).getInt();
 		limestonePaxelID = config.getItem("Limestone Paxel", limestonePaxelID).getInt();
+		
+		lootID = config.getItem("Loot", lootID).getInt();
 		
 		config.save();
 	}
