@@ -33,6 +33,12 @@ public class ConfigAtum
 	public static int furnaceBurningID = 1046;
 	public static int plankID = 1047;
 	public static int pharaohChestID = 1048;
+	public static int redstoneOreID = 1049;
+	public static int coalOreID = 1050;
+	public static int ironOreID = 1051;
+	public static int goldOreID = 1052;
+	public static int lapisOreID = 1053;
+	public static int diamondOreID = 1054;
 	
 	public static int portalSpawnerID = 5000;
 	public static int scimitarID = 5001;
@@ -97,6 +103,12 @@ public class ConfigAtum
 		furnaceBurningID = config.getBlock("Limestone Furnace Burning", furnaceBurningID).getInt();
 		plankID = config.getBlock("Palm Planks", plankID).getInt();
 		pharaohChestID = config.getBlock("Pharaoh Chest", pharaohChestID).getInt();
+		redstoneOreID = config.getBlock("Redstone Ore", redstoneOreID).getInt();
+		coalOreID = config.getBlock("Coal Ore", coalOreID).getInt();
+		ironOreID = config.getBlock("Iron Ore", ironOreID).getInt();
+		goldOreID = config.getBlock("Gold Ore", goldOreID).getInt();
+		lapisOreID = config.getBlock("Lapis Ore", lapisOreID).getInt();
+		diamondOreID = config.getBlock("Diamond Ore", diamondOreID).getInt();
 
 		portalSpawnerID = config.getItem("Scarab", portalSpawnerID).getInt();
 		scimitarID = config.getItem("Scimitar", scimitarID).getInt();

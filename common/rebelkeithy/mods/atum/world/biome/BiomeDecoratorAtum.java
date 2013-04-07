@@ -61,12 +61,12 @@ public class BiomeDecoratorAtum extends BiomeDecorator
         this.gravelAsSandGen = new WorldGenSand(6, Block.gravel.blockID);
         this.dirtGen = new WorldGenMinable(Block.dirt.blockID, 32);
         this.gravelGen = new WorldGenMinable(Block.gravel.blockID, 32);
-        this.coalGen = new WorldGenMinable(Block.oreCoal.blockID, 16);
-        this.ironGen = new WorldGenMinable(Block.oreIron.blockID, 8);
-        this.goldGen = new WorldGenMinable(Block.oreGold.blockID, 8);
-        this.redstoneGen = new WorldGenMinable(Block.oreRedstone.blockID, 7);
-        this.diamondGen = new WorldGenMinable(Block.oreDiamond.blockID, 7);
-        this.lapisGen = new WorldGenMinable(Block.oreLapis.blockID, 6);
+        this.coalGen = new WorldGenMinable(Atum.atumCoalOre.blockID, 16, Atum.atumStone.blockID);
+        this.ironGen = new WorldGenMinable(Atum.atumIronOre.blockID, 8, Atum.atumStone.blockID);
+        this.goldGen = new WorldGenMinable(Atum.atumGoldOre.blockID, 8, Atum.atumStone.blockID);
+        this.redstoneGen = new WorldGenMinable(Atum.atumRedstoneOre.blockID, 7, Atum.atumStone.blockID);
+        this.diamondGen = new WorldGenMinable(Atum.atumDiamondOre.blockID, 7, Atum.atumStone.blockID);
+        this.lapisGen = new WorldGenMinable(Atum.atumLapisOre.blockID, 6);
         this.plantYellowGen = new WorldGenFlowers(Block.plantYellow.blockID);
         this.plantRedGen = new WorldGenFlowers(Block.plantRed.blockID);
         this.mushroomBrownGen = new WorldGenFlowers(Block.mushroomBrown.blockID);
@@ -273,10 +273,6 @@ public class BiomeDecoratorAtum extends BiomeDecorator
     protected void generateOres()
     {
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(currentWorld, randomGenerator, chunk_X, chunk_Z));
-        if (TerrainGen.generateOre(currentWorld, randomGenerator, dirtGen, chunk_X, chunk_Z, DIRT))
-        this.genStandardOre1(20, this.dirtGen, 0, 128);
-        if (TerrainGen.generateOre(currentWorld, randomGenerator, gravelGen, chunk_X, chunk_Z, GRAVEL))
-        this.genStandardOre1(10, this.gravelGen, 0, 128);
         if (TerrainGen.generateOre(currentWorld, randomGenerator, coalGen, chunk_X, chunk_Z, COAL))
         this.genStandardOre1(20, this.coalGen, 0, 128);
         if (TerrainGen.generateOre(currentWorld, randomGenerator, ironGen, chunk_X, chunk_Z, IRON))

@@ -3,6 +3,7 @@ package rebelkeithy.mods.atum;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockOre;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
@@ -41,6 +42,8 @@ import rebelkeithy.mods.atum.blocks.BlockSandLayered;
 import rebelkeithy.mods.atum.blocks.BlockShrub;
 import rebelkeithy.mods.atum.blocks.ItemSandLayered;
 import rebelkeithy.mods.atum.blocks.TileEntityArrowTrap;
+import rebelkeithy.mods.atum.blocks.ores.BlockAtumOre;
+import rebelkeithy.mods.atum.blocks.ores.BlockAtumRedstone;
 import rebelkeithy.mods.atum.cursedchest.BlockChestSpawner;
 import rebelkeithy.mods.atum.cursedchest.PharaohChest;
 import rebelkeithy.mods.atum.cursedchest.TileEntityChestSpawner;
@@ -119,6 +122,13 @@ public class Atum
 	public static Block atumTrapArrow;
 	public static Block atumPharaohChest;
 	
+	public static Block atumRedstoneOre;
+	public static Block atumCoalOre;
+	public static Block atumIronOre;
+	public static Block atumGoldOre;
+	public static Block atumLapisOre;
+	public static Block atumDiamondOre;
+	
 	public static Item itemScarab;
 	public static Item itemScimitar;
 	public static Item itemBow;
@@ -146,6 +156,7 @@ public class Atum
 
 	public static Block furnaceIdle;
 	public static Block furnaceBurning;
+
 
 	
 	@PreInit
@@ -179,6 +190,12 @@ public class Atum
 	    furnaceIdle = (new BlockLimeStoneFurnace(ConfigAtum.furnaceIdleID, false)).setHardness(3.5F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("limestonefurnaceidle").setCreativeTab(tabs);
 	    furnaceBurning = (new BlockLimeStoneFurnace(ConfigAtum.furnaceBurningID, true)).setHardness(3.5F).setStepSound(Block.soundStoneFootstep).setLightValue(0.875F).setUnlocalizedName("limestonefurnaceactive");
 		
+	    atumRedstoneOre = new BlockAtumRedstone(ConfigAtum.redstoneOreID).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumRedstone").setCreativeTab(CreativeTabs.tabBlock);
+	    atumGoldOre = (new BlockAtumOre(ConfigAtum.goldOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumGold").setCreativeTab(CreativeTabs.tabBlock);
+	    atumIronOre = (new BlockAtumOre(ConfigAtum.ironOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumIron").setCreativeTab(CreativeTabs.tabBlock);
+	    atumCoalOre = (new BlockAtumOre(ConfigAtum.coalOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumCoal").setCreativeTab(CreativeTabs.tabBlock);
+	    atumLapisOre = (new BlockAtumOre(ConfigAtum.lapisOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumLapis").setCreativeTab(CreativeTabs.tabBlock);
+	    atumDiamondOre = (new BlockAtumOre(ConfigAtum.diamondOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumDiamond").setCreativeTab(CreativeTabs.tabBlock);
 		
 		ForgeHooks.canToolHarvestBlock(atumSand, 0, new ItemStack(Item.shovelSteel));
 		MinecraftForge.setBlockHarvestLevel(atumSand, "shovel", 0);
@@ -262,6 +279,12 @@ public class Atum
 		GameRegistry.registerBlock(atumSandLayered, ItemSandLayered.class, "BlockSandLayered");
 		GameRegistry.registerBlock(furnaceIdle, "limestonefurnaceidle");
 		GameRegistry.registerBlock(furnaceBurning, "limestonefurnaceburning");
+		GameRegistry.registerBlock(atumRedstoneOre, "atumRedstoneOre");
+		GameRegistry.registerBlock(atumCoalOre, "atumCoalOre");
+		GameRegistry.registerBlock(atumIronOre, "atumIronOre");
+		GameRegistry.registerBlock(atumGoldOre, "atumGoldOre");
+		GameRegistry.registerBlock(atumLapisOre, "atumLapisOre");
+		GameRegistry.registerBlock(atumDiamondOre, "atumDiamondOre");
 		
 		GameRegistry.registerTileEntity(TileEntityChestSpawner.class, "CursedChest");
 		GameRegistry.registerTileEntity(TileEntityPharaohChest.class, "PharaohChest");
@@ -299,6 +322,13 @@ public class Atum
 		MinecraftForge.setToolClass(akersToil, "shovel", 4);
 		MinecraftForge.setToolClass(limestoneShovel, "shovel", 1);
 		MinecraftForge.setToolClass(limestoneAxe, "axe", 1);
+		
+		MinecraftForge.setBlockHarvestLevel(atumCoalOre, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(atumIronOre, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(atumGoldOre, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(atumLapisOre, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(atumDiamondOre, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(atumRedstoneOre, "pickaxe", 2);
 
 		LanguageRegistry.addName(atumSand, "Strange Sand");
 		LanguageRegistry.addName(atumStone, "Limestone");
@@ -320,6 +350,12 @@ public class Atum
 		LanguageRegistry.addName(atumPharaohChest, "Pharaoh's Chest");
 		LanguageRegistry.addName(atumSandLayered, "Strange Sand");
 		LanguageRegistry.addName(furnaceIdle, "Limestone Furnace");
+		LanguageRegistry.addName(atumRedstoneOre, "Redstone Ore");
+		LanguageRegistry.addName(atumCoalOre, "Coal Ore");
+		LanguageRegistry.addName(atumIronOre, "Iron Ore");
+		LanguageRegistry.addName(atumGoldOre, "Gold Ore");
+		LanguageRegistry.addName(atumLapisOre, "Lapis Ore");
+		LanguageRegistry.addName(atumDiamondOre, "Diamond Ore");
 		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 0), "Limestone Slabs");
 		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 1), "Cracked Limestone Slabs");
 		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 2), "Large Limestone Brick Slabs");
