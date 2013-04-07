@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import rebelkeithy.mods.atum.items.ItemLoot;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -104,7 +106,7 @@ public class AtumLoot
 					int amount = 1;
 					while(rand.nextFloat() > 0.3)
 						amount++;
-					stack = new ItemStack(Item.coal, amount);
+					stack = ItemLoot.getRandomLoot(rand, true);
 				} else {
 					int randomArtifactID = rand.nextInt(artifacts.size());
 					stack = artifacts.get(randomArtifactID).copy();

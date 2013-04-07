@@ -1,15 +1,17 @@
 package rebelkeithy.mods.atum.items;
 
 import java.util.List;
+import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import rebelkeithy.mods.atum.Atum;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
-import net.minecraft.util.MathHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 // Uses bit compression to store what type of loot this item is
 // Format is TTTTQQQQD
@@ -18,8 +20,8 @@ import net.minecraft.util.MathHelper;
 // T: Loot type
 public class ItemLoot extends Item 
 {
-	String[] typeArray = {"Statue", "Necklace", "Ring", "Broach", "Staff"};
-	String[] qualityArray = {"Dirty", "Iron", "Gold", "Saphire", "Ruby", "Emerald", "Diamond"};
+	private static String[] typeArray = {"Statue", "Necklace", "Ring", "Broach", "Staff"};
+	private static String[] qualityArray = {"Dirty", "Iron", "Gold", "Saphire", "Ruby", "Emerald", "Diamond"};
 	Icon[] iconArray;
 	
 	public ItemLoot(int par1) 
@@ -27,6 +29,13 @@ public class ItemLoot extends Item
 		super(par1);
         this.setHasSubtypes(true);
         this.setMaxDamage(0);
+	}
+	
+	public static ItemStack getRandomLoot(Random rand, boolean isDirty)
+	{
+		int type = rand.nextInt(typeArray.length);
+		int quality = rand.nextInt(qualityArray.length-1) + 1;
+		return new ItemStack(Atum.itemLoot.itemID, 1, type << 5 | quality << 1 | (isDirty ? 1 : 0));
 	}
 
     public String getItemDisplayName(ItemStack par1ItemStack)

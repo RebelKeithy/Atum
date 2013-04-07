@@ -349,6 +349,7 @@ public class Atum
 		proxy.preloadImages();
 		proxy.registerParticles();
 		MinecraftForge.EVENT_BUS.register(new FallDamageListener());
+		MinecraftForge.EVENT_BUS.register(new LootTossListener());
 		NetworkRegistry.instance().registerGuiHandler(this, new AtumGuiHandler());
 	}
 	

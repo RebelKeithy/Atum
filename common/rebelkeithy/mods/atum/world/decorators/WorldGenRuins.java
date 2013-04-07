@@ -74,7 +74,7 @@ public class WorldGenRuins extends WorldGenerator
 				}
 			}
 		}
-		/*
+		
 		int chestX = width/2 + i;
 		int chestZ = Math.max(z2, k) - 1;
 		int meta = 0;
@@ -104,7 +104,7 @@ public class WorldGenRuins extends WorldGenerator
 		world.setBlock(chestX, chestY, chestZ, Atum.cursedChest.blockID, 0, 2);
 		IInventory chest = (IInventory) world.getBlockTileEntity(chestX, chestY, chestZ);
 		AtumLoot.fillChest(chest, 5, 0.5F);
-		*/
+		
 		return false;
 	}
 	
