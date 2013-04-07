@@ -13,6 +13,6 @@ public class AtumTab extends CreativeTabs
 	@Override
 	public Item getTabIconItem()
 	{
-		return Atum.horusFlight;
+		return Atum.itemScarab;
 	}	
 }

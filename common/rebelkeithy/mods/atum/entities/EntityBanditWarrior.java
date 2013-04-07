@@ -2,6 +2,7 @@ package rebelkeithy.mods.atum.entities;
 
 import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.ConfigAtum;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -53,6 +54,14 @@ public class EntityBanditWarrior extends EntityMob {
         {
             this.equipmentDropChances[i] = 0F;
         }
+    }
+    
+    /**
+     * Get this Entity's EnumCreatureAttribute
+     */
+    public EnumCreatureAttribute getCreatureAttribute()
+    {
+        return EnumCreatureAttribute.UNDEFINED;
     }
 
     /**

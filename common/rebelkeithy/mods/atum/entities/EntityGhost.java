@@ -1,11 +1,12 @@
 package rebelkeithy.mods.atum.entities;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 public class EntityGhost extends EntityMob
@@ -61,6 +62,23 @@ public class EntityGhost extends EntityMob
     public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
 		return super.attackEntityFrom(par1DamageSource, par2);
+    }
+
+    /**
+     * Basic mob attack. Default to touch of death in EntityCreature. Overridden by each mob to define their attack.
+     */
+    protected void attackEntity(Entity par1Entity, float par2)
+    {
+        if (this.attackTime <= 0 && par2 < 2.0F && par1Entity.boundingBox.maxY > this.boundingBox.minY && par1Entity.boundingBox.minY < this.boundingBox.maxY)
+        {
+            this.attackTime = 20;
+            this.attackEntityAsMob(par1Entity);
+            if(Math.random() > 0.75 && par1Entity instanceof EntityLiving)
+            {
+            	EntityLiving e = (EntityLiving) par1Entity;
+            	e.addPotionEffect(new PotionEffect(2, 100, 0));
+            }
+        }
     }
 
     /**

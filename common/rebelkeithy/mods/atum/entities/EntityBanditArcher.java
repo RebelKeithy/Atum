@@ -107,12 +107,13 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
             return false;
         }
     }
+    
     /**
      * Get this Entity's EnumCreatureAttribute
      */
     public EnumCreatureAttribute getCreatureAttribute()
     {
-        return EnumCreatureAttribute.UNDEAD;
+        return EnumCreatureAttribute.UNDEFINED;
     }
 
     /**

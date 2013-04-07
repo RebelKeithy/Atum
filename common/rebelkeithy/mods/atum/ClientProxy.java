@@ -52,6 +52,6 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityPharaoh.class, new RenderBiped(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDustySkeleton.class, new RenderBiped(new ModelDustySkeleton(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhost.class, new RenderLiving(new ModelZombie(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(EntityStoneSoldier.class, new RenderLiving(new ModelZombie(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityStoneSoldier.class, new RenderBiped(new ModelBiped(), 0.5F));
 	}
 }

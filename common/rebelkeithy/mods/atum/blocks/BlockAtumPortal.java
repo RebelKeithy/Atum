@@ -4,6 +4,7 @@ import java.util.Random;
 
 import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.AtumTeleporter;
+import rebelkeithy.mods.atum.TickHandler;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
@@ -296,6 +297,7 @@ public class BlockAtumPortal extends BlockBreakable
                 {
                 	((EntityPlayerMP)par5Entity).sendChatToPlayer("Going from " + dimID + " to dimension 0");
                 	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, 0, new AtumTeleporter(worldserver));
+					Minecraft.getMinecraft().gameSettings.renderDistance = TickHandler.defaultFog;
                     //par5Entity.travelToDimension(0);
                 } else {
                 	//System.out.println("teleporting");

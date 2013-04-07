@@ -293,18 +293,6 @@ public class AtumChunkProvider implements IChunkProvider
                                     b2 = ((BiomeGenAtumDesert)biomegenbase).sFillerBlock;
                                 }
 
-                                if (y < b0 && b1 == 0)
-                                {
-                                    if (f < 0.15F)
-                                    {
-                                        b1 = (short)Block.ice.blockID;
-                                    }
-                                    else
-                                    {
-                                        b1 = (short)Block.waterStill.blockID;
-                                    }
-                                }
-
                                 j1 = i1;
 
                                 if (y >= b0 - 1)

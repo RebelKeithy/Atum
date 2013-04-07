@@ -8,7 +8,7 @@ import net.minecraftforge.common.Configuration;
 public class ConfigAtum 
 {
 	public static int portalBlockID = 1024;
-	public static int biomeAtumDesertID = 83;
+	public static int biomeAtumDesertID = 183;
 	public static int cursedChestID = 1025;
 	public static int sandID = 1026;
 	public static int stoneID = 1027;
@@ -60,6 +60,7 @@ public class ConfigAtum
 	public static int limestoneHoeID = 5017;
 	public static int limestonePaxelID = 5018;
 	public static int lootID = 5019;
+	public static int stoneSwordID = 5020;
 	
 	public void initConfig()
 	{
@@ -112,6 +113,7 @@ public class ConfigAtum
 
 		portalSpawnerID = config.getItem("Scarab", portalSpawnerID).getInt();
 		scimitarID = config.getItem("Scimitar", scimitarID).getInt();
+		stoneSwordID = config.getItem("Stone Sword", stoneSwordID).getInt();
 		bowID = config.getItem("Desert Bow", bowID).getInt();
 		ptahsPickID = config.getItem("Ptah's Pick", ptahsPickID).getInt();
 		soteksRageID = config.getItem("Sotek's Rage", soteksRageID).getInt();

@@ -15,6 +15,7 @@ import cpw.mods.fml.common.TickType;
 public class TickHandler implements ITickHandler
 {
 	private boolean raining;
+	public static int defaultFog;
 	
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) 
@@ -53,12 +54,18 @@ public class TickHandler implements ITickHandler
 			if(player.dimension == Atum.dimensionID)
 			{
 				if(Minecraft.getMinecraft().gameSettings.renderDistance < (nightvision ? 1 : 2))
+				{
+					defaultFog = Minecraft.getMinecraft().gameSettings.renderDistance;
 					Minecraft.getMinecraft().gameSettings.renderDistance = nightvision ? 1 : 2;
+				}
 				
 				if(player.worldObj.isRaining())
 				{
+					raining = true;
 					if(Minecraft.getMinecraft().gameSettings.renderDistance < (nightvision ? 2 : 3))
+					{
 						Minecraft.getMinecraft().gameSettings.renderDistance = nightvision ? 2 : 3;
+					}
 					
 					Random random = new Random();
 					int particlesPerTick = (3 - Minecraft.getMinecraft().gameSettings.particleSetting) * 6;
@@ -72,33 +79,15 @@ public class TickHandler implements ITickHandler
 						float vz = 0.1F + random.nextFloat() * 0.1F;
 	
 						ParticleRegistry.spawnParticle("sand", player.worldObj, player.posX + x, player.posY+y, player.posZ+z, vx + player.motionX, 0.0D, vz + player.motionZ);
-						
-						
-						/*
-						float dy = (random.nextFloat() - 0.7F)*2F;
-						float dx = random.nextFloat() - 0.5F;
-						float dz = random.nextFloat() - 0.5F;
-						
-						float d = 1 + 3*random.nextFloat();
-						int angle = (int) (360*random.nextFloat());
-						angle = (int) (player.cameraYaw + random.nextInt(90) - 45);
-						
-						//angle = player.cameraYaw
-						float speed = 0.2F;// + random.nextFloat()*0.1F;
-						int vAngle = ((angle - 90 + random.nextInt(5)) % 360);
-						
-						double x = Math.cos(angle)*d;
-						double z = Math.sin(angle)*d;
-						
-						double vx = Math.cos(vAngle)*speed;
-						double vz = Math.sin(vAngle)*speed;
-						
-						double px = player.posX + player.motionX*2;
-						double pz = player.posZ + player.motionZ*2;
-						
-						//player.worldObj.spawnParticle("smoke", player.posX + x, player.posY+dy, player.posZ+z, vx, 0.0D, vz);
-						ParticleRegistry.spawnParticle("sand", player.worldObj, px + x, player.posY+dy, pz+z, vx + player.motionX, 0.0D, vz + player.motionZ);
-						*/
+					}
+				}
+				else
+				{
+					if(raining == true && defaultFog < (nightvision ? 1 : 2))
+					{
+						raining = false;
+						Minecraft.getMinecraft().gameSettings.renderDistance = nightvision ? 1 : 2;
+								
 					}
 				}
 			}

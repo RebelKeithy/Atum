@@ -3,7 +3,6 @@ package rebelkeithy.mods.atum;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockOre;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
@@ -60,6 +59,7 @@ import rebelkeithy.mods.atum.furnace.TileEntityLimestoneFurnace;
 import rebelkeithy.mods.atum.items.ItemAtumBow;
 import rebelkeithy.mods.atum.items.ItemLoot;
 import rebelkeithy.mods.atum.items.ItemScimitar;
+import rebelkeithy.mods.atum.items.ItemStoneSoldierSword;
 import rebelkeithy.mods.atum.tools.LimestoneAxe;
 import rebelkeithy.mods.atum.tools.LimestoneHoe;
 import rebelkeithy.mods.atum.tools.LimestonePickaxe;
@@ -131,6 +131,7 @@ public class Atum
 	
 	public static Item itemScarab;
 	public static Item itemScimitar;
+	public static Item itemStoneSoldierSword;
 	public static Item itemBow;
 	public static Item itemLoot;
 	
@@ -302,6 +303,7 @@ public class Atum
 		//EnumToolMaterial scimitarEnum = EnumHelper.addToolMaterial("Scimitar", 2, 250, 6.0F, 2, 14);
 		itemScimitar = (new ItemScimitar(ConfigAtum.scimitarID, EnumToolMaterial.IRON)).setUnlocalizedName("Atum:Scimitar").setCreativeTab(tabs);
 		itemBow = (new ItemAtumBow(ConfigAtum.bowID)).setUnlocalizedName("Atum:Bow").setCreativeTab(tabs);
+		itemStoneSoldierSword = new ItemStoneSoldierSword(ConfigAtum.stoneSwordID, EnumToolMaterial.IRON).setUnlocalizedName("Atum:StoneSoldierSword").setCreativeTab(tabs);
 		
 		ptahsPick = new ItemPtahsDecadence(ConfigAtum.ptahsPickID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:PtahsDecadence").setCreativeTab(tabs);
 		soteksRage = new ItemSoteksRage(ConfigAtum.soteksRageID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:SoteksRage").setCreativeTab(tabs);
@@ -364,6 +366,7 @@ public class Atum
 		LanguageRegistry.addName(itemScarab, "Golden Scarab");
 		LanguageRegistry.addName(itemScimitar, "Scimitar");
 		LanguageRegistry.addName(itemBow, "Desert Bow");
+		LanguageRegistry.addName(itemStoneSoldierSword, "Stone Soldier's Sword");
 		
 		LanguageRegistry.addName(ptahsPick, "Ptah's Decadence");
 		LanguageRegistry.addName(soteksRage, "Sotek's Rage");

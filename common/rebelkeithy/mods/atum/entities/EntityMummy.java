@@ -31,9 +31,9 @@ public class EntityMummy extends EntityMob
     public float getSpeedModifier()
     {
     	if(this.isBurning())
-    		return super.getSpeedModifier() * 1.5F;
+    		return super.getSpeedModifier() * 1.4F;
     	
-		return super.getSpeedModifier() * 0.5F;
+		return super.getSpeedModifier() * 0.75F;
     }
 
     /**

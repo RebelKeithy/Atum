@@ -77,6 +77,11 @@ public class EntityDustySkeleton extends EntityMob
 
         return i;
     }
+    
+    public float getSpeedModifier()
+    {
+		return super.getSpeedModifier() * 1.2F;
+    }
   
     /**
      * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param

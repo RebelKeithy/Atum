@@ -1,10 +1,15 @@
 package rebelkeithy.mods.atum.entities;
 
+import rebelkeithy.mods.atum.Atum;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityStoneSoldier extends EntityMob
@@ -21,6 +26,16 @@ public class EntityStoneSoldier extends EntityMob
 	{
 		return 80;
 	}
+    
+    public void initCreature()
+    {
+    	this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemStoneSoldierSword));
+    	
+        for (int i = 0; i < this.equipmentDropChances.length; ++i)
+        {
+            this.equipmentDropChances[i] = 0F;
+        }
+    }
 
     public String getTexture()
     {
@@ -29,7 +44,7 @@ public class EntityStoneSoldier extends EntityMob
     
     public float getSpeedModifier()
     {
-		return super.getSpeedModifier() * 0.2F;
+		return super.getSpeedModifier() * 0.35F;
     }
 
     /**
@@ -55,12 +70,35 @@ public class EntityStoneSoldier extends EntityMob
      */
     public EnumCreatureAttribute getCreatureAttribute()
     {
-        return EnumCreatureAttribute.UNDEAD;
+        return EnumCreatureAttribute.UNDEFINED;
     }
     
     public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
-		return super.attackEntityFrom(par1DamageSource, par2);
+		if(super.attackEntityFrom(par1DamageSource, par2))
+		{
+			if(par1DamageSource.getEntity() != null)
+			{
+				Entity par1Entity = par1DamageSource.getEntity();
+				int j = 0;
+		        if (par1Entity instanceof EntityLiving)
+		        {
+		            j += EnchantmentHelper.getKnockbackModifier((EntityLiving)par1Entity, this);
+	                
+		            if (j > 0)
+		            {
+		            	System.out.println("inverse knockback");
+		                this.motionX /= 0.6D;
+		                this.motionZ /= 0.6D;
+		                this.addVelocity((double)(MathHelper.sin(par1Entity.rotationYaw * (float)Math.PI / 180.0F) * (float)j * 0.5F), -0.1D, (double)(-MathHelper.cos(par1Entity.rotationYaw * (float)Math.PI / 180.0F) * (float)j * 0.5F));
+		            }
+		        }
+	
+			}
+	        return true;
+		}
+		
+		return false;
     }
 
     /**
