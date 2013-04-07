@@ -39,6 +39,7 @@ public class ConfigAtum
 	public static int goldOreID = 1052;
 	public static int lapisOreID = 1053;
 	public static int diamondOreID = 1054;
+	public static int papyrusBlockID = 1055;
 	
 	public static int portalSpawnerID = 5000;
 	public static int scimitarID = 5001;
@@ -110,6 +111,7 @@ public class ConfigAtum
 		goldOreID = config.getBlock("Gold Ore", goldOreID).getInt();
 		lapisOreID = config.getBlock("Lapis Ore", lapisOreID).getInt();
 		diamondOreID = config.getBlock("Diamond Ore", diamondOreID).getInt();
+		papyrusBlockID = config.getBlock("Papyrus Block", papyrusBlockID).getInt();
 
 		portalSpawnerID = config.getItem("Scarab", portalSpawnerID).getInt();
 		scimitarID = config.getItem("Scimitar", scimitarID).getInt();

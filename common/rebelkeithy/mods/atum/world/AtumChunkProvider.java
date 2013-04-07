@@ -89,7 +89,7 @@ public class AtumChunkProvider implements IChunkProvider
     private MapGenScatteredFeature scatteredFeatureGenerator = new MapGenScatteredFeature();
 
     
-    WorldGenAtumTrees treeGenerator;
+    //WorldGenAtumTrees treeGenerator;
     
     /** Holds ravine generator */
     private MapGenBase ravineGenerator = new MapGenRavine();
@@ -126,7 +126,7 @@ public class AtumChunkProvider implements IChunkProvider
         scatteredFeatureGenerator = (MapGenScatteredFeature) TerrainGen.getModdedMapGen(scatteredFeatureGenerator, SCATTERED_FEATURE);
         ravineGenerator = TerrainGen.getModdedMapGen(ravineGenerator, RAVINE);
         
-        treeGenerator = new WorldGenAtumTrees(true);
+        //treeGenerator = new WorldGenAtumTrees(true);
     }
 
     public AtumChunkProvider(World par1World, long par2, boolean par4)
@@ -562,16 +562,17 @@ public class AtumChunkProvider implements IChunkProvider
         this.rand.setSeed((long)par2 * i1 + (long)par3 * j1 ^ this.worldObj.getSeed());
         boolean flag = false;
 
+        
         MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(par1IChunkProvider, worldObj, rand, par2, par3, flag));
 
+        /*
         if (this.mapFeaturesEnabled)
         {
             this.mineshaftGenerator.generateStructuresInChunk(this.worldObj, this.rand, par2, par3);
             flag = this.villageGenerator.generateStructuresInChunk(this.worldObj, this.rand, par2, par3);
             this.strongholdGenerator.generateStructuresInChunk(this.worldObj, this.rand, par2, par3);
             this.scatteredFeatureGenerator.generateStructuresInChunk(this.worldObj, this.rand, par2, par3);
-
-        }
+        }*/
 
         int k1;
         int l1;
@@ -592,7 +593,7 @@ public class AtumChunkProvider implements IChunkProvider
         
         
 
-        boolean doGen = TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, DUNGEON);
+        /*boolean doGen = TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, DUNGEON);
         for (k1 = 0; doGen && k1 < 8; ++k1)
         {
             l1 = k + this.rand.nextInt(16) + 8;
@@ -603,31 +604,12 @@ public class AtumChunkProvider implements IChunkProvider
             {
                 ;
             }
-        }
+        }*/
 
         biomegenbase.decorate(this.worldObj, this.rand, k, l);
         SpawnerAnimals.performWorldGenSpawning(this.worldObj, biomegenbase, k + 8, l + 8, 16, 16, this.rand);
         k += 8;
         l += 8;
-
-        doGen = TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, ICE);
-        for (k1 = 0; doGen && k1 < 16; ++k1)
-        {
-            for (l1 = 0; l1 < 16; ++l1)
-            {
-                i2 = this.worldObj.getPrecipitationHeight(k + k1, l + l1);
-
-                if (this.worldObj.isBlockFreezable(k1 + k, i2 - 1, l1 + l))
-                {
-                    this.worldObj.setBlock(k1 + k, i2 - 1, l1 + l, Block.ice.blockID, 0, 2);
-                }
-
-                if (this.worldObj.canSnowAt(k1 + k, i2, l1 + l))
-                {
-                    this.worldObj.setBlock(k1 + k, i2, l1 + l, Block.snow.blockID, 0, 2);
-                }
-            }
-        }
 
         MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(par1IChunkProvider, worldObj, rand, par2, par3, flag));
 

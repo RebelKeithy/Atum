@@ -65,7 +65,7 @@ public class WorldGenPyramid extends WorldGenerator
 				{
 					//int id = world.getBlockId(x+i, y+j+3, z+k);
 					//if(id == 0 || id == Atum.atumSand.blockID)
-					world.setBlock(x+i, y+j+3, z+k, Atum.atumLargeBrick.blockID, 1, 2);
+					world.setBlock(x+i, y+j+3, z+k, Atum.atumLargeBrick.blockID, 1, 0);
 				}
 			}
 		}
@@ -80,18 +80,18 @@ public class WorldGenPyramid extends WorldGenerator
 					if(!maze[x][z])
 					{
 						if(random.nextFloat() > 0.1F)
-							world.setBlock(x+i, j, z+k, Atum.atumLargeBrick.blockID, 1, 2);
+							world.setBlock(x+i, j, z+k, Atum.atumLargeBrick.blockID, 1, 0);
 						else
 							placeTrap(world, x+i, j, z+k);
-						world.setBlock(x+i, j+1, z+k, Atum.atumLargeBrick.blockID, 1, 2);
-						world.setBlock(x+i, j+2, z+k, Atum.atumLargeBrick.blockID, 1, 2);
+						world.setBlock(x+i, j+1, z+k, Atum.atumLargeBrick.blockID, 1, 0);
+						world.setBlock(x+i, j+2, z+k, Atum.atumLargeBrick.blockID, 1, 0);
 					} else {
 						int meta = random.nextInt(5);
-						world.setBlock(x+i, j, z+k, Atum.atumSandLayered.blockID, meta, 2);
+						world.setBlock(x+i, j, z+k, Atum.atumSandLayered.blockID, meta, 0);
 						world.setBlockToAir(x+i, j+1, z+k);
 						world.setBlockToAir(x+i, j+2, z+k);
 					}
-					world.setBlock(x+i, j+3, z+k, Atum.atumLargeBrick.blockID, 1, 2);
+					world.setBlock(x+i, j+3, z+k, Atum.atumLargeBrick.blockID, 1, 0);
 				}
 			}
 		}
@@ -119,7 +119,7 @@ public class WorldGenPyramid extends WorldGenerator
 		world.setBlock(i+11, j+6, k+7, Block.torchWood.blockID, 2, 0);
 		world.setBlock(i+11, j+6, k+10, Block.torchWood.blockID, 2, 0);
 		
-		world.setBlock(i+ 10, j + 4, k + 8, Atum.atumPharaohChest.blockID);
+		world.setBlock(i+ 10, j + 4, k + 8, Atum.atumPharaohChest.blockID, 0, 2);
 		try
 		{
 			TileEntityPharaohChest te = (TileEntityPharaohChest) world.getBlockTileEntity(i+ 10, j + 4, k + 8);

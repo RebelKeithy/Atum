@@ -32,7 +32,7 @@ public class WorldGenShrub extends WorldGenerator
             
             if (par1World.isAirBlock(x, y, z) && Atum.atumShrub.canBlockStay(par1World, x, y, z))
             {
-                par1World.setBlock(x, y, z, deadBushID, 0, 2);
+                par1World.setBlock(x, y, z, deadBushID);
             }
         }
 

@@ -37,6 +37,7 @@ import rebelkeithy.mods.atum.blocks.BlockAtumSand;
 import rebelkeithy.mods.atum.blocks.BlockAtumSlab;
 import rebelkeithy.mods.atum.blocks.BlockAtumStairs;
 import rebelkeithy.mods.atum.blocks.BlockAtumStone;
+import rebelkeithy.mods.atum.blocks.BlockPapyrus;
 import rebelkeithy.mods.atum.blocks.BlockSandLayered;
 import rebelkeithy.mods.atum.blocks.BlockShrub;
 import rebelkeithy.mods.atum.blocks.ItemSandLayered;
@@ -114,6 +115,7 @@ public class Atum
 	
 	public static Block atumShrub;
 	public static Block atumWeed;
+	public static Block atumPapyrus;
 	
 	public static Block atumLog;
 	public static Block atumLeaves;
@@ -151,6 +153,8 @@ public class Atum
 	public static Item limestoneSword;
 	public static Item limestoneHoe;
 	
+	public static Item itemPapyrusPlant;
+	
 	public static int dimensionID = 17;
 	
 	public static BiomeGenBase atumDesert;
@@ -180,7 +184,8 @@ public class Atum
 		atumSmallStoneStairs = (new BlockAtumStairs(ConfigAtum.smallStoneStairsID, atumSmallBrick, 0)).setUnlocalizedName("Atum:SmallStoneStair");
 		atumShrub = (new BlockShrub(ConfigAtum.shrubID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Shrub");
 		atumWeed = (new BlockShrub(ConfigAtum.weedID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Weed");
-
+		atumPapyrus = (new BlockPapyrus(ConfigAtum.papyrusBlockID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:PapyrusBlock").setCreativeTab(tabs);
+		
 	    atumSandLayered = (new BlockSandLayered(ConfigAtum.sandLayeredID)).setHardness(0.1F).setStepSound(Block.soundSnowFootstep).setUnlocalizedName("SandLayered").setLightOpacity(0);
 	    
 		atumLog = new BlockAtumLog(ConfigAtum.logID).setUnlocalizedName("AtumLogs").setHardness(1F).setStepSound(Block.soundWoodFootstep);
@@ -286,6 +291,7 @@ public class Atum
 		GameRegistry.registerBlock(atumGoldOre, "atumGoldOre");
 		GameRegistry.registerBlock(atumLapisOre, "atumLapisOre");
 		GameRegistry.registerBlock(atumDiamondOre, "atumDiamondOre");
+		GameRegistry.registerBlock(atumPapyrus, "atumPapyrusBlock");
 		
 		GameRegistry.registerTileEntity(TileEntityChestSpawner.class, "CursedChest");
 		GameRegistry.registerTileEntity(TileEntityPharaohChest.class, "PharaohChest");
@@ -362,6 +368,7 @@ public class Atum
 		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 1), "Cracked Limestone Slabs");
 		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 2), "Large Limestone Brick Slabs");
 		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 3), "Small Limestone Brick Slabs");
+		LanguageRegistry.addName(atumPapyrus, "Papyrus");
 		
 		LanguageRegistry.addName(itemScarab, "Golden Scarab");
 		LanguageRegistry.addName(itemScimitar, "Scimitar");

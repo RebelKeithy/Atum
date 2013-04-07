@@ -2,6 +2,7 @@ package rebelkeithy.mods.atum.world.decorators;
 
 import java.util.Random;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -62,9 +63,9 @@ public class WorldGenRuins extends WorldGenerator
 							{
 								if(random.nextFloat() > 0.1)
 								{
-									world.setBlock(x, y + height, z, Atum.atumSlabs.blockID, 2, 2);
+									world.setBlock(x, y + height, z, Atum.atumSlabs.blockID, 2, 0);
 								} else {
-									world.setBlock(x, y + height, z, Atum.atumSlabs.blockID, 3, 2);
+									world.setBlock(x, y + height, z, Atum.atumSlabs.blockID, 3, 0);
 								}
 							}
 						}
@@ -74,6 +75,8 @@ public class WorldGenRuins extends WorldGenerator
 				}
 			}
 		}
+		
+		
 		
 		int chestX = width/2 + i;
 		int chestZ = Math.max(z2, k) - 1;

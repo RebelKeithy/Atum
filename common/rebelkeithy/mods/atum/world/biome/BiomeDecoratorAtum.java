@@ -205,23 +205,6 @@ public class BiomeDecoratorAtum extends BiomeDecorator
             //System.out.println("Gen Weeds: " + (System.nanoTime() - time));
         }
 
-        doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, REED);
-        for (j = 0; doGen && j < this.reedsPerChunk; ++j)
-        {
-            k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            i1 = this.randomGenerator.nextInt(128);
-            this.reedGen.generate(this.currentWorld, this.randomGenerator, k, i1, l);
-        }
-
-        /*for (j = 0; doGen && j < 10; ++j)
-        {
-            k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
-            l = this.randomGenerator.nextInt(128);
-            i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
-            this.reedGen.generate(this.currentWorld, this.randomGenerator, k, l, i1);
-        }*/
-
         doGen = TerrainGen.decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, LAKE);
         if (doGen && this.generateLakes)
         {
