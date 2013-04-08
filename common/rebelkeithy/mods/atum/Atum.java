@@ -482,6 +482,11 @@ public class Atum
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 1), "XXX", 'X', atumCobble);
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 2), "XXX", 'X', atumLargeBrick);
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 3), "XXX", 'X', atumSmallBrick);
+		GameRegistry.addRecipe(new ItemStack(atumWall, 6, 0), "XXX", "XXX", 'X', atumStone);
+        GameRegistry.addRecipe(new ItemStack(atumWall, 6, 1), "XXX", "XXX", 'X', atumCobble);
+        GameRegistry.addRecipe(new ItemStack(atumWall, 6, 2), "XXX", "XXX", 'X', atumLargeBrick);
+        GameRegistry.addRecipe(new ItemStack(atumWall, 6, 3), "XXX", "XXX", 'X', atumSmallBrick);
+		
 		
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 3), "XXX", 'X', atumSmallBrick);
 		GameRegistry.addRecipe(new ItemStack(atumCrackedLargeBrick, 4), "XX", "XX", 'X', itemStoneChunk);
