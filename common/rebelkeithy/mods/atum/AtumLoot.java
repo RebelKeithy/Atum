@@ -35,7 +35,7 @@ public class AtumLoot
 		stack.addEnchantment(Enchantment.efficiency, 6);
 		artifacts.add(stack);
 		
-		stack = new ItemStack(Atum.gabsBlessing);
+		stack = new ItemStack(Atum.gebsBlessing);
 		stack.addEnchantment(Enchantment.unbreaking, 10);
 		artifacts.add(stack);
 		

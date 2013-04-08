@@ -41,6 +41,7 @@ public class ConfigAtum
 	public static int diamondOreID = 1054;
 	public static int papyrusBlockID = 1055;
 	public static int crackedLargeBrickID = 1056;
+	public static int wallID = 1057;
 	
 	public static int portalSpawnerID = 5000;
 	public static int scimitarID = 5001;
@@ -49,7 +50,7 @@ public class ConfigAtum
 	public static int soteksRageID = 5004;
 	public static int osirisWillID = 5005;
 	public static int akersToilID = 5006;
-	public static int gabsBlessingID = 5008;
+	public static int gebsBlessingID = 5008;
 	public static int rasGloryID = 5009;
 	public static int sekhmetsWrathID = 5010;
 	public static int nutsAgilityID = 5011;
@@ -123,6 +124,7 @@ public class ConfigAtum
 		lapisOreID = config.getBlock("Lapis Ore", lapisOreID).getInt();
 		diamondOreID = config.getBlock("Diamond Ore", diamondOreID).getInt();
 		papyrusBlockID = config.getBlock("Papyrus Block", papyrusBlockID).getInt();
+		wallID = config.getBlock("Limestone Wall", wallID).getInt();
 
 		portalSpawnerID = config.getItem("Scarab", portalSpawnerID).getInt();
 		scimitarID = config.getItem("Scimitar", scimitarID).getInt();
@@ -133,7 +135,7 @@ public class ConfigAtum
 		soteksRageID = config.getItem("Sotek's Rage", soteksRageID).getInt();
 		osirisWillID = config.getItem("Osiris's Will", osirisWillID).getInt();
 		akersToilID = config.getItem("Aker's Toil", akersToilID).getInt();
-		gabsBlessingID = config.getItem("Gab's Blessing", gabsBlessingID).getInt();
+		gebsBlessingID = config.getItem("Gab's Blessing", gebsBlessingID).getInt();
 		atensFuryID = config.getItem("Aten's Fury", atensFuryID).getInt();
 		rasGloryID = config.getItem("Ra's Glory", rasGloryID).getInt();
 		sekhmetsWrathID = config.getItem("Sekhmet's Wrath", sekhmetsWrathID).getInt();
