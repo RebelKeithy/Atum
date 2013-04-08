@@ -50,6 +50,7 @@ public class BlockArrowTrap extends BlockContainer
     {
         super(par1, Material.rock);
         this.setCreativeTab(CreativeTabs.tabRedstone);
+        this.setHardness(-1);
     }
 
 	/**

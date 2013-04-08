@@ -67,11 +67,21 @@ public class AtumLoot
 		
 		return artifacts.get(0);
 	}
+	
+	public static ItemStack getRandomArtifact()
+	{
+		if(artifacts == null)
+			init();
+		
+		int i = (new Random()).nextInt(artifacts.size());
+		return artifacts.get(i).copy();
+	}
 
 	public static void fillChest(IInventory inventory, int multiplier, float quality) 
 	{
 		if(inventory == null)
 		{
+			System.out.println("Error trying to fill empty chest");
 			return;
 		}
 		

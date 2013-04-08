@@ -15,6 +15,7 @@ public class EntityGhost extends EntityMob
 	public EntityGhost(World par1World) 
 	{
 		super(par1World);
+        this.experienceValue = 6;
 	}
 
 	@Override

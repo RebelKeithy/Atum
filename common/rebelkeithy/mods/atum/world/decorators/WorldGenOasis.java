@@ -7,6 +7,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.IPlantable;
 import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.AtumLoot;
 
@@ -89,6 +91,18 @@ public class WorldGenOasis extends WorldGenerator
         			{
         				int y = world.getHeightValue(x+par3, z+par5);
         				world.setBlock(x+par3, y-1, z+par5, Block.waterStill.blockID);
+
+        				/*
+        				if(world.getBlockId(x+par3 + 1, y-1, z+par5) == 0)
+        					world.setBlock(x+par3 + 1, y-1, z+par5, Block.grass.blockID);
+        				if(world.getBlockId(x+par3 - 1, y-1, z+par5) == 0)
+        					world.setBlock(x+par3 - 1, y-1, z+par5, Block.grass.blockID);
+        				if(world.getBlockId(x+par3, y-1, z+par5 + 1) == 0)
+        					world.setBlock(x+par3, y-1, z+par5 + 1, Block.grass.blockID);
+        				if(world.getBlockId(x+par3, y-1, z+par5 - 1) == 0)
+        					world.setBlock(x+par3, y-1, z+par5 - 1, Block.grass.blockID);
+        				*/
+        				
         				if(check < 0.6)
         				{
             				y = world.getHeightValue(x+par3, z+par5);
@@ -99,7 +113,25 @@ public class WorldGenOasis extends WorldGenerator
             			check = (x*x)/((radius+4)*(radius+4)) + (z*z)/((radius2+4)*(radius2+4));
         				int y = world.getHeightValue(x+par3, z+par5);
         				if(check < 1)
+        				{
         					world.setBlock(x+par3, y-1, z+par5, Block.grass.blockID);
+        					if(check < 0.3)
+        					{
+        						if(par2Random.nextInt(8) == 0)
+        						{
+        			        		for(int dx = -1; dx <= 1; dx++)
+        			        		{
+        			        			for(int dz = -1; dz <= 1; dz++)
+        			        			{
+        			        	        	if(Atum.atumPapyrus.canBlockStay(world, par3+x+dx, y, par5+z+dz))
+        			        	        	{
+        			        	        		world.setBlock(x+par3+dx, y, z+par5+dz, Atum.atumPapyrus.blockID);
+        			        	        	}
+        			        			}
+        			        		}
+        						}
+        					}
+        				}
         			}
         		}
         	}
@@ -121,18 +153,36 @@ public class WorldGenOasis extends WorldGenerator
         		break;
         }
         
+        boolean chest = false;
+        boolean papyrus = false;
         for(int i = 0; i < 10; i++)
         {
         	int x = par2Random.nextInt(width);
         	int z = par2Random.nextInt(depth);
-        	
-        	id = world.getBlockId(par3+x, world.getHeightValue(par3+x, par5+z)-1, par5+z);
-        	if(id == Block.grass.blockID || id == Block.dirt.blockID)
+        	int y = world.getHeightValue(par3+x, par5+z);
+
+        	id = world.getBlockId(par3+x, y-1, par5+z);
+        	if(!chest && id == Block.grass.blockID || id == Block.dirt.blockID)
         	{
-        		world.setBlock(par3+x, world.getHeightValue(par3+x, par5+z), par5+z, Block.chest.blockID);
+        		world.setBlock(par3+x, y, par5+z, Block.chest.blockID);
         		TileEntity te = world.getBlockTileEntity(par3+x, world.getHeightValue(par3+x, par5+z), par5+z);
         		AtumLoot.fillChest((IInventory) te, 5, 0.2f);
-        		break;
+        		chest = true;
+        	}
+        	
+        	if(!papyrus && Block.blocksList[id].canSustainPlant(world, par3+x, y, par5+z, ForgeDirection.UP, (IPlantable)(Atum.atumPapyrus)))
+        	{
+        		for(int dx = -1; dx <= 1; dx++)
+        		{
+        			for(int dz = -1; dz <= 1; dz++)
+        			{
+        	        	if(Block.blocksList[id].canSustainPlant(world, par3+x+dx, y, par5+z+dz, ForgeDirection.UP, (IPlantable)(Atum.atumPapyrus)))
+        	        	{
+        	        		world.setBlock(par3+x, y, par5+z, Atum.atumPapyrus.blockID);
+        	        		papyrus = true;
+        	        	}
+        			}
+        		}
         	}
         }
         

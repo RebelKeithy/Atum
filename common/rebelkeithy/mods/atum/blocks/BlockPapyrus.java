@@ -1,20 +1,32 @@
 package rebelkeithy.mods.atum.blocks;
 
+import static net.minecraftforge.common.ForgeDirection.UP;
+
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 import rebelkeithy.mods.atum.Atum;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockPapyrus extends Block implements IPlantable
 {
+	Icon iconPapyrus;
+	Icon iconPapyrusTop;
+	public int renderID = RenderingRegistry.getNextAvailableRenderId();
+	
     public BlockPapyrus(int par1)
     {
         super(par1, Material.plants);
@@ -22,12 +34,22 @@ public class BlockPapyrus extends Block implements IPlantable
         this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 1.0F, 0.5F + f);
         this.setTickRandomly(true);
     }
+    
+
+    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+    {
+    	updateTick(par1World, par2, par3, par4, new Random());
+    	return super.onBlockActivated(par1World, par2, par3, par4, par5EntityPlayer, par6, par7, par8, par9);
+    }
 
     /**
      * Ticks the block if it's been scheduled
      */
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
+    	if(par5Random.nextFloat() > 0.75)
+    		return;
+    	
         if (par1World.isAirBlock(par2, par3 + 1, par4))
         {
             int l;
@@ -37,11 +59,21 @@ public class BlockPapyrus extends Block implements IPlantable
                 ;
             }
 
-            if (l < 3)
+            if (l < 5)
             {
                 int i1 = par1World.getBlockMetadata(par2, par3, par4);
-
-                if (i1 == 15)
+                int reqHeight = 0;
+                
+                if(l == 1)
+                	reqHeight = 2;
+                else if(l == 2)
+                	reqHeight = 4;
+                else if(l == 3)
+                	reqHeight = 8;
+                else if(l == 4)
+                	reqHeight = 15;
+                
+                if (i1 >= reqHeight)
                 {
                     par1World.setBlock(par2, par3 + 1, par4, this.blockID);
                     par1World.setBlockMetadataWithNotify(par2, par3, par4, 0, 4);
@@ -52,6 +84,24 @@ public class BlockPapyrus extends Block implements IPlantable
                 }
             }
         }
+    }
+    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+    {
+    	return iconPapyrus;
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
+     */
+    public Icon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    {
+    	boolean top = par1IBlockAccess.getBlockId(par2, par3+1, par4) != this.blockID;
+    	if(top)
+    		return iconPapyrusTop;
+    	
+        return iconPapyrus;
     }
 
     /**
@@ -93,6 +143,50 @@ public class BlockPapyrus extends Block implements IPlantable
     }
 
     /**
+     * Determines if this block can support the passed in plant, allowing it to be planted and grow.
+     * Some examples:
+     *   Reeds check if its a reed, or if its sand/dirt/grass and adjacent to water
+     *   Cacti checks if its a cacti, or if its sand
+     *   Nether types check for soul sand
+     *   Crops check for tilled soil
+     *   Caves check if it's a colid surface
+     *   Plains check if its grass or dirt
+     *   Water check if its still water
+     *
+     * @param world The current world
+     * @param x X Position
+     * @param y Y Position
+     * @param z Z position
+     * @param direction The direction relative to the given position the plant wants to be, typically its UP
+     * @param plant The plant that wants to check
+     * @return True to allow the plant to be planted/stay.
+     */
+    @Override
+    public boolean canSustainPlant(World world, int x, int y, int z, ForgeDirection direction, IPlantable plant)
+    {
+        int plantID = plant.getPlantID(world, x, y + 1, z);
+        EnumPlantType plantType = plant.getPlantType(world, x, y + 1, z);
+
+        if (plantID == Atum.atumPapyrus.blockID && blockID == Atum.atumPapyrus.blockID)
+        {
+            return true;
+        }
+
+        switch (plantType)
+        {
+            case Beach:
+                boolean isBeach = (blockID == Block.grass.blockID || blockID == Block.dirt.blockID || blockID == Block.sand.blockID);
+                boolean hasWater = (world.getBlockMaterial(x - 1, y, z    ) == Material.water ||
+                                    world.getBlockMaterial(x + 1, y, z    ) == Material.water ||
+                                    world.getBlockMaterial(x,     y, z - 1) == Material.water ||
+                                    world.getBlockMaterial(x,     y, z + 1) == Material.water);
+                return isBeach && hasWater;
+        }
+
+        return false;
+    }
+
+    /**
      * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
      * cleared to be reused)
      */
@@ -131,7 +225,7 @@ public class BlockPapyrus extends Block implements IPlantable
      */
     public int getRenderType()
     {
-        return 1;
+        return renderID;
     }
 
     @SideOnly(Side.CLIENT)
@@ -160,5 +254,18 @@ public class BlockPapyrus extends Block implements IPlantable
     public int getPlantMetadata(World world, int x, int y, int z)
     {
         return world.getBlockMetadata(x, y, z);
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
+     * is the only chance you get to register icons.
+     */
+    @Override
+    public void registerIcons(IconRegister par1IconRegister)
+    {
+    	this.iconPapyrus = par1IconRegister.registerIcon("Atum:AtumPapyrus");
+    	this.iconPapyrusTop = par1IconRegister.registerIcon("Atum:AtumPapyrusTop");
     }
 }

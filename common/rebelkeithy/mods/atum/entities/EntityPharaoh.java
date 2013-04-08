@@ -1,5 +1,8 @@
 package rebelkeithy.mods.atum.entities;
 
+import java.util.Random;
+
+import rebelkeithy.mods.atum.AtumLoot;
 import rebelkeithy.mods.atum.ConfigAtum;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -17,10 +20,23 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 	int linkedX;
 	int linkedY;
 	int linkedZ;
+	
+	public static String[] prefix = {"Ama'", "Ata'", "Ato'", "Bak'", "Cal'"};
+	public static String[] suffix = {"Ahat", "Amesh", "Amon", "Anut", "Baroom"};
+	public static String[] numeral = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV"};
+	
+	private int suffixID;
+	private int prefixID;
+	private int numID;
 
 	public EntityPharaoh(World par1World) 
 	{
 		super(par1World);
+        this.experienceValue = 250;
+        Random rand = new Random();
+        suffixID = rand.nextInt(suffix.length);
+        prefixID = rand.nextInt(prefix.length);
+        numID = rand.nextInt(numeral.length);
 	}
 	
 	public void link(int x, int y, int z)
@@ -51,12 +67,12 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 	@Override
 	public int getMaxHealth() 
 	{
-		return 200;
+		return 300;
 	}
 
     public String getEntityName()
     {
-    	return "Pharaoh";
+    	return "Pharaoh " + prefix[prefixID] + suffix[suffixID] + " " + numeral[numID];
     }
     
     public String getTexture()
@@ -128,31 +144,12 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
      */
     protected void dropFewItems(boolean par1, int par2)
     {
-    	 if (rand.nextInt(100) <= 24){
-    		  this.dropItem(Item.ingotGold.itemID, 1);
-    	 }
-    	 else if(rand.nextInt(100) == 99){
-    		 switch (rand.nextInt(9))
-    		 {
-    		 	case 0:
-    		 		this.dropItem(ConfigAtum.ptahsPickID, 1);
-    		 	case 1:
-    		 		this.dropItem(ConfigAtum.soteksRageID, 1);
-    		 	case 2:
-    		 		this.dropItem(ConfigAtum.osirisWillID, 1);
-    		 	case 3:
-    		 		this.dropItem(ConfigAtum.akersToilID, 1);
-    		 	case 4:
-    		 		this.dropItem(ConfigAtum.gabsBlessingID, 1);
-    		 	case 5:
-    		 		this.dropItem(ConfigAtum.rasGloryID, 1);
-    		 	case 6:
-    		 		this.dropItem(ConfigAtum.sekhmetsWrathID, 1);
-    		 	case 7:
-    		 		this.dropItem(ConfigAtum.nutsAgilityID, 1);
-    		 	case 8:
-    		 		this.dropItem(ConfigAtum.horusFlightID, 1);
-    		 }  
+    	int amount = rand.nextInt(2) + 1;
+    	this.dropItem(Item.ingotGold.itemID, amount);
+    		  
+    	 if(rand.nextInt(4) == 0)
+    	 {
+    		 this.entityDropItem(AtumLoot.getRandomArtifact(), 0.0F);
          }
     }
 }

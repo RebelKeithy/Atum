@@ -19,6 +19,7 @@ public class EntityStoneSoldier extends EntityMob
 	{
 		super(par1World);
 		this.isImmuneToFire = true;
+        this.experienceValue = 8;
 	}
 
 	@Override
@@ -44,7 +45,7 @@ public class EntityStoneSoldier extends EntityMob
     
     public float getSpeedModifier()
     {
-		return super.getSpeedModifier() * 0.35F;
+		return super.getSpeedModifier() * 0.5F;
     }
 
     /**
@@ -106,6 +107,6 @@ public class EntityStoneSoldier extends EntityMob
      */
     public int getAttackStrength(Entity par1Entity)
     {
-        return 1;
+        return 2;
     }
 }

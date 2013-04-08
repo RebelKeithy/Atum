@@ -2,6 +2,7 @@ package rebelkeithy.mods.atum.entities;
 
 import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.ConfigAtum;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.Item;
@@ -13,6 +14,7 @@ public class EntityBanditWarrior extends EntityMob {
 	public EntityBanditWarrior(World par1World) 
 	{
 		super(par1World);
+        this.experienceValue = 8;
 	}
 
     public String getTexture()
@@ -23,11 +25,19 @@ public class EntityBanditWarrior extends EntityMob {
 	@Override
 	public int getMaxHealth() 
 	{
-		return 20;
+		return 30;
 	}
 
 	@Override
     protected void addRandomArmor() { }
+    
+    public float getSpeedModifier()
+    {
+    	if(this.isBurning())
+    		return super.getSpeedModifier() * 1.25F;
+    	
+		return super.getSpeedModifier();
+    }
 
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
@@ -62,6 +72,14 @@ public class EntityBanditWarrior extends EntityMob {
     public EnumCreatureAttribute getCreatureAttribute()
     {
         return EnumCreatureAttribute.UNDEFINED;
+    }
+
+    /**
+     * Returns the amount of damage a mob should deal.
+     */
+    public int getAttackStrength(Entity par1Entity)
+    {
+        return 3;
     }
 
     /**

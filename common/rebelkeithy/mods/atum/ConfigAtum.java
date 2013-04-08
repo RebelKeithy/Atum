@@ -62,6 +62,7 @@ public class ConfigAtum
 	public static int limestonePaxelID = 5018;
 	public static int lootID = 5019;
 	public static int stoneSwordID = 5020;
+	public static int itemPapyrusPlantID = 5021;
 	
 	public void initConfig()
 	{
@@ -135,6 +136,7 @@ public class ConfigAtum
 		limestonePaxelID = config.getItem("Limestone Paxel", limestonePaxelID).getInt();
 		
 		lootID = config.getItem("Loot", lootID).getInt();
+		itemPapyrusPlantID = config.getItem("Papyrus Plant Item", itemPapyrusPlantID).getInt();
 		
 		config.save();
 	}

@@ -16,6 +16,7 @@ public class EntityDustySkeleton extends EntityMob
 	{
 		super(par1World);
 		this.isImmuneToFire = true;
+        this.experienceValue = 6;
 	}
 
 	@Override
@@ -80,7 +81,7 @@ public class EntityDustySkeleton extends EntityMob
     
     public float getSpeedModifier()
     {
-		return super.getSpeedModifier() * 1.2F;
+		return super.getSpeedModifier() * 1.5F;
     }
   
     /**
@@ -92,7 +93,8 @@ public class EntityDustySkeleton extends EntityMob
     	 switch (this.rand.nextInt(4))
          {
              case 0:
-                 this.dropItem(Item.bone.itemID, 1);
+            	 int amount = rand.nextInt(2) + 1;
+                 this.dropItem(Item.bone.itemID, amount);
                  break;
          }
     }

@@ -57,6 +57,7 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
         {
             this.setCombatTask();
         }
+        this.experienceValue = 6;
     }
 
 

@@ -15,6 +15,7 @@ public class EntityMummy extends EntityMob
 	public EntityMummy(World par1World) 
 	{
 		super(par1World);
+        this.experienceValue = 8;
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class EntityMummy extends EntityMob
     	if(this.isBurning())
     		return super.getSpeedModifier() * 1.4F;
     	
-		return super.getSpeedModifier() * 0.75F;
+		return super.getSpeedModifier();
     }
 
     /**
