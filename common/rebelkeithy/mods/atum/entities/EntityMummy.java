@@ -1,5 +1,6 @@
 package rebelkeithy.mods.atum.entities;
 
+import rebelkeithy.mods.atum.Atum;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
@@ -87,11 +88,14 @@ public class EntityMummy extends EntityMob
      */
     protected void dropFewItems(boolean par1, int par2)
     {
-    	 switch (this.rand.nextInt(4))
+    	 if(rand.nextInt(4) == 0)
          {
-             case 0:
-                 this.dropItem(Item.rottenFlesh.itemID, 1);
-                 break;
+    		 this.dropItem(Item.rottenFlesh.itemID, 1);
+         }
+    	 if(rand.nextInt(4) == 0)
+         {
+    		 int amount = rand.nextInt(2) + 1;
+    		 this.dropItem(Atum.itemClothScrap.itemID, amount);
          }
     }
 }

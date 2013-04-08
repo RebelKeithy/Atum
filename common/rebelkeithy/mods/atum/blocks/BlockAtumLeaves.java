@@ -33,7 +33,6 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
     {
         super(par1, Material.leaves, false);
         this.setTickRandomly(true);
-        this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
     @SideOnly(Side.CLIENT)

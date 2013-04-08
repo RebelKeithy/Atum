@@ -39,6 +39,10 @@ public class AtumLoot
 		stack.addEnchantment(Enchantment.unbreaking, 10);
 		artifacts.add(stack);
 		
+		stack = new ItemStack(Atum.atensFury);
+		stack.addEnchantment(Enchantment.flame, 2);
+		artifacts.add(stack);
+		
 		stack = new ItemStack(Atum.rasGlory);
 		artifacts.add(stack);
 		

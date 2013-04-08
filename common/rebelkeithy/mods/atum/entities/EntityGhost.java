@@ -1,10 +1,12 @@
 package rebelkeithy.mods.atum.entities;
 
+import rebelkeithy.mods.atum.Atum;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -88,5 +90,18 @@ public class EntityGhost extends EntityMob
     public int getAttackStrength(Entity par1Entity)
     {
         return 2;
+    }
+    
+    /**
+     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
+     * par2 - Level of Looting used to kill this mob.
+     */
+    protected void dropFewItems(boolean par1, int par2)
+    {
+    	 if (this.rand.nextInt(4) == 0)
+         {
+    	 	int amount = rand.nextInt(3) + 1;
+    	 	this.dropItem(Atum.itemEctoplasm.itemID, amount);
+         }
     }
 }

@@ -2,6 +2,7 @@ package rebelkeithy.mods.atum.entities;
 
 import java.util.Random;
 
+import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.AtumLoot;
 import rebelkeithy.mods.atum.ConfigAtum;
 import net.minecraft.entity.Entity;
@@ -9,6 +10,7 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
@@ -21,8 +23,8 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 	int linkedY;
 	int linkedZ;
 	
-	public static String[] prefix = {"Ama'", "Ata'", "Ato'", "Bak'", "Cal'"};
-	public static String[] suffix = {"Ahat", "Amesh", "Amon", "Anut", "Baroom"};
+	public static String[] prefix = {"Ama'", "Ata'", "Ato'", "Bak'", "Cal'", "Djet'", "Eje'", "For'", "Gol'", "Gut'", "Hop'", "Hor'", "Huni'", "Iam'", "Jor'", "Kal'", "Khas'", "Khor'", "Lat'", "Mal'", "Not'", "Oap'", "Pra'", "Qo'", "Ras'", "Shas'", "Thoth'", "Tui'", "Uld'", "Ver'", "Wot'", "Xo'", "Yat'", "Zyt'", "Khep'"};
+	public static String[] suffix = {"Ahat", "Amesh", "Amon", "Anut", "Baroom", "Chanta", "Erant", "Funam", "Daresh", "Djer", "Hotesh", "Khaden", "Kron", "Gorkum", "Ialenter", "Ma'at", "Narmer", "Radeem", "Jaloom", "Lepsha", "Quor", "Oleshet", "Peput", "Talat", "Ulam", "Veresh", "Ranesh", "Snef", "Wollolo", "Hathor", "Intef", "Neferk", "Khatne", "Tepy", "Moret"};
 	public static String[] numeral = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV"};
 	
 	private int suffixID;
@@ -38,6 +40,16 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
         prefixID = rand.nextInt(prefix.length);
         numID = rand.nextInt(numeral.length);
 	}
+    
+    public void initCreature()
+    {
+    	this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemScepter));
+    	
+        for (int i = 0; i < this.equipmentDropChances.length; ++i)
+        {
+            this.equipmentDropChances[i] = 0F;
+        }
+    }
 	
 	public void link(int x, int y, int z)
 	{

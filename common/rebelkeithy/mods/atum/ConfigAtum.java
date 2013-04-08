@@ -40,6 +40,7 @@ public class ConfigAtum
 	public static int lapisOreID = 1053;
 	public static int diamondOreID = 1054;
 	public static int papyrusBlockID = 1055;
+	public static int crackedLargeBrickID = 1056;
 	
 	public static int portalSpawnerID = 5000;
 	public static int scimitarID = 5001;
@@ -63,6 +64,15 @@ public class ConfigAtum
 	public static int lootID = 5019;
 	public static int stoneSwordID = 5020;
 	public static int itemPapyrusPlantID = 5021;
+	public static int scepterID = 5022;
+	public static int ectoplasmID = 5023;
+	public static int stoneChunkID = 5024;
+	public static int clothScrapID = 5025;
+	public static int mummyHelmetID = 5026;
+	public static int mummyChestID = 5027;
+	public static int mummyLegsID = 5028;
+	public static int mummyBootsID = 5029;
+	public static int atensFuryID = 5030;
 	
 	public void initConfig()
 	{
@@ -116,6 +126,7 @@ public class ConfigAtum
 
 		portalSpawnerID = config.getItem("Scarab", portalSpawnerID).getInt();
 		scimitarID = config.getItem("Scimitar", scimitarID).getInt();
+		scepterID = config.getItem("Scimitar", scimitarID).getInt();
 		stoneSwordID = config.getItem("Stone Sword", stoneSwordID).getInt();
 		bowID = config.getItem("Desert Bow", bowID).getInt();
 		ptahsPickID = config.getItem("Ptah's Pick", ptahsPickID).getInt();
@@ -123,6 +134,7 @@ public class ConfigAtum
 		osirisWillID = config.getItem("Osiris's Will", osirisWillID).getInt();
 		akersToilID = config.getItem("Aker's Toil", akersToilID).getInt();
 		gabsBlessingID = config.getItem("Gab's Blessing", gabsBlessingID).getInt();
+		atensFuryID = config.getItem("Aten's Fury", atensFuryID).getInt();
 		rasGloryID = config.getItem("Ra's Glory", rasGloryID).getInt();
 		sekhmetsWrathID = config.getItem("Sekhmet's Wrath", sekhmetsWrathID).getInt();
 		nutsAgilityID = config.getItem("Nut's Agility", nutsAgilityID).getInt();
@@ -134,9 +146,17 @@ public class ConfigAtum
 		limestoneSwordID = config.getItem("Limestone Sword", limestoneSwordID).getInt();
 		limestoneHoeID = config.getItem("Limestone Hoe", limestoneHoeID).getInt();
 		limestonePaxelID = config.getItem("Limestone Paxel", limestonePaxelID).getInt();
+
+		mummyHelmetID = config.getItem("Mummy Helmet", mummyHelmetID).getInt();
+		mummyChestID = config.getItem("Mummy Chest", mummyChestID).getInt();
+		mummyLegsID = config.getItem("Mummy Legs", mummyLegsID).getInt();
+		mummyBootsID = config.getItem("Mummy Boots", mummyBootsID).getInt();
 		
 		lootID = config.getItem("Loot", lootID).getInt();
 		itemPapyrusPlantID = config.getItem("Papyrus Plant Item", itemPapyrusPlantID).getInt();
+		ectoplasmID = config.getItem("Ectoplasm", ectoplasmID).getInt();
+		stoneChunkID = config.getItem("Limestone Chunk", stoneChunkID).getInt();
+		clothScrapID = config.getItem("Cloth Scrap", clothScrapID).getInt();
 		
 		config.save();
 	}

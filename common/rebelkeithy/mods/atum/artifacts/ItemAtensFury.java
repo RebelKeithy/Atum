@@ -1,20 +1,24 @@
-package rebelkeithy.mods.atum.items;
+package rebelkeithy.mods.atum.artifacts;
+
+import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
-public class ItemAtumBow extends ItemBow
+public class ItemAtensFury extends ItemBow
 {
-    public static final String[] bowPullIconNameArray = new String[] {"bow_pull_0", "bow_pull_1", "bow_pull_2"};
+    public static final String[] bowPullIconNameArray = new String[] {"atens_pull_0", "atens_pull_1", "atens_pull_2"};
     Icon[] iconArray;
 
-	public ItemAtumBow(int par1) 
+	public ItemAtensFury(int par1) 
 	{
 		super(par1);
 	}
@@ -30,6 +34,18 @@ public class ItemAtumBow extends ItemBow
         {
             this.iconArray[i] = par1IconRegister.registerIcon("Atum:" + bowPullIconNameArray[i]);
         }
+    }
+
+	@SideOnly(Side.CLIENT)
+
+    /**
+     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
+     */
+    public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+    	ItemStack stack = new ItemStack(par1, 1, 0);
+    	stack.addEnchantment(Enchantment.flame, 2);
+        par3List.add(stack);
     }
 
     /**

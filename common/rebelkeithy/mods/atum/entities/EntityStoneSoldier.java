@@ -101,6 +101,19 @@ public class EntityStoneSoldier extends EntityMob
 		
 		return false;
     }
+    
+    /**
+     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
+     * par2 - Level of Looting used to kill this mob.
+     */
+    protected void dropFewItems(boolean par1, int par2)
+    {
+    	 if (this.rand.nextInt(4) == 0)
+         {
+    	 	int amount = rand.nextInt(2) + 1;
+    	 	this.dropItem(Atum.itemStoneChunk.itemID, amount);
+         }
+    }
 
     /**
      * Returns the amount of damage a mob should deal.
