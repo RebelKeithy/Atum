@@ -40,6 +40,7 @@ public class BlockAtumPortal extends BlockBreakable
 
         if (par1World.provider.isSurfaceWorld() && par5Random.nextInt(2000) < par1World.difficultySetting)
         {
+        	/*
             int l;
 
             for (l = par3; !par1World.doesBlockHaveSolidTopSurface(par2, l, par4) && l > 0; --l)
@@ -56,6 +57,7 @@ public class BlockAtumPortal extends BlockBreakable
                     entity.timeUntilPortal = entity.getPortalCooldown();
                 }
             }
+            */
         }
     }
 
@@ -295,14 +297,12 @@ public class BlockAtumPortal extends BlockBreakable
                 WorldServer worldserver1 = minecraftserver.worldServerForDimension(Atum.dimensionID);
                 if(dimID == Atum.dimensionID)
                 {
-                	((EntityPlayerMP)par5Entity).sendChatToPlayer("Going from " + dimID + " to dimension 0");
                 	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, 0, new AtumTeleporter(worldserver));
+                	
                 	if(par1World.isRemote)
                 		Minecraft.getMinecraft().gameSettings.renderDistance = TickHandler.defaultFog;
                     //par5Entity.travelToDimension(0);
                 } else {
-                	//System.out.println("teleporting");
-                	((EntityPlayerMP)par5Entity).sendChatToPlayer("Going to from " + dimID + " to dimension 17");
                 	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, Atum.dimensionID, new AtumTeleporter(worldserver1));
                     //par5Entity.travelToDimension(Atum.dimensionID);
                 }
