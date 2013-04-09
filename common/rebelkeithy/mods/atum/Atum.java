@@ -490,5 +490,13 @@ public class Atum
 		GameRegistry.addShapelessRecipe(new ItemStack(atumPlanks, 4), atumLog);
 		OreDictionary.registerOre("plankWood", atumPlanks);
 		OreDictionary.registerOre("logWood", atumLog);
+		
+		FurnaceRecipes.smelting().addSmelting(this.atumIronOre.blockID, 0, new ItemStack(Item.ingotIron), 0.7F);
+		FurnaceRecipes.smelting().addSmelting(this.atumCoalOre.blockID, new ItemStack(Item.coal), 0.1F);
+		FurnaceRecipes.smelting().addSmelting(this.atumRedstoneOre.blockID, new ItemStack(Item.redstone), 0.7F);
+		FurnaceRecipes.smelting().addSmelting(this.atumLapisOre.blockID, new ItemStack(Item.dyePowder, 1, 4), 0.2F);
+		FurnaceRecipes.smelting().addSmelting(this.atumIronOre.blockID, new ItemStack(Item.ingotIron), 0.7F);
+		FurnaceRecipes.smelting().addSmelting(this.atumGoldOre.blockID, new ItemStack(Item.ingotGold), 1.0F);
+        FurnaceRecipes.smelting().addSmelting(this.atumDiamondOre.blockID, new ItemStack(Item.diamond), 1.0F);
 	}
 }
