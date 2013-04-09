@@ -107,6 +107,10 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
     
     public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
+        if(par1DamageSource.isFireDamage())
+        {
+        	par2 = 0;
+        }
 		return super.attackEntityFrom(par1DamageSource, par2);
     }
 
