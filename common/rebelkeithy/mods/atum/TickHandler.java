@@ -133,29 +133,20 @@ public class TickHandler implements ITickHandler
 			{
 				if(player.getCurrentArmor(3).itemID == Atum.mummyHelmet.itemID)
 				{
-			        ScaledResolution scaledresolution = new ScaledResolution(Minecraft.getMinecraft().gameSettings, Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
-			        int par1 = scaledresolution.getScaledWidth();
-			        int par2 = scaledresolution.getScaledHeight();
-			        
-			        //Minecraft.getMinecraft().entityRenderer.setupOverlayRendering();
-					
-			        GL11.glDisable(GL11.GL_DEPTH_TEST);
-			        GL11.glDepthMask(false);
-			        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			        GL11.glDisable(GL11.GL_ALPHA_TEST);
-			        Minecraft.getMinecraft().renderEngine.bindTexture("/mods/Atum/textures/hud/mummyblur.png");
-			        Tessellator tessellator = Tessellator.instance;
-			        tessellator.startDrawingQuads();
-			        tessellator.addVertexWithUV(0.0D, (double)par2, -90.0D, 0.0D, 1.0D);
-			        tessellator.addVertexWithUV((double)par1, (double)par2, -90.0D, 1.0D, 1.0D);
-			        tessellator.addVertexWithUV((double)par1, 0.0D, -90.0D, 1.0D, 0.0D);
-			        tessellator.addVertexWithUV(0.0D, 0.0D, -90.0D, 0.0D, 0.0D);
-			        tessellator.draw();
-			        GL11.glDepthMask(true);
-			        GL11.glEnable(GL11.GL_DEPTH_TEST);
-			        GL11.glEnable(GL11.GL_ALPHA_TEST);
-			        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+                    ScaledResolution scaledresolution = new ScaledResolution(Minecraft.getMinecraft().gameSettings, Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
+                    int par1 = scaledresolution.getScaledWidth();
+                    int par2 = scaledresolution.getScaledHeight();
+                   
+   
+           
+                    Minecraft.getMinecraft().renderEngine.bindTexture("/mods/Atum/textures/hud/mummyblur.png");
+                    Tessellator tessellator = Tessellator.instance;
+                    tessellator.startDrawingQuads();
+                    tessellator.addVertexWithUV(0.0D, par2, -100, 0.0D, 1.0D);
+                    tessellator.addVertexWithUV(par1, par2, -100, 1.0D, 1.0D);
+                    tessellator.addVertexWithUV(par1, 0.0D, -100, 1.0D, 0.0D);
+                    tessellator.addVertexWithUV(0.0D, 0.0D, -100, 0.0D, 0.0D);
+                    tessellator.draw();
 				}
 		       
 			}
