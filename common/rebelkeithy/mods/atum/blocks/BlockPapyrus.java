@@ -1,13 +1,11 @@
 package rebelkeithy.mods.atum.blocks;
 
-import static net.minecraftforge.common.ForgeDirection.UP;
-
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
@@ -38,7 +36,10 @@ public class BlockPapyrus extends Block implements IPlantable
 
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
-    	updateTick(par1World, par2, par3, par4, new Random());
+        if(par5EntityPlayer.capabilities.isCreativeMode)
+        {
+            updateTick(par1World, par2, par3, par4, new Random());
+        }
     	return super.onBlockActivated(par1World, par2, par3, par4, par5EntityPlayer, par6, par7, par8, par9);
     }
 
