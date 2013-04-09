@@ -3,6 +3,7 @@ package rebelkeithy.mods.atum.cursedchest;
 import java.util.Iterator;
 import java.util.List;
 
+import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.entities.EntityPharaoh;
 
 import net.minecraft.block.Block;
@@ -392,8 +393,25 @@ public class TileEntityPharaohChest extends TileEntityChest implements IInventor
     }
     
     public void setOpenable()
-    {
+    {	
     	isOpenable = true;
+    	
+    	/*if(worldObj.isRemote)
+    		return;
+    	
+    	for(int x = this.xCoord - 15; x < this.xCoord + 15; x++)
+    	{
+    		for(int z = this.zCoord - 15; z < this.zCoord + 15; x++)
+    		{
+    			for(int y = this.yCoord - 10; y < this.yCoord + 5; y++)
+    			{
+    				if(worldObj.getBlockId(x, y, z) == Atum.atumStone.blockID)
+    				{
+    					worldObj.setBlockMetadataWithNotify(x, y, z, 0, 0);
+    				}
+    			}
+    		}
+    	}*/
     }
 
 	public boolean hasSpawned() 
