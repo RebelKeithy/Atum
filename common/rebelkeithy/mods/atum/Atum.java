@@ -272,8 +272,6 @@ public class Atum
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(EntityStoneSoldier.class, "AtumStoneSoldier", entityID);
 		EntityList.addMapping(EntityStoneSoldier.class, "AtumStoneSoldier", entityID, 0x918354, 0x695D37);
-
-		proxy.registerModelRenderers();
 		
 		LanguageRegistry.instance().addStringLocalization("entity.AtumMummy.name", "Mummy");
 		LanguageRegistry.instance().addStringLocalization("entity.AtumBanditWarrior.name", "Brigand");
@@ -443,7 +441,8 @@ public class Atum
 		LanguageRegistry.addName(mummyBoots, "Feet Wrap");
 		
 		LanguageRegistry.instance().addStringLocalization("itemGroup.Atum", "Atum");
-		
+
+		proxy.registerModelRenderers();
 		proxy.registerTickHandlers();
 		proxy.preloadImages();
 		proxy.registerParticles();
@@ -512,7 +511,6 @@ public class Atum
 		FurnaceRecipes.smelting().addSmelting(this.atumCoalOre.blockID, new ItemStack(Item.coal), 0.1F);
 		FurnaceRecipes.smelting().addSmelting(this.atumRedstoneOre.blockID, new ItemStack(Item.redstone), 0.7F);
 		FurnaceRecipes.smelting().addSmelting(this.atumLapisOre.blockID, new ItemStack(Item.dyePowder, 1, 4), 0.2F);
-		FurnaceRecipes.smelting().addSmelting(this.atumIronOre.blockID, new ItemStack(Item.ingotIron), 0.7F);
 		FurnaceRecipes.smelting().addSmelting(this.atumGoldOre.blockID, new ItemStack(Item.ingotGold), 1.0F);
         FurnaceRecipes.smelting().addSmelting(this.atumDiamondOre.blockID, new ItemStack(Item.diamond), 1.0F);
 	}

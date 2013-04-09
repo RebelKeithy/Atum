@@ -128,7 +128,7 @@ public class ConfigAtum
 
 		portalSpawnerID = config.getItem("Scarab", portalSpawnerID).getInt();
 		scimitarID = config.getItem("Scimitar", scimitarID).getInt();
-		scepterID = config.getItem("Scimitar", scimitarID).getInt();
+		scepterID = config.getItem("Scepter", scepterID).getInt();
 		stoneSwordID = config.getItem("Stone Sword", stoneSwordID).getInt();
 		bowID = config.getItem("Desert Bow", bowID).getInt();
 		ptahsPickID = config.getItem("Ptah's Pick", ptahsPickID).getInt();

@@ -40,7 +40,7 @@ public class TileEntityPharaohChest extends TileEntityChest implements IInventor
     private boolean hasSpawned;
     private boolean isOpenable;
 
-    TileEntityPharaohChest()
+    public TileEntityPharaohChest()
     {
     	hasSpawned = false;
     	isOpenable = false;

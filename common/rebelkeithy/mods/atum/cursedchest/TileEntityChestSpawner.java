@@ -35,7 +35,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     private int field_94046_i = -1;
     private String field_94045_s;
 
-    TileEntityChestSpawner()
+    public TileEntityChestSpawner()
     {
     	int entityID = (int) (Math.random() * 6);
     	if(entityID == 0)
