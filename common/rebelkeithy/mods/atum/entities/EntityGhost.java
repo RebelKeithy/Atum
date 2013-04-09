@@ -79,7 +79,7 @@ public class EntityGhost extends EntityMob
             if(Math.random() > 0.75 && par1Entity instanceof EntityLiving)
             {
             	EntityLiving e = (EntityLiving) par1Entity;
-            	e.addPotionEffect(new PotionEffect(2, 100, 0));
+            	e.addPotionEffect(new PotionEffect(2, 100, 2));
             }
         }
     }

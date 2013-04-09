@@ -129,7 +129,7 @@ public class TickHandler implements ITickHandler
 
         if (type.contains(TickType.RENDER)) 
         {
-			if(minecraft.inGameHasFocus && player != null && player.getCurrentArmor(3) != null)
+			if(player != null && player.getCurrentArmor(3) != null)
 			{
 				if(player.getCurrentArmor(3).itemID == Atum.mummyHelmet.itemID)
 				{
