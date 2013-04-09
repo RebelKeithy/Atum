@@ -417,6 +417,8 @@ public class Atum
 		LanguageRegistry.addName(itemEctoplasm, "Ectoplasm");
 		LanguageRegistry.addName(itemStoneChunk, "Limestone Chunk");
 		LanguageRegistry.addName(itemClothScrap, "Cloth Scrap");
+		LanguageRegistry.addName(itemScepter, "Royal Scepter");
+		LanguageRegistry.addName(itemPapyrusPlant, "Papyrus");
 		
 		LanguageRegistry.addName(ptahsPick, "Ptah's Decadence");
 		LanguageRegistry.addName(soteksRage, "Sotek's Rage");
