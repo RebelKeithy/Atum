@@ -477,7 +477,6 @@ public class Atum
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumLargeBrick, 4), "XX", "XX", 'X', atumStone));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumSmallBrick, 4), "XX", "XX", 'X', atumCobble));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(atumCarvedBrick, 1), atumStone));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(furnaceIdle, 1), "XXX", "X.X", "XXX", 'X', atumCobble));
 		GameRegistry.addRecipe(new ItemStack(atumSmoothStairs, 6), "X  ", "XX ", "XXX", 'X', atumStone);
 		GameRegistry.addRecipe(new ItemStack(atumCobbleStairs, 6), "X  ", "XX ", "XXX", 'X', atumCobble);
 		GameRegistry.addRecipe(new ItemStack(atumLargeStoneStairs, 6), "X  ", "XX ", "XXX", 'X', atumLargeBrick);
@@ -500,6 +499,11 @@ public class Atum
 		GameRegistry.addRecipe(new ItemStack(limestoneAxe), "LL ", "LS ", " S ", 'L', atumStone, 'S', Item.stick);
 		GameRegistry.addRecipe(new ItemStack(limestoneSword), " L ", " S ", " S ", 'L', atumStone, 'S', Item.stick);
 		GameRegistry.addRecipe(new ItemStack(limestoneHoe), "LLL", " S ", " S ", 'L', atumStone, 'S', Item.stick);
+		
+		GameRegistry.addRecipe(new ItemStack(mummyHelmet), "XXX", "X X", 'X', itemClothScrap);
+		GameRegistry.addRecipe(new ItemStack(mummyChest), "X X", "XXX", "XXX", 'X', itemClothScrap);
+		GameRegistry.addRecipe(new ItemStack(mummyLegs), "XXX", "X X", "X X", 'X', itemClothScrap);
+		GameRegistry.addRecipe(new ItemStack(mummyBoots), "X X", "X X", 'X', itemClothScrap);
 		
 		GameRegistry.addRecipe(new ItemStack(itemScarab), " G ", "GDG", " G ", 'G', Item.ingotGold, 'D', Item.diamond);
 		

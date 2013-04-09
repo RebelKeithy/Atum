@@ -76,15 +76,17 @@ public class EntityMummy extends EntityMob
 
         return super.attackEntityFrom(par1DamageSource, par2);
     }
-    
-    public boolean attackEntityAsMob(Entity entity)
+
+    public boolean attackEntityAsMob(Entity par1Entity)
     {
-        if(this.isBurning() && entity instanceof EntityPlayer)
+        boolean flag = super.attackEntityAsMob(par1Entity);
+
+        if (flag && this.isBurning() && this.rand.nextFloat() < (float)this.worldObj.difficultySetting * 0.4F)
         {
-            entity.setFire(10);
+            par1Entity.setFire(2 * this.worldObj.difficultySetting);
         }
-        
-        return super.attackEntityAsMob(entity);
+
+        return flag;
     }
 
     /**
