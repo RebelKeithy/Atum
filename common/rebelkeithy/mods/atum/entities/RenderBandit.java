@@ -119,7 +119,7 @@ public class RenderBandit extends RenderBiped
                 GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glScalef(-f2, -f2, f2);
             }
-            else if (itemstack.itemID == Atum.itemBow.itemID)
+            else if (itemstack.itemID == Atum.itemBow.itemID && false)
             {
                 f2 = 0.625F;
                 GL11.glTranslatef(0.0F, 0.125F, 0.3125F);

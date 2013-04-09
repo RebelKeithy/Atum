@@ -59,6 +59,7 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityStoneSoldier.class, new RenderBiped(new ModelBiped(), 0.5F));
 		
 		MinecraftForgeClient.registerItemRenderer(Atum.itemBow.itemID, new RendererItemBow());
+		MinecraftForgeClient.registerItemRenderer(Atum.atensFury.itemID, new RendererItemBow());
 		RenderingRegistry.registerBlockHandler(((BlockPapyrus)Atum.atumPapyrus).renderID, new PapyrusBlockRenderer());
 	}
 }
