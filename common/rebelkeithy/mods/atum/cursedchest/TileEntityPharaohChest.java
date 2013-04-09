@@ -406,6 +406,7 @@ public class TileEntityPharaohChest extends TileEntityChest implements IInventor
 		EntityPharaoh pharaoh = new EntityPharaoh(worldObj);
 		pharaoh.setPosition(this.xCoord+0.5, yCoord+1, zCoord+0.5);
 		pharaoh.link(xCoord, yCoord, zCoord);
+		pharaoh.initCreature();
 		worldObj.spawnEntityInWorld(pharaoh);
 		hasSpawned = true;
 	}
