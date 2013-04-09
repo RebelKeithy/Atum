@@ -313,7 +313,7 @@ public class Atum
 		GameRegistry.registerBlock(atumLapisOre, "atumLapisOre");
 		GameRegistry.registerBlock(atumDiamondOre, "atumDiamondOre");
 		GameRegistry.registerBlock(atumPapyrus, "atumPapyrusBlock");
-		GameRegistry.registerBlock(atumWall, "AtumWalls");
+		GameRegistry.registerBlock(atumWall, ItemBlockAtumWall.class, "AtumWalls");
 		
 		GameRegistry.registerTileEntity(TileEntityChestSpawner.class, "CursedChest");
 		GameRegistry.registerTileEntity(TileEntityPharaohChest.class, "PharaohChest");
@@ -322,7 +322,6 @@ public class Atum
 		
 		Item.itemsList[ConfigAtum.slabID] = (new ItemSlab(atumSlabs.blockID - 256, atumSlabs, atumDoubleSlab, false)).setUnlocalizedName("woodSlab");
         Item.itemsList[atumDoubleSlab.blockID] = (new ItemSlab(atumDoubleSlab.blockID - 256, atumSlabs, atumDoubleSlab, true)).setUnlocalizedName("woodSlab");
-        Item.itemsList[ConfigAtum.wallID] = (new ItemBlockAtumWall(atumWall.blockID - 256)).setUnlocalizedName("atumWall");
         
 		
 		itemScarab = new ItemPortalSpawner(ConfigAtum.portalSpawnerID).setUnlocalizedName("Atum:Scarab").setCreativeTab(tabs);
