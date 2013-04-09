@@ -26,7 +26,7 @@ public class BlockAtumPortal extends BlockBreakable
 {
     public BlockAtumPortal(int par1)
     {
-        super(par1, "portal", Material.portal, false);
+        super(par1, "Atum:portal", Material.portal, false);
         setTickRandomly(true);
         setHardness(-1f);
     }
