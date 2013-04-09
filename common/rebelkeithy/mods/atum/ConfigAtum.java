@@ -74,7 +74,7 @@ public class ConfigAtum
 	public static int mummyBootsID = 5029;
 	public static int atensFuryID = 5030;
 	
-	public void initConfig()
+	public static void initConfig()
 	{
 
 		//File fileDir = new File(Atum.proxy.getMinecraftDir() + "/config/Atum");

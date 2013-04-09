@@ -41,6 +41,7 @@ public class ClientProxy extends CommonProxy
 	
 	public void registerTickHandlers()
 	{
+		TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);	
 		TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);	
 	}
 

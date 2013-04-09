@@ -182,6 +182,8 @@ public class Atum
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		ConfigAtum.initConfig();
+		
 		portal = new BlockAtumPortal(ConfigAtum.portalBlockID);
 		cursedChest = new BlockChestSpawner(ConfigAtum.cursedChestID).setUnlocalizedName("AtumCursedChest").setHardness(4.0F).setCreativeTab(tabs);
 		atumPharaohChest = new PharaohChest(ConfigAtum.pharaohChestID).setUnlocalizedName("AtumPharaohChest").setHardness(4.0F).setCreativeTab(tabs);
