@@ -58,7 +58,7 @@ public class BlockArrowTrap extends BlockContainer
      */
     public float getBlockHardness(World par1World, int par2, int par3, int par4)
     {
-    	if(par1World.getBlockId(par2, par3, par4) == Atum.atumLargeBrick.blockID && par1World.getBlockMetadata(par2, par3+1, par4) == 1)
+    	if(par1World.getBlockId(par2, par3+1, par4) == Atum.atumLargeBrick.blockID && par1World.getBlockMetadata(par2, par3+1, par4) == 1)
     		return -1;
     	
     	return this.blockHardness;
