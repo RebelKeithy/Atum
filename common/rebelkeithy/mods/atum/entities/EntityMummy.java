@@ -1,41 +1,40 @@
 package rebelkeithy.mods.atum.entities;
 
-import rebelkeithy.mods.atum.Atum;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+import rebelkeithy.mods.atum.Atum;
 
 public class EntityMummy extends EntityMob
 {
 
-	public EntityMummy(World par1World) 
-	{
-		super(par1World);
+    public EntityMummy(World par1World) 
+    {
+        super(par1World);
         this.experienceValue = 8;
-	}
+    }
 
-	@Override
-	public int getMaxHealth() 
-	{
-		return 40;
-	}
+    @Override
+    public int getMaxHealth() 
+    {
+        return 40;
+    }
 
     public String getTexture()
     {
-    	return "/mods/Atum/textures/mobs/Mummy.png";
+        return "/mods/Atum/textures/mobs/Mummy.png";
     }
     
     public float getSpeedModifier()
     {
-    	if(this.isBurning())
-    		return super.getSpeedModifier() * 1.4F;
-    	
-		return super.getSpeedModifier();
+        if(this.isBurning())
+            return super.getSpeedModifier() * 1.4F;
+        
+        return super.getSpeedModifier();
     }
 
     /**
@@ -43,8 +42,8 @@ public class EntityMummy extends EntityMob
      */
     public boolean getCanSpawnHere()
     {
-    	//System.out.println("light level mummy " + this.isValidLightLevel() + " " + super.getCanSpawnHere());
-    	return this.worldObj.checkIfAABBIsClear(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+        //System.out.println("light level mummy " + this.isValidLightLevel() + " " + super.getCanSpawnHere());
+        return this.worldObj.checkIfAABBIsClear(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         //return true || super.getCanSpawnHere();
     }
 
@@ -66,12 +65,26 @@ public class EntityMummy extends EntityMob
     
     public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
-    	if(par1DamageSource.isFireDamage())
-    	{
-    		par2 += 1;
-    	}
+        if(par1DamageSource.isFireDamage())
+        {
+            par2 += 1;
+        }
+        if(this.isBurning())
+        {
+            par2 = (int) (par2 * 1.5);
+        }
 
-		return super.attackEntityFrom(par1DamageSource, par2);
+        return super.attackEntityFrom(par1DamageSource, par2);
+    }
+    
+    public boolean attackEntityAsMob(Entity entity)
+    {
+        if(this.isBurning() && entity instanceof EntityPlayer)
+        {
+            entity.setFire(10);
+        }
+        
+        return super.attackEntityAsMob(entity);
     }
 
     /**
@@ -88,14 +101,14 @@ public class EntityMummy extends EntityMob
      */
     protected void dropFewItems(boolean par1, int par2)
     {
-    	 if(rand.nextInt(4) == 0)
+         if(rand.nextInt(4) == 0)
          {
-    		 this.dropItem(Item.rottenFlesh.itemID, 1);
+             this.dropItem(Item.rottenFlesh.itemID, 1);
          }
-    	 if(rand.nextInt(4) == 0)
+         if(rand.nextInt(4) == 0)
          {
-    		 int amount = rand.nextInt(2) + 1;
-    		 this.dropItem(Atum.itemClothScrap.itemID, amount);
+             int amount = rand.nextInt(2) + 1;
+             this.dropItem(Atum.itemClothScrap.itemID, amount);
          }
     }
 }

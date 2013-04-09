@@ -417,6 +417,8 @@ public class Atum
 		LanguageRegistry.addName(itemEctoplasm, "Ectoplasm");
 		LanguageRegistry.addName(itemStoneChunk, "Limestone Chunk");
 		LanguageRegistry.addName(itemClothScrap, "Cloth Scrap");
+		LanguageRegistry.addName(itemScepter, "Royal Scepter");
+		LanguageRegistry.addName(itemPapyrusPlant, "Papyrus");
 		
 		LanguageRegistry.addName(ptahsPick, "Ptah's Decadence");
 		LanguageRegistry.addName(soteksRage, "Sotek's Rage");
@@ -475,6 +477,7 @@ public class Atum
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumLargeBrick, 4), "XX", "XX", 'X', atumStone));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumSmallBrick, 4), "XX", "XX", 'X', atumCobble));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(atumCarvedBrick, 1), atumStone));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(furnaceIdle, 1), "XXX", "X.X", "XXX", 'X', atumCobble));
 		GameRegistry.addRecipe(new ItemStack(atumSmoothStairs, 6), "X  ", "XX ", "XXX", 'X', atumStone);
 		GameRegistry.addRecipe(new ItemStack(atumCobbleStairs, 6), "X  ", "XX ", "XXX", 'X', atumCobble);
 		GameRegistry.addRecipe(new ItemStack(atumLargeStoneStairs, 6), "X  ", "XX ", "XXX", 'X', atumLargeBrick);
@@ -487,7 +490,6 @@ public class Atum
         GameRegistry.addRecipe(new ItemStack(atumWall, 6, 1), "XXX", "XXX", 'X', atumCobble);
         GameRegistry.addRecipe(new ItemStack(atumWall, 6, 2), "XXX", "XXX", 'X', atumLargeBrick);
         GameRegistry.addRecipe(new ItemStack(atumWall, 6, 3), "XXX", "XXX", 'X', atumSmallBrick);
-		
 		
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 3), "XXX", 'X', atumSmallBrick);
 		GameRegistry.addRecipe(new ItemStack(atumCrackedLargeBrick, 4), "XX", "XX", 'X', itemStoneChunk);
