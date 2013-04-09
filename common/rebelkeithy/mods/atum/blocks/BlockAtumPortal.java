@@ -297,7 +297,8 @@ public class BlockAtumPortal extends BlockBreakable
                 {
                 	((EntityPlayerMP)par5Entity).sendChatToPlayer("Going from " + dimID + " to dimension 0");
                 	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, 0, new AtumTeleporter(worldserver));
-					Minecraft.getMinecraft().gameSettings.renderDistance = TickHandler.defaultFog;
+                	if(par1World.isRemote)
+                		Minecraft.getMinecraft().gameSettings.renderDistance = TickHandler.defaultFog;
                     //par5Entity.travelToDimension(0);
                 } else {
                 	//System.out.println("teleporting");
