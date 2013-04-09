@@ -22,7 +22,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import rebelkeithy.mods.atum.artifacts.HorusFlight;
 import rebelkeithy.mods.atum.artifacts.ItemAkersToil;
 import rebelkeithy.mods.atum.artifacts.ItemAtensFury;
-import rebelkeithy.mods.atum.artifacts.ItemGabsBlessing;
+import rebelkeithy.mods.atum.artifacts.ItemGebsBlessing;
 import rebelkeithy.mods.atum.artifacts.ItemNutsAgility;
 import rebelkeithy.mods.atum.artifacts.ItemOsirisWill;
 import rebelkeithy.mods.atum.artifacts.ItemPtahsDecadence;
@@ -38,9 +38,11 @@ import rebelkeithy.mods.atum.blocks.BlockAtumSand;
 import rebelkeithy.mods.atum.blocks.BlockAtumSlab;
 import rebelkeithy.mods.atum.blocks.BlockAtumStairs;
 import rebelkeithy.mods.atum.blocks.BlockAtumStone;
+import rebelkeithy.mods.atum.blocks.BlockAtumWall;
 import rebelkeithy.mods.atum.blocks.BlockPapyrus;
 import rebelkeithy.mods.atum.blocks.BlockSandLayered;
 import rebelkeithy.mods.atum.blocks.BlockShrub;
+import rebelkeithy.mods.atum.blocks.ItemBlockAtumWall;
 import rebelkeithy.mods.atum.blocks.ItemPapyrusPlant;
 import rebelkeithy.mods.atum.blocks.ItemSandLayered;
 import rebelkeithy.mods.atum.blocks.TileEntityArrowTrap;
@@ -117,6 +119,7 @@ public class Atum
 	public static Block atumSmallStoneStairs;
 	public static Block atumSandLayered;
 	public static Block atumCrackedLargeBrick;
+	public static Block atumWall;
 	
 	public static Block atumShrub;
 	public static Block atumWeed;
@@ -147,7 +150,7 @@ public class Atum
 	public static Item soteksRage;
 	public static Item osirisWill;
 	public static Item akersToil;
-	public static Item gabsBlessing;
+	public static Item gebsBlessing;
 	public static Item atensFury;
 	public static Item rasGlory;
 	public static Item sekhmetsWrath;
@@ -203,6 +206,7 @@ public class Atum
 		atumShrub = (new BlockShrub(ConfigAtum.shrubID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Shrub");
 		atumWeed = (new BlockShrub(ConfigAtum.weedID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Weed");
 		atumPapyrus = (new BlockPapyrus(ConfigAtum.papyrusBlockID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:AtumPapyrus").setCreativeTab(tabs);
+		atumWall = (new BlockAtumWall(ConfigAtum.wallID, atumStone)).setUnlocalizedName("Atum:AtumStoneWall").setCreativeTab(CreativeTabs.tabBlock);
 		
 	    atumSandLayered = (new BlockSandLayered(ConfigAtum.sandLayeredID)).setHardness(0.1F).setStepSound(Block.soundSnowFootstep).setUnlocalizedName("SandLayered").setLightOpacity(0).setCreativeTab(tabs);
 	    
@@ -311,6 +315,7 @@ public class Atum
 		GameRegistry.registerBlock(atumLapisOre, "atumLapisOre");
 		GameRegistry.registerBlock(atumDiamondOre, "atumDiamondOre");
 		GameRegistry.registerBlock(atumPapyrus, "atumPapyrusBlock");
+		GameRegistry.registerBlock(atumWall, "AtumWalls");
 		
 		GameRegistry.registerTileEntity(TileEntityChestSpawner.class, "CursedChest");
 		GameRegistry.registerTileEntity(TileEntityPharaohChest.class, "PharaohChest");
@@ -319,6 +324,7 @@ public class Atum
 		
 		Item.itemsList[ConfigAtum.slabID] = (new ItemSlab(atumSlabs.blockID - 256, atumSlabs, atumDoubleSlab, false)).setUnlocalizedName("woodSlab");
         Item.itemsList[atumDoubleSlab.blockID] = (new ItemSlab(atumDoubleSlab.blockID - 256, atumSlabs, atumDoubleSlab, true)).setUnlocalizedName("woodSlab");
+        Item.itemsList[ConfigAtum.wallID] = (new ItemBlockAtumWall(atumWall.blockID - 256)).setUnlocalizedName("atumWall");
         
 		
 		itemScarab = new ItemPortalSpawner(ConfigAtum.portalSpawnerID).setUnlocalizedName("Atum:Scarab").setCreativeTab(tabs);
@@ -335,7 +341,7 @@ public class Atum
 		soteksRage = new ItemSoteksRage(ConfigAtum.soteksRageID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:SoteksRage").setCreativeTab(tabs);
 		osirisWill = new ItemOsirisWill(ConfigAtum.osirisWillID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:OsirisWill").setCreativeTab(tabs);
 		akersToil = new ItemAkersToil(ConfigAtum.akersToilID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:AkersToil").setCreativeTab(tabs);
-		gabsBlessing = new ItemGabsBlessing(ConfigAtum.gabsBlessingID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:GabsBlessing").setCreativeTab(tabs);
+		gebsBlessing = new ItemGebsBlessing(ConfigAtum.gebsBlessingID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:GebsBlessing").setCreativeTab(tabs);
 		atensFury = new ItemAtensFury(ConfigAtum.atensFuryID).setUnlocalizedName("Atum:AtensFury").setCreativeTab(tabs);
 		rasGlory = new ItemRasGlory(ConfigAtum.rasGloryID, EnumArmorMaterial.DIAMOND, 0, 0).setTextureFile("EgyptianArmor_1").setUnlocalizedName("Atum:RasGlory").setCreativeTab(tabs);
 		sekhmetsWrath = new ItemSekhmetsWrath(ConfigAtum.sekhmetsWrathID, EnumArmorMaterial.DIAMOND, 1, 1).setTextureFile("EgyptianArmor_1").setUnlocalizedName("Atum:SekhmetsWrath").setCreativeTab(tabs);
@@ -401,6 +407,10 @@ public class Atum
 		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 2), "Large Limestone Brick Slabs");
 		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 3), "Small Limestone Brick Slabs");
 		LanguageRegistry.addName(atumPapyrus, "Papyrus");
+		LanguageRegistry.addName(new ItemStack(atumWall, 6, 0), "Limestone Wall");
+        LanguageRegistry.addName(new ItemStack(atumWall, 6, 1), "Cracked Limestone Wall");
+        LanguageRegistry.addName(new ItemStack(atumWall, 6, 2), "Large Limestone Brick Wall");
+        LanguageRegistry.addName(new ItemStack(atumWall, 6, 3), "Small Limestone Brick Wall");
 		
 		LanguageRegistry.addName(itemScarab, "Golden Scarab");
 		LanguageRegistry.addName(itemScimitar, "Scimitar");
@@ -414,7 +424,7 @@ public class Atum
 		LanguageRegistry.addName(soteksRage, "Sotek's Rage");
 		LanguageRegistry.addName(osirisWill, "Osiris's Will");
 		LanguageRegistry.addName(akersToil, "Aker's Toil");
-		LanguageRegistry.addName(gabsBlessing, "Gab's Blessing");
+		LanguageRegistry.addName(gebsBlessing, "Geb's Blessing");
 		LanguageRegistry.addName(atensFury, "Aten's Fury");
 		LanguageRegistry.addName(rasGlory, "Ra's Glory");
 		LanguageRegistry.addName(sekhmetsWrath, "Sekhmet's Wrath");
@@ -474,6 +484,11 @@ public class Atum
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 1), "XXX", 'X', atumCobble);
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 2), "XXX", 'X', atumLargeBrick);
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 3), "XXX", 'X', atumSmallBrick);
+		GameRegistry.addRecipe(new ItemStack(atumWall, 6, 0), "XXX", "XXX", 'X', atumStone);
+        GameRegistry.addRecipe(new ItemStack(atumWall, 6, 1), "XXX", "XXX", 'X', atumCobble);
+        GameRegistry.addRecipe(new ItemStack(atumWall, 6, 2), "XXX", "XXX", 'X', atumLargeBrick);
+        GameRegistry.addRecipe(new ItemStack(atumWall, 6, 3), "XXX", "XXX", 'X', atumSmallBrick);
+		
 		
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 3), "XXX", 'X', atumSmallBrick);
 		GameRegistry.addRecipe(new ItemStack(atumCrackedLargeBrick, 4), "XX", "XX", 'X', itemStoneChunk);

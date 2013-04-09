@@ -10,10 +10,10 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 
-public class ItemGabsBlessing extends ItemHoe
+public class ItemGebsBlessing extends ItemHoe
 {
 
-	public ItemGabsBlessing(int par1, EnumToolMaterial par2EnumToolMaterial) 
+	public ItemGebsBlessing(int par1, EnumToolMaterial par2EnumToolMaterial) 
 	{
 		super(par1, par2EnumToolMaterial);
 	}
