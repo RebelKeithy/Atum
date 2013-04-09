@@ -491,6 +491,8 @@ public class Atum
 		OreDictionary.registerOre("plankWood", atumPlanks);
 		OreDictionary.registerOre("logWood", atumLog);
 		
+		GameRegistry.addRecipe(new ItemStack(this.furnaceIdle), "XXX", "X X", "XXX", 'X', atumCobble);
+		
 		FurnaceRecipes.smelting().addSmelting(this.atumIronOre.blockID, 0, new ItemStack(Item.ingotIron), 0.7F);
 		FurnaceRecipes.smelting().addSmelting(this.atumCoalOre.blockID, new ItemStack(Item.coal), 0.1F);
 		FurnaceRecipes.smelting().addSmelting(this.atumRedstoneOre.blockID, new ItemStack(Item.redstone), 0.7F);
