@@ -42,6 +42,8 @@ public class ConfigAtum
 	public static int papyrusBlockID = 1055;
 	public static int crackedLargeBrickID = 1056;
 	public static int wallID = 1057;
+	public static int crystalGlassID = 1058;
+	public static int framedGlassID = 1059;
 	
 	public static int portalSpawnerID = 5000;
 	public static int scimitarID = 5001;
@@ -131,6 +133,8 @@ public class ConfigAtum
 		diamondOreID = config.getBlock("Diamond Ore", diamondOreID).getInt();
 		papyrusBlockID = config.getBlock("Papyrus Block", papyrusBlockID).getInt();
 		wallID = config.getBlock("Limestone Wall", wallID).getInt();
+		crystalGlassID = config.getBlock("Crystal Glass", crystalGlassID).getInt(crystalGlassID);
+		framedGlassID = config.getBlock("Framed Glass", framedGlassID).getInt(framedGlassID);
 
 		portalSpawnerID = config.getItem("Scarab", portalSpawnerID).getInt();
 		scimitarID = config.getItem("Scimitar", scimitarID).getInt();
