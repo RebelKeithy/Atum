@@ -1,21 +1,23 @@
 package rebelkeithy.mods.atum.entities;
 
+import java.util.List;
 import java.util.Random;
 
-import rebelkeithy.mods.atum.Atum;
-import rebelkeithy.mods.atum.AtumLoot;
-import rebelkeithy.mods.atum.ConfigAtum;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumLoot;
 import rebelkeithy.mods.atum.cursedchest.TileEntityPharaohChest;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class EntityPharaoh extends EntityMob implements IBossDisplayData
 {
@@ -62,6 +64,20 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 	public void onDeath(DamageSource par1DamageSource)
 	{
 		super.onDeath(par1DamageSource);
+		
+		if(par1DamageSource.damageType == "player")
+		{
+			EntityPlayer slayer = (EntityPlayer) par1DamageSource.getEntity();
+			if(!worldObj.isRemote)
+			{
+				List<EntityPlayer> players = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().playerEntityList;
+				for(EntityPlayer player : players)
+				{
+					player.sendChatToPlayer(this.getEntityName() + " was slain by " + slayer.getEntityName());
+				}
+			}
+		}
+		
 		if(linkedX != 0 && linkedY != 0 && linkedZ != 0)
 		{
 			TileEntity te = worldObj.getBlockTileEntity(linkedX, linkedY, linkedZ);
