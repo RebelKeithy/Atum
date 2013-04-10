@@ -127,9 +127,10 @@ public class BlockArrowTrap extends BlockContainer
      */
     public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
     {
+    	System.out.println(par1 + " " + par2);
+        if(par2 == 0)
+        	par2 = 3;
         int k = par2 & 7;
-        if(par1 == 3)
-        	return field_94462_cO;
         
         return par1 == k ? (k != 1 && k != 0 ? this.field_94462_cO : this.field_96473_e) : (k != 1 && k != 0 ? (par1 != 1 && par1 != 0 ? this.blockIcon : this.field_94463_c) : this.field_94463_c);
     }
