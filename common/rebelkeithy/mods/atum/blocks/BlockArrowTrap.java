@@ -127,7 +127,6 @@ public class BlockArrowTrap extends BlockContainer
      */
     public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
     {
-    	System.out.println(par1 + " " + par2);
         if(par2 == 0)
         	par2 = 3;
         int k = par2 & 7;

@@ -38,7 +38,7 @@ public class ItemSandLayered extends ItemBlockWithMetadata
                 int j1 = par3World.getBlockMetadata(par4, par5, par6);
                 int k1 = j1 & 7;
 
-                //if (k1 <= 6 && par3World.checkIfAABBIsClear(block.getCollisionBoundingBoxFromPool(par3World, par4, par5, par6)) && par3World.setBlockMetadataWithNotify(par4, par5, par6, k1 + 1 | j1 & -8, 2))
+                if (k1 <= 6 && par3World.setBlockMetadataWithNotify(par4, par5, par6, k1 + 1 | j1 & -8, 2))
                 {
                     par3World.playSoundEffect((double)((float)par4 + 0.5F), (double)((float)par5 + 0.5F), (double)((float)par6 + 0.5F), block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
                     --par1ItemStack.stackSize;

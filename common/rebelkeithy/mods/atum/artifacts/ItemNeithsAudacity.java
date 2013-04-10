@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemNeithsAudacity extends Item
 {
-    public static final String[] bowPullIconNameArray = new String[] {"bow_pull_0", "bow_pull_1", "bow_pull_2"};
+    public static final String[] bowPullIconNameArray = new String[] {"neiths_pull_0", "neiths_pull_1", "neiths_pull_2"};
     @SideOnly(Side.CLIENT)
     private Icon[] iconArray;
 
@@ -110,6 +110,7 @@ public class ItemNeithsAudacity extends Item
 
             if (!par2World.isRemote)
             {
+            	entityarrow.setAngles(0.1F, 0.1F);
                 par2World.spawnEntityInWorld(entityarrow);
                 par2World.spawnEntityInWorld(entityarrow1);
             }
@@ -157,6 +158,31 @@ public class ItemNeithsAudacity extends Item
         return par1ItemStack;
     }
 
+	public Icon getIcon(ItemStack stack, int renderPass, EntityPlayer player,
+			ItemStack usingItem, int useRemaining)
+	{
+		if (usingItem != null)
+		{
+			int j = getMaxItemUseDuration(stack) - useRemaining;
+
+			if (j >= 18)
+			{
+				return func_94599_c(2);
+			}
+
+			if (j > 13)
+			{
+				return func_94599_c(1);
+			}
+
+			if (j > 0)
+			{
+				return func_94599_c(0);
+			}
+		}
+		return getIcon(stack, renderPass);
+	}
+
     /**
      * Return the enchantability factor of the item, most of the time is based on material.
      */
@@ -164,7 +190,7 @@ public class ItemNeithsAudacity extends Item
     {
         return 1;
     }
-
+    
     @SideOnly(Side.CLIENT)
     public void updateIcons(IconRegister par1IconRegister)
     {
@@ -173,7 +199,7 @@ public class ItemNeithsAudacity extends Item
 
         for (int i = 0; i < this.iconArray.length; ++i)
         {
-            this.iconArray[i] = par1IconRegister.registerIcon(bowPullIconNameArray[i]);
+            this.iconArray[i] = par1IconRegister.registerIcon("Atum:" + bowPullIconNameArray[i]);
         }
     }
 

@@ -23,7 +23,7 @@ public class BlockSandLayered extends Block
 {
     public BlockSandLayered(int par1)
     {
-        super(par1, Material.snow);
+        super(par1, Material.sand);
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
         this.setTickRandomly(true);
         this.func_96478_d(0);
@@ -129,7 +129,7 @@ public class BlockSandLayered extends Block
         }
         else
         {
-            return true;
+            return false;
         }
     }
 
