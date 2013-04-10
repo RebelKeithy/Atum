@@ -40,15 +40,15 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 		super(par1World);
         this.experienceValue = 250;
         Random rand = new Random();
-        suffixID = rand.nextInt(suffix.length);
-        prefixID = rand.nextInt(prefix.length);
-        numID = rand.nextInt(numeral.length);
         stage = 0;
 	}
     
     public void initCreature()
     {
+    	super.initCreature();
+    	System.out.println("init");
     	this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemScepter));
+    	
     	
         for (int i = 0; i < this.equipmentDropChances.length; ++i)
         {
@@ -103,7 +103,19 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 
     public String getEntityName()
     {
-    	return "Pharaoh " + prefix[prefixID] + suffix[suffixID] + " " + numeral[numID];
+    	System.out.println("getname");
+    	try
+    	{
+			int s = this.dataWatcher.getWatchableObjectInt(18);
+			int p = this.dataWatcher.getWatchableObjectInt(19);
+			int n = this.dataWatcher.getWatchableObjectInt(20);
+	    	return "Pharaoh " + prefix[p] + suffix[s] + " " + numeral[n];
+    	} 
+    	catch(Exception e)
+    	{
+    		return "";
+    	}
+    	
     }
     
     public String getTexture()
@@ -230,6 +242,16 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
     }
     
 
+    /**
+     * (abstract) Protected helper method to write subclass entity data to NBT.
+     */
+    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
+    {
+    	super.writeEntityToNBT(par1NBTTagCompound);
+    	par1NBTTagCompound.setInteger("suffix", dataWatcher.getWatchableObjectInt(18));
+    	par1NBTTagCompound.setInteger("prefix", dataWatcher.getWatchableObjectInt(19));
+    	par1NBTTagCompound.setInteger("numeral", dataWatcher.getWatchableObjectInt(20));
+    }
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
@@ -238,12 +260,24 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
     {
         super.readEntityFromNBT(par1NBTTagCompound);
         this.dataWatcher.updateObject(16, Integer.valueOf(this.health));
+        suffixID = par1NBTTagCompound.getInteger("suffix");
+        prefixID = par1NBTTagCompound.getInteger("prefix");
+        numID = par1NBTTagCompound.getInteger("numeral");
+        this.dataWatcher.updateObject(18, new Integer(suffixID));
+        this.dataWatcher.updateObject(19, new Integer(prefixID));
+        this.dataWatcher.updateObject(20, new Integer(numID));
     }
     
     protected void entityInit()
     {
         super.entityInit();
         this.dataWatcher.addObject(16, new Integer(100));
+        suffixID = rand.nextInt(suffix.length);
+        prefixID = rand.nextInt(prefix.length);
+        numID = rand.nextInt(numeral.length);
+        this.dataWatcher.addObject(18, new Integer(suffixID));
+        this.dataWatcher.addObject(19, new Integer(prefixID));
+        this.dataWatcher.addObject(20, new Integer(numID));
     }
     
     public void onLivingUpdate()
