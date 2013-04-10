@@ -34,6 +34,7 @@ import rebelkeithy.mods.atum.blocks.BlockArrowTrap;
 import rebelkeithy.mods.atum.blocks.BlockAtumGlass;
 import rebelkeithy.mods.atum.blocks.BlockAtumLeaves;
 import rebelkeithy.mods.atum.blocks.BlockAtumLog;
+import rebelkeithy.mods.atum.blocks.BlockAtumSapling;
 import rebelkeithy.mods.atum.blocks.BlockAtumPortal;
 import rebelkeithy.mods.atum.blocks.BlockAtumSand;
 import rebelkeithy.mods.atum.blocks.BlockAtumSlab;
@@ -125,6 +126,7 @@ public class Atum
 	public static Block atumWall;
 	public static Block atumCrystalGlass;
 	public static Block atumFramedGlass;
+	public static Block atumPalmSapling;
 	
 	public static Block atumShrub;
 	public static Block atumWeed;
@@ -221,6 +223,7 @@ public class Atum
 		atumWall = (new BlockAtumWall(ConfigAtum.wallID, atumStone)).setUnlocalizedName("Atum:AtumStoneWall").setCreativeTab(tabs);
 		atumCrystalGlass = (new BlockAtumGlass(ConfigAtum.crystalGlassID, "Atum:AtumCrystalGlass", Material.glass, false)).setUnlocalizedName("Atum:AtumCrystalGlass").setCreativeTab(tabs);
 		atumFramedGlass = (new BlockAtumGlass(ConfigAtum.framedGlassID, "Atum:AtumFramedGlass", Material.glass, false)).setUnlocalizedName("Atum:AtumFramedGlass").setCreativeTab(tabs);
+		atumPalmSapling = (new BlockAtumSapling(ConfigAtum.palmSaplingID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:AtumPalmSapling").setCreativeTab(tabs);
 		
 	    atumSandLayered = (new BlockSandLayered(ConfigAtum.sandLayeredID)).setHardness(0.1F).setStepSound(Block.soundSnowFootstep).setUnlocalizedName("SandLayered").setLightOpacity(0).setCreativeTab(tabs);
 	    
@@ -340,6 +343,7 @@ public class Atum
 		GameRegistry.registerBlock(atumWall, ItemBlockAtumWall.class, "AtumWalls");
 		GameRegistry.registerBlock(atumCrystalGlass, "AtumCrystalGlass");
 		GameRegistry.registerBlock(atumFramedGlass, "AtumFramedGlass");
+		GameRegistry.registerBlock(atumPalmSapling, "AtumPalmSapling");
 		
 		GameRegistry.registerTileEntity(TileEntityChestSpawner.class, "CursedChest");
 		GameRegistry.registerTileEntity(TileEntityPharaohChest.class, "PharaohChest");
@@ -444,7 +448,8 @@ public class Atum
         LanguageRegistry.addName(new ItemStack(atumWall, 6, 2), "Large Limestone Brick Wall");
         LanguageRegistry.addName(new ItemStack(atumWall, 6, 3), "Small Limestone Brick Wall");
         LanguageRegistry.addName(atumCrystalGlass, "Crystal Glass");
-        LanguageRegistry.addName(atumFramedGlass, "Framed Glass");
+        LanguageRegistry.addName(atumFramedGlass, "Framed Crystal Glass");
+        LanguageRegistry.addName(atumPalmSapling, "Palm Sapling");
 		
 		LanguageRegistry.addName(itemScarab, "Golden Scarab");
 		LanguageRegistry.addName(itemScimitar, "Scimitar");
