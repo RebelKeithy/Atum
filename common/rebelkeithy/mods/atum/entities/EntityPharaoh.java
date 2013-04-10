@@ -25,6 +25,8 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 	int linkedY;
 	int linkedZ;
 	
+	int stage;
+	
 	public static String[] prefix = {"Ama'", "Ata'", "Ato'", "Bak'", "Cal'", "Djet'", "Eje'", "For'", "Gol'", "Gut'", "Hop'", "Hor'", "Huni'", "Iam'", "Jor'", "Kal'", "Khas'", "Khor'", "Lat'", "Mal'", "Not'", "Oap'", "Pra'", "Qo'", "Ras'", "Shas'", "Thoth'", "Tui'", "Uld'", "Ver'", "Wot'", "Xo'", "Yat'", "Zyt'", "Khep'"};
 	public static String[] suffix = {"Ahat", "Amesh", "Amon", "Anut", "Baroom", "Chanta", "Erant", "Funam", "Daresh", "Djer", "Hotesh", "Khaden", "Kron", "Gorkum", "Ialenter", "Ma'at", "Narmer", "Radeem", "Jaloom", "Lepsha", "Quor", "Oleshet", "Peput", "Talat", "Ulam", "Veresh", "Ranesh", "Snef", "Wollolo", "Hathor", "Intef", "Neferk", "Khatne", "Tepy", "Moret"};
 	public static String[] numeral = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV"};
@@ -41,6 +43,7 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
         suffixID = rand.nextInt(suffix.length);
         prefixID = rand.nextInt(prefix.length);
         numID = rand.nextInt(numeral.length);
+        stage = 0;
 	}
     
     public void initCreature()
@@ -127,10 +130,98 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
         {
         	par2 = 0;
         }
-		return super.attackEntityFrom(par1DamageSource, par2);
+		boolean ret = super.attackEntityFrom(par1DamageSource, par2);
+		
+		if(this.getHealth() < this.getMaxHealth() * 0.75 && stage == 0)
+		{
+			stage++;
+			spawnGuards();
+		} 
+		else if(stage == 1 && this.getHealth() < this.getMaxHealth() * 0.5)
+		{
+			stage++;
+			spawnGuards();
+		}
+		else if(stage == 2 && this.getHealth() < this.getMaxHealth() * 0.25)
+		{
+			stage++;
+			spawnGuards();
+		}
+		return ret;
     }
 
-    /**
+    private void spawnGuards()
+	{
+    	if(worldObj.isRemote)
+    		return;
+    	
+    	int numSpawned = 0;
+    	
+    	{
+	    	int x = (int) this.posX + 1;
+	    	int y = (int) this.posY;
+	    	int z = (int) this.posZ;
+	    	
+	    	EntityMummy mummy1 = new EntityMummy(worldObj);
+	    	mummy1.setPosition(x, y, z);
+	    	if(mummy1.getCanSpawnHere())
+	    	{
+	    		worldObj.spawnEntityInWorld(mummy1);
+	    		numSpawned++;
+	    	}
+		}
+    	
+    	{
+	    	int x = (int) this.posX - 1;
+	    	int y = (int) this.posY;
+	    	int z = (int) this.posZ;
+	    	
+	    	EntityMummy mummy1 = new EntityMummy(worldObj);
+	    	mummy1.setPosition(x, y, z);
+	    	if(mummy1.getCanSpawnHere())
+	    	{
+	    		worldObj.spawnEntityInWorld(mummy1);
+	    		numSpawned++;
+	    	}
+	    	if(numSpawned >= 2)
+	    		return;
+    	}
+    	
+    	{
+	    	int x = (int) this.posX;
+	    	int y = (int) this.posY;
+	    	int z = (int) this.posZ + 1;
+	    	
+	    	EntityMummy mummy1 = new EntityMummy(worldObj);
+	    	mummy1.setPosition(x, y, z);
+	    	if(mummy1.getCanSpawnHere())
+	    	{
+	    		worldObj.spawnEntityInWorld(mummy1);
+	    		numSpawned++;
+	    	}
+	    	if(numSpawned >= 2)
+	    		return;
+    	}
+    	
+    	{
+	    	int x = (int) this.posX;
+	    	int y = (int) this.posY;
+	    	int z = (int) this.posZ - 1;
+	    	
+	    	EntityMummy mummy1 = new EntityMummy(worldObj);
+	    	mummy1.setPosition(x, y, z);
+	    	if(mummy1.getCanSpawnHere())
+	    	{
+	    		worldObj.spawnEntityInWorld(mummy1);
+	    		numSpawned++;
+	    	}
+	    	if(numSpawned >= 2)
+	    		return;
+    	}
+    	
+	}
+
+	/**
      * Returns the amount of damage a mob should deal.
      */
     public int getAttackStrength(Entity par1Entity)

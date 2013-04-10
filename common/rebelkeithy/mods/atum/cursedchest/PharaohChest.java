@@ -185,7 +185,7 @@ public class PharaohChest extends BlockContainer
         		TileEntityPharaohChest tepc = (TileEntityPharaohChest) te;
         		if(!tepc.hasSpawned())
         		{
-        			tepc.spawn();
+        			tepc.spawn(par5EntityPlayer);
         		}
         	}
         	

@@ -59,6 +59,7 @@ public class EntityBanditWarrior extends EntityMob {
     public void initCreature()
     {
     	this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemScimitar));
+        this.func_82162_bC();
     	
         for (int i = 0; i < this.equipmentDropChances.length; ++i)
         {
@@ -88,11 +89,16 @@ public class EntityBanditWarrior extends EntityMob {
      */
     protected void dropFewItems(boolean par1, int par2)
     {
-    	 switch (this.rand.nextInt(10))
-         {
-             case 0:
-                 this.dropItem(ConfigAtum.scimitarID, 1);
-                 break;
-         }
+    	 if(rand.nextInt(20) == 0)
+    	 {
+    		 int damage = (int) (Atum.itemScimitar.getMaxDamage() - rand.nextInt(Atum.itemScimitar.getMaxDamage()) * 0.5 + 20);
+             this.entityDropItem(new ItemStack(ConfigAtum.scimitarID, 1, damage), 0.0F);
+    	 }
+    	 
+    	 if(rand.nextInt(10) == 0)
+    	 {
+    		 int amount = rand.nextInt(2) + 1;
+    		 this.dropItem(Item.goldNugget.itemID, amount);
+    	 }
     }
 }

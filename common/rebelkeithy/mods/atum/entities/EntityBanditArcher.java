@@ -5,6 +5,7 @@ import java.util.Calendar;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.ConfigAtum;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -225,26 +226,29 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
         }
     }
     
-    
-    /**
-     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
-     * par2 - Level of Looting used to kill this mob.
-     */
-    protected void dropFewItems(boolean par1, int par2)
-    {
-    	if(this.rand.nextInt(4) <= 2){
-    	 switch (this.rand.nextInt(3))
-         {
-             case 0:
-                 this.dropItem(Item.arrow.itemID, 1);
-                 break;
-             case 1:
-                 this.dropItem(Item.arrow.itemID, 2);
-                 break;
-             case 2:
-            	 this.dropItem(Item.arrow.itemID, 3);
-            	 break;
-         }
-    	}
-    }
+	/**
+	 * Drop 0-2 items of this living's type. @param par1 - Whether this entity
+	 * has recently been hit by a player. @param par2 - Level of Looting used to
+	 * kill this mob.
+	 */
+	protected void dropFewItems(boolean par1, int par2)
+	{
+		if (rand.nextInt(20) == 0)
+		{
+			int damage = (int) (Atum.itemBow.getMaxDamage() - rand.nextInt(Atum.itemBow.getMaxDamage()) * 0.5 + 20);
+			this.entityDropItem(new ItemStack(ConfigAtum.bowID, 1, damage), 0.0F);
+		}
+
+		if (rand.nextInt(10) == 0)
+		{
+			int amount = rand.nextInt(2) + 1;
+			this.dropItem(Item.goldNugget.itemID, amount);
+		}
+
+		if (rand.nextInt(4) == 0)
+		{
+			int amount = rand.nextInt(3) + 1;
+			this.dropItem(Item.arrow.itemID, amount);
+		}
+	}
 }

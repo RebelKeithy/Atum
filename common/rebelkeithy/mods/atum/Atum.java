@@ -55,6 +55,7 @@ import rebelkeithy.mods.atum.cursedchest.TileEntityChestSpawner;
 import rebelkeithy.mods.atum.cursedchest.TileEntityPharaohChest;
 import rebelkeithy.mods.atum.entities.EntityBanditArcher;
 import rebelkeithy.mods.atum.entities.EntityBanditWarrior;
+import rebelkeithy.mods.atum.entities.EntityDesertWolf;
 import rebelkeithy.mods.atum.entities.EntityDustySkeleton;
 import rebelkeithy.mods.atum.entities.EntityGhost;
 import rebelkeithy.mods.atum.entities.EntityMummy;
@@ -274,6 +275,12 @@ public class Atum
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(EntityStoneSoldier.class, "AtumStoneSoldier", entityID);
 		EntityList.addMapping(EntityStoneSoldier.class, "AtumStoneSoldier", entityID, 0x918354, 0x695D37);
+
+		entityID = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerGlobalEntityID(EntityDesertWolf.class, "AtumDesertWolf", entityID);
+		EntityList.addMapping(EntityDesertWolf.class, "AtumDesertWolf", entityID, 0x918354, 0x695D37);
+		
+		
 		
 		LanguageRegistry.instance().addStringLocalization("entity.AtumMummy.name", "Mummy");
 		LanguageRegistry.instance().addStringLocalization("entity.AtumBanditWarrior.name", "Brigand");

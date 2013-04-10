@@ -3,7 +3,10 @@ package rebelkeithy.mods.atum.cursedchest;
 import java.util.Iterator;
 import java.util.List;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+
 import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.entities.EntityMummy;
 import rebelkeithy.mods.atum.entities.EntityPharaoh;
 
 import net.minecraft.block.Block;
@@ -419,7 +422,7 @@ public class TileEntityPharaohChest extends TileEntityChest implements IInventor
 		return hasSpawned;
 	}
 
-	public void spawn()
+	public void spawn(EntityPlayer player)
 	{
 		EntityPharaoh pharaoh = new EntityPharaoh(worldObj);
 		pharaoh.setPosition(this.xCoord+0.5, yCoord+1, zCoord+0.5);
@@ -427,5 +430,24 @@ public class TileEntityPharaohChest extends TileEntityChest implements IInventor
 		pharaoh.initCreature();
 		worldObj.spawnEntityInWorld(pharaoh);
 		hasSpawned = true;
+		
+		EntityMummy mummy1 = new EntityMummy(worldObj);
+		mummy1.setPosition(this.xCoord+0.5, yCoord, zCoord-0.5);
+		mummy1.initCreature();
+		worldObj.spawnEntityInWorld(mummy1);
+		
+		EntityMummy mummy2 = new EntityMummy(worldObj);
+		mummy2.setPosition(this.xCoord+0.5, yCoord, zCoord+1.5);
+		mummy2.initCreature();
+		worldObj.spawnEntityInWorld(mummy2);
+
+		if(!worldObj.isRemote)
+		{
+			List<EntityPlayer> players = FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().playerEntityList;
+			for(EntityPlayer p : players)
+			{
+				p.sendChatToPlayer(pharaoh.getEntityName() + " was summoned by " + player.getEntityName());
+			}
+		}
 	}
 }

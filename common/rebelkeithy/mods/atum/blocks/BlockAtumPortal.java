@@ -18,6 +18,7 @@ import net.minecraft.world.WorldServer;
 import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.AtumTeleporter;
 import rebelkeithy.mods.atum.TickHandler;
+import rebelkeithy.mods.particleregistry.ParticleRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -113,42 +114,8 @@ public class BlockAtumPortal extends BlockBreakable
      */
     public boolean tryToCreatePortal(World par1World, int par2, int par3, int par4)
     {
-        	/*
-            if (par1World.getBlockId(par2 - b0, par3, par4 - b1) == 0)
-            {
-                par2 -= b0;
-                par4 -= b1;
-            }
 
-            int l;
-            int i1;
-
-            for (l = -1; l <= 2; ++l)
-            {
-                for (i1 = -1; i1 <= 3; ++i1)
-                {
-                    boolean flag = l == -1 || l == 2 || i1 == -1 || i1 == 3;
-
-                    if (l != -1 && l != 2 || i1 != -1 && i1 != 3)
-                    {
-                        int j1 = par1World.getBlockId(par2 + b0 * l, par3 + i1, par4 + b1 * l);
-
-                        if (flag)
-                        {
-                            if (j1 != Block.sandStone.blockID)
-                            {
-                                return false;
-                            }
-                        }
-                        else if (j1 != 0 && j1 != Block.fire.blockID)
-                        {
-                            return false;
-                        }
-                    }
-                }
-            }*/
-
-        int id0 = par1World.getBlockId(par2, par3-1, par4);
+        	int id0 = par1World.getBlockId(par2, par3-1, par4);
             int id1 = par1World.getBlockId(par2 - 2, par3 + 0, par4);
             int id2 = par1World.getBlockId(par2 - 2, par3 + 1, par4);
             int id3 = par1World.getBlockId(par2, par3 + 0, par4 - 2);
@@ -161,6 +128,7 @@ public class BlockAtumPortal extends BlockBreakable
             int id10 = par1World.getBlockId(par2, par3 + 2, par4 - 1);
             int id11 = par1World.getBlockId(par2, par3 + 2, par4 + 1);
             int id12 = par1World.getBlockId(par2 + 1, par3 + 2, par4);
+            
             if(id1 == id2 && id2 == id3 && id3 == id4 && id4 == id5 && id6 == id7 && id7 == id8 && id8 == id9 && id9 == id10 && id10 == id11 && id11 == id12 && id12 == Block.sandStone.blockID)
             {
                 par1World.setBlock(par2, par3, par4, Atum.portal.blockID, 0, 2);
@@ -168,15 +136,6 @@ public class BlockAtumPortal extends BlockBreakable
                 par1World.setBlock(par2, par3 + 2, par4, Atum.portal.blockID, 0, 2);
                 return true;
             }
-            
-
-            /*for (l = 0; l < 2; ++l)
-            {
-                for (i1 = 0; i1 < 3; ++i1)
-                {
-                    par1World.setBlock(par2 + b0 * l, par3 + i1, par4 + b1 * l, Atum.portal.blockID, 0, 2);
-                }
-            }*/
 
             return false;
     }
@@ -296,7 +255,6 @@ public class BlockAtumPortal extends BlockBreakable
 	                if(dimID == Atum.dimensionID)
 	                {
 	                	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, 0, new AtumTeleporter(worldserver));
-	                	
 	                	if(par1World.isRemote)
 	                		Minecraft.getMinecraft().gameSettings.renderDistance = TickHandler.defaultFog;
 	                    //par5Entity.travelToDimension(0);
@@ -354,7 +312,7 @@ public class BlockAtumPortal extends BlockBreakable
             par1World.playSound((double)par2 + 0.5D, (double)par3 + 0.5D, (double)par4 + 0.5D, "portal.portal", 0.5F, par5Random.nextFloat() * 0.4F + 0.8F, false);
         }
 
-        for (int l = 0; l < 4; ++l)
+        for (int l = 0; l < 8; ++l)
         {
             double d0 = (double)((float)par2 + par5Random.nextFloat());
             double d1 = (double)((float)par3 + par5Random.nextFloat());
@@ -367,7 +325,7 @@ public class BlockAtumPortal extends BlockBreakable
             d4 = ((double)par5Random.nextFloat() - 0.5D) * 0.5D;
             d5 = ((double)par5Random.nextFloat() - 0.5D) * 0.5D;
 
-            if (par1World.getBlockId(par2 - 1, par3, par4) != this.blockID && par1World.getBlockId(par2 + 1, par3, par4) != this.blockID)
+            if (par5Random.nextDouble() > 0.5D)
             {
                 d0 = (double)par2 + 0.5D + 0.25D * (double)i1;
                 d3 = (double)(par5Random.nextFloat() * 2.0F * (float)i1);
@@ -378,7 +336,7 @@ public class BlockAtumPortal extends BlockBreakable
                 d5 = (double)(par5Random.nextFloat() * 2.0F * (float)i1);
             }
 
-            par1World.spawnParticle("portal", d0, d1, d2, d3, d4, d5);
+            ParticleRegistry.spawnParticle("sandportal", par1World, d0, d1, d2, d3, d4, d5);
         }
     }
 
