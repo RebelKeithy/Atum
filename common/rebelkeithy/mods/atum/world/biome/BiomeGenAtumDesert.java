@@ -2,17 +2,16 @@ package rebelkeithy.mods.atum.world.biome;
 
 import java.util.Random;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.profiler.Profiler;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
-import net.minecraft.world.gen.feature.WorldGenDesertWells;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.entities.EntityBanditArcher;
+import rebelkeithy.mods.atum.entities.EntityBanditWarlord;
 import rebelkeithy.mods.atum.entities.EntityBanditWarrior;
+import rebelkeithy.mods.atum.entities.EntityDesertWolf;
 import rebelkeithy.mods.atum.entities.EntityDustySkeleton;
 import rebelkeithy.mods.atum.entities.EntityGhost;
 import rebelkeithy.mods.atum.entities.EntityMummy;
@@ -52,10 +51,12 @@ public class BiomeGenAtumDesert extends BiomeGenBase
         this.spawnableCaveCreatureList.clear();
         
         this.spawnableMonsterList.add(new SpawnListEntry(EntityMummy.class, 8, 4, 4));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditWarlord.class, 2, 1, 1));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditWarrior.class, 8, 4, 4));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditArcher.class, 8, 4, 4));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityDustySkeleton.class, 8, 4, 4));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityGhost.class, 8, 4, 4));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityDesertWolf.class, 8, 4, 4));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityStoneSoldier.class, 8, 4, 4));
     }
 

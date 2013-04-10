@@ -1,5 +1,6 @@
 package rebelkeithy.mods.atum.entities;
 
+import rebelkeithy.mods.atum.Atum;
 import net.minecraft.block.BlockCloth;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -11,6 +12,7 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMate;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIOwnerHurtByTarget;
 import net.minecraft.entity.ai.EntityAIOwnerHurtTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -68,7 +70,8 @@ public class EntityDesertWolf extends EntityTameable
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(4, new EntityAITargetNonTamed(this, EntitySheep.class, 16.0F, 200, false));
+        //this.targetTasks.addTask(4, new EntityAITargetNonTamed(this, EntityMummy.class, 16.0F, 200, false));
+        this.targetTasks.addTask(5, new EntityAITargetNonTamed(this, EntityPlayer.class, 16.0F, 0, true));
     }
 
     /**
@@ -77,6 +80,16 @@ public class EntityDesertWolf extends EntityTameable
     public boolean isAIEnabled()
     {
         return true;
+    }
+
+    /**
+     * Finds the closest player within 16 blocks to attack, or null if this Entity isn't interested in attacking
+     * (Animals, Spiders at day, peaceful PigZombies).
+     */
+    protected Entity findPlayerToAttack()
+    {
+        EntityPlayer entityplayer = this.worldObj.getClosestVulnerablePlayerToEntity(this, 16.0D);
+        return entityplayer != null && this.canEntityBeSeen(entityplayer) ? entityplayer : null;
     }
 
     /**
@@ -112,6 +125,20 @@ public class EntityDesertWolf extends EntityTameable
         this.dataWatcher.addObject(19, new Byte((byte)0));
         this.dataWatcher.addObject(20, new Byte((byte)BlockCloth.getBlockFromDye(1)));
         this.setAngry(true);
+        this.experienceValue = 6;
+    }
+
+    /**
+     * Checks if the entity's current position is a valid location to spawn this entity.
+     */
+    public boolean getCanSpawnHere()
+    {
+    	return this.worldObj.checkIfAABBIsClear(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+    }
+    
+    public float getSpeedModifier()
+    {
+        return super.getSpeedModifier() * 1.5F;
     }
 
     /**
@@ -195,13 +222,17 @@ public class EntityDesertWolf extends EntityTameable
     {
         return 0.4F;
     }
-
+    
     /**
-     * Returns the item ID for the item the mob drops on death.
+     * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
+     * par2 - Level of Looting used to kill this mob.
      */
-    protected int getDropItemId()
+    protected void dropFewItems(boolean par1, int par2)
     {
-        return -1;
+         if(rand.nextInt(10) == 0)
+         {
+             this.dropItem(Item.bone.itemID, 1);
+         }
     }
 
     /**

@@ -2,6 +2,7 @@ package rebelkeithy.mods.atum.entities;
 
 import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.ConfigAtum;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
@@ -9,23 +10,23 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityBanditWarrior extends EntityMob {
+public class EntityBanditWarlord extends EntityMob {
 
-	public EntityBanditWarrior(World par1World) 
+	public EntityBanditWarlord(World par1World) 
 	{
 		super(par1World);
-        this.experienceValue = 8;
+        this.experienceValue = 16;
 	}
 
     public String getTexture()
     {
-    	return "/mods/Atum/textures/mobs/BanditWarrior.png";
+    	return "/mods/Atum/textures/mobs/BanditWarlord.png";
     }
 
 	@Override
 	public int getMaxHealth() 
 	{
-		return 30;
+		return 80;
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class EntityBanditWarrior extends EntityMob {
     
     public float getSpeedModifier()
     {
-    	return super.getSpeedModifier() * 1.25F;
+		return super.getSpeedModifier();
     }
 
     /**
@@ -56,11 +57,11 @@ public class EntityBanditWarrior extends EntityMob {
     public void initCreature()
     {
     	this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemScimitar));
-        this.func_82162_bC();
+        EnchantmentHelper.addRandomEnchantment(this.rand, this.getHeldItem(), 5 + this.worldObj.difficultySetting * this.rand.nextInt(6));
     	
         for (int i = 0; i < this.equipmentDropChances.length; ++i)
         {
-            this.equipmentDropChances[i] = 0F;
+            this.equipmentDropChances[i] = 0.05F;
         }
     }
     
@@ -77,7 +78,7 @@ public class EntityBanditWarrior extends EntityMob {
      */
     public int getAttackStrength(Entity par1Entity)
     {
-        return 3;
+        return 4;
     }
 
     /**
@@ -92,9 +93,9 @@ public class EntityBanditWarrior extends EntityMob {
              this.entityDropItem(new ItemStack(ConfigAtum.scimitarID, 1, damage), 0.0F);
     	 }
     	 
-    	 if(rand.nextInt(10) == 0)
+    	 if(rand.nextInt(4) == 0)
     	 {
-    		 int amount = rand.nextInt(2) + 1;
+    		 int amount = rand.nextInt(3) + 3;
     		 this.dropItem(Item.goldNugget.itemID, amount);
     	 }
     }

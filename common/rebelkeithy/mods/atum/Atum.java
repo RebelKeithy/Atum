@@ -54,6 +54,7 @@ import rebelkeithy.mods.atum.cursedchest.PharaohChest;
 import rebelkeithy.mods.atum.cursedchest.TileEntityChestSpawner;
 import rebelkeithy.mods.atum.cursedchest.TileEntityPharaohChest;
 import rebelkeithy.mods.atum.entities.EntityBanditArcher;
+import rebelkeithy.mods.atum.entities.EntityBanditWarlord;
 import rebelkeithy.mods.atum.entities.EntityBanditWarrior;
 import rebelkeithy.mods.atum.entities.EntityDesertWolf;
 import rebelkeithy.mods.atum.entities.EntityDustySkeleton;
@@ -279,6 +280,10 @@ public class Atum
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(EntityDesertWolf.class, "AtumDesertWolf", entityID);
 		EntityList.addMapping(EntityDesertWolf.class, "AtumDesertWolf", entityID, 0x918354, 0x695D37);
+
+		entityID = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerGlobalEntityID(EntityBanditWarlord.class, "AtumBanditWarlord", entityID);
+		EntityList.addMapping(EntityBanditWarlord.class, "AtumBanditWarlord", entityID, 0x918354, 0x695D37);
 		
 		
 		

@@ -50,6 +50,11 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     		chestSpawner.setMobID("AtumDesertGhost");
     	if(entityID == 5)
     		chestSpawner.setMobID("AtumStoneSoldier");
+    	if(entityID == 6)
+    		chestSpawner.setMobID("AtumDesertWolf");
+    	
+
+    	chestSpawner.minSpawnDelay = 0;
     }
     
     public void setSpawnerEntity(String name)

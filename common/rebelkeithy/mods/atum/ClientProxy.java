@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraftforge.client.MinecraftForgeClient;
 import rebelkeithy.mods.atum.blocks.BlockPapyrus;
 import rebelkeithy.mods.atum.entities.EntityBanditArcher;
+import rebelkeithy.mods.atum.entities.EntityBanditWarlord;
 import rebelkeithy.mods.atum.entities.EntityBanditWarrior;
 import rebelkeithy.mods.atum.entities.EntityDesertWolf;
 import rebelkeithy.mods.atum.entities.EntityDustySkeleton;
@@ -57,6 +58,7 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderLiving(new ModelZombie(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBanditWarrior.class, new RenderBiped(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBanditArcher.class, new RenderBandit(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBanditWarlord.class, new RenderBiped(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityPharaoh.class, new RenderPharaoh(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDustySkeleton.class, new RenderBiped(new ModelDustySkeleton(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhost.class, new RenderLiving(new ModelZombie(), 0.5F));
