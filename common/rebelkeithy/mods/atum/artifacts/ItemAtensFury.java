@@ -62,7 +62,7 @@ public class ItemAtensFury extends ItemBow
             }
 
             EntityArrow entityarrow = new EntityArrow(par2World, par3EntityPlayer, f * 2.0F);
-            entityarrow.setDamage(entityarrow.getDamage() * 2F);
+            entityarrow.setDamage(entityarrow.getDamage() * 1.5F);
 
             if (f == 1.0F)
             {
