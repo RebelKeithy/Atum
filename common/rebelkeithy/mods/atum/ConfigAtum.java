@@ -83,6 +83,7 @@ public class ConfigAtum
 	public static int desertChestID = 5034;
 	public static int desertLegsID = 5035;
 	public static int desertBootsID = 5036;
+	public static int peltID = 5037;
 	
 	public static void initConfig()
 	{
@@ -178,6 +179,7 @@ public class ConfigAtum
 		clothScrapID = config.getItem("Cloth Scrap", clothScrapID).getInt();
 		neithsAudacityID = config.getItem("Neiths Audacity", neithsAudacityID).getInt();
 		scrollID = config.getItem("Scroll", scrollID).getInt();
+		peltID = config.getItem("Wolf Pelt", peltID).getInt();
 		config.save();
 	}
 }

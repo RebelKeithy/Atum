@@ -233,6 +233,11 @@ public class EntityDesertWolf extends EntityTameable
          {
              this.dropItem(Item.bone.itemID, 1);
          }
+         if(rand.nextInt(4) == 0)
+         {
+        	 int amount = rand.nextInt(2) + 1;
+        	 this.dropItem(Atum.itemPelt.itemID, amount);
+         }
     }
 
     /**

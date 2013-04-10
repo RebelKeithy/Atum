@@ -27,48 +27,54 @@ public class BlockAtumSapling extends BlockFlower
 
             if (world.getBlockLightValue(x, y + 1, z) > 9 && rand.nextInt(20) == 0)
             {
-                int height = (new Random()).nextInt(3) + 4;
-                
-                //world.setBlock(x, y, z, Atum.atumLog.blockID, 0, 0x02);
-                for(int i = 0; i < height; ++i)
-                {
-                    world.setBlock(x, y + i, z, Atum.atumLog.blockID, 0, 0x02);
-                }
-                
-                world.setBlock(x, y + height, z, Atum.atumLeaves.blockID, 0, 0x02);
-                
-                for(int i = -1; i < 2; ++i)
-                {
-                    for(int j = -1; j < 2; ++j)
-                    {
-                        if(i == 0 && j == 0)
-                        {
-                            continue;
-                        }
-                        
-                        world.setBlock(x + i, y + height - 1, z + j, Atum.atumLeaves.blockID, 0, 0x02);
-                    }
-                }
-                
-                world.setBlock(x + 2, y + height - 1, z, Atum.atumLeaves.blockID, 0, 0x02);
-                world.setBlock(x + 2, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
-                world.setBlock(x + 3, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
-                
-                world.setBlock(x - 2, y + height - 1, z, Atum.atumLeaves.blockID, 0, 0x02);
-                world.setBlock(x - 2, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
-                world.setBlock(x - 3, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
-                
-                world.setBlock(x, y + height - 1, z + 2, Atum.atumLeaves.blockID, 0, 0x02);
-                world.setBlock(x, y + height - 2, z + 2, Atum.atumLeaves.blockID, 0, 0x02);
-                world.setBlock(x, y + height - 2, z + 3, Atum.atumLeaves.blockID, 0, 0x02);
-                
-                world.setBlock(x, y + height - 1, z - 2, Atum.atumLeaves.blockID, 0, 0x02);
-                world.setBlock(x, y + height - 2, z - 2, Atum.atumLeaves.blockID, 0, 0x02);
-                world.setBlock(x, y + height - 2, z - 3, Atum.atumLeaves.blockID, 0, 0x02);
-                
+                growTree(world, x, y, z, rand);
             }
         }
     }
+
+	public void growTree(World world, int x, int y, int z, Random rand)
+	{
+		// TODO Auto-generated method stub
+
+        int height = rand.nextInt(3) + 4;
+        
+        //world.setBlock(x, y, z, Atum.atumLog.blockID, 0, 0x02);
+        for(int i = 0; i < height; ++i)
+        {
+            world.setBlock(x, y + i, z, Atum.atumLog.blockID, 0, 0x02);
+        }
+        
+        world.setBlock(x, y + height, z, Atum.atumLeaves.blockID, 0, 0x02);
+        
+        for(int i = -1; i < 2; ++i)
+        {
+            for(int j = -1; j < 2; ++j)
+            {
+                if(i == 0 && j == 0)
+                {
+                    continue;
+                }
+                
+                world.setBlock(x + i, y + height - 1, z + j, Atum.atumLeaves.blockID, 0, 0x02);
+            }
+        }
+        
+        world.setBlock(x + 2, y + height - 1, z, Atum.atumLeaves.blockID, 0, 0x02);
+        world.setBlock(x + 2, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
+        world.setBlock(x + 3, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
+        
+        world.setBlock(x - 2, y + height - 1, z, Atum.atumLeaves.blockID, 0, 0x02);
+        world.setBlock(x - 2, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
+        world.setBlock(x - 3, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
+        
+        world.setBlock(x, y + height - 1, z + 2, Atum.atumLeaves.blockID, 0, 0x02);
+        world.setBlock(x, y + height - 2, z + 2, Atum.atumLeaves.blockID, 0, 0x02);
+        world.setBlock(x, y + height - 2, z + 3, Atum.atumLeaves.blockID, 0, 0x02);
+        
+        world.setBlock(x, y + height - 1, z - 2, Atum.atumLeaves.blockID, 0, 0x02);
+        world.setBlock(x, y + height - 2, z - 2, Atum.atumLeaves.blockID, 0, 0x02);
+        world.setBlock(x, y + height - 2, z - 3, Atum.atumLeaves.blockID, 0, 0x02);
+	}
 
     
     @Override

@@ -101,6 +101,27 @@ public class EntityStoneSoldier extends EntityMob
 		
 		return false;
     }
+
+    /**
+     * knocks back this entity
+     */
+    public void knockBack(Entity par1Entity, int par2, double par3, double par5)
+    {
+        this.isAirBorne = true;
+        float f = MathHelper.sqrt_double(par3 * par3 + par5 * par5);
+        float f1 = 0.2F;
+        this.motionX /= 2.0D;
+        this.motionY /= 2.0D;
+        this.motionZ /= 2.0D;
+        this.motionX -= par3 / (double)f * (double)f1;
+        //this.motionY += (double)f1;
+        this.motionZ -= par5 / (double)f * (double)f1;
+
+        if (this.motionY > 0.4000000059604645D)
+        {
+            this.motionY = 0.4000000059604645D;
+        }
+    }
     
     /**
      * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param

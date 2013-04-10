@@ -185,6 +185,7 @@ public class Atum
 	public static Item itemStoneChunk;
 	public static Item itemClothScrap;
 	public static Item itemScroll;
+	public static Item itemPelt;
 	
 	public static int dimensionID = 17;
 	
@@ -397,6 +398,7 @@ public class Atum
 		itemStoneChunk = new Item(ConfigAtum.stoneChunkID).setUnlocalizedName("Atum:StoneChunk").setCreativeTab(tabs);
 		itemClothScrap = new Item(ConfigAtum.clothScrapID).setUnlocalizedName("Atum:ClothScrap").setCreativeTab(tabs);
 		itemScroll = new Item(ConfigAtum.scrollID).setUnlocalizedName("Atum:Scroll").setCreativeTab(tabs);
+		itemPelt = new Item(ConfigAtum.peltID).setUnlocalizedName("Atum:WolfPelt").setCreativeTab(tabs);
 		
 		neithsAudacity = new ItemNeithsAudacity(ConfigAtum.neithsAudacityID).setUnlocalizedName("Atum:NeithsAudacity").setCreativeTab(tabs);
 	
@@ -490,12 +492,14 @@ public class Atum
 		
 		LanguageRegistry.addName(neithsAudacity, "Neith's Audacity");
 		LanguageRegistry.addName(itemScroll, "Scroll");
+		LanguageRegistry.addName(itemPelt, "Wolf Pelt");
 		LanguageRegistry.instance().addStringLocalization("itemGroup.Atum", "Atum");
 
 		proxy.registerModelRenderers();
 		proxy.registerTickHandlers();
 		proxy.preloadImages();
 		proxy.registerParticles();
+		MinecraftForge.EVENT_BUS.register(new BonemealEventListener());
 		MinecraftForge.EVENT_BUS.register(new FallDamageListener());
 		MinecraftForge.EVENT_BUS.register(new LootTossListener());
 		NetworkRegistry.instance().registerGuiHandler(this, new AtumGuiHandler());
