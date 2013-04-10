@@ -45,6 +45,7 @@ public class ConfigAtum
 	public static int crystalGlassID = 1058;
 	public static int framedGlassID = 1059;
 	public static int palmSaplingID = 1060;
+	public static int blockDateID = 1061;
 	
 	public static int portalSpawnerID = 5000;
 	public static int scimitarID = 5001;
@@ -83,6 +84,7 @@ public class ConfigAtum
 	public static int desertChestID = 5034;
 	public static int desertLegsID = 5035;
 	public static int desertBootsID = 5036;
+	public static int itemDateID = 5037;
 	
 	public static void initConfig()
 	{
@@ -137,6 +139,7 @@ public class ConfigAtum
 		crystalGlassID = config.getBlock("Crystal Glass", crystalGlassID).getInt(crystalGlassID);
 		framedGlassID = config.getBlock("Framed Glass", framedGlassID).getInt(framedGlassID);
 		palmSaplingID = config.getBlock("Palm Sapling", palmSaplingID).getInt(palmSaplingID);
+		blockDateID = config.getBlock("Date Block", blockDateID).getInt(blockDateID);
 
 		portalSpawnerID = config.getItem("Scarab", portalSpawnerID).getInt();
 		scimitarID = config.getItem("Scimitar", scimitarID).getInt();
@@ -178,6 +181,7 @@ public class ConfigAtum
 		clothScrapID = config.getItem("Cloth Scrap", clothScrapID).getInt();
 		neithsAudacityID = config.getItem("Neiths Audacity", neithsAudacityID).getInt();
 		scrollID = config.getItem("Scroll", scrollID).getInt();
+		itemDateID = config.getItem("Date", itemDateID).getInt(itemDateID);
 		config.save();
 	}
 }

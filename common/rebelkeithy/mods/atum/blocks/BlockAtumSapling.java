@@ -5,6 +5,7 @@ import java.util.Random;
 import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.world.decorators.WorldGenPalm;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -29,7 +30,6 @@ public class BlockAtumSapling extends BlockFlower
             {
                 int height = (new Random()).nextInt(3) + 4;
                 
-                //world.setBlock(x, y, z, Atum.atumLog.blockID, 0, 0x02);
                 for(int i = 0; i < height; ++i)
                 {
                     world.setBlock(x, y + i, z, Atum.atumLog.blockID, 0, 0x02);
@@ -53,28 +53,42 @@ public class BlockAtumSapling extends BlockFlower
                 world.setBlock(x + 2, y + height - 1, z, Atum.atumLeaves.blockID, 0, 0x02);
                 world.setBlock(x + 2, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
                 world.setBlock(x + 3, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
+                if(rand.nextInt(100) < 15)
+                {
+                    world.setBlock(x + 1, y + height - 2, z, Atum.atumDateBlock.blockID, 0, 0x02);
+                }
                 
                 world.setBlock(x - 2, y + height - 1, z, Atum.atumLeaves.blockID, 0, 0x02);
                 world.setBlock(x - 2, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
                 world.setBlock(x - 3, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
+                if(rand.nextInt(100) < 15)
+                {
+                    world.setBlock(x - 1, y + height - 2, z, Atum.atumDateBlock.blockID, 0, 0x02);
+                }
                 
                 world.setBlock(x, y + height - 1, z + 2, Atum.atumLeaves.blockID, 0, 0x02);
                 world.setBlock(x, y + height - 2, z + 2, Atum.atumLeaves.blockID, 0, 0x02);
                 world.setBlock(x, y + height - 2, z + 3, Atum.atumLeaves.blockID, 0, 0x02);
+                if(rand.nextInt(100) < 15)
+                {
+                    world.setBlock(x, y + height - 2, z + 1, Atum.atumDateBlock.blockID, 0, 0x02);
+                }
                 
                 world.setBlock(x, y + height - 1, z - 2, Atum.atumLeaves.blockID, 0, 0x02);
                 world.setBlock(x, y + height - 2, z - 2, Atum.atumLeaves.blockID, 0, 0x02);
                 world.setBlock(x, y + height - 2, z - 3, Atum.atumLeaves.blockID, 0, 0x02);
-                
+                if(rand.nextInt(100) < 15)
+                {
+                    world.setBlock(x, y + height - 2, z - 1, Atum.atumDateBlock.blockID, 0, 0x02);
+                }
             }
         }
     }
-
     
     @Override
     protected boolean canThisPlantGrowOnThisBlockID(int id)
     {
-        if(id == Atum.atumSand.blockID)
+        if(id == Atum.atumSand.blockID || id == Block.grass.blockID || id == Block.dirt.blockID)
         {
             return true;
         }
@@ -84,7 +98,7 @@ public class BlockAtumSapling extends BlockFlower
     @Override
     public boolean canBlockStay(World world, int x, int y, int z)
     {
-        if(world.getBlockId(x, y - 1, z) == Atum.atumSand.blockID)
+        if(world.getBlockId(x, y - 1, z) == Atum.atumSand.blockID || world.getBlockId(x, y - 1, z) == Block.grass.blockID || world.getBlockId(x, y - 1, z) == Block.dirt.blockID)
         {
             return true;
         }
