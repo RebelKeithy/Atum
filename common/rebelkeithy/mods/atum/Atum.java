@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -41,6 +42,7 @@ import rebelkeithy.mods.atum.blocks.BlockAtumSlab;
 import rebelkeithy.mods.atum.blocks.BlockAtumStairs;
 import rebelkeithy.mods.atum.blocks.BlockAtumStone;
 import rebelkeithy.mods.atum.blocks.BlockAtumWall;
+import rebelkeithy.mods.atum.blocks.BlockDate;
 import rebelkeithy.mods.atum.blocks.BlockPapyrus;
 import rebelkeithy.mods.atum.blocks.BlockSandLayered;
 import rebelkeithy.mods.atum.blocks.BlockShrub;
@@ -127,6 +129,7 @@ public class Atum
 	public static Block atumCrystalGlass;
 	public static Block atumFramedGlass;
 	public static Block atumPalmSapling;
+	public static Block atumDateBlock;
 	
 	public static Block atumShrub;
 	public static Block atumWeed;
@@ -186,6 +189,7 @@ public class Atum
 	public static Item itemClothScrap;
 	public static Item itemScroll;
 	public static Item itemPelt;
+	public static Item itemDate;
 	
 	public static int dimensionID = 17;
 	
@@ -225,10 +229,11 @@ public class Atum
 		atumCrystalGlass = (new BlockAtumGlass(ConfigAtum.crystalGlassID, "Atum:AtumCrystalGlass", Material.glass, false)).setUnlocalizedName("Atum:AtumCrystalGlass").setCreativeTab(tabs);
 		atumFramedGlass = (new BlockAtumGlass(ConfigAtum.framedGlassID, "Atum:AtumFramedGlass", Material.glass, false)).setUnlocalizedName("Atum:AtumFramedGlass").setCreativeTab(tabs);
 		atumPalmSapling = (new BlockAtumSapling(ConfigAtum.palmSaplingID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:AtumPalmSapling").setCreativeTab(tabs);
+		atumDateBlock = (new BlockDate(ConfigAtum.blockDateID, Material.plants)).setHardness(0.0F).setUnlocalizedName("Atum:AtumDate").setCreativeTab(tabs);
 		
 	    atumSandLayered = (new BlockSandLayered(ConfigAtum.sandLayeredID)).setHardness(0.1F).setStepSound(Block.soundSnowFootstep).setUnlocalizedName("SandLayered").setLightOpacity(0).setCreativeTab(tabs);
 	    
-		atumLog = new BlockAtumLog(ConfigAtum.logID).setUnlocalizedName("AtumLogs").setHardness(1F).setStepSound(Block.soundWoodFootstep).setCreativeTab(tabs);
+		atumLog = new BlockAtumLog(ConfigAtum.logID).setUnlocalizedName("AtumLogs").setHardness(2F).setStepSound(Block.soundWoodFootstep).setCreativeTab(tabs);
 		atumLeaves = new BlockAtumLeaves(ConfigAtum.leavesID).setUnlocalizedName("AtumLeaves").setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("AtumLeaves").setCreativeTab(tabs);
 	    atumPlanks = (new Block(ConfigAtum.plankID, Material.wood)).setUnlocalizedName("AtumPlanks").setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("Atum:Planks").setCreativeTab(tabs);
 		
@@ -345,6 +350,7 @@ public class Atum
 		GameRegistry.registerBlock(atumCrystalGlass, "AtumCrystalGlass");
 		GameRegistry.registerBlock(atumFramedGlass, "AtumFramedGlass");
 		GameRegistry.registerBlock(atumPalmSapling, "AtumPalmSapling");
+		GameRegistry.registerBlock(atumDateBlock, "AtumDateBlock");
 		
 		GameRegistry.registerTileEntity(TileEntityChestSpawner.class, "CursedChest");
 		GameRegistry.registerTileEntity(TileEntityPharaohChest.class, "PharaohChest");
@@ -358,6 +364,7 @@ public class Atum
 		itemScarab = new ItemPortalSpawner(ConfigAtum.portalSpawnerID).setUnlocalizedName("Atum:Scarab").setCreativeTab(tabs);
 		atumDesert = (new BiomeGenAtumDesert(ConfigAtum.biomeAtumDesertID)).setColor(16421912).setBiomeName("AtumDesert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.1F, 0.2F);
 		itemLoot = new ItemLoot(ConfigAtum.lootID).setCreativeTab(tabs);
+		itemDate = (new ItemFood(ConfigAtum.itemDateID, 5, 1.5F, false)).setUnlocalizedName("Atum:Date").setCreativeTab(tabs);
 		
 		//EnumToolMaterial scimitarEnum = EnumHelper.addToolMaterial("Scimitar", 2, 250, 6.0F, 2, 14);
 		itemScimitar = (new ItemScimitar(ConfigAtum.scimitarID, EnumToolMaterial.IRON)).setUnlocalizedName("Atum:Scimitar").setCreativeTab(tabs);
@@ -452,11 +459,12 @@ public class Atum
         LanguageRegistry.addName(atumCrystalGlass, "Crystal Glass");
         LanguageRegistry.addName(atumFramedGlass, "Framed Crystal Glass");
         LanguageRegistry.addName(atumPalmSapling, "Palm Sapling");
+        LanguageRegistry.addName(atumDateBlock, "Date Block");
 		
 		LanguageRegistry.addName(itemScarab, "Golden Scarab");
 		LanguageRegistry.addName(itemScimitar, "Scimitar");
 		LanguageRegistry.addName(itemBow, "Shortbow");
-		LanguageRegistry.addName(itemStoneSoldierSword, "Aged Stone Sword");
+		LanguageRegistry.addName(itemStoneSoldierSword, "Ancient Stone Sword");
 		LanguageRegistry.addName(itemEctoplasm, "Ectoplasm");
 		LanguageRegistry.addName(itemStoneChunk, "Limestone Chunk");
 		LanguageRegistry.addName(itemClothScrap, "Cloth Scrap");

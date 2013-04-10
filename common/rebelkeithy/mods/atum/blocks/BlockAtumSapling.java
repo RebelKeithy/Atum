@@ -5,6 +5,7 @@ import java.util.Random;
 import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.world.decorators.WorldGenPalm;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -75,12 +76,11 @@ public class BlockAtumSapling extends BlockFlower
         world.setBlock(x, y + height - 2, z - 2, Atum.atumLeaves.blockID, 0, 0x02);
         world.setBlock(x, y + height - 2, z - 3, Atum.atumLeaves.blockID, 0, 0x02);
 	}
-
     
     @Override
     protected boolean canThisPlantGrowOnThisBlockID(int id)
     {
-        if(id == Atum.atumSand.blockID)
+        if(id == Atum.atumSand.blockID || id == Block.grass.blockID || id == Block.dirt.blockID)
         {
             return true;
         }
@@ -90,7 +90,7 @@ public class BlockAtumSapling extends BlockFlower
     @Override
     public boolean canBlockStay(World world, int x, int y, int z)
     {
-        if(world.getBlockId(x, y - 1, z) == Atum.atumSand.blockID)
+        if(world.getBlockId(x, y - 1, z) == Atum.atumSand.blockID || world.getBlockId(x, y - 1, z) == Block.grass.blockID || world.getBlockId(x, y - 1, z) == Block.dirt.blockID)
         {
             return true;
         }
