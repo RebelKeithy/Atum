@@ -63,18 +63,34 @@ public class BlockAtumSapling extends BlockFlower
         world.setBlock(x + 2, y + height - 1, z, Atum.atumLeaves.blockID, 0, 0x02);
         world.setBlock(x + 2, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
         world.setBlock(x + 3, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
+		if (rand.nextInt(100) < 15)
+		{
+			world.setBlock(x + 1, y + height - 2, z, Atum.atumDateBlock.blockID, 0, 0x02);
+		}
         
         world.setBlock(x - 2, y + height - 1, z, Atum.atumLeaves.blockID, 0, 0x02);
         world.setBlock(x - 2, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
         world.setBlock(x - 3, y + height - 2, z, Atum.atumLeaves.blockID, 0, 0x02);
+		if (rand.nextInt(100) < 15)
+		{
+			world.setBlock(x + 1, y + height - 2, z, Atum.atumDateBlock.blockID, 0, 0x02);
+		}
         
         world.setBlock(x, y + height - 1, z + 2, Atum.atumLeaves.blockID, 0, 0x02);
         world.setBlock(x, y + height - 2, z + 2, Atum.atumLeaves.blockID, 0, 0x02);
         world.setBlock(x, y + height - 2, z + 3, Atum.atumLeaves.blockID, 0, 0x02);
+		if (rand.nextInt(100) < 15)
+		{
+			world.setBlock(x + 1, y + height - 2, z, Atum.atumDateBlock.blockID, 0, 0x02);
+		}
         
         world.setBlock(x, y + height - 1, z - 2, Atum.atumLeaves.blockID, 0, 0x02);
         world.setBlock(x, y + height - 2, z - 2, Atum.atumLeaves.blockID, 0, 0x02);
         world.setBlock(x, y + height - 2, z - 3, Atum.atumLeaves.blockID, 0, 0x02);
+		if (rand.nextInt(100) < 15)
+		{
+			world.setBlock(x + 1, y + height - 2, z, Atum.atumDateBlock.blockID, 0, 0x02);
+		}
 	}
     
     @Override
