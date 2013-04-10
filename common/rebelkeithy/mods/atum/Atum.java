@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
@@ -171,10 +172,16 @@ public class Atum
 	public static Item mummyLegs;
 	public static Item mummyBoots;
 	
+	public static Item desertHelmet;
+	public static Item desertChest;
+	public static Item desertLegs;
+	public static Item desertBoots;
+	
 	public static Item itemPapyrusPlant;
 	public static Item itemEctoplasm;
 	public static Item itemStoneChunk;
 	public static Item itemClothScrap;
+	public static Item itemScroll;
 	
 	public static int dimensionID = 17;
 	
@@ -203,22 +210,22 @@ public class Atum
 		atumCarvedBrick = new BlockAtumStone(ConfigAtum.carvedBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickCarved").setHardness(2.0F).setCreativeTab(tabs);
 		atumSlabs = (BlockAtumSlab) new BlockAtumSlab(ConfigAtum.slabID, false, Material.rock).setUnlocalizedName("Atum:AtumSlab").setHardness(2.0F).setCreativeTab(tabs);
 		atumDoubleSlab = (BlockAtumSlab) new BlockAtumSlab(ConfigAtum.doubleSlabID, true, Material.rock).setUnlocalizedName("Atum:AtumDoubleSlab").setHardness(2.0F);
-		atumSmoothStairs = (new BlockAtumStairs(ConfigAtum.smoothStairsID, atumStone, 0)).setUnlocalizedName("Atum:SmoothStair");
-		atumCobbleStairs = (new BlockAtumStairs(ConfigAtum.cobbleStairsID, atumCobble, 0)).setUnlocalizedName("Atum:CobbleStair");
-		atumLargeStoneStairs = (new BlockAtumStairs(ConfigAtum.largeStoneStairsID, atumLargeBrick, 0)).setUnlocalizedName("Atum:LargeStoneStair");
-		atumSmallStoneStairs = (new BlockAtumStairs(ConfigAtum.smallStoneStairsID, atumSmallBrick, 0)).setUnlocalizedName("Atum:SmallStoneStair");
+		atumSmoothStairs = (new BlockAtumStairs(ConfigAtum.smoothStairsID, atumStone, 0)).setUnlocalizedName("Atum:SmoothStair").setCreativeTab(tabs);
+		atumCobbleStairs = (new BlockAtumStairs(ConfigAtum.cobbleStairsID, atumCobble, 0)).setUnlocalizedName("Atum:CobbleStair").setCreativeTab(tabs);
+		atumLargeStoneStairs = (new BlockAtumStairs(ConfigAtum.largeStoneStairsID, atumLargeBrick, 0)).setUnlocalizedName("Atum:LargeStoneStair").setCreativeTab(tabs);
+		atumSmallStoneStairs = (new BlockAtumStairs(ConfigAtum.smallStoneStairsID, atumSmallBrick, 0)).setUnlocalizedName("Atum:SmallStoneStair").setCreativeTab(tabs);
 		atumShrub = (new BlockShrub(ConfigAtum.shrubID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Shrub");
 		atumWeed = (new BlockShrub(ConfigAtum.weedID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Weed");
 		atumPapyrus = (new BlockPapyrus(ConfigAtum.papyrusBlockID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:AtumPapyrus");
-		atumWall = (new BlockAtumWall(ConfigAtum.wallID, atumStone)).setUnlocalizedName("Atum:AtumStoneWall").setCreativeTab(CreativeTabs.tabBlock);
+		atumWall = (new BlockAtumWall(ConfigAtum.wallID, atumStone)).setUnlocalizedName("Atum:AtumStoneWall").setCreativeTab(tabs);
 		
 	    atumSandLayered = (new BlockSandLayered(ConfigAtum.sandLayeredID)).setHardness(0.1F).setStepSound(Block.soundSnowFootstep).setUnlocalizedName("SandLayered").setLightOpacity(0).setCreativeTab(tabs);
 	    
-		atumLog = new BlockAtumLog(ConfigAtum.logID).setUnlocalizedName("AtumLogs").setHardness(1F).setStepSound(Block.soundWoodFootstep);
+		atumLog = new BlockAtumLog(ConfigAtum.logID).setUnlocalizedName("AtumLogs").setHardness(1F).setStepSound(Block.soundWoodFootstep).setCreativeTab(tabs);
 		atumLeaves = new BlockAtumLeaves(ConfigAtum.leavesID).setUnlocalizedName("AtumLeaves").setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("AtumLeaves").setCreativeTab(tabs);
 	    atumPlanks = (new Block(ConfigAtum.plankID, Material.wood)).setUnlocalizedName("AtumPlanks").setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("Atum:Planks").setCreativeTab(tabs);
 		
-		atumTrapArrow = new BlockArrowTrap(ConfigAtum.trapArrowID).setUnlocalizedName("FireTrap").setHardness(0.2F);
+		atumTrapArrow = new BlockArrowTrap(ConfigAtum.trapArrowID).setUnlocalizedName("FireTrap").setHardness(0.2F).setCreativeTab(tabs);
 	    furnaceIdle = (new BlockLimeStoneFurnace(ConfigAtum.furnaceIdleID, false)).setHardness(3.5F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("limestonefurnaceidle").setCreativeTab(tabs);
 	    furnaceBurning = (new BlockLimeStoneFurnace(ConfigAtum.furnaceBurningID, true)).setHardness(3.5F).setStepSound(Block.soundStoneFootstep).setLightValue(0.875F).setUnlocalizedName("limestonefurnaceactive");
 		
@@ -334,13 +341,13 @@ public class Atum
 		GameRegistry.registerTileEntity(TileEntityArrowTrap.class, "ArrowTrap");
 		GameRegistry.registerTileEntity(TileEntityLimestoneFurnace.class, "LimestoneFurnace");
 		
-		Item.itemsList[ConfigAtum.slabID] = (new ItemSlab(atumSlabs.blockID - 256, atumSlabs, atumDoubleSlab, false)).setUnlocalizedName("woodSlab");
+		Item.itemsList[ConfigAtum.slabID] = (new ItemSlab(atumSlabs.blockID - 256, atumSlabs, atumDoubleSlab, false)).setUnlocalizedName("woodSlab").setCreativeTab(tabs);
         Item.itemsList[atumDoubleSlab.blockID] = (new ItemSlab(atumDoubleSlab.blockID - 256, atumSlabs, atumDoubleSlab, true)).setUnlocalizedName("woodSlab");
         
 		
 		itemScarab = new ItemPortalSpawner(ConfigAtum.portalSpawnerID).setUnlocalizedName("Atum:Scarab").setCreativeTab(tabs);
 		atumDesert = (new BiomeGenAtumDesert(ConfigAtum.biomeAtumDesertID)).setColor(16421912).setBiomeName("AtumDesert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.1F, 0.2F);
-		itemLoot = new ItemLoot(ConfigAtum.lootID).setCreativeTab(CreativeTabs.tabMisc);
+		itemLoot = new ItemLoot(ConfigAtum.lootID).setCreativeTab(tabs);
 		
 		//EnumToolMaterial scimitarEnum = EnumHelper.addToolMaterial("Scimitar", 2, 250, 6.0F, 2, 14);
 		itemScimitar = (new ItemScimitar(ConfigAtum.scimitarID, EnumToolMaterial.IRON)).setUnlocalizedName("Atum:Scimitar").setCreativeTab(tabs);
@@ -365,15 +372,22 @@ public class Atum
 		limestoneSword = new LimestoneSword(ConfigAtum.limestoneSwordID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneSword").setCreativeTab(tabs);
 		limestoneHoe = new LimestoneHoe(ConfigAtum.limestoneHoeID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneHoe").setCreativeTab(tabs);
 
-	    mummyHelmet = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyHelmetID, EnumArmorMaterial.GOLD, 0, 0)).setTextureFile("MummyArmor_1").setUnlocalizedName("Atum:MummyHelmet");
-	    mummyChest = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyChestID, EnumArmorMaterial.GOLD, 0, 1)).setTextureFile("MummyArmor_1").setUnlocalizedName("Atum:MummyChest");
-	    mummyLegs = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyLegsID, EnumArmorMaterial.GOLD, 0, 2)).setTextureFile("MummyArmor_2").setUnlocalizedName("Atum:MummyLegs");
-	    mummyBoots = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyBootsID, EnumArmorMaterial.GOLD, 0, 3)).setTextureFile("MummyArmor_2").setUnlocalizedName("Atum:MummyBoots");
+		//EnumArmorMaterial desertMaterial = EnumHelper.addArmorMaterial("Desert", 5, new int[]{1, 3, 2, 1}, 15);
+	    mummyHelmet = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyHelmetID, EnumArmorMaterial.GOLD, 0, 0)).setTextureFile("MummyArmor_1").setUnlocalizedName("Atum:MummyHelmet").setCreativeTab(tabs);
+	    mummyChest = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyChestID, EnumArmorMaterial.GOLD, 0, 1)).setTextureFile("MummyArmor_1").setUnlocalizedName("Atum:MummyChest").setCreativeTab(tabs);
+	    mummyLegs = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyLegsID, EnumArmorMaterial.GOLD, 0, 2)).setTextureFile("MummyArmor_2").setUnlocalizedName("Atum:MummyLegs").setCreativeTab(tabs);
+	    mummyBoots = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyBootsID, EnumArmorMaterial.GOLD, 0, 3)).setTextureFile("MummyArmor_2").setUnlocalizedName("Atum:MummyBoots").setCreativeTab(tabs);
+
+	    desertHelmet = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertHelmetID, EnumArmorMaterial.GOLD, 0, 0)).setTextureFile("DesertArmor").setUnlocalizedName("Atum:DesertHelmet").setCreativeTab(tabs);
+	    desertChest = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertChestID, EnumArmorMaterial.GOLD, 0, 1)).setTextureFile("DesertArmor").setUnlocalizedName("Atum:DesertChest").setCreativeTab(tabs);
+	    desertLegs = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertLegsID, EnumArmorMaterial.GOLD, 0, 2)).setTextureFile("DesertArmor").setUnlocalizedName("Atum:DesertLegs").setCreativeTab(tabs);
+	    desertBoots = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertBootsID, EnumArmorMaterial.GOLD, 0, 3)).setTextureFile("DesertArmor").setUnlocalizedName("Atum:DesertBoots").setCreativeTab(tabs);
 	    
 		itemPapyrusPlant = new ItemPapyrusPlant(ConfigAtum.itemPapyrusPlantID, atumPapyrus).setUnlocalizedName("Atum:PapyrusPlantItem").setCreativeTab(tabs);
 		itemEctoplasm = new Item(ConfigAtum.ectoplasmID).setUnlocalizedName("Atum:Ectoplasm").setCreativeTab(tabs);
 		itemStoneChunk = new Item(ConfigAtum.stoneChunkID).setUnlocalizedName("Atum:StoneChunk").setCreativeTab(tabs);
 		itemClothScrap = new Item(ConfigAtum.clothScrapID).setUnlocalizedName("Atum:ClothScrap").setCreativeTab(tabs);
+		itemScroll = new Item(ConfigAtum.scrollID).setUnlocalizedName("Atum:Scroll").setCreativeTab(tabs);
 		
 		neithsAudacity = new ItemNeithsAudacity(ConfigAtum.neithsAudacityID).setUnlocalizedName("Atum:NeithsAudacity").setCreativeTab(tabs);
 	
@@ -456,7 +470,14 @@ public class Atum
 		LanguageRegistry.addName(mummyChest, "Chest Wrap");
 		LanguageRegistry.addName(mummyLegs, "Leg Wrap");
 		LanguageRegistry.addName(mummyBoots, "Feet Wrap");
+		
+		LanguageRegistry.addName(desertHelmet, "Desert Head");
+		LanguageRegistry.addName(desertChest, "Desert Chest");
+		LanguageRegistry.addName(desertLegs, "Desert Legs");
+		LanguageRegistry.addName(desertBoots, "Desert Sandels");
+		
 		LanguageRegistry.addName(neithsAudacity, "Neith's Audacity");
+		LanguageRegistry.addName(itemScroll, "Scroll");
 		LanguageRegistry.instance().addStringLocalization("itemGroup.Atum", "Atum");
 
 		proxy.registerModelRenderers();
@@ -520,6 +541,8 @@ public class Atum
 		GameRegistry.addRecipe(new ItemStack(mummyChest), "X X", "XXX", "XXX", 'X', itemClothScrap);
 		GameRegistry.addRecipe(new ItemStack(mummyLegs), "XXX", "X X", "X X", 'X', itemClothScrap);
 		GameRegistry.addRecipe(new ItemStack(mummyBoots), "X X", "X X", 'X', itemClothScrap);
+		
+		GameRegistry.addRecipe(new ItemStack(itemScroll), "XXX", "SXS", "XXX", 'X', Atum.itemPapyrusPlant, 'S', Item.stick);
 		
 		GameRegistry.addRecipe(new ItemStack(itemScarab), " G ", "GDG", " G ", 'G', Item.ingotGold, 'D', Item.diamond);
 		

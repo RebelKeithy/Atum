@@ -75,6 +75,12 @@ public class ConfigAtum
 	public static int mummyBootsID = 5029;
 	public static int atensFuryID = 5030;
 	public static int neithsAudacityID = 5031;
+	public static int scrollID = 5032;
+	public static int desertHelmetID = 5033;
+	public static int desertChestID = 5034;
+	public static int desertLegsID = 5035;
+	public static int desertBootsID = 5036;
+	
 	public static void initConfig()
 	{
 
@@ -153,6 +159,11 @@ public class ConfigAtum
 		mummyChestID = config.getItem("Mummy Chest", mummyChestID).getInt();
 		mummyLegsID = config.getItem("Mummy Legs", mummyLegsID).getInt();
 		mummyBootsID = config.getItem("Mummy Boots", mummyBootsID).getInt();
+
+		desertHelmetID = config.getItem("Desert Helmet", desertHelmetID).getInt();
+		desertChestID = config.getItem("Desert Chest", desertChestID).getInt();
+		desertLegsID = config.getItem("Desert Legs", desertLegsID).getInt();
+		desertBootsID = config.getItem("Desert Boots", desertBootsID).getInt();
 		
 		lootID = config.getItem("Loot", lootID).getInt();
 		itemPapyrusPlantID = config.getItem("Papyrus Plant Item", itemPapyrusPlantID).getInt();
@@ -160,6 +171,7 @@ public class ConfigAtum
 		stoneChunkID = config.getItem("Limestone Chunk", stoneChunkID).getInt();
 		clothScrapID = config.getItem("Cloth Scrap", clothScrapID).getInt();
 		neithsAudacityID = config.getItem("Neiths Audacity", neithsAudacityID).getInt();
+		scrollID = config.getItem("Scroll", scrollID).getInt();
 		config.save();
 	}
 }
