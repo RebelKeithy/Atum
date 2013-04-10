@@ -28,6 +28,7 @@ public class BlockAtumLog extends Block
     {
         super(par1, Material.wood);
         this.setCreativeTab(CreativeTabs.tabBlock);
+        this.setBurnProperties(this.blockID, 5, 5);
     }
 
     /**

@@ -19,6 +19,7 @@ import rebelkeithy.mods.atum.entities.EntityMummy;
 import rebelkeithy.mods.atum.entities.EntityStoneSoldier;
 import rebelkeithy.mods.atum.world.decorators.WorldGenAtumTrees;
 import rebelkeithy.mods.atum.world.decorators.WorldGenOasis;
+import rebelkeithy.mods.atum.world.decorators.WorldGenPalace;
 import rebelkeithy.mods.atum.world.decorators.WorldGenPalm;
 import rebelkeithy.mods.atum.world.decorators.WorldGenPyramid;
 import rebelkeithy.mods.atum.world.decorators.WorldGenRuins;
@@ -131,5 +132,15 @@ public class BiomeGenAtumDesert extends BiomeGenBase
             worldgendesertwells.generate(par1World, par2Random, k, par1World.getHeightValue(k, l) + 1, l);
             //System.out.println("Gen Well: " + (System.nanoTime() - time));
         }*/
+        
+        if (par2Random.nextInt(160) == 0) {
+        	int k = par3 + par2Random.nextInt(16) + 8;
+        	int l = par4 + par2Random.nextInt(16) + 8;
+        	int height = par2Random.nextInt(10);
+        	if(height <= 20){
+        		height += 30;
+        	}
+        	(new WorldGenPalace()).generate(par1World, par2Random, k, height, l);
+        }
     }
 }
