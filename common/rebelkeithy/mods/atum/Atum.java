@@ -462,7 +462,7 @@ public class Atum
 		LanguageRegistry.addName(itemScarab, "Golden Scarab");
 		LanguageRegistry.addName(itemScimitar, "Scimitar");
 		LanguageRegistry.addName(itemBow, "Shortbow");
-		LanguageRegistry.addName(itemStoneSoldierSword, "Aged Stone Sword");
+		LanguageRegistry.addName(itemStoneSoldierSword, "Ancient Stone Sword");
 		LanguageRegistry.addName(itemEctoplasm, "Ectoplasm");
 		LanguageRegistry.addName(itemStoneChunk, "Limestone Chunk");
 		LanguageRegistry.addName(itemClothScrap, "Cloth Scrap");
