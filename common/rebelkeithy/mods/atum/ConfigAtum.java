@@ -74,7 +74,7 @@ public class ConfigAtum
 	public static int mummyLegsID = 5028;
 	public static int mummyBootsID = 5029;
 	public static int atensFuryID = 5030;
-	
+	public static int neithsAudacityID = 5031;
 	public static void initConfig()
 	{
 
@@ -159,7 +159,7 @@ public class ConfigAtum
 		ectoplasmID = config.getItem("Ectoplasm", ectoplasmID).getInt();
 		stoneChunkID = config.getItem("Limestone Chunk", stoneChunkID).getInt();
 		clothScrapID = config.getItem("Cloth Scrap", clothScrapID).getInt();
-		
+		neithsAudacityID = config.getItem("Neiths Audacity", neithsAudacityID).getInt();
 		config.save();
 	}
 }

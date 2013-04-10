@@ -23,6 +23,7 @@ import rebelkeithy.mods.atum.artifacts.HorusFlight;
 import rebelkeithy.mods.atum.artifacts.ItemAkersToil;
 import rebelkeithy.mods.atum.artifacts.ItemAtensFury;
 import rebelkeithy.mods.atum.artifacts.ItemGebsBlessing;
+import rebelkeithy.mods.atum.artifacts.ItemNeithsAudacity;
 import rebelkeithy.mods.atum.artifacts.ItemNutsAgility;
 import rebelkeithy.mods.atum.artifacts.ItemOsirisWill;
 import rebelkeithy.mods.atum.artifacts.ItemPtahsDecadence;
@@ -179,7 +180,8 @@ public class Atum
 
 	public static Block furnaceIdle;
 	public static Block furnaceBurning;
-
+	
+	public static Item neithsAudacity;
 
 	
 	@PreInit
@@ -361,6 +363,8 @@ public class Atum
 		itemStoneChunk = new Item(ConfigAtum.stoneChunkID).setUnlocalizedName("Atum:StoneChunk").setCreativeTab(tabs);
 		itemClothScrap = new Item(ConfigAtum.clothScrapID).setUnlocalizedName("Atum:ClothScrap").setCreativeTab(tabs);
 		
+		neithsAudacity = new ItemNeithsAudacity(ConfigAtum.neithsAudacityID).setUnlocalizedName("Atum:NeithsAudacity").setCreativeTab(tabs);
+	
 		MinecraftForge.setToolClass(akersToil, "shovel", 4);
 		MinecraftForge.setToolClass(limestoneShovel, "shovel", 1);
 		MinecraftForge.setToolClass(limestoneAxe, "axe", 1);
@@ -440,7 +444,7 @@ public class Atum
 		LanguageRegistry.addName(mummyChest, "Chest Wrap");
 		LanguageRegistry.addName(mummyLegs, "Leg Wrap");
 		LanguageRegistry.addName(mummyBoots, "Feet Wrap");
-		
+		LanguageRegistry.addName(neithsAudacity, "Neith's Audacity");
 		LanguageRegistry.instance().addStringLocalization("itemGroup.Atum", "Atum");
 
 		proxy.registerModelRenderers();
