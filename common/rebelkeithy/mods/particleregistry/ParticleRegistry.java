@@ -33,7 +33,7 @@ public class ParticleRegistry
 				if(entityConstructor != null)
 				{
 					EntityFX entity = (EntityFX) entityConstructor.newInstance(par1World, x, y, z, r, g, b);
-					entity.setRBGColorF((float)r, (float)g, (float)b);
+					//entity.setRBGColorF((float)r, (float)g, (float)b);
 					Minecraft.getMinecraft().effectRenderer.addEffect(entity);
 				}
 			} catch (Exception e) {
