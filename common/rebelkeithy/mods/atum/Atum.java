@@ -503,12 +503,13 @@ public class Atum
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 3), "XXX", 'X', atumSmallBrick);
 		GameRegistry.addRecipe(new ItemStack(atumCrackedLargeBrick, 4), "XX", "XX", 'X', itemStoneChunk);
 		GameRegistry.addRecipe(new ItemStack(Item.expBottle), " X ", "XBX", " X ", 'X', itemEctoplasm, 'B', Item.potion);
-		
-		GameRegistry.addRecipe(new ItemStack(limestoneShovel), " L ", " S ", " S ", 'L', atumStone, 'S', Item.stick);
+
+		GameRegistry.addRecipe(new ItemStack(limestoneSword), "L", "L", "S", 'L', atumStone, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(limestoneShovel), "L", "S", "S", 'L', atumStone, 'S', Item.stick);
 		GameRegistry.addRecipe(new ItemStack(limestonePickaxe), "LLL", " S ", " S ", 'L', atumStone, 'S', Item.stick);
-		GameRegistry.addRecipe(new ItemStack(limestoneAxe), "LL ", "LS ", " S ", 'L', atumStone, 'S', Item.stick);
-		GameRegistry.addRecipe(new ItemStack(limestoneSword), " L ", " S ", " S ", 'L', atumStone, 'S', Item.stick);
-		GameRegistry.addRecipe(new ItemStack(limestoneHoe), "LLL", " S ", " S ", 'L', atumStone, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(limestoneAxe), "LL", "LS", " S", 'L', atumStone, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(limestoneSword), "L", "S", "S", 'L', atumStone, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(limestoneHoe), "LL", " S", " S", 'L', atumStone, 'S', Item.stick);
 		
 		GameRegistry.addRecipe(new ItemStack(mummyHelmet), "XXX", "X X", 'X', itemClothScrap);
 		GameRegistry.addRecipe(new ItemStack(mummyChest), "X X", "XXX", "XXX", 'X', itemClothScrap);
@@ -522,6 +523,8 @@ public class Atum
 		OreDictionary.registerOre("logWood", atumLog);
 		
 		GameRegistry.addRecipe(new ItemStack(this.furnaceIdle), "XXX", "X X", "XXX", 'X', atumCobble);
+		
+		FurnaceRecipes.smelting().smelting().addSmelting(this.atumLog.blockID, new ItemStack(Item.coal, 1, 1), 0.15F);
 		
 		FurnaceRecipes.smelting().addSmelting(this.atumIronOre.blockID, 0, new ItemStack(Item.ingotIron), 0.7F);
 		FurnaceRecipes.smelting().addSmelting(this.atumCoalOre.blockID, new ItemStack(Item.coal), 0.1F);

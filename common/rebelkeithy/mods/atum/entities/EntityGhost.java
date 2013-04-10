@@ -7,9 +7,12 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 
 public class EntityGhost extends EntityMob
 {
@@ -52,6 +55,26 @@ public class EntityGhost extends EntityMob
     protected boolean isValidLightLevel()
     {
         return true;
+    }
+    
+    protected void jump()
+    {
+        this.motionY = 0.56999998688697815D;
+
+        if (this.isPotionActive(Potion.jump))
+        {
+            this.motionY += (double)((float)(this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F);
+        }
+
+        if (this.isSprinting())
+        {
+            float f = this.rotationYaw * 0.017453292F;
+            this.motionX -= (double)(MathHelper.sin(f) * 0.2F);
+            this.motionZ += (double)(MathHelper.cos(f) * 0.2F);
+        }
+
+        this.isAirBorne = true;
+        ForgeHooks.onLivingJump(this);
     }
 
     /**
