@@ -60,6 +60,7 @@ public class ClientProxy extends CommonProxy
 		
 		MinecraftForgeClient.registerItemRenderer(Atum.itemBow.itemID, new RendererItemBow());
 		MinecraftForgeClient.registerItemRenderer(Atum.atensFury.itemID, new RendererItemBow());
+		MinecraftForgeClient.registerItemRenderer(Atum.neithsAudacity.itemID, new RendererItemBow());
 		RenderingRegistry.registerBlockHandler(((BlockPapyrus)Atum.atumPapyrus).renderID, new PapyrusBlockRenderer());
 	}
 }
