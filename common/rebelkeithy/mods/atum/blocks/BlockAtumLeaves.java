@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import rebelkeithy.mods.atum.Atum;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
@@ -258,7 +260,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
      */
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return 0;//Block.sapling.blockID;
+        return Atum.atumPalmSapling.blockID;//Block.sapling.blockID;
     }
 
     /**

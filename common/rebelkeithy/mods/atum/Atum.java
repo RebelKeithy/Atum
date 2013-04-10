@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
@@ -14,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
@@ -33,8 +31,10 @@ import rebelkeithy.mods.atum.artifacts.ItemSekhmetsWrath;
 import rebelkeithy.mods.atum.artifacts.ItemSoteksRage;
 import rebelkeithy.mods.atum.blocks.AtumStone;
 import rebelkeithy.mods.atum.blocks.BlockArrowTrap;
+import rebelkeithy.mods.atum.blocks.BlockAtumGlass;
 import rebelkeithy.mods.atum.blocks.BlockAtumLeaves;
 import rebelkeithy.mods.atum.blocks.BlockAtumLog;
+import rebelkeithy.mods.atum.blocks.BlockAtumSapling;
 import rebelkeithy.mods.atum.blocks.BlockAtumPortal;
 import rebelkeithy.mods.atum.blocks.BlockAtumSand;
 import rebelkeithy.mods.atum.blocks.BlockAtumSlab;
@@ -124,6 +124,9 @@ public class Atum
 	public static Block atumSandLayered;
 	public static Block atumCrackedLargeBrick;
 	public static Block atumWall;
+	public static Block atumCrystalGlass;
+	public static Block atumFramedGlass;
+	public static Block atumPalmSapling;
 	
 	public static Block atumShrub;
 	public static Block atumWeed;
@@ -218,6 +221,9 @@ public class Atum
 		atumWeed = (new BlockShrub(ConfigAtum.weedID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Weed");
 		atumPapyrus = (new BlockPapyrus(ConfigAtum.papyrusBlockID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:AtumPapyrus");
 		atumWall = (new BlockAtumWall(ConfigAtum.wallID, atumStone)).setUnlocalizedName("Atum:AtumStoneWall").setCreativeTab(tabs);
+		atumCrystalGlass = (new BlockAtumGlass(ConfigAtum.crystalGlassID, "Atum:AtumCrystalGlass", Material.glass, false)).setUnlocalizedName("Atum:AtumCrystalGlass").setCreativeTab(tabs);
+		atumFramedGlass = (new BlockAtumGlass(ConfigAtum.framedGlassID, "Atum:AtumFramedGlass", Material.glass, false)).setUnlocalizedName("Atum:AtumFramedGlass").setCreativeTab(tabs);
+		atumPalmSapling = (new BlockAtumSapling(ConfigAtum.palmSaplingID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:AtumPalmSapling").setCreativeTab(tabs);
 		
 	    atumSandLayered = (new BlockSandLayered(ConfigAtum.sandLayeredID)).setHardness(0.1F).setStepSound(Block.soundSnowFootstep).setUnlocalizedName("SandLayered").setLightOpacity(0).setCreativeTab(tabs);
 	    
@@ -335,6 +341,9 @@ public class Atum
 		GameRegistry.registerBlock(atumDiamondOre, "atumDiamondOre");
 		GameRegistry.registerBlock(atumPapyrus, "atumPapyrusBlock");
 		GameRegistry.registerBlock(atumWall, ItemBlockAtumWall.class, "AtumWalls");
+		GameRegistry.registerBlock(atumCrystalGlass, "AtumCrystalGlass");
+		GameRegistry.registerBlock(atumFramedGlass, "AtumFramedGlass");
+		GameRegistry.registerBlock(atumPalmSapling, "AtumPalmSapling");
 		
 		GameRegistry.registerTileEntity(TileEntityChestSpawner.class, "CursedChest");
 		GameRegistry.registerTileEntity(TileEntityPharaohChest.class, "PharaohChest");
@@ -438,6 +447,9 @@ public class Atum
         LanguageRegistry.addName(new ItemStack(atumWall, 6, 1), "Cracked Limestone Wall");
         LanguageRegistry.addName(new ItemStack(atumWall, 6, 2), "Large Limestone Brick Wall");
         LanguageRegistry.addName(new ItemStack(atumWall, 6, 3), "Small Limestone Brick Wall");
+        LanguageRegistry.addName(atumCrystalGlass, "Crystal Glass");
+        LanguageRegistry.addName(atumFramedGlass, "Framed Crystal Glass");
+        LanguageRegistry.addName(atumPalmSapling, "Palm Sapling");
 		
 		LanguageRegistry.addName(itemScarab, "Golden Scarab");
 		LanguageRegistry.addName(itemScimitar, "Scimitar");
@@ -508,7 +520,7 @@ public class Atum
 	public void addRecipes()
 	{
 		FurnaceRecipes.smelting().addSmelting(atumCobble.blockID, new ItemStack(atumStone), 0.1F);
-		FurnaceRecipes.smelting().addSmelting(atumSand.blockID, new ItemStack(Block.glass), 0.1F);
+		FurnaceRecipes.smelting().addSmelting(atumSand.blockID, new ItemStack(atumCrystalGlass), 0.1F);
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumLargeBrick, 4), "XX", "XX", 'X', atumStone));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumSmallBrick, 4), "XX", "XX", 'X', atumCobble));
@@ -525,6 +537,7 @@ public class Atum
         GameRegistry.addRecipe(new ItemStack(atumWall, 6, 1), "XXX", "XXX", 'X', atumCobble);
         GameRegistry.addRecipe(new ItemStack(atumWall, 6, 2), "XXX", "XXX", 'X', atumLargeBrick);
         GameRegistry.addRecipe(new ItemStack(atumWall, 6, 3), "XXX", "XXX", 'X', atumSmallBrick);
+        GameRegistry.addRecipe(new ItemStack(atumFramedGlass), " X ", "XSX", " X ", 'X', Item.stick, 'S', atumCrystalGlass);
 		
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 3), "XXX", 'X', atumSmallBrick);
 		GameRegistry.addRecipe(new ItemStack(atumCrackedLargeBrick, 4), "XX", "XX", 'X', itemStoneChunk);
