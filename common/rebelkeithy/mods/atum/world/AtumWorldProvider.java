@@ -79,13 +79,13 @@ public class AtumWorldProvider extends WorldProvider
         }
 
         float f2 = f1;
-        //f1 = 1.0F - (float)((Math.cos((double)f1 * Math.PI) + 1.0D) / 2.0D);
-        //f1 = f2 + (f1 - f2) / 3.0F;
-        //return super.calculateCelestialAngle(par1, par3);
-        return (float) Math.sin(f2);
+        f1 = 1.0F - (float)((Math.cos((double)f1 * Math.PI) + 1.0D) / 2.0D);
+        f1 = f2 + (f1 - f2) / 3.0F;
+        return super.calculateCelestialAngle(par1, par3);
+        //return (float) Math.sin(f2);
         //return 1F;
     }
-
+    
     @SideOnly(Side.CLIENT)
 
     /**
@@ -106,6 +106,8 @@ public class AtumWorldProvider extends WorldProvider
             f2 = 1.0F;
         }
 
+        System.out.println(par1 + " " + f2);
+        
         float f3 = 0.7529412F;
         float f4 = 0.84705883F;
         float f5 = 1.0F;
@@ -121,7 +123,7 @@ public class AtumWorldProvider extends WorldProvider
     @Override
     public boolean doesXZShowFog(int par1, int par2)
     {
-    	return true;
+    	return false;
     }
     
     @Override
