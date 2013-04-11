@@ -105,8 +105,6 @@ public class AtumWorldProvider extends WorldProvider
         {
             f2 = 1.0F;
         }
-
-        System.out.println(par1 + " " + f2);
         
         float f3 = 0.7529412F;
         float f4 = 0.84705883F;

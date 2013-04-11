@@ -449,7 +449,6 @@ public class Atum
 		proxy.registerParticles();
 		MinecraftForge.EVENT_BUS.register(new BonemealEventListener());
 		MinecraftForge.EVENT_BUS.register(new FallDamageListener());
-		MinecraftForge.EVENT_BUS.register(new LootTossListener());
 		NetworkRegistry.instance().registerGuiHandler(this, new AtumGuiHandler());
 	}
 	
@@ -582,6 +581,9 @@ public class Atum
         
         // Atum (Strange) sand to normal vanilla sand
         GameRegistry.addShapelessRecipe(new ItemStack(Block.sand), atumSand);
+        
+        // Linen cloth to string
+        GameRegistry.addShapelessRecipe(new ItemStack(Item.silk, 3), itemFlax);
 	}
 	
 	public void addNames()

@@ -3,7 +3,9 @@ package rebelkeithy.mods.atum.entities;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
@@ -13,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.AtumLoot;
@@ -140,6 +143,28 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
     {
 		return super.getSpeedModifier();
     }
+    
+    /**
+     * knocks back this entity
+     */
+    @Override
+    public void knockBack(Entity par1Entity, int par2, double par3, double par5)
+    {
+        this.isAirBorne = true;
+        float f = MathHelper.sqrt_double(par3 * par3 + par5 * par5);
+        float f1 = 0.3F;
+        this.motionX /= 2.0D;
+        this.motionY /= 2.0D;
+        this.motionZ /= 2.0D;
+        this.motionX -= par3 / (double)f * (double)f1;
+        //this.motionY += (double)f1;
+        this.motionZ -= par5 / (double)f * (double)f1;
+
+        if (this.motionY > 0.4000000059604645D)
+        {
+            this.motionY = 0.4000000059604645D;
+        }
+    }
 
     @Override
     public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
@@ -148,24 +173,46 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
         {
         	par2 = 0;
         }
-		boolean ret = super.attackEntityFrom(par1DamageSource, par2);
+        
+		if(super.attackEntityFrom(par1DamageSource, par2))
+		{
+			if(par1DamageSource.getEntity() != null)
+			{
+				Entity par1Entity = par1DamageSource.getEntity();
+				int j = 0;
+		        if (par1Entity instanceof EntityLiving)
+		        {
+		            j += EnchantmentHelper.getKnockbackModifier((EntityLiving)par1Entity, this);
+	                
+		            if (j > 0)
+		            {
+		                this.motionX /= 0.6D;
+		                this.motionZ /= 0.6D;
+		                this.addVelocity((double)(MathHelper.sin(par1Entity.rotationYaw * (float)Math.PI / 180.0F) * (float)j * 0.5F), -0.1D, (double)(-MathHelper.cos(par1Entity.rotationYaw * (float)Math.PI / 180.0F) * (float)j * 0.5F));
+		            }
+		        }
+	
+			}
+			
+			if(this.getHealth() < this.getMaxHealth() * 0.75 && stage == 0)
+			{
+				stage++;
+				spawnGuards();
+			} 
+			else if(stage == 1 && this.getHealth() < this.getMaxHealth() * 0.5)
+			{
+				stage++;
+				spawnGuards();
+			}
+			else if(stage == 2 && this.getHealth() < this.getMaxHealth() * 0.25)
+			{
+				stage++;
+				spawnGuards();
+			}
+	        return true;
+		}
 		
-		if(this.getHealth() < this.getMaxHealth() * 0.75 && stage == 0)
-		{
-			stage++;
-			spawnGuards();
-		} 
-		else if(stage == 1 && this.getHealth() < this.getMaxHealth() * 0.5)
-		{
-			stage++;
-			spawnGuards();
-		}
-		else if(stage == 2 && this.getHealth() < this.getMaxHealth() * 0.25)
-		{
-			stage++;
-			spawnGuards();
-		}
-		return ret;
+		return false;
     }
 
     private void spawnGuards()
@@ -174,70 +221,77 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
     		return;
     	
     	int numSpawned = 0;
-    	
+
+    	if(trySpawnMummy((int)posX+1, (int)posY, (int)posZ))
     	{
-	    	int x = (int) this.posX + 1;
-	    	int y = (int) this.posY;
-	    	int z = (int) this.posZ;
-	    	
-	    	EntityMummy mummy1 = new EntityMummy(worldObj);
-	    	mummy1.setPosition(x, y, z);
-	    	if(mummy1.getCanSpawnHere())
-	    	{
-	    		worldObj.spawnEntityInWorld(mummy1);
-	    		numSpawned++;
-	    	}
-		}
-    	
-    	{
-	    	int x = (int) this.posX - 1;
-	    	int y = (int) this.posY;
-	    	int z = (int) this.posZ;
-	    	
-	    	EntityMummy mummy1 = new EntityMummy(worldObj);
-	    	mummy1.setPosition(x, y, z);
-	    	if(mummy1.getCanSpawnHere())
-	    	{
-	    		worldObj.spawnEntityInWorld(mummy1);
-	    		numSpawned++;
-	    	}
-	    	if(numSpawned >= 2)
-	    		return;
+    		numSpawned++;
     	}
+    	if(numSpawned >= 2)
+    		return;
     	
+    	if(trySpawnMummy((int)posX-1, (int)posY, (int)posZ-1))
     	{
-	    	int x = (int) this.posX;
-	    	int y = (int) this.posY;
-	    	int z = (int) this.posZ + 1;
-	    	
-	    	EntityMummy mummy1 = new EntityMummy(worldObj);
-	    	mummy1.setPosition(x, y, z);
-	    	if(mummy1.getCanSpawnHere())
-	    	{
-	    		worldObj.spawnEntityInWorld(mummy1);
-	    		numSpawned++;
-	    	}
-	    	if(numSpawned >= 2)
-	    		return;
+    		numSpawned++;
     	}
+    	if(numSpawned >= 2)
+    		return;
     	
+    	if(trySpawnMummy((int)posX, (int)posY, (int)posZ+1))
     	{
-	    	int x = (int) this.posX;
-	    	int y = (int) this.posY;
-	    	int z = (int) this.posZ - 1;
-	    	
-	    	EntityMummy mummy1 = new EntityMummy(worldObj);
-	    	mummy1.setPosition(x, y, z);
-	    	if(mummy1.getCanSpawnHere())
-	    	{
-	    		worldObj.spawnEntityInWorld(mummy1);
-	    		numSpawned++;
-	    	}
-	    	if(numSpawned >= 2)
-	    		return;
+    		numSpawned++;
     	}
+    	if(numSpawned >= 2)
+    		return;
+    	
+    	if(trySpawnMummy((int)posX, (int)posY, (int)posZ-1))
+    	{
+    		numSpawned++;
+    	}
+    	if(numSpawned >= 2)
+    		return;
+    	
+    	if(trySpawnMummy((int)posX+1, (int)posY, (int)posZ+1))
+    	{
+    		numSpawned++;
+    	}
+    	if(numSpawned >= 2)
+    		return;
+    	
+    	if(trySpawnMummy((int)posX-1, (int)posY, (int)posZ-1))
+    	{
+    		numSpawned++;
+    	}
+    	if(numSpawned >= 2)
+    		return;
+    	
+    	if(trySpawnMummy((int)posX-1, (int)posY, (int)posZ+1))
+    	{
+    		numSpawned++;
+    	}
+    	if(numSpawned >= 2)
+    		return;
+    	
+    	if(trySpawnMummy((int)posX+1, (int)posY, (int)posZ-1))
+    	{
+    		numSpawned++;
+    	}
+    	if(numSpawned >= 2)
+    		return;
     	
 	}
+    
+    public boolean trySpawnMummy(int x, int y, int z)
+    {
+    	EntityMummy mummy1 = new EntityMummy(worldObj);
+    	mummy1.setPosition(x, y, z);
+    	if(mummy1.getCanSpawnHere())
+    	{
+    		worldObj.spawnEntityInWorld(mummy1);
+    		return true;
+    	}
+    	
+    	return false;
+    }
 
 	/**
      * Returns the amount of damage a mob should deal.

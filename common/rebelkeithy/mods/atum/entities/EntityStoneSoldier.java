@@ -95,7 +95,6 @@ public class EntityStoneSoldier extends EntityMob
 	                
 		            if (j > 0)
 		            {
-		            	System.out.println("inverse knockback");
 		                this.motionX /= 0.6D;
 		                this.motionZ /= 0.6D;
 		                this.addVelocity((double)(MathHelper.sin(par1Entity.rotationYaw * (float)Math.PI / 180.0F) * (float)j * 0.5F), -0.1D, (double)(-MathHelper.cos(par1Entity.rotationYaw * (float)Math.PI / 180.0F) * (float)j * 0.5F));
