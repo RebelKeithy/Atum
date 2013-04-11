@@ -66,7 +66,7 @@ public class AtumWorldProvider extends WorldProvider
     public float calculateCelestialAngle(long par1, float par3)
     {
         int j = (int)(par1 % 48000L);
-        float f1 = ((float)j + par3) / 36000.0F - 0.25F;
+        float f1 = ((float)j + par3) / 48000.0F - 0.25F;
 
         if (f1 < 0.0F)
         {
@@ -81,7 +81,7 @@ public class AtumWorldProvider extends WorldProvider
         float f2 = f1;
         f1 = 1.0F - (float)((Math.cos((double)f1 * Math.PI) + 1.0D) / 2.0D);
         f1 = f2 + (f1 - f2) / 3.0F;
-        return super.calculateCelestialAngle(par1, par3);
+        return f1;
         //return (float) Math.sin(f2);
         //return 1F;
     }
