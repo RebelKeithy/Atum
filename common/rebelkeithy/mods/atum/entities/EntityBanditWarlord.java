@@ -104,19 +104,19 @@ public class EntityBanditWarlord extends EntityMob {
     		 int choice = rand.nextInt(4);
         	 if(choice == 0)
         	 {
-        		 this.dropItem(Atum.desertHelmet.itemID, 1);
+        		 this.dropItem(Atum.wandererHelmet.itemID, 1);
         	 }
         	 else if(choice == 1)
         	 {
-        		 this.dropItem(Atum.desertChest.itemID, 1);
+        		 this.dropItem(Atum.wandererChest.itemID, 1);
         	 }
         	 else if(choice == 2)
         	 {
-        		 this.dropItem(Atum.desertLegs.itemID, 1);
+        		 this.dropItem(Atum.wandererLegs.itemID, 1);
         	 }
         	 else if(choice == 3)
         	 {
-        		 this.dropItem(Atum.desertBoots.itemID, 1);
+        		 this.dropItem(Atum.wandererBoots.itemID, 1);
         	 }
     	 }
     }

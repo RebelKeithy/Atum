@@ -46,6 +46,7 @@ public class ConfigAtum
 	public static int framedGlassID = 1059;
 	public static int palmSaplingID = 1060;
 	public static int blockDateID = 1061;
+	public static int flaxBlockID = 1062;
 	
 	public static int portalSpawnerID = 5000;
 	public static int scimitarID = 5001;
@@ -80,12 +81,15 @@ public class ConfigAtum
 	public static int atensFuryID = 5030;
 	public static int neithsAudacityID = 5031;
 	public static int scrollID = 5032;
-	public static int desertHelmetID = 5033;
-	public static int desertChestID = 5034;
-	public static int desertLegsID = 5035;
-	public static int desertBootsID = 5036;
+	public static int wandererHelmetID = 5033;
+	public static int wandererChestID = 5034;
+	public static int wandererLegsID = 5035;
+	public static int wandererBootsID = 5036;
 	public static int peltID = 5037;
 	public static int itemDateID = 5038;
+	public static int linenID = 5039;
+	public static int itemFlaxID = 5040;
+	public static int itemFlaxSeedsID = 5041;
 	
 	public static void initConfig()
 	{
@@ -141,6 +145,7 @@ public class ConfigAtum
 		framedGlassID = config.getBlock("Framed Glass", framedGlassID).getInt(framedGlassID);
 		palmSaplingID = config.getBlock("Palm Sapling", palmSaplingID).getInt(palmSaplingID);
 		blockDateID = config.getBlock("Date Block", blockDateID).getInt(blockDateID);
+		flaxBlockID = config.getBlock("Flax", flaxBlockID).getInt(flaxBlockID);
 
 		portalSpawnerID = config.getItem("Scarab", portalSpawnerID).getInt();
 		scimitarID = config.getItem("Scimitar", scimitarID).getInt();
@@ -170,10 +175,10 @@ public class ConfigAtum
 		mummyLegsID = config.getItem("Mummy Legs", mummyLegsID).getInt();
 		mummyBootsID = config.getItem("Mummy Boots", mummyBootsID).getInt();
 
-		desertHelmetID = config.getItem("Desert Helmet", desertHelmetID).getInt();
-		desertChestID = config.getItem("Desert Chest", desertChestID).getInt();
-		desertLegsID = config.getItem("Desert Legs", desertLegsID).getInt();
-		desertBootsID = config.getItem("Desert Boots", desertBootsID).getInt();
+		wandererHelmetID = config.getItem("Desert Helmet", wandererHelmetID).getInt();
+		wandererChestID = config.getItem("Desert Chest", wandererChestID).getInt();
+		wandererLegsID = config.getItem("Desert Legs", wandererLegsID).getInt();
+		wandererBootsID = config.getItem("Desert Boots", wandererBootsID).getInt();
 		
 		lootID = config.getItem("Loot", lootID).getInt();
 		itemPapyrusPlantID = config.getItem("Papyrus Plant Item", itemPapyrusPlantID).getInt();
@@ -184,6 +189,9 @@ public class ConfigAtum
 		scrollID = config.getItem("Scroll", scrollID).getInt();
 		peltID = config.getItem("Wolf Pelt", peltID).getInt();
 		itemDateID = config.getItem("Date", itemDateID).getInt(itemDateID);
+		linenID = config.getItem("Linen", linenID).getInt(linenID);
+		itemFlaxID = config.getItem("Flax", itemFlaxID).getInt(itemFlaxID);
+		itemFlaxSeedsID = config.getItem("Flax Seeds", itemFlaxSeedsID).getInt(itemFlaxSeedsID);
 		config.save();
 	}
 }
