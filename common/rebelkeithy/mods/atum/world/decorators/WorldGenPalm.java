@@ -135,6 +135,23 @@ public class WorldGenPalm extends WorldGenerator
                     spawnLeaf(par1World, par3+3, par4+l-1, par5);
                     spawnLeaf(par1World, par3-3, par4+l-1, par5);
 
+            		if (par2Random.nextInt(100) < 15)
+            		{
+            			par1World.setBlock(par3 + 1, par4 + l - 2, par5, Atum.atumDateBlock.blockID, 0, 0x02);
+            		}
+            		if (par2Random.nextInt(100) < 15)
+            		{
+            			par1World.setBlock(par3 - 1, par4 + l - 2, par5, Atum.atumDateBlock.blockID, 0, 0x02);
+            		}
+            		if (par2Random.nextInt(100) < 15)
+            		{
+            			par1World.setBlock(par3, par4 + l - 2, par5 + 1, Atum.atumDateBlock.blockID, 0, 0x02);
+            		}
+            		if (par2Random.nextInt(100) < 15)
+            		{
+            			par1World.setBlock(par3, par4 + l - 2, par5 - 1, Atum.atumDateBlock.blockID, 0, 0x02);
+            		}
+
                     for (j1 = 0; j1 <= l; ++j1)
                     {
                         k1 = par1World.getBlockId(par3, par4 + j1, par5);

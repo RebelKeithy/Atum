@@ -90,6 +90,10 @@ public class ConfigAtum
 	public static int linenID = 5039;
 	public static int itemFlaxID = 5040;
 	public static int itemFlaxSeedsID = 5041;
+	public static int desertHelmetID = 5042;
+	public static int desertChestID = 5043;
+	public static int desertLegsID = 5044;
+	public static int desertBootsID = 5045;
 	
 	public static void initConfig()
 	{
@@ -175,10 +179,15 @@ public class ConfigAtum
 		mummyLegsID = config.getItem("Mummy Legs", mummyLegsID).getInt();
 		mummyBootsID = config.getItem("Mummy Boots", mummyBootsID).getInt();
 
-		wandererHelmetID = config.getItem("Desert Helmet", wandererHelmetID).getInt();
-		wandererChestID = config.getItem("Desert Chest", wandererChestID).getInt();
-		wandererLegsID = config.getItem("Desert Legs", wandererLegsID).getInt();
-		wandererBootsID = config.getItem("Desert Boots", wandererBootsID).getInt();
+		wandererHelmetID = config.getItem("Wanderer Helmet", wandererHelmetID).getInt();
+		wandererChestID = config.getItem("Wanderer Chest", wandererChestID).getInt();
+		wandererLegsID = config.getItem("Wanderer Legs", wandererLegsID).getInt();
+		wandererBootsID = config.getItem("Wanderer Boots", wandererBootsID).getInt();
+
+		desertHelmetID = config.getItem("Desert Helmet", desertHelmetID).getInt();
+		desertChestID = config.getItem("Desert Chest", desertChestID).getInt();
+		desertLegsID = config.getItem("Desert Legs", desertLegsID).getInt();
+		desertBootsID = config.getItem("Desert Boots", desertBootsID).getInt();
 		
 		lootID = config.getItem("Loot", lootID).getInt();
 		itemPapyrusPlantID = config.getItem("Papyrus Plant Item", itemPapyrusPlantID).getInt();

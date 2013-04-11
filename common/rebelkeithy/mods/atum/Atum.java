@@ -186,6 +186,11 @@ public class Atum
 	public static Item wandererLegs;
 	public static Item wandererBoots;
 	
+	public static Item desertHelmet;
+	public static Item desertChest;
+	public static Item desertLegs;
+	public static Item desertBoots;
+	
 	public static Item itemPapyrusPlant;
 	public static Item itemEctoplasm;
 	public static Item itemStoneChunk;
@@ -407,6 +412,11 @@ public class Atum
 	    wandererChest = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.wandererChestID, EnumArmorMaterial.GOLD, 0, 1)).setTextureFile("WandererArmor_1").setUnlocalizedName("Atum:WandererChest").setCreativeTab(tabs);
 	    wandererLegs = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.wandererLegsID, EnumArmorMaterial.GOLD, 0, 2)).setTextureFile("WandererArmor_2").setUnlocalizedName("Atum:WandererLegs").setCreativeTab(tabs);
 	    wandererBoots = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.wandererBootsID, EnumArmorMaterial.GOLD, 0, 3)).setTextureFile("WandererArmor_1").setUnlocalizedName("Atum:WandererBoots").setCreativeTab(tabs);
+
+	    desertHelmet = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertHelmetID, EnumArmorMaterial.IRON, 0, 0)).setTextureFile("DesertArmor_1").setUnlocalizedName("Atum:DesertHelmet").setCreativeTab(tabs);
+	    desertChest = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertChestID, EnumArmorMaterial.IRON, 0, 1)).setTextureFile("DesertArmor_1").setUnlocalizedName("Atum:DesertChest").setCreativeTab(tabs);
+	    desertLegs = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertLegsID, EnumArmorMaterial.IRON, 0, 2)).setTextureFile("DesertArmor_2").setUnlocalizedName("Atum:DesertLegs").setCreativeTab(tabs);
+	    desertBoots = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertBootsID, EnumArmorMaterial.IRON, 0, 3)).setTextureFile("DesertArmor_1").setUnlocalizedName("Atum:DesertBoots").setCreativeTab(tabs);
 	    
 		itemPapyrusPlant = new ItemPapyrusPlant(ConfigAtum.itemPapyrusPlantID, atumPapyrus).setUnlocalizedName("Atum:PapyrusPlantItem").setCreativeTab(tabs);
 		itemEctoplasm = new Item(ConfigAtum.ectoplasmID).setUnlocalizedName("Atum:Ectoplasm").setCreativeTab(tabs);
@@ -504,10 +514,15 @@ public class Atum
 		LanguageRegistry.addName(mummyLegs, "Leg Wrap");
 		LanguageRegistry.addName(mummyBoots, "Feet Wrap");
 		
-		LanguageRegistry.addName(wandererHelmet, "Desert Head");
-		LanguageRegistry.addName(wandererChest, "Desert Chest");
-		LanguageRegistry.addName(wandererLegs, "Desert Legs");
-		LanguageRegistry.addName(wandererBoots, "Desert Sandels");
+		LanguageRegistry.addName(wandererHelmet, "Wanderer Head");
+		LanguageRegistry.addName(wandererChest, "Wanderer Chest");
+		LanguageRegistry.addName(wandererLegs, "Wanderer Legs");
+		LanguageRegistry.addName(wandererBoots, "Wanderer Sandels");
+		
+		LanguageRegistry.addName(desertHelmet, "Desert Head");
+		LanguageRegistry.addName(desertChest, "Desert Chest");
+		LanguageRegistry.addName(desertLegs, "Desert Legs");
+		LanguageRegistry.addName(desertBoots, "Desert Sandels");
 		
 		LanguageRegistry.addName(neithsAudacity, "Neith's Audacity");
 		LanguageRegistry.addName(itemScroll, "Scroll");
@@ -581,7 +596,17 @@ public class Atum
 		GameRegistry.addRecipe(new ItemStack(mummyLegs), "XXX", "X X", "X X", 'X', itemClothScrap);
 		GameRegistry.addRecipe(new ItemStack(mummyBoots), "X X", "X X", 'X', itemClothScrap);
 		
-		//GameRegistry.addRecipe(new ItemStack(itemLinen), "XXX", 'X', this.itemFlax);
+		GameRegistry.addRecipe(new ItemStack(wandererHelmet), "XXX", "X X", 'X', itemLinen);
+		GameRegistry.addRecipe(new ItemStack(wandererChest), "X X", "XXX", "XXX", 'X', itemLinen);
+		GameRegistry.addRecipe(new ItemStack(wandererLegs), "XXX", "X X", "X X", 'X', itemLinen);
+		GameRegistry.addRecipe(new ItemStack(wandererBoots), "X X", "X X", 'X', itemLinen);
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(desertHelmet), wandererHelmet, Item.helmetSteel);
+		GameRegistry.addShapelessRecipe(new ItemStack(desertChest), wandererChest, Item.plateSteel);
+		GameRegistry.addShapelessRecipe(new ItemStack(desertLegs), wandererLegs, Item.legsSteel);
+		GameRegistry.addShapelessRecipe(new ItemStack(desertBoots), wandererBoots, Item.bootsSteel);
+		
+		GameRegistry.addRecipe(new ItemStack(itemLinen), "XXX", 'X', this.itemFlax);
 		GameRegistry.addRecipe(new ItemStack(itemScroll), "XXX", "SXS", "XXX", 'X', Atum.itemPapyrusPlant, 'S', Item.stick);
 		
 		GameRegistry.addRecipe(new ItemStack(itemScarab), " G ", "GDG", " G ", 'G', Item.ingotGold, 'D', Item.diamond);
