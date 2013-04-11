@@ -283,6 +283,13 @@ public class EntityDesertWolf extends EntityTameable
     public void onUpdate()
     {
         super.onUpdate();
+
+        if (!this.worldObj.isRemote && this.worldObj.difficultySetting == 0)
+        {
+            this.setDead();
+            return;
+        }
+        
         this.field_70924_f = this.field_70926_e;
 
         if (this.func_70922_bv())
