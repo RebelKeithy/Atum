@@ -23,6 +23,7 @@ public class ItemGebsBlessing extends ItemHoe
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
+	@Override
     public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
     	ItemStack stack = new ItemStack(par1, 1, 0);

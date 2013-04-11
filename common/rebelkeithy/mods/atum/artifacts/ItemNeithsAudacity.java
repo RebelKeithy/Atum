@@ -34,6 +34,7 @@ public class ItemNeithsAudacity extends Item
     /**
      * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
      */
+	@Override
     public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
     {
         int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
@@ -117,6 +118,7 @@ public class ItemNeithsAudacity extends Item
         }
     }
 
+	@Override
     public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         return par1ItemStack;
@@ -125,6 +127,7 @@ public class ItemNeithsAudacity extends Item
     /**
      * How long it takes to use or consume an item
      */
+	@Override
     public int getMaxItemUseDuration(ItemStack par1ItemStack)
     {
         return 72000;
@@ -133,6 +136,7 @@ public class ItemNeithsAudacity extends Item
     /**
      * returns the action that specifies what animation to play when the items is being used
      */
+	@Override
     public EnumAction getItemUseAction(ItemStack par1ItemStack)
     {
         return EnumAction.bow;
@@ -141,6 +145,7 @@ public class ItemNeithsAudacity extends Item
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
+	@Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
@@ -158,6 +163,7 @@ public class ItemNeithsAudacity extends Item
         return par1ItemStack;
     }
 
+	@Override
 	public Icon getIcon(ItemStack stack, int renderPass, EntityPlayer player,
 			ItemStack usingItem, int useRemaining)
 	{
@@ -186,15 +192,17 @@ public class ItemNeithsAudacity extends Item
     /**
      * Return the enchantability factor of the item, most of the time is based on material.
      */
+	@Override
     public int getItemEnchantability()
     {
         return 1;
     }
     
     @SideOnly(Side.CLIENT)
-    public void updateIcons(IconRegister par1IconRegister)
+	@Override
+    public void registerIcons(IconRegister par1IconRegister)
     {
-        super.updateIcons(par1IconRegister);
+        super.registerIcons(par1IconRegister);
         this.iconArray = new Icon[bowPullIconNameArray.length];
 
         for (int i = 0; i < this.iconArray.length; ++i)

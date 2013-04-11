@@ -86,6 +86,7 @@ public class AtumWorldServer extends WorldServer
 		// TODO Auto-generated constructor stub
 	}
 
+    @Override
 	public Teleporter getDefaultTeleporter()
     {
         return new AtumTeleporter(this);

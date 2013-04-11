@@ -34,6 +34,7 @@ public class EntitySandPortalFX extends EntityFX
         this.setParticleTextureIndex((int)(Math.random() * 8.0D));
     }
 
+	@Override
     public void renderParticle(Tessellator par1Tessellator, float par2, float par3, float par4, float par5, float par6, float par7)
     {
         float f6 = ((float)this.particleAge + par2) / (float)this.particleMaxAge;
@@ -44,6 +45,7 @@ public class EntitySandPortalFX extends EntityFX
         super.renderParticle(par1Tessellator, par2, par3, par4, par5, par6, par7);
     }
 
+	@Override
     public int getBrightnessForRender(float par1)
     {
         int i = super.getBrightnessForRender(par1);
@@ -65,6 +67,7 @@ public class EntitySandPortalFX extends EntityFX
     /**
      * Gets how bright this entity is.
      */
+	@Override
     public float getBrightness(float par1)
     {
         float f1 = super.getBrightness(par1);
@@ -76,6 +79,7 @@ public class EntitySandPortalFX extends EntityFX
     /**
      * Called to update the entity's position/logic.
      */
+	@Override
     public void onUpdate()
     {
         this.prevPosX = this.posX;

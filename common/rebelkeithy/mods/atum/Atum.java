@@ -260,7 +260,7 @@ public class Atum
 	    atumLapisOre = (new BlockAtumOre(ConfigAtum.lapisOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumLapis").setCreativeTab(tabs);
 	    atumDiamondOre = (new BlockAtumOre(ConfigAtum.diamondOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumDiamond").setCreativeTab(tabs);
 		
-		ForgeHooks.canToolHarvestBlock(atumSand, 0, new ItemStack(Item.shovelSteel));
+		ForgeHooks.canToolHarvestBlock(atumSand, 0, new ItemStack(Item.shovelIron));
 		MinecraftForge.setBlockHarvestLevel(atumSand, "shovel", 0);
 		
 		
@@ -601,10 +601,10 @@ public class Atum
 		GameRegistry.addRecipe(new ItemStack(wandererLegs), "XXX", "X X", "X X", 'X', itemLinen);
 		GameRegistry.addRecipe(new ItemStack(wandererBoots), "X X", "X X", 'X', itemLinen);
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(desertHelmet), wandererHelmet, Item.helmetSteel);
-		GameRegistry.addShapelessRecipe(new ItemStack(desertChest), wandererChest, Item.plateSteel);
-		GameRegistry.addShapelessRecipe(new ItemStack(desertLegs), wandererLegs, Item.legsSteel);
-		GameRegistry.addShapelessRecipe(new ItemStack(desertBoots), wandererBoots, Item.bootsSteel);
+		GameRegistry.addShapelessRecipe(new ItemStack(desertHelmet), wandererHelmet, Item.helmetIron);
+		GameRegistry.addShapelessRecipe(new ItemStack(desertChest), wandererChest, Item.plateIron);
+		GameRegistry.addShapelessRecipe(new ItemStack(desertLegs), wandererLegs, Item.legsIron);
+		GameRegistry.addShapelessRecipe(new ItemStack(desertBoots), wandererBoots, Item.bootsIron);
 		
 		GameRegistry.addRecipe(new ItemStack(itemLinen), "XXX", 'X', this.itemFlax);
 		GameRegistry.addRecipe(new ItemStack(itemScroll), "XXX", "SXS", "XXX", 'X', Atum.itemPapyrusPlant, 'S', Item.stick);

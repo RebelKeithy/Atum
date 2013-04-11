@@ -97,6 +97,7 @@ public class BiomeDecoratorAtum extends BiomeDecorator
     /**
      * Decorates the world. Calls code that was formerly (pre-1.8) in ChunkProviderGenerate.populate
      */
+    @Override
     public void decorate(World par1World, Random par2Random, int par3, int par4)
     {
         if (this.currentWorld != null)
@@ -118,6 +119,7 @@ public class BiomeDecoratorAtum extends BiomeDecorator
     /**
      * The method that does the work of actually decorating chunks
      */
+    @Override
     protected void decorate()
     {
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(currentWorld, randomGenerator, chunk_X, chunk_Z));
@@ -225,6 +227,7 @@ public class BiomeDecoratorAtum extends BiomeDecorator
     /**
      * Standard ore generation helper. Generates most ores.
      */
+    @Override
     protected void genStandardOre1(int par1, WorldGenerator par2WorldGenerator, int par3, int par4)
     {
         for (int l = 0; l < par1; ++l)
@@ -239,6 +242,7 @@ public class BiomeDecoratorAtum extends BiomeDecorator
     /**
      * Standard ore generation helper. Generates Lapis Lazuli.
      */
+    @Override
     protected void genStandardOre2(int par1, WorldGenerator par2WorldGenerator, int par3, int par4)
     {
         for (int l = 0; l < par1; ++l)
@@ -253,6 +257,7 @@ public class BiomeDecoratorAtum extends BiomeDecorator
     /**
      * Generates ores in the current chunk
      */
+    @Override
     protected void generateOres()
     {
         MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(currentWorld, randomGenerator, chunk_X, chunk_Z));

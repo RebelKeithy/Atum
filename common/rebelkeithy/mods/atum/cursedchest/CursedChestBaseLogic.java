@@ -47,7 +47,7 @@ public abstract class CursedChestBaseLogic
         }
         else
         {
-            return this.func_98269_i().field_98223_c;
+            return this.func_98269_i().minecartName;
         }
     }
 

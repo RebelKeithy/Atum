@@ -41,6 +41,7 @@ public class ContainerLimestoneFurnace extends Container
         }
     }
 
+    @Override
     public void addCraftingToCrafters(ICrafting par1ICrafting)
     {
         super.addCraftingToCrafters(par1ICrafting);
@@ -52,6 +53,7 @@ public class ContainerLimestoneFurnace extends Container
     /**
      * Looks for changes made in the container, sends them to every listener.
      */
+    @Override
     public void detectAndSendChanges()
     {
         super.detectAndSendChanges();
@@ -82,6 +84,7 @@ public class ContainerLimestoneFurnace extends Container
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public void updateProgressBar(int par1, int par2)
     {
         if (par1 == 0)
@@ -100,6 +103,7 @@ public class ContainerLimestoneFurnace extends Container
         }
     }
 
+    @Override
     public boolean canInteractWith(EntityPlayer par1EntityPlayer)
     {
         return this.furnace.isUseableByPlayer(par1EntityPlayer);
@@ -108,6 +112,7 @@ public class ContainerLimestoneFurnace extends Container
     /**
      * Called when a player shift-clicks on a slot. You must override this or you will crash when someone does that.
      */
+    @Override
     public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
     {
         ItemStack itemstack = null;

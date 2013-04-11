@@ -23,7 +23,7 @@ public class ItemBlockAtumWall extends ItemBlock
     @Override
     public Icon getIconFromDamage(int meta)
     {
-        return Block.blocksList[this.itemID].getBlockTextureFromSideAndMetadata(2, meta);
+        return Block.blocksList[this.itemID].getIcon(2, meta);
     }
     
     @Override

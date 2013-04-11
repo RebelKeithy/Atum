@@ -52,6 +52,7 @@ public class RenderDesertWolf extends RenderLiving
     /**
      * Queries whether should render the specified pass or not.
      */
+    @Override
     protected int shouldRenderPass(EntityLiving par1EntityLiving, int par2, float par3)
     {
         return this.func_82447_a((EntityDesertWolf)par1EntityLiving, par2, par3);
@@ -60,6 +61,7 @@ public class RenderDesertWolf extends RenderLiving
     /**
      * Defines what float the third param in setRotationAngles of ModelBase is
      */
+    @Override
     protected float handleRotationFloat(EntityLiving par1EntityLiving, float par2)
     {
         return this.getTailRotation((EntityDesertWolf)par1EntityLiving, par2);

@@ -26,7 +26,8 @@ public class BlockAtumWorld extends Block
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+	@Override
+    public Icon getIcon(int par1, int par2)
     {
         return this.iconArray[par2 % this.iconArray.length];
     }
@@ -34,6 +35,7 @@ public class BlockAtumWorld extends Block
     /**
      * Determines the damage on the item the block drops. Used in cloth and wood.
      */
+	@Override
     public int damageDropped(int par1)
     {
     	if(par1 == 0)
@@ -47,6 +49,7 @@ public class BlockAtumWorld extends Block
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
+	@Override
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         for (int j = 0; j < 13; ++j)
@@ -61,6 +64,7 @@ public class BlockAtumWorld extends Block
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
+	@Override
     public void registerIcons(IconRegister par1IconRegister)
     {
         this.iconArray = new Icon[16];

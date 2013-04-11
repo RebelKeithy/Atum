@@ -22,6 +22,7 @@ public class AtumWorldProvider extends WorldProvider
     /**
      * creates a new world chunk manager for WorldProvider
      */
+    @Override
     protected void registerWorldChunkManager()
     {
         worldChunkMgr = new WorldChunkManagerHell(Atum.atumDesert, 0.8F, 0.1F);
@@ -31,6 +32,7 @@ public class AtumWorldProvider extends WorldProvider
     /**
      * Returns a new chunk provider which generates chunks for this world
      */
+    @Override
     public IChunkProvider createChunkGenerator()
     {
         return new AtumChunkProvider(this.worldObj, worldObj.getSeed(), true);
@@ -39,6 +41,7 @@ public class AtumWorldProvider extends WorldProvider
     /**
      * Creates the light to brightness table
      */
+    @Override
     protected void generateLightBrightnessTable()
     {
         float f = 0.0F;
@@ -59,6 +62,7 @@ public class AtumWorldProvider extends WorldProvider
     /**
      * Calculates the angle of sun and moon in the sky relative to a specified time (usually worldTime)
      */
+    @Override
     public float calculateCelestialAngle(long par1, float par3)
     {
         int j = (int)(par1 % 24000L);
@@ -86,13 +90,14 @@ public class AtumWorldProvider extends WorldProvider
     /**
      * Return Vec3D with biome specific fog color
      */
+    @Override
     public Vec3 getFogColor(float par1, float par2)
     {
         float f2 = MathHelper.cos(par1 * (float)Math.PI * 2.0F) * 2.0F + 0.5F;
 
-        if (f2 < 0.0F)
+        if (f2 < 0.2F)
         {
-            f2 = 0.0F;
+            f2 = 0.2F;
         }
 
         if (f2 > 1.0F)
@@ -106,20 +111,25 @@ public class AtumWorldProvider extends WorldProvider
         f3 *= f2 * 0.94F + 0.06F;
         f4 *= f2 * 0.94F + 0.06F;
         f5 *= f2 * 0.91F + 0.09F;
-        f3 = 0.9F;
-        f4 = 0.75F;
-        f5 = 0.6F;
+        f3 = 0.9F * f2;
+        f4 = 0.75F * f2;
+        f5 = 0.6F * f2;
         return this.worldObj.getWorldVec3Pool().getVecFromPool((double)f3, (double)f4, (double)f5);
     }
-    
+
+    @Override
     public boolean doesXZShowFog(int par1, int par2)
     {
-        return true;
+    	return true;
     }
+    
+    @Override
     public String getWelcomeMessage()
     {
     	return "Entering Atum";
     }
+    
+    @Override
     public String getDepartMessage()
     {
     	return "Leaving Atum";

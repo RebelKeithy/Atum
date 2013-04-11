@@ -1,4 +1,4 @@
-package rebelkeithy.mods.atum;
+package rebelkeithy.mods.atum.blocks.renderers;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;

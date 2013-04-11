@@ -5,11 +5,14 @@ import java.util.Random;
 
 import rebelkeithy.mods.atum.Atum;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.MathHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -38,6 +41,7 @@ public class ItemLoot extends Item
 		return new ItemStack(Atum.itemLoot.itemID, 1, type << 5 | quality << 1 | (isDirty ? 1 : 0));
 	}
 
+    @Override
     public String getItemDisplayName(ItemStack par1ItemStack)
     {
         int dirty = par1ItemStack.getItemDamage() & 1;
@@ -53,6 +57,7 @@ public class ItemLoot extends Item
      * Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have
      * different names based on their damage or NBT.
      */
+    @Override
     public String getUnlocalizedName(ItemStack par1ItemStack)
     {
         int dirty = par1ItemStack.getItemDamage() & 1;
@@ -66,11 +71,37 @@ public class ItemLoot extends Item
         
     }
 
+    /**
+     * Called by the default implemetation of EntityItem's onUpdate method, allowing for cleaner 
+     * control over the update of the item without having to write a subclass.
+     * 
+     * @param entityItem The entity Item
+     * @return Return true to skip any further update code.
+     */
+    @Override
+    public boolean onEntityItemUpdate(EntityItem entityItem)
+    {
+		int id = entityItem.worldObj.getBlockId(MathHelper.floor_double(entityItem.posX), MathHelper.floor_double(entityItem.posY), MathHelper.floor_double(entityItem.posZ));
+        if (id == Block.waterStill.blockID || id == Block.waterMoving.blockID)
+        {
+        	System.out.println("in water");
+        	ItemStack item = entityItem.getEntityItem();
+        	int damage = item.getItemDamage() >> 1;
+        	int quality = damage & 15;
+        	if(quality == 0)
+        		damage = damage | ((int)(Math.random()*6))+1;
+        	item.setItemDamage(damage << 1);
+        	entityItem.setEntityItemStack(item);
+        }
+		return super.onEntityItemUpdate(entityItem);
+    }
+
     @SideOnly(Side.CLIENT)
 
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
+    @Override
     public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         for (int type = 0; type < typeArray.length; type++)
@@ -88,6 +119,7 @@ public class ItemLoot extends Item
     /**
      * Gets an icon index based on an item's damage value
      */
+    @Override
     public Icon getIconFromDamage(int par1)
     {
 
@@ -101,7 +133,8 @@ public class ItemLoot extends Item
     }
 
     @SideOnly(Side.CLIENT)
-    public void updateIcons(IconRegister par1IconRegister)
+    @Override
+    public void registerIcons(IconRegister par1IconRegister)
     {
         iconArray = new Icon[(typeArray.length)*(qualityArray.length+1)];
         

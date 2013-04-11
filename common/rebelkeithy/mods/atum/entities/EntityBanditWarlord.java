@@ -18,6 +18,7 @@ public class EntityBanditWarlord extends EntityMob {
         this.experienceValue = 16;
 	}
 
+    @Override
     public String getTexture()
     {
     	return "/mods/Atum/textures/mobs/BanditWarlord.png";
@@ -31,7 +32,8 @@ public class EntityBanditWarlord extends EntityMob {
 
 	@Override
     protected void addRandomArmor() { }
-    
+
+    @Override
     public float getSpeedModifier()
     {
 		return super.getSpeedModifier();
@@ -40,20 +42,33 @@ public class EntityBanditWarlord extends EntityMob {
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
      */
+    @Override
     public boolean getCanSpawnHere()
     {
     	//System.out.println("light level mummy " + this.isValidLightLevel() + " " + super.getCanSpawnHere());
-    	return this.worldObj.checkIfAABBIsClear(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+    	return this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         //return true || super.getCanSpawnHere();
     }
+
+    /**
+     * Will return how many at most can spawn in a chunk at once.
+     */
+    @Override
+    public int getMaxSpawnedInChunk()
+    {
+        return 1;
+    }
+    
     /**
      * Checks to make sure the light is not too bright where the mob is spawning
      */
+    @Override
     protected boolean isValidLightLevel()
     {
         return true;
     }
-    
+
+    @Override
     public void initCreature()
     {
     	this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemScimitar));
@@ -68,6 +83,7 @@ public class EntityBanditWarlord extends EntityMob {
     /**
      * Get this Entity's EnumCreatureAttribute
      */
+    @Override
     public EnumCreatureAttribute getCreatureAttribute()
     {
         return EnumCreatureAttribute.UNDEFINED;
@@ -76,6 +92,7 @@ public class EntityBanditWarlord extends EntityMob {
     /**
      * Returns the amount of damage a mob should deal.
      */
+    @Override
     public int getAttackStrength(Entity par1Entity)
     {
         return 4;
@@ -85,6 +102,7 @@ public class EntityBanditWarlord extends EntityMob {
      * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
      * par2 - Level of Looting used to kill this mob.
      */
+    @Override
     protected void dropFewItems(boolean par1, int par2)
     {
     	 if(rand.nextInt(20) == 0)

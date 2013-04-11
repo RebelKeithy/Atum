@@ -46,6 +46,7 @@ public class RenderBandit extends RenderBiped
 		super(par1ModelBiped, par2);
 	}
 
+    @Override
 	protected void renderEquippedItems(EntityLiving par1EntityLiving, float par2)
     {
         float f1 = 1.0F;

@@ -24,7 +24,7 @@ public class BlockAtumWall extends BlockWall
     }
     
     @Override
-    public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
+    public Icon getIcon(int side, int meta)
     {
         return icon[meta];
     }

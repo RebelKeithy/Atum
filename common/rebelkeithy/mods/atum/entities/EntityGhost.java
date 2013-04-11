@@ -37,6 +37,7 @@ public class EntityGhost extends EntityMob
     /**
      * Returns true if the newer Entity AI code should be run
      */
+    @Override
     public boolean isAIEnabled()
     {
         return false;
@@ -48,34 +49,39 @@ public class EntityGhost extends EntityMob
 		return 10;
 	}
 
+    @Override
     public String getTexture()
     {
     	return "/mods/Atum/textures/mobs/DesertGhost.png";
     }
-    
+
+    @Override
     public float getSpeedModifier()
     {
-		return super.getSpeedModifier();
+		return super.getSpeedModifier() * 1.5F;
     }
 
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
      */
+    @Override
     public boolean getCanSpawnHere()
     {
     	//System.out.println("light level mummy " + this.isValidLightLevel() + " " + super.getCanSpawnHere());
-    	return this.worldObj.checkIfAABBIsClear(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+    	return this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         //return true || super.getCanSpawnHere();
     }
 
     /**
      * Checks to make sure the light is not too bright where the mob is spawning
      */
+    @Override
     protected boolean isValidLightLevel()
     {
         return true;
     }
-    
+
+    @Override
     protected void jump()
     {
         this.motionY = 0.56999998688697815D;
@@ -99,11 +105,13 @@ public class EntityGhost extends EntityMob
     /**
      * Get this Entity's EnumCreatureAttribute
      */
+    @Override
     public EnumCreatureAttribute getCreatureAttribute()
     {
         return EnumCreatureAttribute.UNDEAD;
     }
-    
+
+    @Override
     public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
 		return super.attackEntityFrom(par1DamageSource, par2);
@@ -112,6 +120,7 @@ public class EntityGhost extends EntityMob
     /**
      * Basic mob attack. Default to touch of death in EntityCreature. Overridden by each mob to define their attack.
      */
+    @Override
     protected void attackEntity(Entity par1Entity, float par2)
     {
         if (this.attackTime <= 0 && par2 < 2.0F && par1Entity.boundingBox.maxY > this.boundingBox.minY && par1Entity.boundingBox.minY < this.boundingBox.maxY)
@@ -129,6 +138,7 @@ public class EntityGhost extends EntityMob
     /**
      * Returns the amount of damage a mob should deal.
      */
+    @Override
     public int getAttackStrength(Entity par1Entity)
     {
         return 2;
@@ -138,6 +148,7 @@ public class EntityGhost extends EntityMob
      * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
      * par2 - Level of Looting used to kill this mob.
      */
+    @Override
     protected void dropFewItems(boolean par1, int par2)
     {
     	 if (this.rand.nextInt(4) == 0)

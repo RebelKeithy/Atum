@@ -35,6 +35,7 @@ public class BlockAtumRedstone extends BlockRedstoneOre
     /**
      * Called when the block is clicked by a player. Args: x, y, z, entityPlayer
      */
+    @Override
     public void onBlockClicked(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer)
     {
         this.glow(par1World, par2, par3, par4);
@@ -44,6 +45,7 @@ public class BlockAtumRedstone extends BlockRedstoneOre
     /**
      * Called whenever an entity is walking on top of this block. Args: world, x, y, z, entity
      */
+    @Override
     public void onEntityWalking(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
         this.glow(par1World, par2, par3, par4);
@@ -53,6 +55,7 @@ public class BlockAtumRedstone extends BlockRedstoneOre
     /**
      * Called upon block activation (right click on the block.)
      */
+    @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         this.glow(par1World, par2, par3, par4);
@@ -76,6 +79,7 @@ public class BlockAtumRedstone extends BlockRedstoneOre
     /**
      * Ticks the block if it's been scheduled
      */
+    @Override
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         int meta = par1World.getBlockMetadata(par2, par3, par4);
@@ -90,6 +94,7 @@ public class BlockAtumRedstone extends BlockRedstoneOre
     /**
      * A randomly called display update to be able to add particles or other items for display
      */
+    @Override
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
     	int meta = par1World.getBlockMetadata(par2, par3, par4);
@@ -154,6 +159,7 @@ public class BlockAtumRedstone extends BlockRedstoneOre
      * Returns an item stack containing a single instance of the current block type. 'i' is the block's subtype/damage
      * and is ignored for blocks which do not support subtypes. Blocks which cannot be harvested should return null.
      */
+    @Override
     protected ItemStack createStackedBlock(int par1)
     {
         return new ItemStack(Atum.atumRedstoneOre);

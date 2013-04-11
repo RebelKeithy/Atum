@@ -21,9 +21,10 @@ public class ItemAtumBow extends ItemBow
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void updateIcons(IconRegister par1IconRegister)
+    @Override
+	public void registerIcons(IconRegister par1IconRegister)
 	{
-		super.updateIcons(par1IconRegister);
+		super.registerIcons(par1IconRegister);
 		this.iconArray = new Icon[bowPullIconNameArray.length];
 
 		for (int i = 0; i < this.iconArray.length; ++i)
@@ -50,6 +51,7 @@ public class ItemAtumBow extends ItemBow
 	 *            The ticks remaining for the active item.
 	 * @return The icon index
 	 */
+    @Override
 	public Icon getIcon(ItemStack stack, int renderPass, EntityPlayer player,
 			ItemStack usingItem, int useRemaining)
 	{
@@ -76,6 +78,7 @@ public class ItemAtumBow extends ItemBow
 	}
 
 	@SideOnly(Side.CLIENT)
+    @Override
 	public Icon func_94599_c(int par1)
 	{
 		return this.iconArray[par1];

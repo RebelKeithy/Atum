@@ -34,6 +34,7 @@ public class BlockAtumLog extends Block
     /**
      * The type of render function that is called for this block
      */
+	@Override
     public int getRenderType()
     {
         return 31;
@@ -42,6 +43,7 @@ public class BlockAtumLog extends Block
     /**
      * Returns the quantity of items to drop on block destruction.
      */
+	@Override
     public int quantityDropped(Random par1Random)
     {
         return 1;
@@ -50,6 +52,7 @@ public class BlockAtumLog extends Block
     /**
      * ejects contained items into the world, and notifies neighbours of an update, as appropriate
      */
+	@Override
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
         byte b0 = 4;
@@ -78,6 +81,7 @@ public class BlockAtumLog extends Block
     /**
      * Called when a block is placed using its ItemBlock. Args: World, X, Y, Z, side, hitX, hitY, hitZ, block metadata
      */
+	@Override
     public int onBlockPlaced(World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8, int par9)
     {
         int j1 = par9 & 3;
@@ -106,7 +110,8 @@ public class BlockAtumLog extends Block
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+	@Override
+    public Icon getIcon(int par1, int par2)
     {
         int k = par2 & 12;
         int l = par2 & 3;
@@ -116,6 +121,7 @@ public class BlockAtumLog extends Block
     /**
      * Determines the damage on the item the block drops. Used in cloth and wood.
      */
+	@Override
     public int damageDropped(int par1)
     {
         return par1 & 3;
@@ -133,6 +139,7 @@ public class BlockAtumLog extends Block
      * Returns an item stack containing a single instance of the current block type. 'i' is the block's subtype/damage
      * and is ignored for blocks which do not support subtypes. Blocks which cannot be harvested should return null.
      */
+	@Override
     protected ItemStack createStackedBlock(int par1)
     {
         return new ItemStack(this.blockID, 1, limitToValidMetadata(par1));
@@ -144,6 +151,7 @@ public class BlockAtumLog extends Block
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
+	@Override
     public void registerIcons(IconRegister par1IconRegister)
     {
         this.tree_top = par1IconRegister.registerIcon("Atum:tree_top");

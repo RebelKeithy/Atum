@@ -34,6 +34,7 @@ public class BlockPapyrus extends Block implements IPlantable
     }
     
 
+	@Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         if(par5EntityPlayer.capabilities.isCreativeMode)
@@ -46,6 +47,7 @@ public class BlockPapyrus extends Block implements IPlantable
     /**
      * Ticks the block if it's been scheduled
      */
+	@Override
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
     	if(par5Random.nextFloat() > 0.75)
@@ -86,7 +88,9 @@ public class BlockPapyrus extends Block implements IPlantable
             }
         }
     }
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+	
+	@Override
+    public Icon getIcon(int par1, int par2)
     {
     	return iconPapyrus;
     }
@@ -96,6 +100,7 @@ public class BlockPapyrus extends Block implements IPlantable
     /**
      * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
      */
+	@Override
     public Icon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
     	boolean top = par1IBlockAccess.getBlockId(par2, par3+1, par4) != this.blockID;
@@ -108,6 +113,7 @@ public class BlockPapyrus extends Block implements IPlantable
     /**
      * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
      */
+	@Override
     public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
     {
         Block block = Block.blocksList[par1World.getBlockId(par2, par3 - 1, par4)];
@@ -118,6 +124,7 @@ public class BlockPapyrus extends Block implements IPlantable
      * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
      * their own) Args: x, y, z, neighbor blockID
      */
+	@Override
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5)
     {
         this.checkBlockCoordValid(par1World, par2, par3, par4);
@@ -138,6 +145,7 @@ public class BlockPapyrus extends Block implements IPlantable
     /**
      * Can this block stay at this position.  Similar to canPlaceBlockAt except gets checked often with plants.
      */
+	@Override
     public boolean canBlockStay(World par1World, int par2, int par3, int par4)
     {
         return this.canPlaceBlockAt(par1World, par2, par3, par4);
@@ -191,6 +199,7 @@ public class BlockPapyrus extends Block implements IPlantable
      * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
      * cleared to be reused)
      */
+	@Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
         return null;
@@ -199,6 +208,7 @@ public class BlockPapyrus extends Block implements IPlantable
     /**
      * Returns the ID of the items to drop on destruction.
      */
+	@Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
         return Atum.itemPapyrusPlant.itemID;
@@ -208,6 +218,7 @@ public class BlockPapyrus extends Block implements IPlantable
      * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
      * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
+	@Override
     public boolean isOpaqueCube()
     {
         return false;
@@ -216,6 +227,7 @@ public class BlockPapyrus extends Block implements IPlantable
     /**
      * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
+	@Override
     public boolean renderAsNormalBlock()
     {
         return false;
@@ -224,6 +236,7 @@ public class BlockPapyrus extends Block implements IPlantable
     /**
      * The type of render function that is called for this block
      */
+	@Override
     public int getRenderType()
     {
         return renderID;
@@ -234,6 +247,7 @@ public class BlockPapyrus extends Block implements IPlantable
     /**
      * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
      */
+	@Override
     public int idPicked(World par1World, int par2, int par3, int par4)
     {
         return Atum.itemPapyrusPlant.itemID;

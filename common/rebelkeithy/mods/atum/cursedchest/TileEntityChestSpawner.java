@@ -81,6 +81,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     /**
      * Returns the number of slots in the inventory.
      */
+    @Override
     public int getSizeInventory()
     {
         return 27;
@@ -89,6 +90,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     /**
      * Returns the stack in slot i
      */
+    @Override
     public ItemStack getStackInSlot(int par1)
     {
         return this.chestContents[par1];
@@ -98,6 +100,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
      * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
      * new stack.
      */
+    @Override
     public ItemStack decrStackSize(int par1, int par2)
     {
         if (this.chestContents[par1] != null)
@@ -134,6 +137,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
      * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
      * like when you close a workbench GUI.
      */
+    @Override
     public ItemStack getStackInSlotOnClosing(int par1)
     {
         if (this.chestContents[par1] != null)
@@ -151,6 +155,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     /**
      * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
      */
+    @Override
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
         this.chestContents[par1] = par2ItemStack;
@@ -166,6 +171,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     /**
      * Returns the name of the inventory.
      */
+    @Override
     public String getInvName()
     {
         return this.isInvNameLocalized() ? this.field_94045_s : "container.chest";
@@ -175,11 +181,13 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
      * If this returns false, the inventory name will be used as an unlocalized name, and translated into the player's
      * language. Otherwise it will be used directly.
      */
+    @Override
     public boolean isInvNameLocalized()
     {
         return this.field_94045_s != null && this.field_94045_s.length() > 0;
     }
 
+    @Override
     public void func_94043_a(String par1Str)
     {
         this.field_94045_s = par1Str;
@@ -188,6 +196,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     /**
      * Reads a tile entity from NBT.
      */
+    @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readFromNBT(par1NBTTagCompound);
@@ -215,6 +224,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     /**
      * Writes a tile entity to NBT.
      */
+    @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeToNBT(par1NBTTagCompound);
@@ -244,6 +254,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
      * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
      * this more of a set than a get?*
      */
+    @Override
     public int getInventoryStackLimit()
     {
         return 64;
@@ -252,6 +263,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     /**
      * Do not make give this method the name canInteractWith because it clashes with Container
      */
+    @Override
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
 
@@ -269,7 +281,6 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
         return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
     }
 
-
     private boolean func_94044_a(int par1, int par2, int par3)
     {
         Block block = Block.blocksList[this.worldObj.getBlockId(par1, par2, par3)];
@@ -280,6 +291,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
      * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses this to count
      * ticks and creates a new spawn inside its implementation.
      */
+    @Override
     public void updateEntity()
     {
         super.updateEntity();
@@ -360,6 +372,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     /**
      * Called when a client event is received with the event number and argument, see World.sendClientEvent
      */
+    @Override
     public boolean receiveClientEvent(int par1, int par2)
     {
         if (par1 == 1)
@@ -373,6 +386,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
         }
     }
 
+    @Override
     public void openChest()
     {
         if (this.numUsingPlayers < 0)
@@ -386,6 +400,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
         this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord - 1, this.zCoord, this.getBlockType().blockID);
     }
 
+    @Override
     public void closeChest()
     {
         if (this.getBlockType() != null && this.getBlockType() instanceof BlockChest)
@@ -400,6 +415,7 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     /**
      * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
      */
+    @Override
     public boolean isStackValidForSlot(int par1, ItemStack par2ItemStack)
     {
         return true;
@@ -408,12 +424,14 @@ public class TileEntityChestSpawner extends TileEntityChest implements IInventor
     /**
      * invalidates a tile entity
      */
+    @Override
     public void invalidate()
     {
         super.invalidate();
         this.updateContainingBlockInfo();
     }
 
+    @Override
     public int func_98041_l()
     {
         if (this.field_94046_i == -1)

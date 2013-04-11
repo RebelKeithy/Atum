@@ -15,6 +15,7 @@ public class AtumStone extends Block
 		super(par1, Material.rock);
 	}
 
+	@Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
         return Atum.atumCobble.blockID;

@@ -32,6 +32,7 @@ public class ItemAtensFury extends ItemBow
     /**
      * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount
      */
+	@Override
     public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
     {
         int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
@@ -109,9 +110,10 @@ public class ItemAtensFury extends ItemBow
 
 
     @SideOnly(Side.CLIENT)
-    public void updateIcons(IconRegister par1IconRegister)
+	@Override
+    public void registerIcons(IconRegister par1IconRegister)
     {
-        super.updateIcons(par1IconRegister);
+        super.registerIcons(par1IconRegister);
         this.iconArray = new Icon[bowPullIconNameArray.length];
 
         for (int i = 0; i < this.iconArray.length; ++i)
@@ -125,6 +127,7 @@ public class ItemAtensFury extends ItemBow
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
+	@Override
     public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
     	ItemStack stack = new ItemStack(par1, 1, 0);
@@ -142,6 +145,7 @@ public class ItemAtensFury extends ItemBow
      * @param useRemaining The ticks remaining for the active item.
      * @return The icon index
      */
+	@Override
     public Icon getIcon(ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
     {
     	if(usingItem != null)
@@ -167,6 +171,7 @@ public class ItemAtensFury extends ItemBow
     }
 
     @SideOnly(Side.CLIENT)
+	@Override
     public Icon func_94599_c(int par1)
     {
         return this.iconArray[par1];

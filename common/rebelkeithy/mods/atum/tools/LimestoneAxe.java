@@ -11,9 +11,10 @@ public class LimestoneAxe extends ItemAxe
 	{
 		super(par1, par2EnumToolMaterial);
 	}
-	
-	public void updateIcons(IconRegister par1IconRegister)
+
+    @Override
+	public void registerIcons(IconRegister par1IconRegister)
 	{
-		 iconIndex = par1IconRegister.registerIcon("Atum:LimestoneAxe");
+		 itemIcon = par1IconRegister.registerIcon("Atum:LimestoneAxe");
 	}
 }

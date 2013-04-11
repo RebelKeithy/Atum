@@ -19,6 +19,7 @@ public class BlockAtumOre extends Block
     /**
      * Returns the ID of the items to drop on destruction.
      */
+    @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
     	if(this.blockID == Atum.atumCoalOre.blockID)
@@ -34,6 +35,7 @@ public class BlockAtumOre extends Block
     /**
      * Returns the quantity of items to drop on block destruction.
      */
+    @Override
     public int quantityDropped(Random par1Random)
     {
         return this.blockID == Atum.atumLapisOre.blockID ? 4 + par1Random.nextInt(5) : 1;
@@ -42,6 +44,7 @@ public class BlockAtumOre extends Block
     /**
      * Returns the usual quantity dropped by the block plus a bonus of 1 to 'i' (inclusive).
      */
+    @Override
     public int quantityDroppedWithBonus(int par1, Random par2Random)
     {
         if (par1 > 0 && this.blockID != this.idDropped(0, par2Random, par1))
@@ -64,6 +67,7 @@ public class BlockAtumOre extends Block
     /**
      * Drops the block items with a specified chance of dropping the specified items
      */
+    @Override
     public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
     {
         super.dropBlockAsItemWithChance(par1World, par2, par3, par4, par5, par6, par7);
@@ -92,6 +96,7 @@ public class BlockAtumOre extends Block
     /**
      * Determines the damage on the item the block drops. Used in cloth and wood.
      */
+    @Override
     public int damageDropped(int par1)
     {
         return this.blockID == Atum.atumLapisOre.blockID ? 4 : 0;

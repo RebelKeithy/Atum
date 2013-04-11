@@ -8,7 +8,10 @@ import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraftforge.client.MinecraftForgeClient;
+import rebelkeithy.mods.atum.blocks.BlockDate;
 import rebelkeithy.mods.atum.blocks.BlockPapyrus;
+import rebelkeithy.mods.atum.blocks.renderers.DateBlockRenderer;
+import rebelkeithy.mods.atum.blocks.renderers.PapyrusBlockRenderer;
 import rebelkeithy.mods.atum.entities.EntityBanditArcher;
 import rebelkeithy.mods.atum.entities.EntityBanditWarlord;
 import rebelkeithy.mods.atum.entities.EntityBanditWarrior;
@@ -69,5 +72,6 @@ public class ClientProxy extends CommonProxy
 		MinecraftForgeClient.registerItemRenderer(Atum.atensFury.itemID, new RendererItemBow());
 		MinecraftForgeClient.registerItemRenderer(Atum.neithsAudacity.itemID, new RendererItemBow());
 		RenderingRegistry.registerBlockHandler(((BlockPapyrus)Atum.atumPapyrus).renderID, new PapyrusBlockRenderer());
+		RenderingRegistry.registerBlockHandler(((BlockDate)(Atum.atumDateBlock)).renderID, new DateBlockRenderer());
 	}
 }

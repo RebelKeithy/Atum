@@ -42,7 +42,8 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
         Random rand = new Random();
         stage = 0;
 	}
-    
+
+    @Override
     public void initCreature()
     {
     	super.initCreature();
@@ -101,6 +102,7 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 		return 300;
 	}
 
+    @Override
     public String getEntityName()
     {
     	System.out.println("getname");
@@ -117,7 +119,8 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
     	}
     	
     }
-    
+
+    @Override
     public String getTexture()
     {
     	return "/mods/Atum/textures/mobs/PharaohBlue.png";
@@ -126,16 +129,19 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
     /**
      * Get this Entity's EnumCreatureAttribute
      */
+    @Override
     public EnumCreatureAttribute getCreatureAttribute()
     {
         return EnumCreatureAttribute.UNDEAD;
     }
-    
+
+    @Override
     public float getSpeedModifier()
     {
 		return super.getSpeedModifier();
     }
-    
+
+    @Override
     public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
         if(par1DamageSource.isFireDamage())
@@ -236,6 +242,7 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 	/**
      * Returns the amount of damage a mob should deal.
      */
+    @Override
     public int getAttackStrength(Entity par1Entity)
     {
         return 4;
@@ -245,6 +252,7 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
+    @Override
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
     	super.writeEntityToNBT(par1NBTTagCompound);
@@ -256,6 +264,7 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
+    @Override
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
@@ -267,7 +276,8 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
         this.dataWatcher.updateObject(19, new Integer(prefixID));
         this.dataWatcher.updateObject(20, new Integer(numID));
     }
-    
+
+    @Override
     protected void entityInit()
     {
         super.entityInit();
@@ -279,7 +289,8 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
         this.dataWatcher.addObject(19, new Integer(prefixID));
         this.dataWatcher.addObject(20, new Integer(numID));
     }
-    
+
+    @Override
     public void onLivingUpdate()
     {
         if (!this.worldObj.isRemote)
@@ -299,6 +310,7 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
      * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
      * par2 - Level of Looting used to kill this mob.
      */
+    @Override
     protected void dropFewItems(boolean par1, int par2)
     {
     	int amount = rand.nextInt(2) + 1;

@@ -48,6 +48,7 @@ public class RenderPharaoh extends RenderBiped
 	}
 
 
+    @Override
     public void doRenderLiving(EntityLiving par1EntityLiving, double par2, double par4, double par6, float par8, float par9)
     {
         BossStatus.func_82824_a((EntityPharaoh)par1EntityLiving, false);
@@ -56,6 +57,7 @@ public class RenderPharaoh extends RenderBiped
     }
     
 
+    @Override
 	protected void renderEquippedItems(EntityLiving par1EntityLiving, float par2)
     {
         float f1 = 1.0F;

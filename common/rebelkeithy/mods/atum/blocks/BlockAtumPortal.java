@@ -34,6 +34,7 @@ public class BlockAtumPortal extends BlockBreakable
     /**
      * Ticks the block if it's been scheduled
      */
+	@Override
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         super.updateTick(par1World, par2, par3, par4, par5Random);
@@ -65,6 +66,7 @@ public class BlockAtumPortal extends BlockBreakable
      * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
      * cleared to be reused)
      */
+	@Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
         return null;
@@ -73,6 +75,7 @@ public class BlockAtumPortal extends BlockBreakable
     /**
      * Updates the blocks bounds based on its current state. Args: world, x, y, z
      */
+	@Override
     public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         float f;
@@ -96,6 +99,7 @@ public class BlockAtumPortal extends BlockBreakable
      * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
      * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
+	@Override
     public boolean isOpaqueCube()
     {
         return false;
@@ -104,6 +108,7 @@ public class BlockAtumPortal extends BlockBreakable
     /**
      * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
+	@Override
     public boolean renderAsNormalBlock()
     {
         return true;
@@ -144,6 +149,7 @@ public class BlockAtumPortal extends BlockBreakable
      * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
      * their own) Args: x, y, z, neighbor blockID
      */
+	@Override
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5)
     {
         byte b0 = 0;
@@ -205,6 +211,7 @@ public class BlockAtumPortal extends BlockBreakable
      * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
      * coordinates.  Args: blockAccess, x, y, z, side
      */
+	@Override
     public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         if (par1IBlockAccess.getBlockId(par2, par3, par4) == this.blockID)
@@ -226,6 +233,7 @@ public class BlockAtumPortal extends BlockBreakable
     /**
      * Returns the quantity of items to drop on block destruction.
      */
+	@Override
     public int quantityDropped(Random par1Random)
     {
         return 0;
@@ -234,6 +242,7 @@ public class BlockAtumPortal extends BlockBreakable
     /**
      * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
      */
+	@Override
     public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
         if (par5Entity.ridingEntity == null && par5Entity.riddenByEntity == null)
@@ -295,6 +304,7 @@ public class BlockAtumPortal extends BlockBreakable
     /**
      * Returns which pass should this block be rendered on. 0 for solids and 1 for alpha
      */
+	@Override
     public int getRenderBlockPass()
     {
         return 1;
@@ -305,6 +315,7 @@ public class BlockAtumPortal extends BlockBreakable
     /**
      * A randomly called display update to be able to add particles or other items for display
      */
+	@Override
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         if (par5Random.nextInt(100) == 0)
@@ -345,6 +356,7 @@ public class BlockAtumPortal extends BlockBreakable
     /**
      * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
      */
+	@Override
     public int idPicked(World par1World, int par2, int par3, int par4)
     {
         return 0;

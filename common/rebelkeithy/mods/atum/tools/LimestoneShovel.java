@@ -11,9 +11,10 @@ public class LimestoneShovel extends ItemSpade
 	{
 		super(par1, par2EnumToolMaterial);
 	}
-	
-	public void updateIcons(IconRegister par1IconRegister)
+
+    @Override
+	public void registerIcons(IconRegister par1IconRegister)
 	{
-		 iconIndex = par1IconRegister.registerIcon("Atum:LimestoneShovel");
+		 itemIcon = par1IconRegister.registerIcon("Atum:LimestoneShovel");
 	}
 }

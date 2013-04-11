@@ -50,6 +50,7 @@ public class BlockLimeStoneFurnace extends BlockContainer
     /**
      * Returns the ID of the items to drop on destruction.
      */
+    @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
         return Atum.furnaceIdle.blockID;
@@ -58,6 +59,7 @@ public class BlockLimeStoneFurnace extends BlockContainer
     /**
      * Called whenever the block is added into the world. Args: world, x, y, z
      */
+    @Override
     public void onBlockAdded(World par1World, int par2, int par3, int par4)
     {
         super.onBlockAdded(par1World, par2, par3, par4);
@@ -106,7 +108,8 @@ public class BlockLimeStoneFurnace extends BlockContainer
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+    @Override
+    public Icon getIcon(int par1, int par2)
     {
     	if(par2 == 0)
     		par2 = 3;
@@ -120,6 +123,7 @@ public class BlockLimeStoneFurnace extends BlockContainer
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
+    @Override
     public void registerIcons(IconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("Atum:FurnaceTop");
@@ -130,6 +134,7 @@ public class BlockLimeStoneFurnace extends BlockContainer
     /**
      * Called upon block activation (right click on the block.)
      */
+    @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         if (par1World.isRemote)
@@ -183,6 +188,7 @@ public class BlockLimeStoneFurnace extends BlockContainer
     /**
      * A randomly called display update to be able to add particles or other items for display
      */
+    @Override
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         if (this.isActive)
@@ -220,6 +226,7 @@ public class BlockLimeStoneFurnace extends BlockContainer
     /**
      * Returns a new instance of a block's tile entity class. Called on placing the block.
      */
+    @Override
     public TileEntity createNewTileEntity(World par1World)
     {
         return new TileEntityLimestoneFurnace();
@@ -228,6 +235,7 @@ public class BlockLimeStoneFurnace extends BlockContainer
     /**
      * Called when the block is placed in the world.
      */
+    @Override
     public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving, ItemStack par6ItemStack)
     {
         int l = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
@@ -261,6 +269,7 @@ public class BlockLimeStoneFurnace extends BlockContainer
     /**
      * ejects contained items into the world, and notifies neighbours of an update, as appropriate
      */
+    @Override
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
         if (!keepFurnaceInventory)
@@ -316,6 +325,7 @@ public class BlockLimeStoneFurnace extends BlockContainer
      * If this returns true, then comparators facing away from this block will use the value from
      * getComparatorInputOverride instead of the actual redstone signal strength.
      */
+    @Override
     public boolean hasComparatorInputOverride()
     {
         return true;
@@ -325,6 +335,7 @@ public class BlockLimeStoneFurnace extends BlockContainer
      * If hasComparatorInputOverride returns true, the return value from this is used instead of the redstone signal
      * strength when this block inputs to a comparator.
      */
+    @Override
     public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5)
     {
         return Container.func_94526_b((IInventory)par1World.getBlockTileEntity(par2, par3, par4));

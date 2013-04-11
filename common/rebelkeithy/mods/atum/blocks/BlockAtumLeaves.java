@@ -38,6 +38,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
     }
 
     @SideOnly(Side.CLIENT)
+	@Override
     public int getBlockColor()
     {
         double d0 = 0.5D;
@@ -50,6 +51,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
     /**
      * Returns the color this block should be rendered. Used by leaves.
      */
+	@Override
     public int getRenderColor(int par1)
     {
         return ColorizerFoliage.getFoliageColorBasic();
@@ -61,6 +63,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
      * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
      * when first determining what to render.
      */
+	@Override
     public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         int i1 = 0;
@@ -84,6 +87,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
     /**
      * ejects contained items into the world, and notifies neighbours of an update, as appropriate
      */
+	@Override
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
         byte b0 = 1;
@@ -112,6 +116,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
     /**
      * Ticks the block if it's been scheduled
      */
+	@Override
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         if (!par1World.isRemote)
@@ -230,6 +235,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
     /**
      * A randomly called display update to be able to add particles or other items for display
      */
+	@Override
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         if (par1World.canLightningStrikeAt(par2, par3 + 1, par4) && !par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4) && par5Random.nextInt(15) == 1)
@@ -250,6 +256,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
     /**
      * Returns the quantity of items to drop on block destruction.
      */
+	@Override
     public int quantityDropped(Random par1Random)
     {
         return par1Random.nextInt(20) == 0 ? 1 : 0;
@@ -258,6 +265,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
     /**
      * Returns the ID of the items to drop on destruction.
      */
+	@Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
         return Atum.atumPalmSapling.blockID;//Block.sapling.blockID;
@@ -266,6 +274,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
     /**
      * Drops the block items with a specified chance of dropping the specified items
      */
+	@Override
     public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
     {
         if (!par1World.isRemote)
@@ -299,6 +308,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
      * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
      * block and l is the block's subtype/damage.
      */
+	@Override
     public void harvestBlock(World par1World, EntityPlayer par2EntityPlayer, int par3, int par4, int par5, int par6)
     {
         super.harvestBlock(par1World, par2EntityPlayer, par3, par4, par5, par6);
@@ -307,6 +317,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
     /**
      * Determines the damage on the item the block drops. Used in cloth and wood.
      */
+	@Override
     public int damageDropped(int par1)
     {
         return par1 & 3;
@@ -316,6 +327,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
      * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
      * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
+	@Override
     public boolean isOpaqueCube()
     {
         return false;
@@ -326,7 +338,8 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+	@Override
+    public Icon getIcon(int par1, int par2)
     {
         return icon;
     }
@@ -346,6 +359,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
      * Returns an item stack containing a single instance of the current block type. 'i' is the block's subtype/damage
      * and is ignored for blocks which do not support subtypes. Blocks which cannot be harvested should return null.
      */
+	@Override
     protected ItemStack createStackedBlock(int par1)
     {
         return new ItemStack(this.blockID, 1, par1 & 3);
@@ -357,6 +371,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
+	@Override
     public void registerIcons(IconRegister par1IconRegister)
     {
     	icon = par1IconRegister.registerIcon("Atum:AtumLeaves");

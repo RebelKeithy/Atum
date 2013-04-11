@@ -77,6 +77,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Returns true if the newer Entity AI code should be run
      */
+    @Override
     public boolean isAIEnabled()
     {
         return true;
@@ -86,6 +87,7 @@ public class EntityDesertWolf extends EntityTameable
      * Finds the closest player within 16 blocks to attack, or null if this Entity isn't interested in attacking
      * (Animals, Spiders at day, peaceful PigZombies).
      */
+    @Override
     protected Entity findPlayerToAttack()
     {
         EntityPlayer entityplayer = this.worldObj.getClosestVulnerablePlayerToEntity(this, 16.0D);
@@ -95,6 +97,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Sets the active target the Task system uses for tracking
      */
+    @Override
     public void setAttackTarget(EntityLiving par1EntityLiving)
     {
         super.setAttackTarget(par1EntityLiving);
@@ -108,16 +111,19 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * main AI tick function, replaces updateEntityActionState
      */
+    @Override
     protected void updateAITick()
     {
         this.dataWatcher.updateObject(18, Integer.valueOf(this.getHealth()));
     }
 
+    @Override
     public int getMaxHealth()
     {
         return this.isTamed() ? 20 : 8;
     }
 
+    @Override
     protected void entityInit()
     {
         super.entityInit();
@@ -131,11 +137,13 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
      */
+    @Override
     public boolean getCanSpawnHere()
     {
-    	return this.worldObj.checkIfAABBIsClear(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+    	return this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
     }
-    
+
+    @Override
     public float getSpeedModifier()
     {
         return super.getSpeedModifier() * 1.5F;
@@ -144,6 +152,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Plays step sound at given x, y, z for the entity
      */
+    @Override
     protected void playStepSound(int par1, int par2, int par3, int par4)
     {
         this.playSound("mob.wolf.step", 0.15F, 1.0F);
@@ -154,6 +163,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Returns the texture's file path as a String.
      */
+    @Override
     public String getTexture()
     {
         return this.isTamed() ? "/mods/Atum/textures/mobs/DesertWolf_tame.png" : (this.isAngry() ? "/mods/Atum/textures/mobs/DesertWolf_angry.png" : "/mods/Atum/textures/mobs/DesertWolf");
@@ -162,6 +172,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
+    @Override
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
@@ -172,6 +183,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
+    @Override
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
@@ -186,6 +198,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Determines if an entity can be despawned, used on idle far away entities
      */
+    @Override
     protected boolean canDespawn()
     {
         return this.isAngry();
@@ -194,6 +207,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Returns the sound this mob makes while it's alive.
      */
+    @Override
     protected String getLivingSound()
     {
         return this.isAngry() ? "mob.wolf.growl" : (this.rand.nextInt(3) == 0 ? (this.isTamed() && this.dataWatcher.getWatchableObjectInt(18) < 10 ? "mob.wolf.whine" : "mob.wolf.panting") : "mob.wolf.bark");
@@ -202,6 +216,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Returns the sound this mob makes when it is hurt.
      */
+    @Override
     protected String getHurtSound()
     {
         return "mob.wolf.hurt";
@@ -210,6 +225,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Returns the sound this mob makes on death.
      */
+    @Override
     protected String getDeathSound()
     {
         return "mob.wolf.death";
@@ -218,6 +234,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Returns the volume for the sounds this mob makes.
      */
+    @Override
     protected float getSoundVolume()
     {
         return 0.4F;
@@ -227,6 +244,7 @@ public class EntityDesertWolf extends EntityTameable
      * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
      * par2 - Level of Looting used to kill this mob.
      */
+    @Override
     protected void dropFewItems(boolean par1, int par2)
     {
          if(rand.nextInt(10) == 0)
@@ -244,6 +262,7 @@ public class EntityDesertWolf extends EntityTameable
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
+    @Override
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
@@ -260,6 +279,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Called to update the entity's position/logic.
      */
+    @Override
     public void onUpdate()
     {
         super.onUpdate();
@@ -358,6 +378,7 @@ public class EntityDesertWolf extends EntityTameable
         return (this.field_70924_f + (this.field_70926_e - this.field_70924_f) * par1) * 0.15F * (float)Math.PI;
     }
 
+    @Override
     public float getEyeHeight()
     {
         return this.height * 0.8F;
@@ -367,6 +388,7 @@ public class EntityDesertWolf extends EntityTameable
      * The speed it takes to move the entityliving's rotationPitch through the faceEntity method. This is only currently
      * use in wolves.
      */
+    @Override
     public int getVerticalFaceSpeed()
     {
         return this.isSitting() ? 20 : super.getVerticalFaceSpeed();
@@ -375,6 +397,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Called when the entity is attacked.
      */
+    @Override
     public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
         if (this.isEntityInvulnerable())
@@ -395,6 +418,7 @@ public class EntityDesertWolf extends EntityTameable
         }
     }
 
+    @Override
     public boolean attackEntityAsMob(Entity par1Entity)
     {
         int i = this.isTamed() ? 4 : 2;
@@ -404,6 +428,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a pig.
      */
+    @Override
     public boolean interact(EntityPlayer par1EntityPlayer)
     {
         ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
@@ -497,6 +522,7 @@ public class EntityDesertWolf extends EntityTameable
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public void handleHealthUpdate(byte par1)
     {
         if (par1 == 8)
@@ -521,6 +547,7 @@ public class EntityDesertWolf extends EntityTameable
      * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
      * the animal type)
      */
+    @Override
     public boolean isBreedingItem(ItemStack par1ItemStack)
     {
         return par1ItemStack == null ? false : (!(Item.itemsList[par1ItemStack.itemID] instanceof ItemFood) ? false : ((ItemFood)Item.itemsList[par1ItemStack.itemID]).isWolfsFavoriteMeat());
@@ -529,6 +556,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Will return how many at most can spawn in a chunk at once.
      */
+    @Override
     public int getMaxSpawnedInChunk()
     {
         return 8;
@@ -609,6 +637,7 @@ public class EntityDesertWolf extends EntityTameable
     /**
      * Returns true if the mob is currently able to mate with the specified mob.
      */
+    @Override
     public boolean canMateWith(EntityAnimal par1EntityAnimal)
     {
         if (par1EntityAnimal == this)
@@ -635,6 +664,7 @@ public class EntityDesertWolf extends EntityTameable
         return this.dataWatcher.getWatchableObjectByte(19) == 1;
     }
 
+    @Override
     public EntityAgeable createChild(EntityAgeable par1EntityAgeable)
     {
         return this.spawnBabyAnimal(par1EntityAgeable);

@@ -15,6 +15,7 @@ public class LootTossListener
 	@ForgeSubscribe
 	public boolean onToss(ItemTossEvent event)
 	{
+		/*
 		ItemStack tossed = event.entityItem.getEntityItem();
 		if(tossed != null && tossed.itemID == Atum.itemLoot.itemID)
 		{
@@ -42,6 +43,7 @@ public class LootTossListener
 			event.setCanceled(true);
 			return false;
 		}
+		*/
 		return true;
 	}
 }

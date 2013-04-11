@@ -35,14 +35,16 @@ public class ItemBlockAtumSlab extends ItemBlock
     /**
      * Gets an icon index based on an item's damage value
      */
+	@Override
     public Icon getIconFromDamage(int par1)
     {
-        return Block.blocksList[this.itemID].getBlockTextureFromSideAndMetadata(2, par1);
+        return Block.blocksList[this.itemID].getIcon(2, par1);
     }
 
     /**
      * Returns the metadata of the block which this Item (ItemBlock) can place
      */
+	@Override
     public int getMetadata(int par1)
     {
         return par1;
@@ -52,6 +54,7 @@ public class ItemBlockAtumSlab extends ItemBlock
      * Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have
      * different names based on their damage or NBT.
      */
+	@Override
     public String getUnlocalizedName(ItemStack par1ItemStack)
     {
         return this.theHalfSlab.getFullSlabName(par1ItemStack.getItemDamage());
@@ -61,6 +64,7 @@ public class ItemBlockAtumSlab extends ItemBlock
      * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
      * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
+	@Override
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
         if (this.isFullBlock)
@@ -84,7 +88,7 @@ public class ItemBlockAtumSlab extends ItemBlock
 
             if ((par7 == 1 && !flag || par7 == 0 && flag) && i1 == this.theHalfSlab.blockID && k1 == par1ItemStack.getItemDamage())
             {
-                if (par3World.checkIfAABBIsClear(this.doubleSlab.getCollisionBoundingBoxFromPool(par3World, par4, par5, par6)) && par3World.setBlock(par4, par5, par6, this.doubleSlab.blockID, k1, 3))
+                if (par3World.checkNoEntityCollision(this.doubleSlab.getCollisionBoundingBoxFromPool(par3World, par4, par5, par6)) && par3World.setBlock(par4, par5, par6, this.doubleSlab.blockID, k1, 3))
                 {
                     par3World.playSoundEffect((double)((float)par4 + 0.5F), (double)((float)par5 + 0.5F), (double)((float)par6 + 0.5F), this.doubleSlab.stepSound.getPlaceSound(), (this.doubleSlab.stepSound.getVolume() + 1.0F) / 2.0F, this.doubleSlab.stepSound.getPitch() * 0.8F);
                     --par1ItemStack.stackSize;
@@ -104,6 +108,7 @@ public class ItemBlockAtumSlab extends ItemBlock
     /**
      * Returns true if the given ItemBlock can be placed on the given side of the given block position.
      */
+	@Override
     public boolean canPlaceItemBlockOnSide(World par1World, int par2, int par3, int par4, int par5, EntityPlayer par6EntityPlayer, ItemStack par7ItemStack)
     {
         int i1 = par2;
@@ -196,7 +201,7 @@ public class ItemBlockAtumSlab extends ItemBlock
 
         if (i1 == this.theHalfSlab.blockID && k1 == par1ItemStack.getItemDamage())
         {
-            if (par3World.checkIfAABBIsClear(this.doubleSlab.getCollisionBoundingBoxFromPool(par3World, par4, par5, par6)) && par3World.setBlock(par4, par5, par6, this.doubleSlab.blockID, k1, 3))
+            if (par3World.checkNoEntityCollision(this.doubleSlab.getCollisionBoundingBoxFromPool(par3World, par4, par5, par6)) && par3World.setBlock(par4, par5, par6, this.doubleSlab.blockID, k1, 3))
             {
                 par3World.playSoundEffect((double)((float)par4 + 0.5F), (double)((float)par5 + 0.5F), (double)((float)par6 + 0.5F), this.doubleSlab.stepSound.getPlaceSound(), (this.doubleSlab.stepSound.getVolume() + 1.0F) / 2.0F, this.doubleSlab.stepSound.getPitch() * 0.8F);
                 --par1ItemStack.stackSize;

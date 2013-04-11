@@ -65,20 +65,23 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
      */
+    @Override
     public boolean getCanSpawnHere()
     {
     	//System.out.println("light level mummy " + this.isValidLightLevel() + " " + super.getCanSpawnHere());
-    	return this.worldObj.checkIfAABBIsClear(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+    	return this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
         //return true || super.getCanSpawnHere();
     }
     /**
      * Checks to make sure the light is not too bright where the mob is spawning
      */
+    @Override
     protected boolean isValidLightLevel()
     {
         return true;
     }
 
+    @Override
     protected void entityInit()
     {
         super.entityInit();
@@ -87,17 +90,20 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
     /**
      * Returns true if the newer Entity AI code should be run
      */
+    @Override
     public boolean isAIEnabled()
     {
         return true;
     }
 
+    @Override
     public int getMaxHealth()
     {
         return 20;
     }
 
 
+    @Override
     public boolean attackEntityAsMob(Entity par1Entity)
     {
         if (super.attackEntityAsMob(par1Entity))
@@ -113,6 +119,7 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
     /**
      * Get this Entity's EnumCreatureAttribute
      */
+    @Override
     public EnumCreatureAttribute getCreatureAttribute()
     {
         return EnumCreatureAttribute.UNDEFINED;
@@ -121,6 +128,7 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
     /**
      * Makes entity wear random armor based on difficulty
      */
+    @Override
     protected void addRandomArmor()
     {
         this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemBow));
@@ -137,6 +145,7 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
     /**
      * Returns the texture's file path as a String.
      */
+    @Override
     public String getTexture()
     {
     	return "/mods/Atum/textures/mobs/BanditArcher.png";
@@ -145,6 +154,7 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
     /**
      * Initialize this creature.
      */
+    @Override
     public void initCreature()
     {
         this.tasks.addTask(4, this.aiArrowAttack);
@@ -177,6 +187,7 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
     /**
      * Attack the specified entity using a ranged attack.
      */
+    @Override
     public void attackEntityWithRangedAttack(EntityLiving par1EntityLiving, float par2)
     {
         EntityArrow entityarrow = new EntityArrow(this.worldObj, this, par1EntityLiving, 1.6F, (float)(14 - this.worldObj.difficultySetting * 4));
@@ -206,6 +217,7 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
+    @Override
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
@@ -216,6 +228,7 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
     /**
      * Sets the held item, or an armor slot. Slot 0 is held item. Slot 1-4 is armor. Params: Item, slot
      */
+    @Override
     public void setCurrentItemOrArmor(int par1, ItemStack par2ItemStack)
     {
         super.setCurrentItemOrArmor(par1, par2ItemStack);
@@ -231,6 +244,7 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
 	 * has recently been hit by a player. @param par2 - Level of Looting used to
 	 * kill this mob.
 	 */
+    @Override
 	protected void dropFewItems(boolean par1, int par2)
 	{
 		if (rand.nextInt(20) == 0)

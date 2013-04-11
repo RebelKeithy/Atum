@@ -23,7 +23,7 @@ public class EntityItemLoot extends EntityItem
 	@Override
 	public void onUpdate()
 	{
-		int id = worldObj.getBlockId(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
+		/*int id = worldObj.getBlockId(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
         if (id == Block.waterStill.blockID || id == Block.waterMoving.blockID)
         {
         	System.out.println("in water");
@@ -34,7 +34,7 @@ public class EntityItemLoot extends EntityItem
         		damage = damage | ((int)(Math.random()*5))+1;
         	item.setItemDamage(damage << 1);
         	this.setEntityItemStack(item);
-        }
+        }*/
 		super.onUpdate();
 	}
 }

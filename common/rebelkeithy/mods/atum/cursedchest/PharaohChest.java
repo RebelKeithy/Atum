@@ -42,6 +42,7 @@ public class PharaohChest extends BlockContainer
         this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
     }
 
+    @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
     	return Block.chest.blockID;
@@ -51,6 +52,7 @@ public class PharaohChest extends BlockContainer
      * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
      * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
+    @Override
     public boolean isOpaqueCube()
     {
         return false;
@@ -59,6 +61,7 @@ public class PharaohChest extends BlockContainer
     /**
      * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
+    @Override
     public boolean renderAsNormalBlock()
     {
         return false;
@@ -67,6 +70,7 @@ public class PharaohChest extends BlockContainer
     /**
      * The type of render function that is called for this block
      */
+    @Override
     public int getRenderType()
     {
         return 22;
@@ -75,6 +79,7 @@ public class PharaohChest extends BlockContainer
     /**
      * Updates the blocks bounds based on its current state. Args: world, x, y, z
      */
+    @Override
     public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
@@ -83,6 +88,7 @@ public class PharaohChest extends BlockContainer
     /**
      * Called when the block is placed in the world.
      */
+    @Override
     public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving, ItemStack par6ItemStack)
     {
         int l = par1World.getBlockId(par2, par3, par4 - 1);
@@ -156,6 +162,7 @@ public class PharaohChest extends BlockContainer
     /**
      * ejects contained items into the world, and notifies neighbours of an update, as appropriate
      */
+    @Override
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
         TileEntityPharaohChest TileEntityPharaohChest = (TileEntityPharaohChest)par1World.getBlockTileEntity(par2, par3, par4);
@@ -171,6 +178,7 @@ public class PharaohChest extends BlockContainer
     /**
      * Called upon block activation (right click on the block.)
      */
+    @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         if (par1World.isRemote)
@@ -189,7 +197,7 @@ public class PharaohChest extends BlockContainer
         		}
         	}
         	
-            IInventory iinventory = this.func_94442_h_(par1World, par2, par3, par4);
+            IInventory iinventory = this.getInventory(par1World, par2, par3, par4);
 
             if (iinventory != null)
             {
@@ -200,7 +208,7 @@ public class PharaohChest extends BlockContainer
         }
     }
 
-    public IInventory func_94442_h_(World par1World, int par2, int par3, int par4)
+    public IInventory getInventory(World par1World, int par2, int par3, int par4)
     {
         Object object = (TileEntityPharaohChest)par1World.getBlockTileEntity(par2, par3, par4);
 
@@ -225,6 +233,7 @@ public class PharaohChest extends BlockContainer
     /**
      * Returns a new instance of a block's tile entity class. Called on placing the block.
      */
+    @Override
     public TileEntity createNewTileEntity(World par1World)
     {
         TileEntityPharaohChest TileEntityPharaohChest = new TileEntityPharaohChest();
@@ -234,6 +243,7 @@ public class PharaohChest extends BlockContainer
     /**
      * Can this block provide power. Only wire currently seems to have this change based on its state.
      */
+    @Override
     public boolean canProvidePower()
     {
         return this.field_94443_a == 1;
@@ -244,6 +254,7 @@ public class PharaohChest extends BlockContainer
      * returns true, standard redstone propagation rules will apply instead and this will not be called. Args: World, X,
      * Y, Z, side. Note that the side is reversed - eg it is 1 (up) when checking the bottom of the block.
      */
+    @Override
     public int isProvidingWeakPower(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         if (!this.canProvidePower())
@@ -261,6 +272,7 @@ public class PharaohChest extends BlockContainer
      * Returns true if the block is emitting direct/strong redstone power on the specified side. Args: World, X, Y, Z,
      * side. Note that the side is reversed - eg it is 1 (up) when checking the bottom of the block.
      */
+    @Override
     public int isProvidingStrongPower(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         return par5 == 1 ? this.isProvidingWeakPower(par1IBlockAccess, par2, par3, par4, par5) : 0;
@@ -294,6 +306,7 @@ public class PharaohChest extends BlockContainer
      * If this returns true, then comparators facing away from this block will use the value from
      * getComparatorInputOverride instead of the actual redstone signal strength.
      */
+    @Override
     public boolean hasComparatorInputOverride()
     {
         return true;
@@ -303,9 +316,10 @@ public class PharaohChest extends BlockContainer
      * If hasComparatorInputOverride returns true, the return value from this is used instead of the redstone signal
      * strength when this block inputs to a comparator.
      */
+    @Override
     public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5)
     {
-        return Container.func_94526_b(this.func_94442_h_(par1World, par2, par3, par4));
+        return Container.func_94526_b(this.getInventory(par1World, par2, par3, par4));
     }
 
     @SideOnly(Side.CLIENT)
@@ -314,6 +328,7 @@ public class PharaohChest extends BlockContainer
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
+    @Override
     public void registerIcons(IconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("wood");
