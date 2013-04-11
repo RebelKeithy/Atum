@@ -380,7 +380,6 @@ public class Atum
 		itemLoot = new ItemLoot(ConfigAtum.lootID).setCreativeTab(tabs);
 		itemDate = (new ItemFood(ConfigAtum.itemDateID, 5, 1.5F, false)).setUnlocalizedName("Atum:Date").setCreativeTab(tabs);
 		
-		//EnumToolMaterial scimitarEnum = EnumHelper.addToolMaterial("Scimitar", 2, 250, 6.0F, 2, 14);
 		itemScimitar = (new ItemScimitar(ConfigAtum.scimitarID, EnumToolMaterial.IRON)).setUnlocalizedName("Atum:Scimitar").setCreativeTab(tabs);
 		itemBow = (new ItemAtumBow(ConfigAtum.bowID)).setUnlocalizedName("Atum:Bow").setCreativeTab(tabs);
 		itemStoneSoldierSword = new ItemStoneSoldierSword(ConfigAtum.stoneSwordID, EnumToolMaterial.IRON).setUnlocalizedName("Atum:StoneSoldierSword").setCreativeTab(tabs);
@@ -444,97 +443,6 @@ public class Atum
 		MinecraftForge.setBlockHarvestLevel(atumDiamondOre, "pickaxe", 2);
 		MinecraftForge.setBlockHarvestLevel(atumRedstoneOre, "pickaxe", 2);
 
-		LanguageRegistry.addName(atumSand, "Strange Sand");
-		LanguageRegistry.addName(atumStone, "Limestone");
-		LanguageRegistry.addName(atumCobble, "Cracked Limestone");
-		LanguageRegistry.addName(atumLargeBrick, "Large Limestone Bricks");
-		LanguageRegistry.addName(atumSmallBrick, "Small Limestone Bricks");
-		LanguageRegistry.addName(atumCarvedBrick, "Carved Limestone");		
-		LanguageRegistry.addName(atumCrackedLargeBrick, "Cracked Large Limestone Bricks");		
-		LanguageRegistry.addName(atumSmoothStairs, "Limestone Stairs");
-		LanguageRegistry.addName(atumCobbleStairs, "Cracked Limestone Stairs");
-		LanguageRegistry.addName(atumLargeStoneStairs, "Large Limestone Brick Stairs");
-		LanguageRegistry.addName(atumSmallStoneStairs, "Small Limestone Brick Stairs");
-		LanguageRegistry.addName(atumShrub, "Desert Shrub");
-		LanguageRegistry.addName(atumLog, "Palm Log");
-		LanguageRegistry.addName(atumPlanks, "Palm Planks");
-		LanguageRegistry.addName(atumLeaves, "Palm Leaves");
-		LanguageRegistry.addName(atumWeed, "Desert Shrub");
-		LanguageRegistry.addName(atumTrapArrow, "Fire Trap");
-		LanguageRegistry.addName(cursedChest, "Cursed Chest");
-		LanguageRegistry.addName(atumPharaohChest, "Pharaoh's Chest");
-		LanguageRegistry.addName(atumSandLayered, "Strange Sand");
-		LanguageRegistry.addName(furnaceIdle, "Limestone Furnace");
-		LanguageRegistry.addName(atumRedstoneOre, "Redstone Ore");
-		LanguageRegistry.addName(atumCoalOre, "Coal Ore");
-		LanguageRegistry.addName(atumIronOre, "Iron Ore");
-		LanguageRegistry.addName(atumGoldOre, "Gold Ore");
-		LanguageRegistry.addName(atumLapisOre, "Lapis Ore");
-		LanguageRegistry.addName(atumDiamondOre, "Diamond Ore");
-		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 0), "Limestone Slabs");
-		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 1), "Cracked Limestone Slabs");
-		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 2), "Large Limestone Brick Slabs");
-		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 3), "Small Limestone Brick Slabs");
-		LanguageRegistry.addName(atumPapyrus, "Papyrus");
-		LanguageRegistry.addName(new ItemStack(atumWall, 6, 0), "Limestone Wall");
-        LanguageRegistry.addName(new ItemStack(atumWall, 6, 1), "Cracked Limestone Wall");
-        LanguageRegistry.addName(new ItemStack(atumWall, 6, 2), "Large Limestone Brick Wall");
-        LanguageRegistry.addName(new ItemStack(atumWall, 6, 3), "Small Limestone Brick Wall");
-        LanguageRegistry.addName(atumCrystalGlass, "Crystal Glass");
-        LanguageRegistry.addName(atumFramedGlass, "Framed Crystal Glass");
-        LanguageRegistry.addName(atumPalmSapling, "Palm Sapling");
-        LanguageRegistry.addName(atumDateBlock, "Date Block");
-		
-		LanguageRegistry.addName(itemScarab, "Golden Scarab");
-		LanguageRegistry.addName(itemScimitar, "Scimitar");
-		LanguageRegistry.addName(itemBow, "Shortbow");
-		LanguageRegistry.addName(itemStoneSoldierSword, "Ancient Stone Sword");
-		LanguageRegistry.addName(itemEctoplasm, "Ectoplasm");
-		LanguageRegistry.addName(itemStoneChunk, "Limestone Chunk");
-		LanguageRegistry.addName(itemClothScrap, "Cloth Scrap");
-		LanguageRegistry.addName(itemScepter, "Royal Scepter");
-		LanguageRegistry.addName(itemPapyrusPlant, "Papyrus");
-		
-		LanguageRegistry.addName(ptahsPick, "Ptah's Decadence");
-		LanguageRegistry.addName(soteksRage, "Sotek's Rage");
-		LanguageRegistry.addName(osirisWill, "Osiris's Will");
-		LanguageRegistry.addName(akersToil, "Aker's Toil");
-		LanguageRegistry.addName(gebsBlessing, "Geb's Blessing");
-		LanguageRegistry.addName(atensFury, "Aten's Fury");
-		LanguageRegistry.addName(rasGlory, "Ra's Glory");
-		LanguageRegistry.addName(sekhmetsWrath, "Sekhmet's Wrath");
-		LanguageRegistry.addName(nutsAgility, "Nut's Agility");
-		LanguageRegistry.addName(horusFlight, "Horus's Flight");
-		
-		LanguageRegistry.addName(limestoneShovel, "Limestone Shovel");
-		LanguageRegistry.addName(limestonePickaxe, "Limestone Pickaxe");
-		LanguageRegistry.addName(limestoneAxe, "Limestone Axe");
-		LanguageRegistry.addName(limestoneSword, "Limestone Sword");
-		LanguageRegistry.addName(limestoneHoe, "Limestone Hoe");
-		
-		LanguageRegistry.addName(mummyHelmet, "Head Wrap");
-		LanguageRegistry.addName(mummyChest, "Chest Wrap");
-		LanguageRegistry.addName(mummyLegs, "Leg Wrap");
-		LanguageRegistry.addName(mummyBoots, "Feet Wrap");
-		
-		LanguageRegistry.addName(wandererHelmet, "Wanderer Head");
-		LanguageRegistry.addName(wandererChest, "Wanderer Chest");
-		LanguageRegistry.addName(wandererLegs, "Wanderer Legs");
-		LanguageRegistry.addName(wandererBoots, "Wanderer Sandels");
-		
-		LanguageRegistry.addName(desertHelmet, "Desert Head");
-		LanguageRegistry.addName(desertChest, "Desert Chest");
-		LanguageRegistry.addName(desertLegs, "Desert Legs");
-		LanguageRegistry.addName(desertBoots, "Desert Sandels");
-		
-		LanguageRegistry.addName(neithsAudacity, "Neith's Audacity");
-		LanguageRegistry.addName(itemScroll, "Scroll");
-		LanguageRegistry.addName(itemPelt, "Wolf Pelt");
-		LanguageRegistry.addName(itemLinen, "Linen");
-		LanguageRegistry.addName(itemFlax, "Flax");
-		LanguageRegistry.addName(itemFlaxSeeds, "Flax Seeds");
-		LanguageRegistry.instance().addStringLocalization("itemGroup.Atum", "Atum");
-
 		proxy.registerModelRenderers();
 		proxy.registerTickHandlers();
 		proxy.preloadImages();
@@ -551,6 +459,8 @@ public class Atum
 		DimensionManager.registerProviderType(Atum.dimensionID, AtumWorldProvider.class, true);
 		DimensionManager.registerDimension(Atum.dimensionID , Atum.dimensionID);
 
+		addNames();
+		
 		addRecipes();
 		addShapelessRecipes();
 		addOreDictionaryEntries();
@@ -672,5 +582,99 @@ public class Atum
         
         // Atum (Strange) sand to normal vanilla sand
         GameRegistry.addShapelessRecipe(new ItemStack(Block.sand), atumSand);
+	}
+	
+	public void addNames()
+	{
+		LanguageRegistry.addName(atumSand, "Strange Sand");
+		LanguageRegistry.addName(atumStone, "Limestone");
+		LanguageRegistry.addName(atumCobble, "Cracked Limestone");
+		LanguageRegistry.addName(atumLargeBrick, "Large Limestone Bricks");
+		LanguageRegistry.addName(atumSmallBrick, "Small Limestone Bricks");
+		LanguageRegistry.addName(atumCarvedBrick, "Carved Limestone");		
+		LanguageRegistry.addName(atumCrackedLargeBrick, "Cracked Large Limestone Bricks");		
+		LanguageRegistry.addName(atumSmoothStairs, "Limestone Stairs");
+		LanguageRegistry.addName(atumCobbleStairs, "Cracked Limestone Stairs");
+		LanguageRegistry.addName(atumLargeStoneStairs, "Large Limestone Brick Stairs");
+		LanguageRegistry.addName(atumSmallStoneStairs, "Small Limestone Brick Stairs");
+		LanguageRegistry.addName(atumShrub, "Desert Shrub");
+		LanguageRegistry.addName(atumLog, "Palm Log");
+		LanguageRegistry.addName(atumPlanks, "Palm Planks");
+		LanguageRegistry.addName(atumLeaves, "Palm Leaves");
+		LanguageRegistry.addName(atumWeed, "Desert Shrub");
+		LanguageRegistry.addName(atumTrapArrow, "Fire Trap");
+		LanguageRegistry.addName(cursedChest, "Cursed Chest");
+		LanguageRegistry.addName(atumPharaohChest, "Pharaoh's Chest");
+		LanguageRegistry.addName(atumSandLayered, "Strange Sand");
+		LanguageRegistry.addName(furnaceIdle, "Limestone Furnace");
+		LanguageRegistry.addName(atumRedstoneOre, "Redstone Ore");
+		LanguageRegistry.addName(atumCoalOre, "Coal Ore");
+		LanguageRegistry.addName(atumIronOre, "Iron Ore");
+		LanguageRegistry.addName(atumGoldOre, "Gold Ore");
+		LanguageRegistry.addName(atumLapisOre, "Lapis Ore");
+		LanguageRegistry.addName(atumDiamondOre, "Diamond Ore");
+		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 0), "Limestone Slabs");
+		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 1), "Cracked Limestone Slabs");
+		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 2), "Large Limestone Brick Slabs");
+		LanguageRegistry.addName(new ItemStack(atumSlabs, 6, 3), "Small Limestone Brick Slabs");
+		LanguageRegistry.addName(atumPapyrus, "Papyrus");
+		LanguageRegistry.addName(new ItemStack(atumWall, 6, 0), "Limestone Wall");
+        LanguageRegistry.addName(new ItemStack(atumWall, 6, 1), "Cracked Limestone Wall");
+        LanguageRegistry.addName(new ItemStack(atumWall, 6, 2), "Large Limestone Brick Wall");
+        LanguageRegistry.addName(new ItemStack(atumWall, 6, 3), "Small Limestone Brick Wall");
+        LanguageRegistry.addName(atumCrystalGlass, "Crystal Glass");
+        LanguageRegistry.addName(atumFramedGlass, "Framed Crystal Glass");
+        LanguageRegistry.addName(atumPalmSapling, "Palm Sapling");
+        LanguageRegistry.addName(atumDateBlock, "Date Block");
+		
+		LanguageRegistry.addName(itemScarab, "Golden Scarab");
+		LanguageRegistry.addName(itemScimitar, "Scimitar");
+		LanguageRegistry.addName(itemBow, "Shortbow");
+		LanguageRegistry.addName(itemStoneSoldierSword, "Ancient Stone Sword");
+		LanguageRegistry.addName(itemEctoplasm, "Ectoplasm");
+		LanguageRegistry.addName(itemStoneChunk, "Limestone Chunk");
+		LanguageRegistry.addName(itemClothScrap, "Cloth Scrap");
+		LanguageRegistry.addName(itemScepter, "Royal Scepter");
+		LanguageRegistry.addName(itemPapyrusPlant, "Papyrus");
+		
+		LanguageRegistry.addName(ptahsPick, "Ptah's Decadence");
+		LanguageRegistry.addName(soteksRage, "Sotek's Rage");
+		LanguageRegistry.addName(osirisWill, "Osiris's Will");
+		LanguageRegistry.addName(akersToil, "Aker's Toil");
+		LanguageRegistry.addName(gebsBlessing, "Geb's Blessing");
+		LanguageRegistry.addName(atensFury, "Aten's Fury");
+		LanguageRegistry.addName(rasGlory, "Ra's Glory");
+		LanguageRegistry.addName(sekhmetsWrath, "Sekhmet's Wrath");
+		LanguageRegistry.addName(nutsAgility, "Nut's Agility");
+		LanguageRegistry.addName(horusFlight, "Horus's Flight");
+		
+		LanguageRegistry.addName(limestoneShovel, "Limestone Shovel");
+		LanguageRegistry.addName(limestonePickaxe, "Limestone Pickaxe");
+		LanguageRegistry.addName(limestoneAxe, "Limestone Axe");
+		LanguageRegistry.addName(limestoneSword, "Limestone Sword");
+		LanguageRegistry.addName(limestoneHoe, "Limestone Hoe");
+		
+		LanguageRegistry.addName(mummyHelmet, "Head Wrap");
+		LanguageRegistry.addName(mummyChest, "Chest Wrap");
+		LanguageRegistry.addName(mummyLegs, "Leg Wrap");
+		LanguageRegistry.addName(mummyBoots, "Feet Wrap");
+		
+		LanguageRegistry.addName(wandererHelmet, "Wanderer Head");
+		LanguageRegistry.addName(wandererChest, "Wanderer Chest");
+		LanguageRegistry.addName(wandererLegs, "Wanderer Legs");
+		LanguageRegistry.addName(wandererBoots, "Wanderer Sandels");
+		
+		LanguageRegistry.addName(desertHelmet, "Desert Head");
+		LanguageRegistry.addName(desertChest, "Desert Chest");
+		LanguageRegistry.addName(desertLegs, "Desert Legs");
+		LanguageRegistry.addName(desertBoots, "Desert Sandels");
+		
+		LanguageRegistry.addName(neithsAudacity, "Neith's Audacity");
+		LanguageRegistry.addName(itemScroll, "Scroll");
+		LanguageRegistry.addName(itemPelt, "Wolf Pelt");
+		LanguageRegistry.addName(itemLinen, "Linen");
+		LanguageRegistry.addName(itemFlax, "Flax");
+		LanguageRegistry.addName(itemFlaxSeeds, "Flax Seeds");
+		LanguageRegistry.instance().addStringLocalization("itemGroup.Atum", "Atum");
 	}
 }
