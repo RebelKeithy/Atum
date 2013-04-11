@@ -551,8 +551,10 @@ public class Atum
 		DimensionManager.registerProviderType(Atum.dimensionID, AtumWorldProvider.class, true);
 		DimensionManager.registerDimension(Atum.dimensionID , Atum.dimensionID);
 
-
 		addRecipes();
+		addShapelessRecipes();
+		addOreDictionaryEntries();
+		addSmeltingRecipes();
 	}
 	
 	@PostInit
@@ -562,31 +564,40 @@ public class Atum
 	}
 	
 	public void addRecipes()
-	{
-		FurnaceRecipes.smelting().addSmelting(atumCobble.blockID, new ItemStack(atumStone), 0.1F);
-		FurnaceRecipes.smelting().addSmelting(atumSand.blockID, new ItemStack(atumCrystalGlass), 0.1F);
-		
+	{	
+	    // Brick recipes
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumLargeBrick, 4), "XX", "XX", 'X', atumStone));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(atumSmallBrick, 4), "XX", "XX", 'X', atumCobble));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(atumCarvedBrick, 1), atumStone));
+		
+		// Stair recipes
 		GameRegistry.addRecipe(new ItemStack(atumSmoothStairs, 6), "X  ", "XX ", "XXX", 'X', atumStone);
 		GameRegistry.addRecipe(new ItemStack(atumCobbleStairs, 6), "X  ", "XX ", "XXX", 'X', atumCobble);
 		GameRegistry.addRecipe(new ItemStack(atumLargeStoneStairs, 6), "X  ", "XX ", "XXX", 'X', atumLargeBrick);
 		GameRegistry.addRecipe(new ItemStack(atumSmallStoneStairs, 6), "X  ", "XX ", "XXX", 'X', atumSmallBrick);
+		
+		// Slab recipes
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 0), "XXX", 'X', atumStone);
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 1), "XXX", 'X', atumCobble);
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 2), "XXX", 'X', atumLargeBrick);
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 3), "XXX", 'X', atumSmallBrick);
+		
+		// Wall recipes
 		GameRegistry.addRecipe(new ItemStack(atumWall, 6, 0), "XXX", "XXX", 'X', atumStone);
         GameRegistry.addRecipe(new ItemStack(atumWall, 6, 1), "XXX", "XXX", 'X', atumCobble);
         GameRegistry.addRecipe(new ItemStack(atumWall, 6, 2), "XXX", "XXX", 'X', atumLargeBrick);
         GameRegistry.addRecipe(new ItemStack(atumWall, 6, 3), "XXX", "XXX", 'X', atumSmallBrick);
+        
+        // Crystal glass to framed glass
         GameRegistry.addRecipe(new ItemStack(atumFramedGlass), " X ", "XSX", " X ", 'X', Item.stick, 'S', atumCrystalGlass);
-		
-		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 3), "XXX", 'X', atumSmallBrick);
+        
+        // Cracked large bricks recipe
 		GameRegistry.addRecipe(new ItemStack(atumCrackedLargeBrick, 4), "XX", "XX", 'X', itemStoneChunk);
+		
+		// Xp bottle recipe
 		GameRegistry.addRecipe(new ItemStack(Item.expBottle), " X ", "XBX", " X ", 'X', itemEctoplasm, 'B', Item.potion);
 
+		// Limestone tool recipes
 		GameRegistry.addRecipe(new ItemStack(limestoneSword), "L", "L", "S", 'L', atumStone, 'S', Item.stick);
 		GameRegistry.addRecipe(new ItemStack(limestoneShovel), "L", "S", "S", 'L', atumStone, 'S', Item.stick);
 		GameRegistry.addRecipe(new ItemStack(limestonePickaxe), "LLL", " S ", " S ", 'L', atumStone, 'S', Item.stick);
@@ -594,39 +605,72 @@ public class Atum
 		GameRegistry.addRecipe(new ItemStack(limestoneSword), "L", "S", "S", 'L', atumStone, 'S', Item.stick);
 		GameRegistry.addRecipe(new ItemStack(limestoneHoe), "LL", " S", " S", 'L', atumStone, 'S', Item.stick);
 		
+		// Mummy armor recipes
 		GameRegistry.addRecipe(new ItemStack(mummyHelmet), "XXX", "X X", 'X', itemClothScrap);
 		GameRegistry.addRecipe(new ItemStack(mummyChest), "X X", "XXX", "XXX", 'X', itemClothScrap);
 		GameRegistry.addRecipe(new ItemStack(mummyLegs), "XXX", "X X", "X X", 'X', itemClothScrap);
 		GameRegistry.addRecipe(new ItemStack(mummyBoots), "X X", "X X", 'X', itemClothScrap);
 		
+		// Wanderer's armor recipes
 		GameRegistry.addRecipe(new ItemStack(wandererHelmet), "XXX", "X X", 'X', itemLinen);
 		GameRegistry.addRecipe(new ItemStack(wandererChest), "X X", "XXX", "XXX", 'X', itemLinen);
 		GameRegistry.addRecipe(new ItemStack(wandererLegs), "XXX", "X X", "X X", 'X', itemLinen);
 		GameRegistry.addRecipe(new ItemStack(wandererBoots), "X X", "X X", 'X', itemLinen);
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(desertHelmet), wandererHelmet, Item.helmetIron);
-		GameRegistry.addShapelessRecipe(new ItemStack(desertChest), wandererChest, Item.plateIron);
-		GameRegistry.addShapelessRecipe(new ItemStack(desertLegs), wandererLegs, Item.legsIron);
-		GameRegistry.addShapelessRecipe(new ItemStack(desertBoots), wandererBoots, Item.bootsIron);
-		
+		// Linen from flax
 		GameRegistry.addRecipe(new ItemStack(itemLinen), "XXX", 'X', this.itemFlax);
+		
+		// Scroll from papyrus
 		GameRegistry.addRecipe(new ItemStack(itemScroll), "XXX", "SXS", "XXX", 'X', Atum.itemPapyrusPlant, 'S', Item.stick);
 		
+		// Scarab recipe
 		GameRegistry.addRecipe(new ItemStack(itemScarab), " G ", "GDG", " G ", 'G', Item.ingotGold, 'D', Item.diamond);
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(atumPlanks, 4), atumLog);
-		OreDictionary.registerOre("plankWood", atumPlanks);
-		OreDictionary.registerOre("logWood", atumLog);
-		
-		GameRegistry.addRecipe(new ItemStack(this.furnaceIdle), "XXX", "X X", "XXX", 'X', atumCobble);
-		
-		FurnaceRecipes.smelting().smelting().addSmelting(this.atumLog.blockID, new ItemStack(Item.coal, 1, 1), 0.15F);
-		
-		FurnaceRecipes.smelting().addSmelting(this.atumIronOre.blockID, 0, new ItemStack(Item.ingotIron), 0.7F);
-		FurnaceRecipes.smelting().addSmelting(this.atumCoalOre.blockID, new ItemStack(Item.coal), 0.1F);
-		FurnaceRecipes.smelting().addSmelting(this.atumRedstoneOre.blockID, new ItemStack(Item.redstone), 0.7F);
-		FurnaceRecipes.smelting().addSmelting(this.atumLapisOre.blockID, new ItemStack(Item.dyePowder, 1, 4), 0.2F);
-		FurnaceRecipes.smelting().addSmelting(this.atumGoldOre.blockID, new ItemStack(Item.ingotGold), 1.0F);
-        FurnaceRecipes.smelting().addSmelting(this.atumDiamondOre.blockID, new ItemStack(Item.diamond), 1.0F);
+		// Furnace recipe
+		GameRegistry.addRecipe(new ItemStack(furnaceIdle), "XXX", "X X", "XXX", 'X', atumCobble);
+	}
+	
+	public void addSmeltingRecipes()
+	{
+	    // Ore smelting recipes
+	    FurnaceRecipes.smelting().addSmelting(atumIronOre.blockID, 0, new ItemStack(Item.ingotIron), 0.7F);
+        FurnaceRecipes.smelting().addSmelting(atumCoalOre.blockID, new ItemStack(Item.coal), 0.1F);
+        FurnaceRecipes.smelting().addSmelting(atumRedstoneOre.blockID, new ItemStack(Item.redstone), 0.7F);
+        FurnaceRecipes.smelting().addSmelting(atumLapisOre.blockID, new ItemStack(Item.dyePowder, 1, 4), 0.2F);
+        FurnaceRecipes.smelting().addSmelting(atumGoldOre.blockID, new ItemStack(Item.ingotGold), 1.0F);
+        FurnaceRecipes.smelting().addSmelting(atumDiamondOre.blockID, new ItemStack(Item.diamond), 1.0F);
+        
+        // Palm log to charcoal
+        FurnaceRecipes.smelting().addSmelting(atumLog.blockID, new ItemStack(Item.coal, 1, 1), 0.15F);
+        
+        // Atum cobble to Atum stone
+        FurnaceRecipes.smelting().addSmelting(atumCobble.blockID, new ItemStack(atumStone), 0.1F);
+        
+        // Atum sand to crystal glass
+        FurnaceRecipes.smelting().addSmelting(atumSand.blockID, new ItemStack(atumCrystalGlass), 0.1F);
+	}
+	
+	public void addOreDictionaryEntries()
+	{
+	    // Palm log to "logWood"
+	    OreDictionary.registerOre("logWood", atumLog);
+	    
+	    // Palm planks to "plankWood"
+	    OreDictionary.registerOre("plankWood", atumPlanks);
+	}
+	
+	public void addShapelessRecipes()
+	{
+	    // Palm planks from Palm logs
+	    GameRegistry.addShapelessRecipe(new ItemStack(atumPlanks, 4), atumLog);
+	    
+	    // Desert armor from iron armor
+	    GameRegistry.addShapelessRecipe(new ItemStack(desertHelmet), wandererHelmet, Item.helmetIron);
+        GameRegistry.addShapelessRecipe(new ItemStack(desertChest), wandererChest, Item.plateIron);
+        GameRegistry.addShapelessRecipe(new ItemStack(desertLegs), wandererLegs, Item.legsIron);
+        GameRegistry.addShapelessRecipe(new ItemStack(desertBoots), wandererBoots, Item.bootsIron);
+        
+        // Atum (Strange) sand to normal vanilla sand
+        GameRegistry.addShapelessRecipe(new ItemStack(Block.sand), atumSand);
 	}
 }
