@@ -579,7 +579,8 @@ public class Atum
         GameRegistry.addRecipe(new ItemStack(atumWall, 6, 2), "XXX", "XXX", 'X', atumLargeBrick);
         GameRegistry.addRecipe(new ItemStack(atumWall, 6, 3), "XXX", "XXX", 'X', atumSmallBrick);
         GameRegistry.addRecipe(new ItemStack(atumFramedGlass), " X ", "XSX", " X ", 'X', Item.stick, 'S', atumCrystalGlass);
-		
+        GameRegistry.addShapelessRecipe(new ItemStack(Block.sand), atumSand);
+        
 		GameRegistry.addRecipe(new ItemStack(atumSlabs, 6, 3), "XXX", 'X', atumSmallBrick);
 		GameRegistry.addRecipe(new ItemStack(atumCrackedLargeBrick, 4), "XX", "XX", 'X', itemStoneChunk);
 		GameRegistry.addRecipe(new ItemStack(Item.expBottle), " X ", "XBX", " X ", 'X', itemEctoplasm, 'B', Item.potion);
