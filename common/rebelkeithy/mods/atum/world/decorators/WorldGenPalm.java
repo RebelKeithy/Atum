@@ -42,7 +42,7 @@ public class WorldGenPalm extends WorldGenerator
 
         int id = par1World.getBlockId(par3, par4 - 1, par5);
 
-        if ((id == Atum.atumSand.blockID || id == Block.grass.blockID || id == Block.dirt.blockID) && par4 >= 1 && par4 + l + 1 <= 256)
+        if ((id == Atum.atumSand.blockID || id == Atum.atumFertileSoil.blockID || id == Block.dirt.blockID) && par4 >= 1 && par4 + l + 1 <= 256)
         {
             int i1;
             byte b0;
@@ -75,7 +75,7 @@ public class WorldGenPalm extends WorldGenerator
 
                             if (k1 != 0 &&
                                !block.isLeaves(par1World, l1, i1, j1) &&
-                                k1 != Block.grass.blockID &&
+                                k1 != Atum.atumFertileSoil.blockID &&
                                 k1 != Block.dirt.blockID &&
                                !block.isWood(par1World, l1, i1, j1))
                             {

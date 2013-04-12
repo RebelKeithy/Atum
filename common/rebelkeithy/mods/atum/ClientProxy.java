@@ -25,6 +25,7 @@ import rebelkeithy.mods.atum.entities.ModelDesertWolf;
 import rebelkeithy.mods.atum.entities.ModelDustySkeleton;
 import rebelkeithy.mods.atum.entities.RenderBandit;
 import rebelkeithy.mods.atum.entities.RenderDesertWolf;
+import rebelkeithy.mods.atum.entities.RenderGhost;
 import rebelkeithy.mods.atum.entities.RenderPharaoh;
 import rebelkeithy.mods.atum.items.RendererItemBow;
 import rebelkeithy.mods.particleregistry.ParticleRegistry;
@@ -64,7 +65,7 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityBanditWarlord.class, new RenderBiped(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityPharaoh.class, new RenderPharaoh(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDustySkeleton.class, new RenderBiped(new ModelDustySkeleton(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(EntityGhost.class, new RenderLiving(new ModelZombie(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityGhost.class, new RenderGhost(new ModelZombie(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityStoneSoldier.class, new RenderBiped(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDesertWolf.class, new RenderDesertWolf(new ModelDesertWolf(), new ModelDesertWolf(), 0.5F));
 		

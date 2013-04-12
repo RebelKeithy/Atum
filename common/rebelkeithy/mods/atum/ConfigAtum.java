@@ -47,6 +47,8 @@ public class ConfigAtum
 	public static int palmSaplingID = 1060;
 	public static int blockDateID = 1061;
 	public static int flaxBlockID = 1062;
+	public static int fertileSoilID = 1063;
+	public static int fertileSoilTillID = 1064;
 	
 	public static int portalSpawnerID = 5000;
 	public static int scimitarID = 5001;
@@ -150,6 +152,8 @@ public class ConfigAtum
 		palmSaplingID = config.getBlock("Palm Sapling", palmSaplingID).getInt(palmSaplingID);
 		blockDateID = config.getBlock("Date Block", blockDateID).getInt(blockDateID);
 		flaxBlockID = config.getBlock("Flax", flaxBlockID).getInt(flaxBlockID);
+		fertileSoilID = config.getBlock("Fertile Soil", fertileSoilID).getInt(fertileSoilID);
+		fertileSoilTillID = config.getBlock("Fertile Soil Tilled", fertileSoilTillID).getInt(fertileSoilTillID);
 
 		portalSpawnerID = config.getItem("Scarab", portalSpawnerID).getInt();
 		scimitarID = config.getItem("Scimitar", scimitarID).getInt();

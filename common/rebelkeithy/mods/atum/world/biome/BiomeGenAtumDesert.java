@@ -51,7 +51,7 @@ public class BiomeGenAtumDesert extends BiomeGenBase
         this.spawnableCaveCreatureList.clear();
         
         this.spawnableMonsterList.add(new SpawnListEntry(EntityMummy.class, 8, 4, 4));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditWarlord.class, 2, 1, 1));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditWarlord.class, 1, 1, 1));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditWarrior.class, 8, 4, 4));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditArcher.class, 8, 4, 4));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityDustySkeleton.class, 8, 4, 4));
@@ -113,6 +113,16 @@ public class BiomeGenAtumDesert extends BiomeGenBase
             int height = par2Random.nextInt(4) + 4;
             time = System.nanoTime();
             (new WorldGenPalm(true, height, 0, 0)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
+            //System.out.println("Gen Palm: " + (System.nanoTime() - time));
+        }
+
+        if (par2Random.nextInt(7) == 0)
+        {
+            int k = par3 + par2Random.nextInt(16) + 8;
+            int l = par4 + par2Random.nextInt(16) + 8;
+            int height = par2Random.nextInt(4) + 4;
+            time = System.nanoTime();
+            (new WorldGenAtumTrees(true)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
             //System.out.println("Gen Palm: " + (System.nanoTime() - time));
         }
 

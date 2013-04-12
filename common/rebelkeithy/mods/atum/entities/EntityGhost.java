@@ -1,6 +1,8 @@
 package rebelkeithy.mods.atum.entities;
 
 import rebelkeithy.mods.atum.Atum;
+import net.minecraft.block.Block;
+import net.minecraft.block.StepSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -27,6 +29,7 @@ import net.minecraftforge.common.ForgeHooks;
 
 public class EntityGhost extends EntityMob
 {
+	int cycleHeight;
 
 	public EntityGhost(World par1World) 
 	{
@@ -61,6 +64,13 @@ public class EntityGhost extends EntityMob
 		return super.getSpeedModifier() * 1.5F;
     }
 
+
+    public void onLivingUpdate()
+    {
+    	cycleHeight = (cycleHeight + 1) % 100;
+    	super.onLivingUpdate();
+    }
+    
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
      */
@@ -101,6 +111,12 @@ public class EntityGhost extends EntityMob
         this.isAirBorne = true;
         ForgeHooks.onLivingJump(this);
     }
+    
+    /**
+     * Plays step sound at given x, y, z for the entity
+     */
+    @Override
+    protected void playStepSound(int par1, int par2, int par3, int par4) {}
 
     /**
      * Get this Entity's EnumCreatureAttribute
@@ -111,6 +127,8 @@ public class EntityGhost extends EntityMob
         return EnumCreatureAttribute.UNDEAD;
     }
 
+    
+    
     @Override
     public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
