@@ -117,7 +117,7 @@ public class BlockFertileSoil extends Block
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return Block.dirt.idDropped(0, par2Random, par3);
+        return Atum.atumSand.blockID;//Block.dirt.idDropped(0, par2Random, par3);
     }
 
     @SideOnly(Side.CLIENT)
