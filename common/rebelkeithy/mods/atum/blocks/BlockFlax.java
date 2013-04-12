@@ -1,5 +1,12 @@
 package rebelkeithy.mods.atum.blocks;
 
+import static net.minecraftforge.common.EnumPlantType.Cave;
+import static net.minecraftforge.common.EnumPlantType.Crop;
+import static net.minecraftforge.common.EnumPlantType.Desert;
+import static net.minecraftforge.common.EnumPlantType.Nether;
+import static net.minecraftforge.common.EnumPlantType.Plains;
+import static net.minecraftforge.common.EnumPlantType.Water;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -14,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -35,6 +43,13 @@ public class BlockFlax extends BlockFlower
         this.disableStats();
     }
 
+    @Override
+    public EnumPlantType getPlantType(World world, int x, int y, int z)
+    {
+        return Crop;
+    }
+
+
     /**
      * Gets passed in the blockID of the block below and supposed to return true if its allowed to grow on the type of
      * blockID passed in. Args: blockID
@@ -42,7 +57,7 @@ public class BlockFlax extends BlockFlower
 	@Override
     protected boolean canThisPlantGrowOnThisBlockID(int par1)
     {
-        return par1 == Block.tilledField.blockID;
+        return par1 == Block.tilledField.blockID || par1 == Atum.atumFertileSoilTilled.blockID;
     }
 
     /**

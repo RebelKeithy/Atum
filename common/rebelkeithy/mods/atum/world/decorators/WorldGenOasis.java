@@ -109,12 +109,11 @@ public class WorldGenOasis extends WorldGenerator
             				world.setBlock(x+par3, y-2, z+par5, Block.waterStill.blockID);
         				}
         			} else {
-
             			check = (x*x)/((radius+4)*(radius+4)) + (z*z)/((radius2+4)*(radius2+4));
         				int y = world.getHeightValue(x+par3, z+par5);
         				if(check < 1)
         				{
-        					world.setBlock(x+par3, y-1, z+par5, Block.grass.blockID);
+        					world.setBlock(x+par3, y-1, z+par5, Atum.atumFertileSoil.blockID);
         					if(check < 0.3)
         					{
         						if(par2Random.nextInt(8) == 0)
@@ -144,7 +143,7 @@ public class WorldGenOasis extends WorldGenerator
         	int z = par2Random.nextInt(depth);
         	
         	id = world.getBlockId(par3+x, world.getHeightValue(par3+x, par5+z)-1, par5+z);
-        	if(id == Block.grass.blockID || id == Block.dirt.blockID)
+        	if(id == Atum.atumFertileSoil.blockID)
         	{
         		(new WorldGenPalm(true, 5, 0, 0)).generate(world, par2Random, par3+x, world.getHeightValue(par3+x, par5+z), par5+z);
         		treeCount++;
@@ -162,7 +161,7 @@ public class WorldGenOasis extends WorldGenerator
         	int y = world.getHeightValue(par3+x, par5+z);
 
         	id = world.getBlockId(par3+x, y-1, par5+z);
-        	if(!chest && id == Block.grass.blockID || id == Block.dirt.blockID)
+        	if(!chest && id == Atum.atumFertileSoil.blockID)
         	{
         		world.setBlock(par3+x, y, par5+z, Block.chest.blockID);
         		TileEntity te = world.getBlockTileEntity(par3+x, world.getHeightValue(par3+x, par5+z), par5+z);
@@ -180,6 +179,24 @@ public class WorldGenOasis extends WorldGenerator
         	        	{
         	        		world.setBlock(par3+x, y, par5+z, Atum.atumPapyrus.blockID);
         	        		papyrus = true;
+        	        	}
+        			}
+        		}
+        	}
+        	
+        	if(par2Random.nextInt(5) == 0)
+        	{
+        		for(int dx = -1; dx <= 1; dx++)
+        		{
+        			for(int dz = -1; dz <= 1; dz++)
+        			{
+        				int currentY = world.getHeightValue(par3+x, par5+z);
+        				int belowID = world.getBlockId(par3+x, currentY - 1, par5+z);
+        				int currentID = world.getBlockId(par3+x, currentY, par5+z);
+        	        	if(par2Random.nextInt(3) == 0 && belowID == Atum.atumFertileSoil.blockID && currentID == 0)
+        	        	{
+        	        		world.setBlock(par3+x+dx, currentY-1, par5+z+dz, Atum.atumFertileSoilTilled.blockID);
+        	        		world.setBlock(par3+x+dx, currentY, par5+z+dz, Atum.atumFlax.blockID);
         	        	}
         			}
         		}

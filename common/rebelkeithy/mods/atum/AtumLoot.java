@@ -126,8 +126,18 @@ public class AtumLoot
 					stack = artifacts.get(randomArtifactID).copy();
 				}
 			} else {
-				if(roll > 0.8)
+				if(roll > 0.95)
 				{
+					int amount = 1;
+					while(rand.nextFloat() > 0.7)
+						amount++;
+					stack = new ItemStack(Atum.itemFlaxSeeds, amount);
+				} else if(roll > 0.9) {
+					int amount = 1;
+					while(rand.nextFloat() > 0.5)
+						amount++;
+					stack = new ItemStack(Atum.itemDate, amount);
+				} else if(roll > 0.8) {
 					int amount = 1;
 					while(rand.nextFloat() > 0.2)
 						amount++;
