@@ -435,6 +435,7 @@ public class Atum
 		MinecraftForge.setToolClass(akersToil, "shovel", 4);
 		MinecraftForge.setToolClass(limestoneShovel, "shovel", 1);
 		MinecraftForge.setToolClass(limestoneAxe, "axe", 1);
+		MinecraftForge.setToolClass(limestonePickaxe, "pickaxe", 1);
 		
 		MinecraftForge.setBlockHarvestLevel(atumCoalOre, "pickaxe", 1);
 		MinecraftForge.setBlockHarvestLevel(atumIronOre, "pickaxe", 1);
@@ -527,7 +528,10 @@ public class Atum
 		GameRegistry.addRecipe(new ItemStack(wandererBoots), "X X", "X X", 'X', itemLinen);
 		
 		// Linen from flax
-		GameRegistry.addRecipe(new ItemStack(itemLinen), "XXX", 'X', this.itemFlax);
+		GameRegistry.addRecipe(new ItemStack(itemLinen), "XXX", 'X', itemFlax);
+		
+		// Bottles out of Crystal glass
+		GameRegistry.addRecipe(new ItemStack(Item.glassBottle, 3), "X X", " X ", 'X', atumCrystalGlass);
 		
 		// Scroll from papyrus
 		GameRegistry.addRecipe(new ItemStack(itemScroll), "XXX", "SXS", "XXX", 'X', Atum.itemPapyrusPlant, 'S', Item.stick);
