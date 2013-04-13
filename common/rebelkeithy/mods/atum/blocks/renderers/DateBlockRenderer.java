@@ -19,6 +19,7 @@ public class DateBlockRenderer implements ISimpleBlockRenderingHandler
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer)
 	{
+		//renderWorldBlock(null, 0, 0, 0, block, modelID, renderer);
 	}
 
 	@Override
@@ -26,8 +27,113 @@ public class DateBlockRenderer implements ISimpleBlockRenderingHandler
 	{
 		//BlockDate block = (BlockDate) Atum.atumDateBlock;
         Tessellator tessellator = Tessellator.instance;
-        tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
+        if(world != null)
+        	tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
+        else
+        	tessellator.setBrightness(1);
+        	
         tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
+        Icon icon = block.getIcon(0, 0);
+        
+        double sideu1 = icon.getInterpolatedU(0);
+        double sideu2 = icon.getInterpolatedU(6);
+        double sidev1 = icon.getInterpolatedV(14);
+        double sidev2 = icon.getInterpolatedV(6);
+
+        double topu1 = icon.getInterpolatedU(0);
+        double topu2 = icon.getInterpolatedU(6);
+        double topv1 = icon.getInterpolatedV(6);
+        double topv2 = icon.getInterpolatedV(0);
+        
+        double fx1 = 5/16.0D;
+        double fx2 = 11/16.0D;
+        double fz = 11/16.0D;
+        double y1 = 2/16.0D;
+        double y2 = 10/16.0D;
+        
+        
+        double bz = 5/16.0D;
+
+        tessellator.addVertexWithUV(x+fx1, y+y1, z+fz, sideu1, sidev1);
+        tessellator.addVertexWithUV(x+fx2, y+y1, z+fz, sideu2, sidev1);
+        tessellator.addVertexWithUV(x+fx2, y+y2, z+fz, sideu2, sidev2);
+        tessellator.addVertexWithUV(x+fx1, y+y2, z+fz, sideu1, sidev2);
+
+        tessellator.addVertexWithUV(x+fx1, y+y1, z+bz, sideu1, sidev1);
+        tessellator.addVertexWithUV(x+fx1, y+y2, z+bz, sideu1, sidev2);
+        tessellator.addVertexWithUV(x+fx2, y+y2, z+bz, sideu2, sidev2);
+        tessellator.addVertexWithUV(x+fx2, y+y1, z+bz, sideu2, sidev1);
+        
+        tessellator.addVertexWithUV(x+fz, y+y1, z+fx1, sideu1, sidev1);
+        tessellator.addVertexWithUV(x+fz, y+y2, z+fx1, sideu1, sidev2);
+        tessellator.addVertexWithUV(x+fz, y+y2, z+fx2, sideu2, sidev2);
+        tessellator.addVertexWithUV(x+fz, y+y1, z+fx2, sideu2, sidev1);
+        
+        tessellator.addVertexWithUV(x+bz, y+y1, z+fx1, sideu1, sidev1);
+        tessellator.addVertexWithUV(x+bz, y+y1, z+fx2, sideu2, sidev1);
+        tessellator.addVertexWithUV(x+bz, y+y2, z+fx2, sideu2, sidev2);
+        tessellator.addVertexWithUV(x+bz, y+y2, z+fx1, sideu1, sidev2);
+
+        tessellator.addVertexWithUV(x+bz, y+y2, z+fx1, topu1, topv1);
+        tessellator.addVertexWithUV(x+bz, y+y2, z+fx2, topu1, topv2);
+        tessellator.addVertexWithUV(x+fz, y+y2, z+fx2, topu2, topv2);
+        tessellator.addVertexWithUV(x+fz, y+y2, z+fx1, topu2, topv1);
+
+        tessellator.addVertexWithUV(x+bz, y+y1, z+fx1, topu1, topv1);
+        tessellator.addVertexWithUV(x+fz, y+y1, z+fx1, topu2, topv1);
+        tessellator.addVertexWithUV(x+fz, y+y1, z+fx2, topu2, topv2);
+        tessellator.addVertexWithUV(x+bz, y+y1, z+fx2, topu1, topv2);
+        
+
+        sideu1 = icon.getInterpolatedU(6);
+        sideu2 = icon.getInterpolatedU(8);
+        sidev1 = icon.getInterpolatedV(12);
+        sidev2 = icon.getInterpolatedV(6);
+
+        topu1 = icon.getInterpolatedU(6);
+        topu2 = icon.getInterpolatedU(8);
+        topv1 = icon.getInterpolatedV(2);
+        topv2 = icon.getInterpolatedV(0);
+        
+        fx1 = 7/16.0D;
+        fx2 = 9/16.0D;
+        bz = 7/16.0D;
+        fz = 9/16.0D;
+        y1 = 10/16.0D;
+        y2 = 16/16.0D;
+
+        tessellator.addVertexWithUV(x+fx1, y+y1, z+fz, sideu1, sidev1);
+        tessellator.addVertexWithUV(x+fx2, y+y1, z+fz, sideu2, sidev1);
+        tessellator.addVertexWithUV(x+fx2, y+y2, z+fz, sideu2, sidev2);
+        tessellator.addVertexWithUV(x+fx1, y+y2, z+fz, sideu1, sidev2);
+
+        tessellator.addVertexWithUV(x+fx1, y+y1, z+bz, sideu1, sidev1);
+        tessellator.addVertexWithUV(x+fx1, y+y2, z+bz, sideu1, sidev2);
+        tessellator.addVertexWithUV(x+fx2, y+y2, z+bz, sideu2, sidev2);
+        tessellator.addVertexWithUV(x+fx2, y+y1, z+bz, sideu2, sidev1);
+        
+        tessellator.addVertexWithUV(x+fz, y+y1, z+fx1, sideu1, sidev1);
+        tessellator.addVertexWithUV(x+fz, y+y2, z+fx1, sideu1, sidev2);
+        tessellator.addVertexWithUV(x+fz, y+y2, z+fx2, sideu2, sidev2);
+        tessellator.addVertexWithUV(x+fz, y+y1, z+fx2, sideu2, sidev1);
+        
+        tessellator.addVertexWithUV(x+bz, y+y1, z+fx1, sideu1, sidev1);
+        tessellator.addVertexWithUV(x+bz, y+y1, z+fx2, sideu2, sidev1);
+        tessellator.addVertexWithUV(x+bz, y+y2, z+fx2, sideu2, sidev2);
+        tessellator.addVertexWithUV(x+bz, y+y2, z+fx1, sideu1, sidev2);
+
+        tessellator.addVertexWithUV(x+bz, y+y2, z+fx1, topu1, topv1);
+        tessellator.addVertexWithUV(x+bz, y+y2, z+fx2, topu1, topv2);
+        tessellator.addVertexWithUV(x+fz, y+y2, z+fx2, topu2, topv2);
+        tessellator.addVertexWithUV(x+fz, y+y2, z+fx1, topu2, topv1);
+
+        tessellator.addVertexWithUV(x+bz, y+y1, z+fx1, topu1, topv1);
+        tessellator.addVertexWithUV(x+fz, y+y1, z+fx1, topu2, topv1);
+        tessellator.addVertexWithUV(x+fz, y+y1, z+fx2, topu2, topv2);
+        tessellator.addVertexWithUV(x+bz, y+y1, z+fx2, topu1, topv2);
+        
+        
+        /*
         int l = world.getBlockMetadata(x, y, z);
         int i1 = BlockDirectional.getDirection(l);
         int j1 = BlockCocoa.func_72219_c(l);
@@ -170,7 +276,7 @@ public class DateBlockRenderer implements ISimpleBlockRenderingHandler
             tessellator.addVertexWithUV(d10, d13, d14, d5, d6);
             tessellator.addVertexWithUV(d10, d13, d15, d4, d6);
         }
-
+		*/
         return true;
 	}
 

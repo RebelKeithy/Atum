@@ -49,6 +49,8 @@ public class ConfigAtum
 	public static int flaxBlockID = 1062;
 	public static int fertileSoilID = 1063;
 	public static int fertileSoilTillID = 1064;
+	public static int thinCrystalGlassID = 1065;
+	public static int thinFramedGlassID = 1066;
 	
 	public static int portalSpawnerID = 5000;
 	public static int scimitarID = 5001;
@@ -154,6 +156,8 @@ public class ConfigAtum
 		flaxBlockID = config.getBlock("Flax", flaxBlockID).getInt(flaxBlockID);
 		fertileSoilID = config.getBlock("Fertile Soil", fertileSoilID).getInt(fertileSoilID);
 		fertileSoilTillID = config.getBlock("Fertile Soil Tilled", fertileSoilTillID).getInt(fertileSoilTillID);
+		thinCrystalGlassID = config.getBlock("Crystal Glass Panes", thinCrystalGlassID).getInt(thinCrystalGlassID);
+		thinFramedGlassID = config.getBlock("Framed Crystal Glass Panes", thinFramedGlassID).getInt(thinFramedGlassID);
 
 		portalSpawnerID = config.getItem("Scarab", portalSpawnerID).getInt();
 		scimitarID = config.getItem("Scimitar", scimitarID).getInt();

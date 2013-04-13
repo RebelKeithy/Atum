@@ -21,10 +21,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import rebelkeithy.mods.atum.artifacts.ItemHorusFlight;
 import rebelkeithy.mods.atum.artifacts.ItemAkersToil;
 import rebelkeithy.mods.atum.artifacts.ItemAtensFury;
 import rebelkeithy.mods.atum.artifacts.ItemGebsBlessing;
+import rebelkeithy.mods.atum.artifacts.ItemHorusFlight;
 import rebelkeithy.mods.atum.artifacts.ItemNeithsAudacity;
 import rebelkeithy.mods.atum.artifacts.ItemNutsAgility;
 import rebelkeithy.mods.atum.artifacts.ItemOsirisWill;
@@ -37,6 +37,7 @@ import rebelkeithy.mods.atum.blocks.BlockArrowTrap;
 import rebelkeithy.mods.atum.blocks.BlockAtumGlass;
 import rebelkeithy.mods.atum.blocks.BlockAtumLeaves;
 import rebelkeithy.mods.atum.blocks.BlockAtumLog;
+import rebelkeithy.mods.atum.blocks.BlockAtumPane;
 import rebelkeithy.mods.atum.blocks.BlockAtumPortal;
 import rebelkeithy.mods.atum.blocks.BlockAtumSand;
 import rebelkeithy.mods.atum.blocks.BlockAtumSapling;
@@ -146,6 +147,8 @@ public class Atum
 	public static Block atumLog;
 	public static Block atumLeaves;
 	public static Block atumPlanks;
+	public static Block thinCrystalGlass;
+	public static Block thinFramedGlass;
 	
 	public static Block atumTrapArrow;
 	public static Block atumPharaohChest;
@@ -247,6 +250,9 @@ public class Atum
 		atumPalmSapling = (new BlockAtumSapling(ConfigAtum.palmSaplingID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:AtumPalmSapling").setCreativeTab(tabs);
 		atumDateBlock = (new BlockDate(ConfigAtum.blockDateID, Material.plants)).setHardness(0.0F).setUnlocalizedName("Atum:AtumDate").setCreativeTab(tabs);
 		atumFlax = (new BlockFlax(ConfigAtum.flaxBlockID)).setUnlocalizedName("Atum:FlaxBlock").setCreativeTab(tabs);
+
+	    thinCrystalGlass = (new BlockAtumPane(ConfigAtum.thinCrystalGlassID, "Atum:AtumCrystalGlass", "thinglass_top", Material.glass, false)).setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("thinCrystalGlass").setCreativeTab(tabs);
+	    thinFramedGlass = (new BlockAtumPane(ConfigAtum.thinFramedGlassID, "Atum:AtumFramedGlass", "Atum:thinglass_top", Material.glass, false)).setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("thinFramedGlass").setCreativeTab(tabs);
 		
 	    atumSandLayered = (new BlockSandLayered(ConfigAtum.sandLayeredID)).setHardness(0.1F).setStepSound(Block.soundSnowFootstep).setUnlocalizedName("SandLayered").setLightOpacity(0).setCreativeTab(tabs);
 	    
@@ -375,6 +381,8 @@ public class Atum
 		GameRegistry.registerBlock(atumFlax, "Flax");
 		GameRegistry.registerBlock(atumFertileSoil, "FertileSoil");
 		GameRegistry.registerBlock(atumFertileSoilTilled, "FertileSoilTilled");
+		GameRegistry.registerBlock(thinCrystalGlass, "ThinCrystalGlass");
+		GameRegistry.registerBlock(thinFramedGlass, "ThinFramedGlass");
 		
 		GameRegistry.registerTileEntity(TileEntityChestSpawner.class, "CursedChest");
 		GameRegistry.registerTileEntity(TileEntityPharaohChest.class, "PharaohChest");
@@ -543,6 +551,10 @@ public class Atum
 		// Bottles out of Crystal glass
 		GameRegistry.addRecipe(new ItemStack(Item.glassBottle, 3), "X X", " X ", 'X', atumCrystalGlass);
 		
+		// Thin Glass
+		GameRegistry.addRecipe(new ItemStack(thinCrystalGlass, 16), "XXX", "XXX", 'X', atumCrystalGlass);
+		GameRegistry.addRecipe(new ItemStack(thinFramedGlass, 16), "XXX", "XXX", 'X', atumFramedGlass);
+		
 		// Scroll from papyrus
 		GameRegistry.addRecipe(new ItemStack(itemScroll), "XXX", "SXS", "XXX", 'X', Atum.itemPapyrusPlant, 'S', Item.stick);
 		
@@ -644,6 +656,8 @@ public class Atum
         LanguageRegistry.addName(atumDateBlock, "Date Block");
         LanguageRegistry.addName(atumFertileSoil, "Fertile Soil");
         LanguageRegistry.addName(atumFertileSoilTilled, "Fertile Soil Tilled");
+        LanguageRegistry.addName(thinCrystalGlass, "Crystal Glass Panes");
+        LanguageRegistry.addName(thinFramedGlass, "Framed Crystal Glass Panes");
 		
 		LanguageRegistry.addName(itemScarab, "Golden Scarab");
 		LanguageRegistry.addName(itemScimitar, "Scimitar");
