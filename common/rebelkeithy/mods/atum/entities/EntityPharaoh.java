@@ -34,9 +34,9 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 	public static String[] suffix = {"Ahat", "Amesh", "Amon", "Anut", "Baroom", "Chanta", "Erant", "Funam", "Daresh", "Djer", "Hotesh", "Khaden", "Kron", "Gorkum", "Ialenter", "Ma'at", "Narmer", "Radeem", "Jaloom", "Lepsha", "Quor", "Oleshet", "Peput", "Talat", "Ulam", "Veresh", "Ranesh", "Snef", "Wollolo", "Hathor", "Intef", "Neferk", "Khatne", "Tepy", "Moret"};
 	public static String[] numeral = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV"};
 	
-	private int suffixID;
-	private int prefixID;
-	private int numID;
+	private int suffixID = 0;
+	private int prefixID = 0;
+	private int numID = 0;
 
 	public EntityPharaoh(World par1World) 
 	{
@@ -44,6 +44,16 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
         this.experienceValue = 250;
         Random rand = new Random();
         stage = 0;
+	}
+	
+	public void setName(int par1, int par2, int par3)
+	{
+		suffixID = par1;
+		prefixID = par2;
+		numID = par3;
+        this.dataWatcher.updateObject(18, new Integer(suffixID));
+        this.dataWatcher.updateObject(19, new Integer(prefixID));
+        this.dataWatcher.updateObject(20, new Integer(numID));
 	}
 
     @Override
@@ -66,6 +76,11 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 		linkedY = y;
 		linkedZ = z;
 	}
+
+    /**
+     * Makes the entity despawn if requirements are reached
+     */
+    protected void despawnEntity() {}
 
 	@Override
 	public void onDeath(DamageSource par1DamageSource)
@@ -336,12 +351,33 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
     {
         super.entityInit();
         this.dataWatcher.addObject(16, new Integer(100));
-        suffixID = rand.nextInt(suffix.length);
-        prefixID = rand.nextInt(prefix.length);
-        numID = rand.nextInt(numeral.length);
+        if(suffixID == 0 && prefixID == 0 && numID == 0)
+        {
+        	suffixID = rand.nextInt(suffix.length);
+        	prefixID = rand.nextInt(prefix.length);
+        	numID = rand.nextInt(numeral.length);
+        }
         this.dataWatcher.addObject(18, new Integer(suffixID));
         this.dataWatcher.addObject(19, new Integer(prefixID));
         this.dataWatcher.addObject(20, new Integer(numID));
+    }
+
+    /**
+     * Called to update the entity's position/logic.
+     */
+    public void onUpdate()
+    {
+        super.onUpdate();
+
+        if (!this.worldObj.isRemote && this.worldObj.difficultySetting == 0)
+        {
+        	TileEntity te = worldObj.getBlockTileEntity(linkedX, linkedY, linkedZ);
+        	if(te instanceof TileEntityPharaohChest)
+        	{
+        		((TileEntityPharaohChest)te).setPharaohDespawned();
+        	}
+            this.setDead();
+        }
     }
 
     @Override

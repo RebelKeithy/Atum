@@ -468,4 +468,8 @@ public class TileEntityPharaohChest extends TileEntityChest implements IInventor
 			}
 		}
 	}
+
+	public void setPharaohDespawned() {
+		hasSpawned = false;
+	}
 }
