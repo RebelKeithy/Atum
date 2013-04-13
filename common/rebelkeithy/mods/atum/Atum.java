@@ -21,7 +21,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import rebelkeithy.mods.atum.artifacts.HorusFlight;
+import rebelkeithy.mods.atum.artifacts.ItemHorusFlight;
 import rebelkeithy.mods.atum.artifacts.ItemAkersToil;
 import rebelkeithy.mods.atum.artifacts.ItemAtensFury;
 import rebelkeithy.mods.atum.artifacts.ItemGebsBlessing;
@@ -404,7 +404,7 @@ public class Atum
 		rasGlory = new ItemRasGlory(ConfigAtum.rasGloryID, EnumArmorMaterial.DIAMOND, 0, 0).setTextureFile("EgyptianArmor_1").setUnlocalizedName("Atum:RasGlory").setCreativeTab(tabs);
 		sekhmetsWrath = new ItemSekhmetsWrath(ConfigAtum.sekhmetsWrathID, EnumArmorMaterial.DIAMOND, 1, 1).setTextureFile("EgyptianArmor_1").setUnlocalizedName("Atum:SekhmetsWrath").setCreativeTab(tabs);
 		nutsAgility = new ItemNutsAgility(ConfigAtum.nutsAgilityID, EnumArmorMaterial.DIAMOND, 2, 2).setTextureFile("EgyptianArmor_2").setUnlocalizedName("Atum:NutsAgility").setCreativeTab(tabs);
-		horusFlight = new HorusFlight(ConfigAtum.horusFlightID, EnumArmorMaterial.DIAMOND, 3, 3).setTextureFile("EgyptianArmor_1").setUnlocalizedName("Atum:HorusFlight").setCreativeTab(tabs);
+		horusFlight = new ItemHorusFlight(ConfigAtum.horusFlightID, EnumArmorMaterial.DIAMOND, 3, 3).setTextureFile("EgyptianArmor_1").setUnlocalizedName("Atum:HorusFlight").setCreativeTab(tabs);
 		
 		limestoneShovel = new LimestoneShovel(ConfigAtum.limestoneShovelID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneShovel").setCreativeTab(tabs);
 		limestonePickaxe = new LimestonePickaxe(ConfigAtum.limestonePickaxeID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestonePickaxe").setCreativeTab(tabs);
@@ -413,22 +413,22 @@ public class Atum
 		limestoneHoe = new LimestoneHoe(ConfigAtum.limestoneHoeID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneHoe").setCreativeTab(tabs);
 		
 		EnumArmorMaterial mummyEnum = EnumHelper.addArmorMaterial("Mummy", 5, new int[] {1, 3, 2, 1}, 15);
-	    mummyHelmet = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyHelmetID, mummyEnum, 0, 0)).setTextureFile("MummyArmor_1").setUnlocalizedName("Atum:MummyHelmet").setCreativeTab(tabs);
-	    mummyChest = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyChestID, mummyEnum, 0, 1)).setTextureFile("MummyArmor_1").setUnlocalizedName("Atum:MummyChest").setCreativeTab(tabs);
-	    mummyLegs = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyLegsID, mummyEnum, 0, 2)).setTextureFile("MummyArmor_2").setUnlocalizedName("Atum:MummyLegs").setCreativeTab(tabs);
-	    mummyBoots = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyBootsID, mummyEnum, 0, 3)).setTextureFile("MummyArmor_1").setUnlocalizedName("Atum:MummyBoots").setCreativeTab(tabs);
+	    mummyHelmet = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyHelmetID, mummyEnum, 0, 0)).setRepairItem(ConfigAtum.clothScrapID+256).setTextureFile("MummyArmor_1").setUnlocalizedName("Atum:MummyHelmet").setCreativeTab(tabs);
+	    mummyChest = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyChestID, mummyEnum, 0, 1)).setRepairItem(ConfigAtum.clothScrapID+256).setTextureFile("MummyArmor_1").setUnlocalizedName("Atum:MummyChest").setCreativeTab(tabs);
+	    mummyLegs = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyLegsID, mummyEnum, 0, 2)).setRepairItem(ConfigAtum.clothScrapID+256).setTextureFile("MummyArmor_2").setUnlocalizedName("Atum:MummyLegs").setCreativeTab(tabs);
+	    mummyBoots = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.mummyBootsID, mummyEnum, 0, 3)).setRepairItem(ConfigAtum.clothScrapID+256).setTextureFile("MummyArmor_1").setUnlocalizedName("Atum:MummyBoots").setCreativeTab(tabs);
 
 		EnumArmorMaterial wandererEnum = EnumHelper.addArmorMaterial("Wanderer", 10, new int[] {2, 3, 3, 2}, 15);
-	    wandererHelmet = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.wandererHelmetID, wandererEnum, 0, 0)).setTextureFile("WandererArmor_1").setUnlocalizedName("Atum:WandererHelmet").setCreativeTab(tabs);
-	    wandererChest = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.wandererChestID, wandererEnum, 0, 1)).setTextureFile("WandererArmor_1").setUnlocalizedName("Atum:WandererChest").setCreativeTab(tabs);
-	    wandererLegs = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.wandererLegsID, wandererEnum, 0, 2)).setTextureFile("WandererArmor_2").setUnlocalizedName("Atum:WandererLegs").setCreativeTab(tabs);
-	    wandererBoots = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.wandererBootsID, wandererEnum, 0, 3)).setTextureFile("WandererArmor_1").setUnlocalizedName("Atum:WandererBoots").setCreativeTab(tabs);
+	    wandererHelmet = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.wandererHelmetID, wandererEnum, 0, 0)).setRepairItem(ConfigAtum.linenID+256).setTextureFile("WandererArmor_1").setUnlocalizedName("Atum:WandererHelmet").setCreativeTab(tabs);
+	    wandererChest = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.wandererChestID, wandererEnum, 0, 1)).setRepairItem(ConfigAtum.linenID+256).setTextureFile("WandererArmor_1").setUnlocalizedName("Atum:WandererChest").setCreativeTab(tabs);
+	    wandererLegs = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.wandererLegsID, wandererEnum, 0, 2)).setRepairItem(ConfigAtum.linenID+256).setTextureFile("WandererArmor_2").setUnlocalizedName("Atum:WandererLegs").setCreativeTab(tabs);
+	    wandererBoots = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.wandererBootsID, wandererEnum, 0, 3)).setRepairItem(ConfigAtum.linenID+256).setTextureFile("WandererArmor_1").setUnlocalizedName("Atum:WandererBoots").setCreativeTab(tabs);
 
 		EnumArmorMaterial desertEnum = EnumHelper.addArmorMaterial("Desert", 20, new int[] {3, 6, 5, 3}, 15);
-	    desertHelmet = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertHelmetID, desertEnum, 0, 0)).setTextureFile("DesertArmor_1").setUnlocalizedName("Atum:DesertHelmet").setCreativeTab(tabs);
-	    desertChest = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertChestID, desertEnum, 0, 1)).setTextureFile("DesertArmor_1").setUnlocalizedName("Atum:DesertChest").setCreativeTab(tabs);
-	    desertLegs = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertLegsID, desertEnum, 0, 2)).setTextureFile("DesertArmor_2").setUnlocalizedName("Atum:DesertLegs").setCreativeTab(tabs);
-	    desertBoots = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertBootsID, desertEnum, 0, 3)).setTextureFile("DesertArmor_1").setUnlocalizedName("Atum:DesertBoots").setCreativeTab(tabs);
+	    desertHelmet = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertHelmetID, desertEnum, 0, 0)).setRepairItem(Item.ingotIron.itemID).setTextureFile("DesertArmor_1").setUnlocalizedName("Atum:DesertHelmet").setCreativeTab(tabs);
+	    desertChest = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertChestID, desertEnum, 0, 1)).setRepairItem(Item.ingotIron.itemID).setTextureFile("DesertArmor_1").setUnlocalizedName("Atum:DesertChest").setCreativeTab(tabs);
+	    desertLegs = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertLegsID, desertEnum, 0, 2)).setRepairItem(Item.ingotIron.itemID).setTextureFile("DesertArmor_2").setUnlocalizedName("Atum:DesertLegs").setCreativeTab(tabs);
+	    desertBoots = (ItemTexturedArmor)(new ItemTexturedArmor(ConfigAtum.desertBootsID, desertEnum, 0, 3)).setRepairItem(Item.ingotIron.itemID).setTextureFile("DesertArmor_1").setUnlocalizedName("Atum:DesertBoots").setCreativeTab(tabs);
 	    
 		itemPapyrusPlant = new ItemPapyrusPlant(ConfigAtum.itemPapyrusPlantID, atumPapyrus).setUnlocalizedName("Atum:PapyrusPlantItem").setCreativeTab(tabs);
 		itemEctoplasm = new Item(ConfigAtum.ectoplasmID).setUnlocalizedName("Atum:Ectoplasm").setCreativeTab(tabs);

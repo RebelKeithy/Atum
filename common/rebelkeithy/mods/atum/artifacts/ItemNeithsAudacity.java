@@ -197,6 +197,15 @@ public class ItemNeithsAudacity extends Item
     {
         return 1;
     }
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+	@Override
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return par2ItemStack.itemID == Item.diamond.itemID;
+    }
     
     @SideOnly(Side.CLIENT)
 	@Override

@@ -31,5 +31,14 @@ public class ItemNutsAgility extends ItemArmor implements IArmorTextureProvider
 	{
 		return "/armor/" + texture + ".png";
 	}
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+	@Override
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return par2ItemStack.itemID == Item.diamond.itemID;
+    }
 	
 }

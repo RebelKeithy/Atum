@@ -28,6 +28,15 @@ public class ItemAtensFury extends ItemBow
 		super(par1);
 		this.setMaxDamage(650);
 	}
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+	@Override
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return par2ItemStack.itemID == Item.diamond.itemID;
+    }
 	
     /**
      * called when the player releases the use item button. Args: itemstack, world, entityplayer, itemInUseCount

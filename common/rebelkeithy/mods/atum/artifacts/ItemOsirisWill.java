@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 
@@ -29,5 +30,14 @@ public class ItemOsirisWill extends ItemSword
     	ItemStack stack = new ItemStack(par1, 1, 0);
     	stack.addEnchantment(Enchantment.smite, 6);
         par3List.add(stack);
+    }
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+	@Override
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return par2ItemStack.itemID == Item.diamond.itemID;
     }
 }

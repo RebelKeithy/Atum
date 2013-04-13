@@ -16,11 +16,11 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IArmorTextureProvider;
 
-public class HorusFlight extends ItemArmor implements IArmorTextureProvider
+public class ItemHorusFlight extends ItemArmor implements IArmorTextureProvider
 {
 	String texture;
 
-	public HorusFlight(int par1, EnumArmorMaterial par2EnumArmorMaterial, int par3, int par4) 
+	public ItemHorusFlight(int par1, EnumArmorMaterial par2EnumArmorMaterial, int par3, int par4) 
 	{
 		super(par1, par2EnumArmorMaterial, par3, par4);
 		// TODO Auto-generated constructor stub
@@ -37,6 +37,15 @@ public class HorusFlight extends ItemArmor implements IArmorTextureProvider
 	{
 		return "/armor/" + texture + ".png";
 	}
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+	@Override
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return par2ItemStack.itemID == Item.diamond.itemID;
+    }
 
 	@SideOnly(Side.CLIENT)
 

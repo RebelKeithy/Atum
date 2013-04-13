@@ -1,20 +1,25 @@
 package rebelkeithy.mods.atum;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
-
-import rebelkeithy.mods.atum.items.ItemLoot;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import rebelkeithy.mods.atum.items.ItemLoot;
 
 public class AtumLoot 
 {
 	public static List<ItemStack>artifacts;
-	
+	public static Map<Integer, ItemStack> junkLoot;
+	public static Map<Integer, Integer> junkLootMin;
+	public static Map<Integer, Integer> junkLootMax;
+	public static int totalJunkWeight;
+
 	public static void init()
 	{
 		artifacts = new ArrayList<ItemStack>();
@@ -57,6 +62,53 @@ public class AtumLoot
 		artifacts.add(stack);
 		
 		
+	}
+	
+	public static void addJunkLoot(ItemStack stack, int weight, int min, int max)
+	{
+		if(weight <= 0 || stack == null)
+			return;
+		
+		if(junkLoot == null)
+		{
+			junkLoot = new HashMap<Integer, ItemStack>();
+			junkLootMin = new HashMap<Integer, Integer>();
+			junkLootMax = new HashMap<Integer, Integer>();
+		}
+			
+		junkLoot.put(totalJunkWeight + weight, stack);
+		junkLootMin.put(totalJunkWeight + weight, min);
+		junkLootMax.put(totalJunkWeight + weight, max);
+		totalJunkWeight += weight;
+	}
+	
+	public static ItemStack getRandomJunkLoot()
+	{
+		if(junkLoot == null)
+		{
+			junkLoot = new HashMap<Integer, ItemStack>();
+			junkLootMin = new HashMap<Integer, Integer>();
+			junkLootMax = new HashMap<Integer, Integer>();
+		}
+
+		Random rand = new Random();
+		int loot = rand.nextInt(totalJunkWeight);
+
+		ItemStack stack = null;
+		
+		for(Integer key : junkLoot.keySet())
+		{
+			if(key < loot)
+			{
+				stack = junkLoot.get(key).copy();
+				int min = junkLootMin.get(key);
+				int max = junkLootMax.get(key);
+				int amount = rand.nextInt(max - min + 1) + min;
+				stack.stackSize = amount;
+			}
+		}
+		
+		return stack;
 	}
 	
 	public static void addArtifact(ItemStack stack)
@@ -126,6 +178,8 @@ public class AtumLoot
 					stack = artifacts.get(randomArtifactID).copy();
 				}
 			} else {
+				
+				
 				if(roll > 0.95)
 				{
 					int amount = 1;

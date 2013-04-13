@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
@@ -29,5 +30,14 @@ public class ItemPtahsDecadence extends ItemPickaxe
     	ItemStack stack = new ItemStack(par1, 1, 0);
     	stack.addEnchantment(Enchantment.fortune, 5);
         par3List.add(stack);
+    }
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+	@Override
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return par2ItemStack.itemID == Item.diamond.itemID;
     }
 }
