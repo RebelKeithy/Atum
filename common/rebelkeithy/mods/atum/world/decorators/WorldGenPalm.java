@@ -137,19 +137,19 @@ public class WorldGenPalm extends WorldGenerator
 
             		if (par2Random.nextInt(100) < 15)
             		{
-            			par1World.setBlock(par3 + 1, par4 + l - 2, par5, Atum.atumDateBlock.blockID, 0, 0x02);
+            			par1World.setBlock(par3 + 1, par4 + l - 1, par5, Atum.atumDateBlock.blockID, 0, 0x02);
             		}
             		if (par2Random.nextInt(100) < 15)
             		{
-            			par1World.setBlock(par3 - 1, par4 + l - 2, par5, Atum.atumDateBlock.blockID, 0, 0x02);
+            			par1World.setBlock(par3 - 1, par4 + l - 1, par5, Atum.atumDateBlock.blockID, 0, 0x02);
             		}
             		if (par2Random.nextInt(100) < 15)
             		{
-            			par1World.setBlock(par3, par4 + l - 2, par5 + 1, Atum.atumDateBlock.blockID, 0, 0x02);
+            			par1World.setBlock(par3, par4 + l - 1, par5 + 1, Atum.atumDateBlock.blockID, 0, 0x02);
             		}
             		if (par2Random.nextInt(100) < 15)
             		{
-            			par1World.setBlock(par3, par4 + l - 2, par5 - 1, Atum.atumDateBlock.blockID, 0, 0x02);
+            			par1World.setBlock(par3, par4 + l - 1, par5 - 1, Atum.atumDateBlock.blockID, 0, 0x02);
             		}
 
                     for (j1 = 0; j1 <= l; ++j1)
