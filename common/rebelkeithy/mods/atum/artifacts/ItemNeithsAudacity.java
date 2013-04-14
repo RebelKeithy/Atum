@@ -67,6 +67,16 @@ public class ItemNeithsAudacity extends Item
             EntityArrow entityarrow = new EntityArrow(par2World, par3EntityPlayer, f * 2.0F);
             EntityArrow entityarrow1 = new EntityArrow(par2World, par3EntityPlayer, f * 2.0F);
             
+            entityarrow.motionX += Math.random() * 0.4 - 0.2;
+            entityarrow.motionY += Math.random() * 0.4 - 0.2;
+            entityarrow.motionZ += Math.random() * 0.4 - 0.2;
+            entityarrow1.motionX += Math.random() * 0.4 - 0.2;
+            entityarrow1.motionY += Math.random() * 0.4 - 0.2;
+            entityarrow1.motionZ += Math.random() * 0.4 - 0.2;
+            
+            entityarrow.setDamage(entityarrow.getDamage() + 0.5D);
+            entityarrow1.setDamage(entityarrow.getDamage() + 0.5D);
+            
             if (f == 1.0F)
             {
                 entityarrow.setIsCritical(true);
@@ -111,7 +121,6 @@ public class ItemNeithsAudacity extends Item
 
             if (!par2World.isRemote)
             {
-            	entityarrow.setAngles(0.1F, 0.1F);
                 par2World.spawnEntityInWorld(entityarrow);
                 par2World.spawnEntityInWorld(entityarrow1);
             }
