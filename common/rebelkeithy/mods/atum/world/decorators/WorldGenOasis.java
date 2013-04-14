@@ -191,12 +191,11 @@ public class WorldGenOasis extends WorldGenerator
         			for(int dz = -1; dz <= 1; dz++)
         			{
         				int currentY = world.getHeightValue(par3+x, par5+z);
-        				int belowID = world.getBlockId(par3+x, currentY - 1, par5+z);
-        				int currentID = world.getBlockId(par3+x, currentY, par5+z);
+        				int belowID = world.getBlockId(par3+x+dx, currentY - 1, par5+z+dz);
+        				int currentID = world.getBlockId(par3+x+dx, currentY, par5+z+dz);
         	        	if(par2Random.nextInt(3) == 0 && belowID == Atum.atumFertileSoil.blockID && currentID == 0)
         	        	{
-        	        		world.setBlock(par3+x+dx, currentY-1, par5+z+dz, Atum.atumFertileSoilTilled.blockID);
-        	        		world.setBlock(par3+x+dx, currentY, par5+z+dz, Atum.atumFlax.blockID);
+        	        		world.setBlock(par3+x+dx, currentY, par5+z+dz, Atum.atumFlax.blockID, 13, 0);
         	        	}
         			}
         		}

@@ -49,6 +49,18 @@ public class BlockFlax extends BlockFlower
         return Crop;
     }
 
+    /**
+     * Can this block stay at this position.  Similar to canPlaceBlockAt except gets checked often with plants.
+     */
+    public boolean canBlockStay(World par1World, int par2, int par3, int par4)
+    {
+    	if(par1World.getBlockMetadata(par2, par3, par4) >> 3 == 1)
+    		return true;
+    	
+        Block soil = blocksList[par1World.getBlockId(par2, par3 - 1, par4)];
+        return (par1World.getFullBlockLightValue(par2, par3, par4) >= 8 || par1World.canBlockSeeTheSky(par2, par3, par4)) && 
+                (soil != null && soil.canSustainPlant(par1World, par2, par3 - 1, par4, ForgeDirection.UP, this));
+    }
 
     /**
      * Gets passed in the blockID of the block below and supposed to return true if its allowed to grow on the type of
@@ -68,11 +80,11 @@ public class BlockFlax extends BlockFlower
     {
         super.updateTick(par1World, par2, par3, par4, par5Random);
 
-        if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 9)
+        if ((par1World.getBlockLightValue(par2, par3 + 1, par4) & 0x0111) >= 9)
         {
             int l = par1World.getBlockMetadata(par2, par3, par4);
 
-            if (l < 5)
+            if ((l & 7) < 5)
             {
                 float f = this.getGrowthRate(par1World, par2, par3, par4);
 
@@ -92,9 +104,9 @@ public class BlockFlax extends BlockFlower
     {
         int l = par1World.getBlockMetadata(par2, par3, par4) + MathHelper.getRandomIntegerInRange(par1World.rand, 2, 3);
 
-        if (l > 5)
+        if ((l & 7) > 5)
         {
-            l = 5;
+            l -= (l & 7) - 5;
         }
 
         par1World.setBlockMetadataWithNotify(par2, par3, par4, l, 2);
@@ -162,12 +174,13 @@ public class BlockFlax extends BlockFlower
 	@Override
     public Icon getIcon(int par1, int par2)
     {
-        if (par2 < 0 || par2 > 5)
+    	int meta = par2 & 7;
+        if (meta < 0 || meta > 5)
         {
-            par2 = 5;
+        	meta = 5;
         }
 
-        return this.iconArray[par2];
+        return this.iconArray[meta];
     }
 
     /**
@@ -208,12 +221,12 @@ public class BlockFlax extends BlockFlower
     public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune)
     {
         ArrayList<ItemStack> ret = super.getBlockDropped(world, x, y, z, metadata, fortune);
-
-        if (metadata >= 5)
+        
+        if ((metadata & 7) >= 5)
         {
             for (int n = 0; n < 3 + fortune; n++)
             {
-                if (world.rand.nextInt(15) <= metadata)
+                if (world.rand.nextInt(15) <= (metadata & 7))
                 {
                     ret.add(new ItemStack(this.getSeedItem(), 1, 0));
                 }

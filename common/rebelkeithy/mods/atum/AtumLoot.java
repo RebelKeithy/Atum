@@ -58,7 +58,6 @@ public class AtumLoot
 		artifacts.add(stack);
 		
 		stack = new ItemStack(Atum.horusFlight);
-		stack.addEnchantment(Enchantment.featherFalling, 10);
 		artifacts.add(stack);
 		
 		

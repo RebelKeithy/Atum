@@ -1,6 +1,7 @@
 package rebelkeithy.mods.atum.blocks;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -19,6 +20,7 @@ import rebelkeithy.mods.atum.Atum;
 import rebelkeithy.mods.atum.AtumTeleporter;
 import rebelkeithy.mods.atum.TickHandler;
 import rebelkeithy.mods.particleregistry.ParticleRegistry;
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -274,20 +276,35 @@ public class BlockAtumPortal extends BlockBreakable
 	                //par5Entity.travelToDimension(Atum.dimensionID);
 	                try
 					{
-		                Field lastExperience = player.getClass().getField("lastExperience");
+	                	EntityPlayerMP p = (EntityPlayerMP)player;
+	                	
+	                	ObfuscationReflectionHelper.setPrivateValue(EntityPlayerMP.class, p, -1, "lastExperience", "cp", "field_71144_ck");
+	                	ObfuscationReflectionHelper.setPrivateValue(EntityPlayerMP.class, p, -1, "lastHealth", "cm", "field_71149_ch");
+	                	ObfuscationReflectionHelper.setPrivateValue(EntityPlayerMP.class, p, -1, "lastFoodLevel", "cn", "field_71146_ci");
+	                	// Access lastExperience
+	                	/*
+		                Field lastExperience = EntityPlayerMP.class.getField("field_71144_ck");
 		                lastExperience.setAccessible(true);
-						lastExperience.set(player, -1);
+						lastExperience.set(p, -1);
 		                lastExperience.setAccessible(false);
+		                
 
-		                Field lastHealth = player.getClass().getField("lastHealth");
+		                // Access lastHealth
+	                	/*
+		                System.out.println(Arrays.toString(p.getClass().getDeclaredFields()));
+		                Field lastHealth = EntityPlayerMP.class.getField("lastHealth");
+		                
 		                lastHealth.setAccessible(true);
-		                lastHealth.set(player, -1);
+		                lastHealth.set(p, -1);
 		                lastHealth.setAccessible(false);
+						
+	                	p.lastHealth = -1;
 
-		                Field lastFoodLevel = player.getClass().getField("lastFoodLevel");
+		                Field lastFoodLevel = p.getClass().getField("lastFoodLevel");
 		                lastFoodLevel.setAccessible(true);
-		                lastFoodLevel.set(player, -1);
+		                lastFoodLevel.set(p, -1);
 						lastFoodLevel.setAccessible(false);
+						*/
 					}
 	                catch (Exception e)
 					{

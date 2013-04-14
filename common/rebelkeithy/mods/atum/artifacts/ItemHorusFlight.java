@@ -13,6 +13,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StringTranslate;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IArmorTextureProvider;
 
@@ -25,6 +27,24 @@ public class ItemHorusFlight extends ItemArmor implements IArmorTextureProvider
 		super(par1, par2EnumArmorMaterial, par3, par4);
 		// TODO Auto-generated constructor stub
 	}
+	
+	@Override
+    public String getItemDisplayName(ItemStack par1ItemStack)
+    {
+        return (EnumChatFormatting.AQUA + StringTranslate.getInstance().translateNamedKey(this.getLocalizedName(par1ItemStack))).trim();
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * allows items to add custom lines of information to the mouseover description
+     */
+    @Override
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
+    {
+    	par3List.add("Jump Boost II");
+    	par3List.add("Feather Falling X");
+    }
 
 	public Item setTextureFile(String string) 
 	{
@@ -46,18 +66,4 @@ public class ItemHorusFlight extends ItemArmor implements IArmorTextureProvider
     {
         return par2ItemStack.itemID == Item.diamond.itemID;
     }
-
-	@SideOnly(Side.CLIENT)
-
-    /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-     */
-	@Override
-    public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-    	ItemStack stack = new ItemStack(par1, 1, 0);
-    	stack.addEnchantment(Enchantment.featherFalling, 10);
-        par3List.add(stack);
-    }
-
 }

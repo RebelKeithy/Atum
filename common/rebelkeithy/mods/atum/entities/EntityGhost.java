@@ -29,13 +29,17 @@ import net.minecraftforge.common.ForgeHooks;
 
 public class EntityGhost extends EntityMob
 {
-	int cycleHeight;
+	private int cycleHeight = 0;
+	private int cycleTime = 100;
 
 	public EntityGhost(World par1World) 
 	{
 		super(par1World);
         this.experienceValue = 6;
+        cycleTime = (int) ((Math.random() * 40) + 80);
+        cycleHeight = (int) (Math.random() * cycleTime);
 	}
+	
 
     /**
      * Returns true if the newer Entity AI code should be run
@@ -67,7 +71,8 @@ public class EntityGhost extends EntityMob
 
     public void onLivingUpdate()
     {
-    	cycleHeight = (cycleHeight + 1) % 100;
+    	cycleHeight = (cycleHeight + 1) % cycleTime;
+    		
     	super.onLivingUpdate();
     }
     
@@ -175,4 +180,9 @@ public class EntityGhost extends EntityMob
     	 	this.dropItem(Atum.itemEctoplasm.itemID, amount);
          }
     }
+
+
+	public double getFloatingHeight() {
+		return Math.cos(2*Math.PI*(cycleHeight / (double)cycleTime)) / 3.0F;
+	}
 }

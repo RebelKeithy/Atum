@@ -72,7 +72,7 @@ public class RenderGhost extends Render
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_CULL_FACE);
         
-        par4 += Math.cos(2*Math.PI*((EntityGhost)par1EntityLiving).cycleHeight / 100.0F) / 3.0F;
+        par4 += ((EntityGhost)par1EntityLiving).getFloatingHeight();
         //System.out.println("height " + ((EntityGhost)par1EntityLiving).cycleHeight);
         
         this.mainModel.onGround = this.renderSwingProgress(par1EntityLiving, par9);
