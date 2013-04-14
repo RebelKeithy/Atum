@@ -37,6 +37,7 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 	private int suffixID = 0;
 	private int prefixID = 0;
 	private int numID = 0;
+	private int regenTime = 0;
 
 	public EntityPharaoh(World par1World) 
 	{
@@ -60,7 +61,6 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
     public void initCreature()
     {
     	super.initCreature();
-    	System.out.println("init");
     	this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemScepter));
     	
     	
@@ -123,7 +123,6 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
     @Override
     public String getEntityName()
     {
-    	System.out.println("getname");
     	try
     	{
 			int s = this.dataWatcher.getWatchableObjectInt(18);
@@ -232,9 +231,6 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 
     private void spawnGuards()
 	{
-    	if(worldObj.isRemote)
-    		return;
-    	
     	int numSpawned = 0;
 
     	if(trySpawnMummy((int)posX+1, (int)posY, (int)posZ))
@@ -301,7 +297,9 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
     	mummy1.setPosition(x, y, z);
     	if(mummy1.getCanSpawnHere())
     	{
-    		worldObj.spawnEntityInWorld(mummy1);
+    		if(!worldObj.isRemote)
+    			worldObj.spawnEntityInWorld(mummy1);
+    		mummy1.spawnExplosionParticle();
     		return true;
     	}
     	
@@ -387,6 +385,13 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
         {
             this.dataWatcher.updateObject(16, Integer.valueOf(this.health));
         }
+        
+        if(regenTime++ > 20)
+        {
+        	regenTime  = 0;
+        	this.heal(1);
+        }
+        
         super.onLivingUpdate();
     }
 

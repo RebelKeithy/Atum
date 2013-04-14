@@ -181,12 +181,12 @@ public class PharaohChest extends BlockContainer
     @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
-        if (par1World.isRemote)
+        /*if (par1World.isRemote)
         {
             return true;
         }
         else
-        {
+        {*/
         	TileEntity te = par1World.getBlockTileEntity(par2, par3, par4);
         	if(te instanceof TileEntityPharaohChest)
         	{
@@ -197,6 +197,9 @@ public class PharaohChest extends BlockContainer
         		}
         	}
         	
+        	if(par1World.isRemote)
+        		return true;
+        	
             IInventory iinventory = this.getInventory(par1World, par2, par3, par4);
 
             if (iinventory != null)
@@ -205,7 +208,7 @@ public class PharaohChest extends BlockContainer
             }
 
             return true;
-        }
+        //}
     }
 
     public IInventory getInventory(World par1World, int par2, int par3, int par4)

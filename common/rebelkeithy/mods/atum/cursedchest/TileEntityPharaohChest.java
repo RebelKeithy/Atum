@@ -446,18 +446,24 @@ public class TileEntityPharaohChest extends TileEntityChest implements IInventor
 		pharaoh.setPosition(this.xCoord+0.5, yCoord+1, zCoord+0.5);
 		pharaoh.link(xCoord, yCoord, zCoord);
 		pharaoh.initCreature();
-		worldObj.spawnEntityInWorld(pharaoh);
+		if(!worldObj.isRemote)
+			worldObj.spawnEntityInWorld(pharaoh);
+		pharaoh.spawnExplosionParticle();
 		hasSpawned = true;
 		
 		EntityMummy mummy1 = new EntityMummy(worldObj);
 		mummy1.setPosition(this.xCoord+0.5, yCoord, zCoord-0.5);
 		mummy1.initCreature();
-		worldObj.spawnEntityInWorld(mummy1);
+		if(!worldObj.isRemote)
+			worldObj.spawnEntityInWorld(mummy1);
+		mummy1.spawnExplosionParticle();
 		
 		EntityMummy mummy2 = new EntityMummy(worldObj);
 		mummy2.setPosition(this.xCoord+0.5, yCoord, zCoord+1.5);
 		mummy2.initCreature();
-		worldObj.spawnEntityInWorld(mummy2);
+		if(!worldObj.isRemote)
+			worldObj.spawnEntityInWorld(mummy2);
+		mummy2.spawnExplosionParticle();
 
 		if(!worldObj.isRemote)
 		{
