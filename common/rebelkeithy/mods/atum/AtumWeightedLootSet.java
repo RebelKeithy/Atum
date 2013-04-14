@@ -56,10 +56,8 @@ public class AtumWeightedLootSet
 		
 		for(Integer key : keys)
 		{
-			System.out.println("key " + key);
 			if(key >= weight)
 			{
-				System.out.println(weight + " " + totalWeight + " " + key);
 				stack = loot.get(key).copy();
 				int min = lootMin.get(key);
 				int max = lootMax.get(key);

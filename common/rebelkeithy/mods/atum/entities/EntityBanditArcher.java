@@ -37,7 +37,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderHell;
 
-public class EntityBanditArcher extends EntityMob implements IRangedAttackMob
+public class EntityBanditArcher extends EntityMob implements IRangedAttackMob, IAtumDayMob
 {
     private EntityAIArrowAttack aiArrowAttack = new EntityAIArrowAttack(this, 0.25F, 20, 60, 15.0F);
     private EntityAIAttackOnCollide aiAttackOnCollide = new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.31F, false);

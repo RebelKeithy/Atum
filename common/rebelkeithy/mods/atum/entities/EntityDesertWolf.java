@@ -35,7 +35,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityDesertWolf extends EntityTameable
+public class EntityDesertWolf extends EntityTameable implements IAtumDayMob
 {
     private float field_70926_e;
     private float field_70924_f;

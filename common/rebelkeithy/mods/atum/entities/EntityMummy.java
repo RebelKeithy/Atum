@@ -9,7 +9,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import rebelkeithy.mods.atum.Atum;
 
-public class EntityMummy extends EntityMob
+public class EntityMummy extends EntityMob implements IAtumNightMob
 {
 
     public EntityMummy(World par1World) 

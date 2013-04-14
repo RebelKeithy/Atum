@@ -12,7 +12,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityStoneSoldier extends EntityMob
+public class EntityStoneSoldier extends EntityMob implements IAtumNightMob, IAtumDayMob
 {
 
 	public EntityStoneSoldier(World par1World) 

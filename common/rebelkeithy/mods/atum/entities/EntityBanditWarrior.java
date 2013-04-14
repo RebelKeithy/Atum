@@ -9,7 +9,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class EntityBanditWarrior extends EntityMob {
+public class EntityBanditWarrior extends EntityMob implements IAtumDayMob
+{
 
 	public EntityBanditWarrior(World par1World) 
 	{

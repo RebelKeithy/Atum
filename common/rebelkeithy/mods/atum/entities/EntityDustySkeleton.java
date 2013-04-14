@@ -9,7 +9,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityDustySkeleton extends EntityMob
+public class EntityDustySkeleton extends EntityMob implements IAtumNightMob
 {
 
 	public EntityDustySkeleton(World par1World) 

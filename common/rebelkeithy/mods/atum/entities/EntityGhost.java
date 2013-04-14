@@ -27,7 +27,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
-public class EntityGhost extends EntityMob
+public class EntityGhost extends EntityMob implements IAtumNightMob
 {
 	private int cycleHeight = 0;
 	private int cycleTime = 100;

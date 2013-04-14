@@ -8,7 +8,7 @@ import net.minecraftforge.common.Configuration;
 public class ConfigAtum 
 {
 	public static int portalBlockID = 1024;
-	public static int biomeAtumDesertID = 183;
+	public static int biomeAtumDesertID = 200;
 	public static int cursedChestID = 1025;
 	public static int sandID = 1026;
 	public static int stoneID = 1027;
@@ -117,7 +117,7 @@ public class ConfigAtum
 		config.load();
 
 		biomeAtumDesertID = config.get("Boime", "Atum Biome ID", biomeAtumDesertID).getInt();
-
+	
 		portalBlockID = config.getBlock("Portal Block", portalBlockID).getInt();
 		cursedChestID = config.getBlock("CursedChest", cursedChestID).getInt();
 		sandID = config.getBlock("Strange Sand", sandID).getInt();

@@ -86,6 +86,7 @@ import rebelkeithy.mods.atum.tools.LimestoneShovel;
 import rebelkeithy.mods.atum.tools.LimestoneSword;
 import rebelkeithy.mods.atum.world.AtumWorldProvider;
 import rebelkeithy.mods.atum.world.biome.BiomeGenAtumDesert;
+import rebelkeithy.mods.atum.world.biome.MobSpawnController;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -469,6 +470,7 @@ public class Atum
 		MinecraftForge.EVENT_BUS.register(new BonemealEventListener());
 		MinecraftForge.EVENT_BUS.register(new FallDamageListener());
 		MinecraftForge.EVENT_BUS.register(new UseHoeEventListener());
+		MinecraftForge.EVENT_BUS.register(new MobSpawnController());
 		NetworkRegistry.instance().registerGuiHandler(this, new AtumGuiHandler());
 	}
 	
