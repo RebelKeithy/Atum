@@ -90,6 +90,10 @@ public class WorldGenOasis extends WorldGenerator
         			if( check <= 1)
         			{
         				int y = world.getHeightValue(x+par3, z+par5);
+        				
+        				if(world.getBlockId(x+par3, y-1, z+par5) != Atum.atumSand.blockID)
+        					continue;
+        				
         				world.setBlock(x+par3, y-1, z+par5, Block.waterStill.blockID);
 
         				/*
@@ -111,6 +115,10 @@ public class WorldGenOasis extends WorldGenerator
         			} else {
             			check = (x*x)/((radius+4)*(radius+4)) + (z*z)/((radius2+4)*(radius2+4));
         				int y = world.getHeightValue(x+par3, z+par5);
+        				
+        				if(world.getBlockId(x+par3, y-1, z+par5) != Atum.atumSand.blockID)
+        					continue;
+        				
         				if(check < 1)
         				{
         					world.setBlock(x+par3, y-1, z+par5, Atum.atumFertileSoil.blockID);
