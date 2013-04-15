@@ -65,7 +65,7 @@ public class EntityGhost extends EntityMob implements IAtumNightMob
     @Override
     public float getSpeedModifier()
     {
-		return super.getSpeedModifier() * 1.5F;
+		return super.getSpeedModifier() * 2F;
     }
 
 

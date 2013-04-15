@@ -2,6 +2,8 @@ package rebelkeithy.mods.atum.world.decorators;
 
 import java.util.Random;
 
+import rebelkeithy.mods.atum.Atum;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.util.MathHelper;
@@ -448,7 +450,7 @@ public class WorldGenAtumTrees extends WorldGenerator
         int i = this.worldObj.getBlockId(this.basePos[0], this.basePos[1] - 1, this.basePos[2]);
 
         Block soil = Block.blocksList[i];
-        boolean isValidSoil = true || (soil != null && soil.canSustainPlant(worldObj, basePos[0], basePos[1] - 1, basePos[2], ForgeDirection.UP, (BlockSapling)Block.sapling));
+        boolean isValidSoil = i == Atum.atumSand.blockID;
         if (!isValidSoil)
         {
             return false;

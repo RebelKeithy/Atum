@@ -86,7 +86,7 @@ public class BiomeGenAtumDesert extends BiomeGenBase
 
         long time;
 
-        if (par2Random.nextInt(40) == 0)
+        if (par2Random.nextInt(100) == 0)
         {
             int k = par3 + par2Random.nextInt(16) + 8;
             int l = par4 + par2Random.nextInt(16) + 8;
@@ -126,7 +126,7 @@ public class BiomeGenAtumDesert extends BiomeGenBase
             //System.out.println("Gen Palm: " + (System.nanoTime() - time));
         }
 
-        if (par2Random.nextInt(100) == 0)
+        if (par2Random.nextInt(120) == 0)
         {
             int k = par3 + par2Random.nextInt(16) + 8;
             int l = par4 + par2Random.nextInt(16) + 8;

@@ -7,6 +7,7 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityBanditWarrior extends EntityMob implements IAtumDayMob
@@ -80,13 +81,32 @@ public class EntityBanditWarrior extends EntityMob implements IAtumDayMob
         return EnumCreatureAttribute.UNDEFINED;
     }
 
+    
     /**
      * Returns the amount of damage a mob should deal.
      */
+    /*
     @Override
     public int getAttackStrength(Entity par1Entity)
     {
         return 3;
+    }*/
+
+    /**
+     * Returns the amount of damage a mob should deal.
+     */
+    public int getAttackStrength(Entity par1Entity)
+    {
+        ItemStack itemstack = this.getHeldItem();
+        float f = (float)(this.getMaxHealth() - this.getHealth()) / (float)this.getMaxHealth();
+        int i = 3 + MathHelper.floor_float(f * 4.0F);
+
+        if (itemstack != null)
+        {
+            i += itemstack.getDamageVsEntity(this);
+        }
+
+        return i;
     }
 
     /**

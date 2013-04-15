@@ -150,6 +150,6 @@ public class EntityStoneSoldier extends EntityMob implements IAtumNightMob, IAtu
     @Override
     public int getAttackStrength(Entity par1Entity)
     {
-        return 2;
+        return 4;
     }
 }

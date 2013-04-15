@@ -242,14 +242,14 @@ public class Atum
 		atumCobbleStairs = (new BlockAtumStairs(ConfigAtum.cobbleStairsID, atumCobble, 0)).setUnlocalizedName("Atum:CobbleStair").setCreativeTab(tabs);
 		atumLargeStoneStairs = (new BlockAtumStairs(ConfigAtum.largeStoneStairsID, atumLargeBrick, 0)).setUnlocalizedName("Atum:LargeStoneStair").setCreativeTab(tabs);
 		atumSmallStoneStairs = (new BlockAtumStairs(ConfigAtum.smallStoneStairsID, atumSmallBrick, 0)).setUnlocalizedName("Atum:SmallStoneStair").setCreativeTab(tabs);
-		atumShrub = (new BlockShrub(ConfigAtum.shrubID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Shrub");
-		atumWeed = (new BlockShrub(ConfigAtum.weedID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Weed");
+		atumShrub = (new BlockShrub(ConfigAtum.shrubID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Shrub").setCreativeTab(tabs);
+		atumWeed = (new BlockShrub(ConfigAtum.weedID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Weed").setCreativeTab(tabs);
 		atumPapyrus = (new BlockPapyrus(ConfigAtum.papyrusBlockID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:AtumPapyrus");
 		atumWall = (new BlockAtumWall(ConfigAtum.wallID, atumStone)).setUnlocalizedName("Atum:AtumStoneWall").setHardness(0.3F).setCreativeTab(tabs);
 		atumCrystalGlass = (new BlockAtumGlass(ConfigAtum.crystalGlassID, "Atum:AtumCrystalGlass", Material.glass, false)).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("Atum:AtumCrystalGlass").setHardness(0.3F).setCreativeTab(tabs);
 		atumFramedGlass = (new BlockAtumGlass(ConfigAtum.framedGlassID, "Atum:AtumFramedGlass", Material.glass, false)).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("Atum:AtumFramedGlass").setCreativeTab(tabs);
 		atumPalmSapling = (new BlockAtumSapling(ConfigAtum.palmSaplingID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:AtumPalmSapling").setCreativeTab(tabs);
-		atumDateBlock = (new BlockDate(ConfigAtum.blockDateID, Material.plants)).setHardness(0.0F).setUnlocalizedName("Atum:AtumDate").setCreativeTab(tabs);
+		atumDateBlock = (new BlockDate(ConfigAtum.blockDateID, Material.plants)).setHardness(0.0F).setUnlocalizedName("Atum:AtumDate");
 		atumFlax = (new BlockFlax(ConfigAtum.flaxBlockID)).setUnlocalizedName("Atum:FlaxBlock").setCreativeTab(tabs);
 
 	    thinCrystalGlass = (new BlockAtumPane(ConfigAtum.thinCrystalGlassID, "Atum:AtumCrystalGlass", "thinglass_top", Material.glass, false)).setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("thinCrystalGlass").setCreativeTab(tabs);
@@ -470,7 +470,7 @@ public class Atum
 		MinecraftForge.EVENT_BUS.register(new BonemealEventListener());
 		MinecraftForge.EVENT_BUS.register(new FallDamageListener());
 		MinecraftForge.EVENT_BUS.register(new UseHoeEventListener());
-		MinecraftForge.EVENT_BUS.register(new MobSpawnController());
+		//MinecraftForge.EVENT_BUS.register(new MobSpawnController());
 		NetworkRegistry.instance().registerGuiHandler(this, new AtumGuiHandler());
 	}
 	
@@ -709,6 +709,7 @@ public class Atum
 		LanguageRegistry.addName(itemLinen, "Linen");
 		LanguageRegistry.addName(itemFlax, "Flax");
 		LanguageRegistry.addName(itemFlaxSeeds, "Flax Seeds");
+		LanguageRegistry.addName(itemDate, "Date");
 		LanguageRegistry.instance().addStringLocalization("itemGroup.Atum", "Atum");
 	}
 }

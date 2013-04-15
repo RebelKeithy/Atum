@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
@@ -21,7 +22,7 @@ import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemNeithsAudacity extends Item
+public class ItemNeithsAudacity extends ItemBow
 {
     public static final String[] bowPullIconNameArray = new String[] {"neiths_pull_0", "neiths_pull_1", "neiths_pull_2"};
     @SideOnly(Side.CLIENT)

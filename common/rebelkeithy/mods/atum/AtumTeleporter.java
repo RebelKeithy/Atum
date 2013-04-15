@@ -23,6 +23,10 @@ public class AtumTeleporter extends Teleporter
     private final Random random;
     private final LongHashMap field_85191_c = new LongHashMap();
     private final List field_85190_d = new ArrayList();
+    
+    public static String[][] portalDesign = { {"XXXXX", "X   X", "X   X", "X   X", "XXXXX"},
+    										  {"X   X", "     ", "     ", "     ", "X   X"},
+    										  {"X   X", "     ", "     ", "     ", "X   X"}};
 
     public AtumTeleporter(WorldServer par1WorldServer)
     {
@@ -266,12 +270,12 @@ public class AtumTeleporter extends Teleporter
     {
         byte b0 = 16;
         double d0 = -1.0D;
-        int i = MathHelper.floor_double(par1Entity.posX);
-        int j = MathHelper.floor_double(par1Entity.posY);
-        int k = MathHelper.floor_double(par1Entity.posZ);
-        int l = i;
-        int i1 = j;
-        int j1 = k;
+        int entityX = MathHelper.floor_double(par1Entity.posX);
+        int entityY = MathHelper.floor_double(par1Entity.posY);
+        int entityZ = MathHelper.floor_double(par1Entity.posZ);
+        int l = entityX;
+        int i1 = entityY;
+        int j1 = entityZ;
         int k1 = 0;
         int l1 = this.random.nextInt(4);
         int i2;
@@ -290,11 +294,11 @@ public class AtumTeleporter extends Teleporter
         double d3;
         double d4;
 
-        for (i2 = i - b0; i2 <= i + b0; ++i2)
+        for (i2 = entityX - b0; i2 <= entityX + b0; ++i2)
         {
             d1 = (double)i2 + 0.5D - par1Entity.posX;
 
-            for (j2 = k - b0; j2 <= k + b0; ++j2)
+            for (j2 = entityZ - b0; j2 <= entityZ + b0; ++j2)
             {
                 d2 = (double)j2 + 0.5D - par1Entity.posZ;
                 label274:
@@ -356,11 +360,11 @@ public class AtumTeleporter extends Teleporter
 
         if (d0 < 0.0D)
         {
-            for (i2 = i - b0; i2 <= i + b0; ++i2)
+            for (i2 = entityX - b0; i2 <= entityX + b0; ++i2)
             {
                 d1 = (double)i2 + 0.5D - par1Entity.posX;
 
-                for (j2 = k - b0; j2 <= k + b0; ++j2)
+                for (j2 = entityZ - b0; j2 <= entityZ + b0; ++j2)
                 {
                     d2 = (double)j2 + 0.5D - par1Entity.posZ;
                     label222:

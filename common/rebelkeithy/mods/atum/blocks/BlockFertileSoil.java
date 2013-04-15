@@ -140,7 +140,7 @@ public class BlockFertileSoil extends Block
 	        }
 	        else if (par5 == 0)
 	        {
-	            return Block.dirt.getBlockTextureFromSide(par5);
+	            return Atum.atumSand.getBlockTextureFromSide(par5);
 	        }
 	        else
 	        {
