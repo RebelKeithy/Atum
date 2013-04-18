@@ -89,14 +89,20 @@ public class BlockAtumSlab extends BlockHalfSlab
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
 	@Override
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-        if (par1 != Atum.atumSlabs.blockID)
-        {
-            for (int j = 0; j < 4; ++j)
-            {
-                par3List.add(new ItemStack(par1, 1, j));
-            }
+//    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+//    {
+//        if (par1 != Atum.atumSlabs.blockID)
+//        {
+//           for (int j = 0; j < 4; ++j)
+//            {
+//                par3List.add(new ItemStack(par1, 1, j));
+//            }
+//        }
+//    }
+
+    public void getSubBlocks(int par1, CreativeTabs tab, List subItems) {
+        for (int i = 0; i < 4; i++) {
+            subItems.add(new ItemStack(this, 1, i));
         }
     }
 
