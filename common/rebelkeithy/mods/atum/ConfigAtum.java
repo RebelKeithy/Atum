@@ -98,6 +98,7 @@ public class ConfigAtum
 	public static int desertChestID = 5043;
 	public static int desertLegsID = 5044;
 	public static int desertBootsID = 5045;
+	public static int spearID = 5045;
 	
 	public static void initConfig()
 	{

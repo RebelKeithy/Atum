@@ -32,6 +32,7 @@ import rebelkeithy.mods.atum.artifacts.ItemPtahsDecadence;
 import rebelkeithy.mods.atum.artifacts.ItemRasGlory;
 import rebelkeithy.mods.atum.artifacts.ItemSekhmetsWrath;
 import rebelkeithy.mods.atum.artifacts.ItemSoteksRage;
+import rebelkeithy.mods.atum.artifacts.ItemSpear;
 import rebelkeithy.mods.atum.blocks.AtumStone;
 import rebelkeithy.mods.atum.blocks.BlockArrowTrap;
 import rebelkeithy.mods.atum.blocks.BlockAtumGlass;
@@ -71,6 +72,8 @@ import rebelkeithy.mods.atum.entities.EntityGhost;
 import rebelkeithy.mods.atum.entities.EntityMummy;
 import rebelkeithy.mods.atum.entities.EntityPharaoh;
 import rebelkeithy.mods.atum.entities.EntityStoneSoldier;
+import rebelkeithy.mods.atum.entities.projectiles.EntityFireSpearCombined;
+import rebelkeithy.mods.atum.entities.projectiles.EntityFireSpearSeperated;
 import rebelkeithy.mods.atum.furnace.BlockLimeStoneFurnace;
 import rebelkeithy.mods.atum.furnace.TileEntityLimestoneFurnace;
 import rebelkeithy.mods.atum.items.ItemAtumBow;
@@ -86,7 +89,6 @@ import rebelkeithy.mods.atum.tools.LimestoneShovel;
 import rebelkeithy.mods.atum.tools.LimestoneSword;
 import rebelkeithy.mods.atum.world.AtumWorldProvider;
 import rebelkeithy.mods.atum.world.biome.BiomeGenAtumDesert;
-import rebelkeithy.mods.atum.world.biome.MobSpawnController;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -219,6 +221,8 @@ public class Atum
 	public static Block furnaceBurning;
 	
 	public static Item neithsAudacity;
+	
+	public static Item spear;
 
 	
 	@PreInit
@@ -329,8 +333,13 @@ public class Atum
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(EntityBanditWarlord.class, "AtumBanditWarlord", entityID);
 		EntityList.addMapping(EntityBanditWarlord.class, "AtumBanditWarlord", entityID, 0x918354, 0x695D37);
-		
-		
+
+		entityID = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerModEntity(EntityFireSpearCombined.class, "FireSpearCombined", entityID, this, 64, 1, true);
+		entityID = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerModEntity(EntityFireSpearSeperated.class, "FireSpearSeperated", entityID, this, 64, 1, true);
+		//EntityRegistry.registerGlobalEntityID(EntityFireSpearCombined.class, "FireSpearCombined", entityID);
+		//EntityList.addMapping(EntityFireSpearCombined.class, "FireSpearCombined", entityID);
 		
 		LanguageRegistry.instance().addStringLocalization("entity.AtumMummy.name", "Mummy");
 		LanguageRegistry.instance().addStringLocalization("entity.AtumBanditWarrior.name", "Brigand");
@@ -451,6 +460,8 @@ public class Atum
 		
 		neithsAudacity = new ItemNeithsAudacity(ConfigAtum.neithsAudacityID).setUnlocalizedName("Atum:NeithsAudacity").setCreativeTab(tabs);
 	
+		spear = new ItemSpear(ConfigAtum.spearID).setUnlocalizedName("Atum:FireSpear").setCreativeTab(tabs);
+		
 		MinecraftForge.setToolClass(akersToil, "shovel", 4);
 		MinecraftForge.setToolClass(limestoneShovel, "shovel", 1);
 		MinecraftForge.setToolClass(limestoneAxe, "axe", 1);
