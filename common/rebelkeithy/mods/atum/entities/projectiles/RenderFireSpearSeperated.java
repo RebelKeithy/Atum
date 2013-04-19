@@ -16,7 +16,7 @@ public class RenderFireSpearSeperated extends Render
 {
     public void renderArrow(EntityFireSpearCombined par1EntityFireSpearCombined, double par2, double par4, double par6, float par8, float par9)
     {
-        this.loadTexture("/item/arrows.png");
+        this.loadTexture("/mods/Atum/textures/items/ArrowEntity.png");
         GL11.glPushMatrix();
         GL11.glTranslatef((float)par2, (float)par4, (float)par6);
         GL11.glRotatef(par1EntityFireSpearCombined.prevRotationYaw + (par1EntityFireSpearCombined.rotationYaw - par1EntityFireSpearCombined.prevRotationYaw) * par9 - 90.0F, 0.0F, 1.0F, 0.0F);
