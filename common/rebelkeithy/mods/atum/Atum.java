@@ -13,6 +13,7 @@ import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.potion.Potion;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
@@ -22,9 +23,13 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import rebelkeithy.mods.atum.artifacts.ItemAkersToil;
+import rebelkeithy.mods.atum.artifacts.ItemAnhursMight;
 import rebelkeithy.mods.atum.artifacts.ItemAtensFury;
 import rebelkeithy.mods.atum.artifacts.ItemGebsBlessing;
+import rebelkeithy.mods.atum.artifacts.ItemHedetetsSting;
 import rebelkeithy.mods.atum.artifacts.ItemHorusFlight;
+import rebelkeithy.mods.atum.artifacts.ItemHorusSoaring;
+import rebelkeithy.mods.atum.artifacts.ItemMonthusStrike;
 import rebelkeithy.mods.atum.artifacts.ItemNeithsAudacity;
 import rebelkeithy.mods.atum.artifacts.ItemNutsAgility;
 import rebelkeithy.mods.atum.artifacts.ItemOsirisWill;
@@ -33,6 +38,7 @@ import rebelkeithy.mods.atum.artifacts.ItemRasGlory;
 import rebelkeithy.mods.atum.artifacts.ItemSekhmetsWrath;
 import rebelkeithy.mods.atum.artifacts.ItemSoteksRage;
 import rebelkeithy.mods.atum.artifacts.ItemSpear;
+import rebelkeithy.mods.atum.artifacts.arrow.EntityArrowVelocity;
 import rebelkeithy.mods.atum.blocks.AtumStone;
 import rebelkeithy.mods.atum.blocks.BlockArrowTrap;
 import rebelkeithy.mods.atum.blocks.BlockAtumGlass;
@@ -180,6 +186,10 @@ public class Atum
 	public static Item sekhmetsWrath;
 	public static Item nutsAgility;
 	public static Item horusFlight;
+	public static Item monthusStrike;
+	public static Item anhursMight;
+	public static Item hedetetsSting;
+	public static Item horusSoaring;
 	
 	public static Item limestoneShovel;
 	public static Item limestonePickaxe;
@@ -223,6 +233,8 @@ public class Atum
 	public static Item neithsAudacity;
 	
 	public static Item spear;
+
+	public static Potion stun;
 
 	
 	@PreInit
@@ -338,8 +350,8 @@ public class Atum
 		EntityRegistry.registerModEntity(EntityFireSpearCombined.class, "FireSpearCombined", entityID, this, 64, 1, true);
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerModEntity(EntityFireSpearSeperated.class, "FireSpearSeperated", entityID, this, 64, 1, true);
-		//EntityRegistry.registerGlobalEntityID(EntityFireSpearCombined.class, "FireSpearCombined", entityID);
-		//EntityList.addMapping(EntityFireSpearCombined.class, "FireSpearCombined", entityID);
+		
+		EntityRegistry.registerModEntity(EntityArrowVelocity.class, "ArrowVeloctiy", 0, this, 64, 1, true);
 		
 		LanguageRegistry.instance().addStringLocalization("entity.AtumMummy.name", "Mummy");
 		LanguageRegistry.instance().addStringLocalization("entity.AtumBanditWarrior.name", "Brigand");
@@ -423,6 +435,10 @@ public class Atum
 		sekhmetsWrath = new ItemSekhmetsWrath(ConfigAtum.sekhmetsWrathID, EnumArmorMaterial.DIAMOND, 1, 1).setTextureFile("EgyptianArmor_1").setUnlocalizedName("Atum:SekhmetsWrath").setCreativeTab(tabs);
 		nutsAgility = new ItemNutsAgility(ConfigAtum.nutsAgilityID, EnumArmorMaterial.DIAMOND, 2, 2).setTextureFile("EgyptianArmor_2").setUnlocalizedName("Atum:NutsAgility").setCreativeTab(tabs);
 		horusFlight = new ItemHorusFlight(ConfigAtum.horusFlightID, EnumArmorMaterial.DIAMOND, 3, 3).setTextureFile("EgyptianArmor_1").setUnlocalizedName("Atum:HorusFlight").setCreativeTab(tabs);
+		monthusStrike = new ItemMonthusStrike(ConfigAtum.monthusStrikeID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:MonthusStrike").setCreativeTab(tabs);
+		anhursMight = new ItemAnhursMight(ConfigAtum.anhursMightID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:AnhursMight").setCreativeTab(tabs);
+		hedetetsSting = new ItemHedetetsSting(ConfigAtum.hedetetsStingID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:HedetetsSting").setCreativeTab(tabs);
+		horusSoaring = new ItemHorusSoaring(ConfigAtum.horusSoaringID).setUnlocalizedName("Atum:HorusSoaring").setCreativeTab(tabs);
 		
 		limestoneShovel = new LimestoneShovel(ConfigAtum.limestoneShovelID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneShovel").setCreativeTab(tabs);
 		limestonePickaxe = new LimestonePickaxe(ConfigAtum.limestonePickaxeID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestonePickaxe").setCreativeTab(tabs);
@@ -491,6 +507,8 @@ public class Atum
 		DimensionManager.registerProviderType(Atum.dimensionID, AtumWorldProvider.class, true);
 		DimensionManager.registerDimension(Atum.dimensionID , Atum.dimensionID);
 
+		stun = new PotionStun(21, true, 8171462).setPotionName("potion.stun").setIconIndex(0, 0);
+		
 		addNames();
 		
 		addRecipes();
@@ -692,6 +710,10 @@ public class Atum
 		LanguageRegistry.addName(sekhmetsWrath, "Sekhmet's Wrath");
 		LanguageRegistry.addName(nutsAgility, "Nut's Agility");
 		LanguageRegistry.addName(horusFlight, "Horus's Flight");
+		LanguageRegistry.addName(monthusStrike, "Monthu's Strike");
+		LanguageRegistry.addName(anhursMight, "Anhur's Might");
+		LanguageRegistry.addName(hedetetsSting, "Hetetet's Sting");
+		LanguageRegistry.addName(horusSoaring, "Horus's Soaring");
 		
 		LanguageRegistry.addName(limestoneShovel, "Limestone Shovel");
 		LanguageRegistry.addName(limestonePickaxe, "Limestone Pickaxe");

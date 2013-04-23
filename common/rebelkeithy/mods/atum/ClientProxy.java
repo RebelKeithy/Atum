@@ -9,6 +9,8 @@ import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.client.MinecraftForgeClient;
+import rebelkeithy.mods.atum.artifacts.arrow.CustomArrow;
+import rebelkeithy.mods.atum.artifacts.arrow.RenderCustomArrow;
 import rebelkeithy.mods.atum.blocks.BlockDate;
 import rebelkeithy.mods.atum.blocks.BlockPapyrus;
 import rebelkeithy.mods.atum.blocks.renderers.DateBlockRenderer;
@@ -74,10 +76,14 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityStoneSoldier.class, new RenderBiped(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDesertWolf.class, new RenderDesertWolf(new ModelDesertWolf(), new ModelDesertWolf(), 0.5F));
 
+		
 		RenderingRegistry.registerEntityRenderingHandler(EntityFireSpearCombined.class, new RenderFireSpear());
+		RenderingRegistry.registerEntityRenderingHandler(CustomArrow.class, new RenderCustomArrow());
 		
 		RenderManager.instance.entityRenderMap.put(EntityFireSpearCombined.class, new RenderFireSpear());
 		RenderManager.instance.entityRenderMap.put(EntityFireSpearSeperated.class, new RenderFireSpearSeperated());
+
+		//RenderManager.instance.entityRenderMap.put(CustomArrow.class, new RenderCustomArrow());
 		
 		MinecraftForgeClient.registerItemRenderer(Atum.itemBow.itemID, new RendererItemBow());
 		MinecraftForgeClient.registerItemRenderer(Atum.atensFury.itemID, new RendererItemBow());

@@ -99,6 +99,10 @@ public class ConfigAtum
 	public static int desertLegsID = 5044;
 	public static int desertBootsID = 5045;
 	public static int spearID = 5045;
+	public static int monthusStrikeID = 5046;
+	public static int anhursMightID = 5047;
+	public static int hedetetsStingID = 5048;
+	public static int horusSoaringID = 5049;
 	
 	public static void initConfig()
 	{
@@ -175,6 +179,10 @@ public class ConfigAtum
 		sekhmetsWrathID = config.getItem("Sekhmet's Wrath", sekhmetsWrathID).getInt();
 		nutsAgilityID = config.getItem("Nut's Agility", nutsAgilityID).getInt();
 		horusFlightID = config.getItem("Horus's Flight", horusFlightID).getInt();
+		monthusStrikeID = config.getItem("Monthu's Strike", monthusStrikeID).getInt();
+		anhursMightID = config.getItem("Anhur's Might", anhursMightID).getInt();
+		hedetetsStingID = config.getItem("Hedetet's Sting", hedetetsStingID).getInt();
+		horusSoaringID = config.getItem("Horus's Soaring", horusSoaringID).getInt();
 		
 		limestoneShovelID = config.getItem("Limestone Shovel", limestoneShovelID).getInt();;
 		limestonePickaxeID = config.getItem("Limestone Pickaxe", limestonePickaxeID).getInt();;
