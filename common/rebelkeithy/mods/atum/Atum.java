@@ -29,15 +29,19 @@ import rebelkeithy.mods.atum.artifacts.ItemGebsBlessing;
 import rebelkeithy.mods.atum.artifacts.ItemHedetetsSting;
 import rebelkeithy.mods.atum.artifacts.ItemHorusFlight;
 import rebelkeithy.mods.atum.artifacts.ItemHorusSoaring;
+import rebelkeithy.mods.atum.artifacts.ItemMonthusBlast;
 import rebelkeithy.mods.atum.artifacts.ItemMonthusStrike;
 import rebelkeithy.mods.atum.artifacts.ItemNeithsAudacity;
 import rebelkeithy.mods.atum.artifacts.ItemNutsAgility;
 import rebelkeithy.mods.atum.artifacts.ItemOsirisWill;
 import rebelkeithy.mods.atum.artifacts.ItemPtahsDecadence;
+import rebelkeithy.mods.atum.artifacts.ItemPtahsDestruction;
 import rebelkeithy.mods.atum.artifacts.ItemRasGlory;
 import rebelkeithy.mods.atum.artifacts.ItemSekhmetsWrath;
+import rebelkeithy.mods.atum.artifacts.ItemShusBreath;
 import rebelkeithy.mods.atum.artifacts.ItemSoteksRage;
 import rebelkeithy.mods.atum.artifacts.ItemSpear;
+import rebelkeithy.mods.atum.artifacts.arrow.EntityArrowExplosive;
 import rebelkeithy.mods.atum.artifacts.arrow.EntityArrowVelocity;
 import rebelkeithy.mods.atum.blocks.AtumStone;
 import rebelkeithy.mods.atum.blocks.BlockArrowTrap;
@@ -190,6 +194,9 @@ public class Atum
 	public static Item anhursMight;
 	public static Item hedetetsSting;
 	public static Item horusSoaring;
+	public static Item shusBreath;
+	public static Item ptahsDestruction;
+	public static Item monthusBlast;
 	
 	public static Item limestoneShovel;
 	public static Item limestonePickaxe;
@@ -352,6 +359,7 @@ public class Atum
 		EntityRegistry.registerModEntity(EntityFireSpearSeperated.class, "FireSpearSeperated", entityID, this, 64, 1, true);
 		
 		EntityRegistry.registerModEntity(EntityArrowVelocity.class, "ArrowVeloctiy", 0, this, 64, 1, true);
+		EntityRegistry.registerModEntity(EntityArrowExplosive.class, "ArrowExplosive", 0, this, 64, 1, true);
 		
 		LanguageRegistry.instance().addStringLocalization("entity.AtumMummy.name", "Mummy");
 		LanguageRegistry.instance().addStringLocalization("entity.AtumBanditWarrior.name", "Brigand");
@@ -439,6 +447,9 @@ public class Atum
 		anhursMight = new ItemAnhursMight(ConfigAtum.anhursMightID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:AnhursMight").setCreativeTab(tabs);
 		hedetetsSting = new ItemHedetetsSting(ConfigAtum.hedetetsStingID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:HedetetsSting").setCreativeTab(tabs);
 		horusSoaring = new ItemHorusSoaring(ConfigAtum.horusSoaringID).setUnlocalizedName("Atum:HorusSoaring").setCreativeTab(tabs);
+		shusBreath = new ItemShusBreath(ConfigAtum.shusBreathID).setUnlocalizedName("Atum:ShusBreath").setCreativeTab(tabs);
+		ptahsDestruction = new ItemPtahsDestruction(ConfigAtum.ptahsDestructionID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:PtahsDestruction").setCreativeTab(tabs);
+		monthusBlast = new ItemMonthusBlast(ConfigAtum.monthusBlastID).setUnlocalizedName("Atum:MonthusBlast").setCreativeTab(tabs);
 		
 		limestoneShovel = new LimestoneShovel(ConfigAtum.limestoneShovelID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneShovel").setCreativeTab(tabs);
 		limestonePickaxe = new LimestonePickaxe(ConfigAtum.limestonePickaxeID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestonePickaxe").setCreativeTab(tabs);
@@ -482,6 +493,7 @@ public class Atum
 		MinecraftForge.setToolClass(limestoneShovel, "shovel", 1);
 		MinecraftForge.setToolClass(limestoneAxe, "axe", 1);
 		MinecraftForge.setToolClass(limestonePickaxe, "pickaxe", 1);
+		MinecraftForge.setToolClass(ptahsDestruction, "pickaxe", 3);
 		
 		MinecraftForge.setBlockHarvestLevel(atumCoalOre, "pickaxe", 0);
 		MinecraftForge.setBlockHarvestLevel(atumIronOre, "pickaxe", 1);
@@ -714,6 +726,9 @@ public class Atum
 		LanguageRegistry.addName(anhursMight, "Anhur's Might");
 		LanguageRegistry.addName(hedetetsSting, "Hetetet's Sting");
 		LanguageRegistry.addName(horusSoaring, "Horus's Soaring");
+		LanguageRegistry.addName(shusBreath, "Shu's Breath");
+		LanguageRegistry.addName(ptahsDestruction, "Ptah's Destruction");
+		LanguageRegistry.addName(monthusBlast, "Monthu's Blast");
 		
 		LanguageRegistry.addName(limestoneShovel, "Limestone Shovel");
 		LanguageRegistry.addName(limestonePickaxe, "Limestone Pickaxe");
