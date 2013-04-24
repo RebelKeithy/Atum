@@ -9,6 +9,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
@@ -35,11 +36,15 @@ public class ItemNeithsAudacity extends ItemBow
         this.setMaxDamage(384);
         this.setCreativeTab(CreativeTabs.tabCombat);
     }
-	
-	@Override
-    public String getItemDisplayName(ItemStack par1ItemStack)
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * Return an item rarity from EnumRarity
+     */
+    public EnumRarity getRarity(ItemStack par1ItemStack)
     {
-        return (EnumChatFormatting.AQUA + StringTranslate.getInstance().translateNamedKey(this.getLocalizedName(par1ItemStack))).trim();
+        return EnumRarity.rare;
     }
 
     @SideOnly(Side.CLIENT)

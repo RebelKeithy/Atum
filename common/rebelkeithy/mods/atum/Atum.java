@@ -32,6 +32,7 @@ import rebelkeithy.mods.atum.artifacts.ItemHorusSoaring;
 import rebelkeithy.mods.atum.artifacts.ItemMonthusBlast;
 import rebelkeithy.mods.atum.artifacts.ItemMonthusStrike;
 import rebelkeithy.mods.atum.artifacts.ItemNeithsAudacity;
+import rebelkeithy.mods.atum.artifacts.ItemNusFlux;
 import rebelkeithy.mods.atum.artifacts.ItemNutsAgility;
 import rebelkeithy.mods.atum.artifacts.ItemOsirisWill;
 import rebelkeithy.mods.atum.artifacts.ItemPtahsDecadence;
@@ -197,6 +198,7 @@ public class Atum
 	public static Item shusBreath;
 	public static Item ptahsDestruction;
 	public static Item monthusBlast;
+	public static Item nusFlux;
 	
 	public static Item limestoneShovel;
 	public static Item limestonePickaxe;
@@ -450,6 +452,7 @@ public class Atum
 		shusBreath = new ItemShusBreath(ConfigAtum.shusBreathID).setUnlocalizedName("Atum:ShusBreath").setCreativeTab(tabs);
 		ptahsDestruction = new ItemPtahsDestruction(ConfigAtum.ptahsDestructionID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:PtahsDestruction").setCreativeTab(tabs);
 		monthusBlast = new ItemMonthusBlast(ConfigAtum.monthusBlastID).setUnlocalizedName("Atum:MonthusBlast").setCreativeTab(tabs);
+		nusFlux = new ItemNusFlux(ConfigAtum.nusFluxID, EnumToolMaterial.EMERALD).setUnlocalizedName("Atum:NusFlux").setCreativeTab(tabs);
 		
 		limestoneShovel = new LimestoneShovel(ConfigAtum.limestoneShovelID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestoneShovel").setCreativeTab(tabs);
 		limestonePickaxe = new LimestonePickaxe(ConfigAtum.limestonePickaxeID, EnumToolMaterial.STONE).setUnlocalizedName("Atum:LimestonePickaxe").setCreativeTab(tabs);
@@ -729,6 +732,7 @@ public class Atum
 		LanguageRegistry.addName(shusBreath, "Shu's Breath");
 		LanguageRegistry.addName(ptahsDestruction, "Ptah's Destruction");
 		LanguageRegistry.addName(monthusBlast, "Monthu's Blast");
+		LanguageRegistry.addName(nusFlux, "Nu's Flux");
 		
 		LanguageRegistry.addName(limestoneShovel, "Limestone Shovel");
 		LanguageRegistry.addName(limestonePickaxe, "Limestone Pickaxe");

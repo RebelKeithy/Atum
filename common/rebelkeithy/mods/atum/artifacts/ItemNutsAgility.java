@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -25,11 +26,15 @@ public class ItemNutsAgility extends ItemArmor implements IArmorTextureProvider
 		super(par1, par2EnumArmorMaterial, par3, par4);
 		// TODO Auto-generated constructor stub
 	}
-	
-	@Override
-    public String getItemDisplayName(ItemStack par1ItemStack)
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * Return an item rarity from EnumRarity
+     */
+    public EnumRarity getRarity(ItemStack par1ItemStack)
     {
-        return (EnumChatFormatting.AQUA + StringTranslate.getInstance().translateNamedKey(this.getLocalizedName(par1ItemStack))).trim();
+        return EnumRarity.rare;
     }
 
     @SideOnly(Side.CLIENT)

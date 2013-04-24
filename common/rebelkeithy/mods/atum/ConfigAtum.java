@@ -106,6 +106,7 @@ public class ConfigAtum
 	public static int shusBreathID = 5050;
 	public static int ptahsDestructionID = 5051;
 	public static int monthusBlastID = 5052;
+	public static int nusFluxID = 5053;
 	
 	public static void initConfig()
 	{
@@ -189,6 +190,7 @@ public class ConfigAtum
 		shusBreathID = config.getItem("Shu's Breath", shusBreathID).getInt();
 		ptahsDestructionID = config.getItem("Ptah's Destruction", ptahsDestructionID).getInt();
 		monthusBlastID = config.getItem("Monthu's Blast", monthusBlastID).getInt();
+		nusFluxID = config.getItem("Nu's Flux", nusFluxID).getInt();
 		
 		limestoneShovelID = config.getItem("Limestone Shovel", limestoneShovelID).getInt();;
 		limestonePickaxeID = config.getItem("Limestone Pickaxe", limestonePickaxeID).getInt();;

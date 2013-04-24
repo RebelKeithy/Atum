@@ -1,7 +1,6 @@
 package rebelkeithy.mods.atum.artifacts;
 
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityCrit2FX;
@@ -9,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
@@ -16,9 +16,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.StringTranslate;
 import net.minecraft.world.World;
+
+import org.lwjgl.input.Keyboard;
+
+import rebelkeithy.mods.atum.entities.EntityStoneSoldier;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -84,7 +86,7 @@ public class ItemMonthusStrike extends ItemAxe
         
         for(Entity entity : list)
         {
-        	if(entity != player)
+        	if(entity != player && !(entity instanceof EntityStoneSoldier))
         	{
         		double dx = entity.posX - player.posX;
         		double dz = entity.posZ - player.posZ;
@@ -120,13 +122,17 @@ public class ItemMonthusStrike extends ItemAxe
     	
     	return stack;
     }
-	
-	@Override
-    public String getItemDisplayName(ItemStack par1ItemStack)
-    {
-        return (EnumChatFormatting.AQUA + StringTranslate.getInstance().translateNamedKey(this.getLocalizedName(par1ItemStack))).trim();
-    }
 
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * Return an item rarity from EnumRarity
+     */
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return EnumRarity.rare;
+    }
+	
     @SideOnly(Side.CLIENT)
 
     /**
@@ -135,7 +141,16 @@ public class ItemMonthusStrike extends ItemAxe
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
     {
-    	par3List.add("Slam I");
+    	//if(par2EntityPlayer.isSneaking())
+    	if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+    	{
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "Slam I: Increased damage,");
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "charge for AOE knockback");
+        	//par3List.add("Slam I");
+    	} else {
+    		//par3List.add(0, EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.ITALIC + "SHIFT for more info");
+        	par3List.add("Slam I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+    	}
     }	
 
     /**
