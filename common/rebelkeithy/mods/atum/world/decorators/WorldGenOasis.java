@@ -175,6 +175,7 @@ public class WorldGenOasis extends WorldGenerator
         		TileEntity te = world.getBlockTileEntity(par3+x, world.getHeightValue(par3+x, par5+z), par5+z);
         		AtumLoot.fillChest((IInventory) te, 5, 0.2f);
         		chest = true;
+        		continue;
         	}
         	
         	if(!papyrus && Block.blocksList[id].canSustainPlant(world, par3+x, y, par5+z, ForgeDirection.UP, (IPlantable)(Atum.atumPapyrus)))
@@ -190,6 +191,7 @@ public class WorldGenOasis extends WorldGenerator
         	        	}
         			}
         		}
+        		continue;
         	}
         	
         	if(par2Random.nextInt(5) == 0)
