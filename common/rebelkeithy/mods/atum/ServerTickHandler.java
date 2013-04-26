@@ -21,7 +21,21 @@ public class ServerTickHandler implements ITickHandler
 		if(type.equals(EnumSet.of(TickType.PLAYER)))
 		{
 			EntityPlayer player = (EntityPlayer) tickData[0];
-	        if (player.worldObj.getTotalWorldTime() % 20L == 0L)
+			
+
+	        if (player.worldObj.getTotalWorldTime() % 40L == 0L)
+	        {
+
+				if(player.getCurrentArmor(2) != null)
+				{
+					if(player.getCurrentArmor(2).itemID == Atum.isisEmbrace.itemID)
+					{
+						player.heal(1);
+					}
+				}
+	        }
+	        
+	        if (player.worldObj.getTotalWorldTime() % 10L == 0L)
 	        {
 				if(player.getCurrentArmor(3) != null)
 				{

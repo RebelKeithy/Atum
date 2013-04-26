@@ -107,6 +107,9 @@ public class ConfigAtum
 	public static int ptahsDestructionID = 5051;
 	public static int monthusBlastID = 5052;
 	public static int nusFluxID = 5053;
+	public static int mnevisHornsID = 5054;
+	public static int isisEmbraceID = 5055;
+	public static int maatsBalanceID = 5056;
 	
 	public static void initConfig()
 	{
@@ -191,6 +194,9 @@ public class ConfigAtum
 		ptahsDestructionID = config.getItem("Ptah's Destruction", ptahsDestructionID).getInt();
 		monthusBlastID = config.getItem("Monthu's Blast", monthusBlastID).getInt();
 		nusFluxID = config.getItem("Nu's Flux", nusFluxID).getInt();
+		mnevisHornsID = config.getItem("Mnevis's Horns", mnevisHornsID).getInt();
+		isisEmbraceID = config.getItem("Isis's Embrace", isisEmbraceID).getInt();
+		maatsBalanceID = config.getItem("Ma'at's Balance", maatsBalanceID).getInt();
 		
 		limestoneShovelID = config.getItem("Limestone Shovel", limestoneShovelID).getInt();;
 		limestonePickaxeID = config.getItem("Limestone Pickaxe", limestonePickaxeID).getInt();;

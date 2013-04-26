@@ -79,6 +79,9 @@ public class AtumLoot
 		goodLoot.addLoot(new ItemStack(Item.ingotGold), 20, 1, 3);
 		goodLoot.addLoot(new ItemStack(Item.diamond), 4, 1, 2);
 		goodLoot.addLoot(new ItemStack(Item.enchantedBook, 1, 1), 5, 1, 1);
+		ItemStack stick = new ItemStack(Item.stick);
+		stick.setItemName("Amazing Stick");
+		goodLoot.addLoot(stick, 1, 1, 1);
 	}
 	
 	public static void addArtifact(ItemStack stack)

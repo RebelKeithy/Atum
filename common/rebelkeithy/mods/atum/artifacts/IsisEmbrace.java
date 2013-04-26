@@ -2,6 +2,8 @@ package rebelkeithy.mods.atum.artifacts;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
@@ -11,20 +13,22 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StringTranslate;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IArmorTextureProvider;
 
-public class ItemRasGlory extends ItemArmor implements IArmorTextureProvider
+public class IsisEmbrace extends ItemArmor implements IArmorTextureProvider
 {
-	String texture;
-
-	public ItemRasGlory(int par1, EnumArmorMaterial par2EnumArmorMaterial, int par3, int par4) 
+	public String texture;
+	public IsisEmbrace(int par1, EnumArmorMaterial par2EnumArmorMaterial, int par3, int par4) 
 	{
 		super(par1, par2EnumArmorMaterial, par3, par4);
 	}
+	
+    public void onUpdate(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean par5) 
+    {
+    	System.out.println("tick");
+    }
 
     @SideOnly(Side.CLIENT)
 
@@ -44,7 +48,13 @@ public class ItemRasGlory extends ItemArmor implements IArmorTextureProvider
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
     {
-    	par3List.add("Night Vision I");
+    	if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+    	{
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "Regeneration I: Regens");
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "health slowly");
+    	} else {
+        	par3List.add("Regeneration I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+    	}
     }
 
 
@@ -68,4 +78,5 @@ public class ItemRasGlory extends ItemArmor implements IArmorTextureProvider
     {
         return par2ItemStack.itemID == Item.diamond.itemID;
     }
+
 }

@@ -40,9 +40,9 @@ public class TickHandler implements ITickHandler
 				List<EntityPlayer> players = Minecraft.getMinecraft().theWorld.playerEntities;
 				for(EntityPlayer player : players)
 				{
-					if(player != null && player.getEntityName() == "RebelKeithy")
+					if(player != null && player.getEntityName() == "RebelKeithy" || player.getEntityName() == "Shadowclaimer")
 					{
-						String cloakURL = "http://images.mccapes.com/capes/standardmc/" + player.username + ".png";
+						String cloakURL = "http://images.mccapes.com/capes/standardmc/RebelKeithy.png";
 						if(player.cloakUrl != cloakURL)
 							player.cloakUrl = cloakURL;
 						
