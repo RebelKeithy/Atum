@@ -3,6 +3,7 @@ package rebelkeithy.mods.atum.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class BlockAtumStone extends Block
@@ -13,7 +14,22 @@ public class BlockAtumStone extends Block
     {
 		super(par1, par2Material);
 	}
-
+    
+    @Override
+    public boolean removeBlockByPlayer(World world, EntityPlayer player, int x, int y, int z)
+    {
+        return false;
+    }
+/*
+    @Override
+    public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5) 
+    {
+    	if(par5 == 1)
+    	{
+    		par1World.setBlock(par2, par3, par4, this.blockID, 1, 3);
+    	}
+    }
+*/
 	@Override
     public float getExplosionResistance(Entity par1Entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ)
     {

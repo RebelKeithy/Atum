@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
-import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
 import rebelkeithy.mods.atum.AtumLoot;
 
 public class WorldGenOasis extends WorldGenerator
@@ -42,16 +42,16 @@ public class WorldGenOasis extends WorldGenerator
         int depth = par2Random.nextInt(5) + 5;
         
         int id = world.getBlockId(par3, par4-1, par5);
-        if(id != Atum.atumSand.blockID)
+        if(id != AtumBlocks.sand.blockID)
         	return false;
         id = world.getBlockId(par3+width, world.getHeightValue(par3+width, par5)-1, par5);
-        if(id != Atum.atumSand.blockID)
+        if(id != AtumBlocks.sand.blockID)
         	return false;
         id = world.getBlockId(par3, world.getHeightValue(par3, par5+depth)-1, par5+depth);
-        if(id != Atum.atumSand.blockID)
+        if(id != AtumBlocks.sand.blockID)
         	return false;
         id = world.getBlockId(par3+width, world.getHeightValue(par3+width, par5+depth)-1, par5+depth);
-        if(id != Atum.atumSand.blockID)
+        if(id != AtumBlocks.sand.blockID)
         	return false;
         
         int minHeight = world.getHeightValue(par3, par5);
@@ -91,7 +91,7 @@ public class WorldGenOasis extends WorldGenerator
         			{
         				int y = world.getHeightValue(x+par3, z+par5);
         				
-        				if(world.getBlockId(x+par3, y-1, z+par5) != Atum.atumSand.blockID)
+        				if(world.getBlockId(x+par3, y-1, z+par5) != AtumBlocks.sand.blockID)
         					continue;
         				
         				world.setBlock(x+par3, y-1, z+par5, Block.waterStill.blockID);
@@ -116,12 +116,12 @@ public class WorldGenOasis extends WorldGenerator
             			check = (x*x)/((radius+4)*(radius+4)) + (z*z)/((radius2+4)*(radius2+4));
         				int y = world.getHeightValue(x+par3, z+par5);
         				
-        				if(world.getBlockId(x+par3, y-1, z+par5) != Atum.atumSand.blockID)
+        				if(world.getBlockId(x+par3, y-1, z+par5) != AtumBlocks.sand.blockID)
         					continue;
         				
         				if(check < 1)
         				{
-        					world.setBlock(x+par3, y-1, z+par5, Atum.atumFertileSoil.blockID);
+        					world.setBlock(x+par3, y-1, z+par5, AtumBlocks.fertileSoil.blockID);
         					if(check < 0.3)
         					{
         						if(par2Random.nextInt(8) == 0)
@@ -130,9 +130,9 @@ public class WorldGenOasis extends WorldGenerator
         			        		{
         			        			for(int dz = -1; dz <= 1; dz++)
         			        			{
-        			        	        	if(Atum.atumPapyrus.canBlockStay(world, par3+x+dx, y, par5+z+dz))
+        			        	        	if(AtumBlocks.papyrus.canBlockStay(world, par3+x+dx, y, par5+z+dz))
         			        	        	{
-        			        	        		world.setBlock(x+par3+dx, y, z+par5+dz, Atum.atumPapyrus.blockID);
+        			        	        		world.setBlock(x+par3+dx, y, z+par5+dz, AtumBlocks.papyrus.blockID);
         			        	        	}
         			        			}
         			        		}
@@ -151,7 +151,7 @@ public class WorldGenOasis extends WorldGenerator
         	int z = par2Random.nextInt(depth);
         	
         	id = world.getBlockId(par3+x, world.getHeightValue(par3+x, par5+z)-1, par5+z);
-        	if(id == Atum.atumFertileSoil.blockID)
+        	if(id == AtumBlocks.fertileSoil.blockID)
         	{
         		(new WorldGenPalm(true, 5, 0, 0)).generate(world, par2Random, par3+x, world.getHeightValue(par3+x, par5+z), par5+z);
         		treeCount++;
@@ -169,7 +169,7 @@ public class WorldGenOasis extends WorldGenerator
         	int y = world.getHeightValue(par3+x, par5+z);
 
         	id = world.getBlockId(par3+x, y-1, par5+z);
-        	if(!chest && id == Atum.atumFertileSoil.blockID)
+        	if(!chest && id == AtumBlocks.fertileSoil.blockID)
         	{
         		world.setBlock(par3+x, y, par5+z, Block.chest.blockID);
         		TileEntity te = world.getBlockTileEntity(par3+x, world.getHeightValue(par3+x, par5+z), par5+z);
@@ -178,15 +178,15 @@ public class WorldGenOasis extends WorldGenerator
         		continue;
         	}
         	
-        	if(!papyrus && Block.blocksList[id].canSustainPlant(world, par3+x, y, par5+z, ForgeDirection.UP, (IPlantable)(Atum.atumPapyrus)))
+        	if(!papyrus && Block.blocksList[id].canSustainPlant(world, par3+x, y, par5+z, ForgeDirection.UP, (IPlantable)(AtumBlocks.papyrus)))
         	{
         		for(int dx = -1; dx <= 1; dx++)
         		{
         			for(int dz = -1; dz <= 1; dz++)
         			{
-        	        	if(Block.blocksList[id].canSustainPlant(world, par3+x+dx, y, par5+z+dz, ForgeDirection.UP, (IPlantable)(Atum.atumPapyrus)))
+        	        	if(Block.blocksList[id].canSustainPlant(world, par3+x+dx, y, par5+z+dz, ForgeDirection.UP, (IPlantable)(AtumBlocks.papyrus)))
         	        	{
-        	        		world.setBlock(par3+x, y, par5+z, Atum.atumPapyrus.blockID);
+        	        		world.setBlock(par3+x, y, par5+z, AtumBlocks.papyrus.blockID);
         	        		papyrus = true;
         	        	}
         			}
@@ -203,9 +203,9 @@ public class WorldGenOasis extends WorldGenerator
         				int currentY = world.getHeightValue(par3+x, par5+z);
         				int belowID = world.getBlockId(par3+x+dx, currentY - 1, par5+z+dz);
         				int currentID = world.getBlockId(par3+x+dx, currentY, par5+z+dz);
-        	        	if(par2Random.nextInt(3) == 0 && belowID == Atum.atumFertileSoil.blockID && currentID == 0)
+        	        	if(par2Random.nextInt(3) == 0 && belowID == AtumBlocks.fertileSoil.blockID && currentID == 0)
         	        	{
-        	        		world.setBlock(par3+x+dx, currentY, par5+z+dz, Atum.atumFlax.blockID, 13, 0);
+        	        		world.setBlock(par3+x+dx, currentY, par5+z+dz, AtumBlocks.flax.blockID, 13, 0);
         	        	}
         			}
         		}

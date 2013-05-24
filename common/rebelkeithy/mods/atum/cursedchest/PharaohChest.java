@@ -24,6 +24,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import rebelkeithy.mods.atum.AtumLoot;
 import rebelkeithy.mods.atum.entities.EntityPharaoh;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -157,6 +158,8 @@ public class PharaohChest extends BlockContainer
         {
             ((TileEntityPharaohChest)par1World.getBlockTileEntity(par2, par3, par4)).func_94043_a(par6ItemStack.getDisplayName());
         }
+        
+        AtumLoot.fillChest(((TileEntityPharaohChest)par1World.getBlockTileEntity(par2, par3, par4)), 15, 0.9f);
     }
 
     /**
@@ -322,7 +325,7 @@ public class PharaohChest extends BlockContainer
     @Override
     public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5)
     {
-        return Container.func_94526_b(this.getInventory(par1World, par2, par3, par4));
+        return Container.calcRedstoneFromInventory(this.getInventory(par1World, par2, par3, par4));
     }
 
     @SideOnly(Side.CLIENT)

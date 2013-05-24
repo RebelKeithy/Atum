@@ -36,7 +36,7 @@ public class ItemMnevisHorns extends ItemArmor implements IArmorTextureProvider
 	{
 		if(event.entityLiving.getCurrentArmor(3) != null)
 		{
-			if(event.entityLiving.getCurrentArmor(3).itemID == Atum.mnevisHorns.itemID)
+			if(event.entityLiving.getCurrentArmor(3).itemID == this.itemID)
 			{
 				if(event.source instanceof EntityDamageSource)
 				{

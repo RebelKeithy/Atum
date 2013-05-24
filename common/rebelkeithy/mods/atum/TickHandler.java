@@ -5,8 +5,6 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.ImageBufferDownload;
@@ -57,14 +55,14 @@ public class TickHandler implements ITickHandler
 			
 			if(player.getCurrentArmor(3) != null)
 			{
-				if(player.getCurrentArmor(3).itemID == Atum.rasGlory.itemID)
+				if(player.getCurrentArmor(3).itemID == AtumItems.rasGlory.itemID)
 				{
 					nightvision = true;
 				}
 		       
 			}
 			
-			if(player.dimension == Atum.dimensionID)
+			if(player.dimension == ConfigAtum.dimensionID)
 			{
 				if(Minecraft.getMinecraft().gameSettings.renderDistance < (nightvision ? 1 : 2))
 				{
@@ -131,7 +129,7 @@ public class TickHandler implements ITickHandler
         {
 			if(player != null && player.getCurrentArmor(3) != null)
 			{
-				if(player.getCurrentArmor(3).itemID == Atum.mummyHelmet.itemID)
+				if(player.getCurrentArmor(3).itemID == AtumItems.mummyHelmet.itemID)
 				{
                     ScaledResolution scaledresolution = new ScaledResolution(Minecraft.getMinecraft().gameSettings, Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
                     int par1 = scaledresolution.getScaledWidth();

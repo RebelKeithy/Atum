@@ -10,7 +10,6 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
@@ -25,7 +24,7 @@ import rebelkeithy.mods.atum.Atum;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemMaatsBalance extends ItemArmor implements IArmorTextureProvider
+public class ItemMaatsBalance extends ItemArmor
 {
 
 	public String texture;
@@ -40,7 +39,7 @@ public class ItemMaatsBalance extends ItemArmor implements IArmorTextureProvider
 	{
 		if(event.entityLiving.getCurrentArmor(3) != null)
 		{
-			if(event.entityLiving.getCurrentArmor(3).itemID == Atum.mnevisHorns.itemID)
+			if(event.entityLiving.getCurrentArmor(3).itemID == this.itemID)
 			{
 				event.ammount = (int) ((event.ammount + 1)/1.5F) - 1;
 			}
@@ -49,12 +48,12 @@ public class ItemMaatsBalance extends ItemArmor implements IArmorTextureProvider
 		if(event.source instanceof EntityDamageSource)
 		{
 			EntityDamageSource source = (EntityDamageSource) event.source;
-			if(source.getEntity() != null)
+			if(source.getEntity() != null && source.getEntity() instanceof EntityLiving)
 			{
 				EntityLiving entity = (EntityLiving) source.getEntity();
 				if(entity.getCurrentArmor(3) != null)
 				{
-					if(event.entityLiving.getCurrentArmor(3).itemID == Atum.mnevisHorns.itemID)
+					if(entity.getCurrentArmor(3).itemID == this.itemID)
 					{
 						event.ammount = (int) ((event.ammount + 1)/1.5F) - 1;
 					}
@@ -66,7 +65,7 @@ public class ItemMaatsBalance extends ItemArmor implements IArmorTextureProvider
 	
     public void onUpdate(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean par5) 
     {
-    	System.out.println("tick");
+    	//System.out.println("tick");
     }
 
     @SideOnly(Side.CLIENT)
@@ -102,12 +101,11 @@ public class ItemMaatsBalance extends ItemArmor implements IArmorTextureProvider
 		texture = string;
 		return this;
 	}
-
-	@Override
-	public String getArmorTextureFile(ItemStack itemstack) 
-	{
+	
+    public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer)
+    {
 		return "/armor/" + texture + ".png";
-	}
+    }
 
     /**
      * Return whether this item is repairable in an anvil.

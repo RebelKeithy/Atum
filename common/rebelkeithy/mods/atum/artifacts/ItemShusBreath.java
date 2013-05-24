@@ -6,18 +6,15 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
-import net.minecraft.util.StringTranslate;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
-import rebelkeithy.mods.atum.artifacts.arrow.EntityArrowVelocity;
+import rebelkeithy.mods.atum.artifacts.arrow.EntityArrowQuickdraw;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -57,7 +54,6 @@ public class ItemShusBreath extends ItemBow
             return;
         }
         j = event.charge;
-        System.out.println("charge " + j);
 
         boolean flag = par3EntityPlayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
 
@@ -76,7 +72,7 @@ public class ItemShusBreath extends ItemBow
                 f = 1.0F;
             }
 
-            EntityArrow entityarrow = new EntityArrow(par2World, par3EntityPlayer, f * 2.0F);
+            EntityArrowQuickdraw entityarrow = new EntityArrowQuickdraw(par2World, par3EntityPlayer, f * 2.0F);
             entityarrow.setDamage(entityarrow.getDamage() * 1.5F);
 
             if (f == 1.0F)
@@ -177,17 +173,17 @@ public class ItemShusBreath extends ItemBow
 	
 	        if (j >= 9)
 	        {
-	            return func_94599_c(2);
+	            return getItemIconForUseDuration(2);
 	        }
 	
 	        if (j > 5)
 	        {
-	            return func_94599_c(1);
+	            return getItemIconForUseDuration(1);
 	        }
 	
 	        if (j > 0)
 	        {
-	            return func_94599_c(0);
+	            return getItemIconForUseDuration(0);
 	        }
     	}
         return getIcon(stack, renderPass);
@@ -195,7 +191,7 @@ public class ItemShusBreath extends ItemBow
 
     @SideOnly(Side.CLIENT)
 	@Override
-    public Icon func_94599_c(int par1)
+    public Icon getItemIconForUseDuration(int par1)
     {
         return this.iconArray[par1];
     }

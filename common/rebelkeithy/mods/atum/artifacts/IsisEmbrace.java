@@ -24,11 +24,6 @@ public class IsisEmbrace extends ItemArmor implements IArmorTextureProvider
 	{
 		super(par1, par2EnumArmorMaterial, par3, par4);
 	}
-	
-    public void onUpdate(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean par5) 
-    {
-    	System.out.println("tick");
-    }
 
     @SideOnly(Side.CLIENT)
 

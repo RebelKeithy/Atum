@@ -3,8 +3,6 @@ package rebelkeithy.mods.atum.items;
 import java.util.List;
 import java.util.Random;
 
-import rebelkeithy.mods.atum.Atum;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
+import rebelkeithy.mods.atum.AtumItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -38,7 +37,7 @@ public class ItemLoot extends Item
 	{
 		int type = rand.nextInt(typeArray.length);
 		int quality = rand.nextInt(qualityArray.length-1) + 1;
-		return new ItemStack(Atum.itemLoot.itemID, 1, type << 5 | quality << 1 | (isDirty ? 1 : 0));
+		return new ItemStack(AtumItems.loot.itemID, 1, type << 5 | quality << 1 | (isDirty ? 1 : 0));
 	}
 
     @Override
@@ -84,7 +83,6 @@ public class ItemLoot extends Item
 		int id = entityItem.worldObj.getBlockId(MathHelper.floor_double(entityItem.posX), MathHelper.floor_double(entityItem.posY), MathHelper.floor_double(entityItem.posZ));
         if (id == Block.waterStill.blockID || id == Block.waterMoving.blockID)
         {
-        	System.out.println("in water");
         	ItemStack item = entityItem.getEntityItem();
         	int damage = item.getItemDamage() >> 1;
         	int quality = damage & 15;

@@ -5,7 +5,6 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
@@ -14,7 +13,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
-import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
+import rebelkeithy.mods.atum.AtumItems;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -176,7 +176,7 @@ public class BlockPapyrus extends Block implements IPlantable
         int plantID = plant.getPlantID(world, x, y + 1, z);
         EnumPlantType plantType = plant.getPlantType(world, x, y + 1, z);
 
-        if (plantID == Atum.atumPapyrus.blockID && blockID == Atum.atumPapyrus.blockID)
+        if (plantID == AtumBlocks.papyrus.blockID && blockID == AtumBlocks.papyrus.blockID)
         {
             return true;
         }
@@ -211,7 +211,7 @@ public class BlockPapyrus extends Block implements IPlantable
 	@Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return Atum.itemPapyrusPlant.itemID;
+        return AtumItems.papyrusPlant.itemID;
     }
 
     /**
@@ -250,7 +250,7 @@ public class BlockPapyrus extends Block implements IPlantable
 	@Override
     public int idPicked(World par1World, int par2, int par3, int par4)
     {
-        return Atum.itemPapyrusPlant.itemID;
+        return AtumItems.papyrusPlant.itemID;
     }
 
     @Override

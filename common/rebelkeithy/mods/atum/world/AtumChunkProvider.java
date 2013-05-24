@@ -6,8 +6,6 @@ import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.RAVI
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.SCATTERED_FEATURE;
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.STRONGHOLD;
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.VILLAGE;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.DUNGEON;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ICE;
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAVA;
 
 import java.util.List;
@@ -25,11 +23,9 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.feature.MapGenScatteredFeature;
-import net.minecraft.world.gen.feature.WorldGenDungeons;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.structure.MapGenMineshaft;
 import net.minecraft.world.gen.structure.MapGenStronghold;
@@ -39,9 +35,8 @@ import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
 import rebelkeithy.mods.atum.world.biome.BiomeGenAtumDesert;
-import rebelkeithy.mods.atum.world.decorators.WorldGenAtumTrees;
 
 public class AtumChunkProvider implements IChunkProvider
 {
@@ -76,7 +71,7 @@ public class AtumChunkProvider implements IChunkProvider
     /** Holds the overall noise array used in chunk generation */
     private double[] noiseArray;
     private double[] stoneNoise = new double[256];
-    private MapGenBase caveGenerator = new MapGenCaves();
+    private MapGenBase caveGenerator = new AtumMapGenCaves();
 
     /** Holds Stronghold Generator */
     private MapGenStronghold strongholdGenerator = new MapGenStronghold();
@@ -207,13 +202,13 @@ public class AtumChunkProvider implements IChunkProvider
                                 {
                                 	if(index + dy >= par3ArrayOfByte.length)
                                 		continue;
-                                    par3ArrayOfByte[index += dy] = (short)Atum.atumStone.blockID;
+                                    par3ArrayOfByte[index += dy] = (short)AtumBlocks.stone.blockID;
                                 }
                                 else if (y1 * 8 + y2 < b2)
                                 {
                                 	if(index + dy >= par3ArrayOfByte.length)
                                 		continue;
-                                    par3ArrayOfByte[index += dy] = (short)Atum.atumStone.blockID;
+                                    par3ArrayOfByte[index += dy] = (short)AtumBlocks.stone.blockID;
                                 }
                                 else
                                 {
@@ -278,14 +273,14 @@ public class AtumChunkProvider implements IChunkProvider
                         {
                             j1 = -1;
                         }
-                        else if (b3 == Atum.atumStone.blockID)
+                        else if (b3 == AtumBlocks.stone.blockID)
                         {
                             if (j1 == -1)
                             {
                                 if (i1 <= 0)
                                 {
                                     b1 = 0;
-                                    b2 = (short)Atum.atumStone.blockID;
+                                    b2 = (short)AtumBlocks.stone.blockID;
                                 }
                                 else if (y >= b0 - 4 && y <= b0 + 1)
                                 {
@@ -309,10 +304,10 @@ public class AtumChunkProvider implements IChunkProvider
                                 --j1;
                                 par3ArrayOfByte[l1] = b2;
 
-                                if (j1 == 0 && b2 == Atum.atumSand.blockID)
+                                if (j1 == 0 && b2 == AtumBlocks.sand.blockID)
                                 {
                                     j1 = this.rand.nextInt(4);
-                                    b2 = (short)Atum.atumStone.blockID;
+                                    b2 = (short)AtumBlocks.stone.blockID;
                                 }
                             }
                         }
@@ -345,7 +340,7 @@ public class AtumChunkProvider implements IChunkProvider
         this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, par1 * 16, par2 * 16, 16, 16);
         //this.biomesForGeneration = new BiomeGenBase[] {BiomeGenBase.desert};
         this.replaceBlocksForBiome(par1, par2, abyte, this.biomesForGeneration);
-        //this.caveGenerator.generate(this, this.worldObj, par1, par2, abyte);
+        //this.caveGenerator.generate((IChunkProvider)this, this.worldObj, par1, par2, abyte);
         //this.ravineGenerator.generate(this, this.worldObj, par1, par2, abyte);
 
         if (this.mapFeaturesEnabled)
@@ -695,4 +690,7 @@ public class AtumChunkProvider implements IChunkProvider
             this.scatteredFeatureGenerator.generate(this, this.worldObj, par1, par2, (byte[])null);
         }
     }
+
+	@Override
+	public void func_104112_b() {}
 }

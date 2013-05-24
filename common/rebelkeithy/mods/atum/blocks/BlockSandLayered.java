@@ -1,23 +1,18 @@
 package rebelkeithy.mods.atum.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
-
-import rebelkeithy.mods.atum.Atum;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import rebelkeithy.mods.atum.AtumBlocks;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockSandLayered extends Block
 {
@@ -109,7 +104,7 @@ public class BlockSandLayered extends Block
         int l = par1World.getBlockId(par2, par3 - 1, par4);        
         Block block = Block.blocksList[l];
         if (block == null) return false;
-        if (block.blockID == Atum.atumSandLayered.blockID) return true;
+        if (block.blockID == AtumBlocks.sandLayered.blockID) return true;
         if (block == this && (par1World.getBlockMetadata(par2, par3 - 1, par4) & 7) == 7) return true;
         if (!block.isLeaves(par1World, par2, par3 - 1, par4) && !Block.blocksList[l].isOpaqueCube()) return false;
         return par1World.getBlockMaterial(par2, par3 - 1, par4).blocksMovement();

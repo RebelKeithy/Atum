@@ -1,24 +1,17 @@
 package rebelkeithy.mods.atum.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
-import rebelkeithy.mods.atum.Atum;
-
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockHalfSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Facing;
 import net.minecraft.util.Icon;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
+import rebelkeithy.mods.atum.AtumBlocks;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockAtumSlab extends BlockHalfSlab
 {
@@ -40,13 +33,13 @@ public class BlockAtumSlab extends BlockHalfSlab
     {
     	par2 = par2%4;
     	if(par2 == 0)
-    		return Atum.atumStone.getIcon(par1, par2 & 7);
+    		return AtumBlocks.stone.getIcon(par1, par2 & 7);
     	else if(par2 == 1)
-    		return Atum.atumCobble.getIcon(par1, par2 & 7);
+    		return AtumBlocks.cobble.getIcon(par1, par2 & 7);
     	else if(par2 == 2)
-    		return Atum.atumLargeBrick.getIcon(par1, par2 & 7);
+    		return AtumBlocks.largeBrick.getIcon(par1, par2 & 7);
 
-    	return Atum.atumSmallBrick.getIcon(par1, par2 & 7);
+    	return AtumBlocks.smallBrick.getIcon(par1, par2 & 7);
         
     }
 
@@ -56,7 +49,7 @@ public class BlockAtumSlab extends BlockHalfSlab
 	@Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return Atum.atumSlabs.blockID;
+        return AtumBlocks.slabs.blockID;
     }
 
     /**
@@ -66,7 +59,7 @@ public class BlockAtumSlab extends BlockHalfSlab
 	@Override
     protected ItemStack createStackedBlock(int par1)
     {
-        return new ItemStack(Atum.atumSlabs.blockID, 2, par1 & 7);
+        return new ItemStack(AtumBlocks.slabs.blockID, 2, par1 & 7);
     }
 
     /**

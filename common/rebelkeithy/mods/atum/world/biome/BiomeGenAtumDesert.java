@@ -7,7 +7,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
 import rebelkeithy.mods.atum.entities.EntityBanditArcher;
 import rebelkeithy.mods.atum.entities.EntityBanditWarlord;
 import rebelkeithy.mods.atum.entities.EntityBanditWarrior;
@@ -36,8 +36,8 @@ public class BiomeGenAtumDesert extends BiomeGenBase
     {
         super(par1);
         this.spawnableCreatureList.clear();
-        this.sTopBlock = (short) Atum.atumSand.blockID;
-        this.sFillerBlock = (short) Atum.atumSand.blockID;
+        this.sTopBlock = (short) AtumBlocks.sand.blockID;
+        this.sFillerBlock = (short) AtumBlocks.sand.blockID;
         this.theBiomeDecorator.treesPerChunk = 1;
         this.theBiomeDecorator.deadBushPerChunk = 5;
         this.theBiomeDecorator.reedsPerChunk = 0;
@@ -110,7 +110,7 @@ public class BiomeGenAtumDesert extends BiomeGenBase
         {
             int k = par3 + par2Random.nextInt(16) + 8;
             int l = par4 + par2Random.nextInt(16) + 8;
-            int height = par2Random.nextInt(4) + 4;
+            int height = par2Random.nextInt(4) + 5;
             time = System.nanoTime();
             (new WorldGenPalm(true, height, 0, 0)).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
             //System.out.println("Gen Palm: " + (System.nanoTime() - time));

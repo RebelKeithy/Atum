@@ -1,31 +1,16 @@
 package rebelkeithy.mods.atum.entities;
 
-import rebelkeithy.mods.atum.Atum;
-import net.minecraft.block.Block;
-import net.minecraft.block.StepSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIBreakDoor;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
-import net.minecraft.entity.ai.EntityAIMoveTwardsRestriction;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+import rebelkeithy.mods.atum.AtumItems;
 
 public class EntityGhost extends EntityMob implements IAtumNightMob
 {
@@ -177,7 +162,7 @@ public class EntityGhost extends EntityMob implements IAtumNightMob
     	 if (this.rand.nextInt(4) == 0)
          {
     	 	int amount = rand.nextInt(3) + 1;
-    	 	this.dropItem(Atum.itemEctoplasm.itemID, amount);
+    	 	this.dropItem(AtumItems.ectoplasm.itemID, amount);
          }
     }
 

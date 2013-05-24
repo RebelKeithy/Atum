@@ -2,14 +2,10 @@ package rebelkeithy.mods.atum.world.decorators;
 
 import java.util.Random;
 
-import rebelkeithy.mods.atum.Atum;
-
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSapling;
-import net.minecraft.util.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.ForgeDirection;
+import rebelkeithy.mods.atum.AtumBlocks;
 
 public class WorldGenPalm extends WorldGenerator
 {
@@ -24,7 +20,7 @@ public class WorldGenPalm extends WorldGenerator
 
     public WorldGenPalm(boolean par1)
     {
-        this(par1, 4, 0, 0);
+        this(par1, 5, 0, 0);
     }
 
     public WorldGenPalm(boolean par1, int par2, int par3, int par4)
@@ -42,7 +38,7 @@ public class WorldGenPalm extends WorldGenerator
 
         int id = par1World.getBlockId(par3, par4 - 1, par5);
 
-        if ((id == Atum.atumSand.blockID || id == Atum.atumFertileSoil.blockID || id == Block.dirt.blockID) && par4 >= 1 && par4 + l + 1 <= 256)
+        if ((id == AtumBlocks.sand.blockID || id == AtumBlocks.fertileSoil.blockID || id == Block.dirt.blockID) && par4 >= 1 && par4 + l + 1 <= 256)
         {
             int i1;
             byte b0;
@@ -75,7 +71,7 @@ public class WorldGenPalm extends WorldGenerator
 
                             if (k1 != 0 &&
                                !block.isLeaves(par1World, l1, i1, j1) &&
-                                k1 != Atum.atumFertileSoil.blockID &&
+                                k1 != AtumBlocks.fertileSoil.blockID &&
                                 k1 != Block.dirt.blockID &&
                                !block.isWood(par1World, l1, i1, j1))
                             {
@@ -137,19 +133,19 @@ public class WorldGenPalm extends WorldGenerator
 
             		if (par2Random.nextInt(100) < 15)
             		{
-            			par1World.setBlock(par3 + 1, par4 + l - 1, par5, Atum.atumDateBlock.blockID, 0, 0x02);
+            			par1World.setBlock(par3 + 1, par4 + l - 1, par5, AtumBlocks.dateBlock.blockID, 0, 0x02);
             		}
             		if (par2Random.nextInt(100) < 15)
             		{
-            			par1World.setBlock(par3 - 1, par4 + l - 1, par5, Atum.atumDateBlock.blockID, 0, 0x02);
+            			par1World.setBlock(par3 - 1, par4 + l - 1, par5, AtumBlocks.dateBlock.blockID, 0, 0x02);
             		}
             		if (par2Random.nextInt(100) < 15)
             		{
-            			par1World.setBlock(par3, par4 + l - 1, par5 + 1, Atum.atumDateBlock.blockID, 0, 0x02);
+            			par1World.setBlock(par3, par4 + l - 1, par5 + 1, AtumBlocks.dateBlock.blockID, 0, 0x02);
             		}
             		if (par2Random.nextInt(100) < 15)
             		{
-            			par1World.setBlock(par3, par4 + l - 1, par5 - 1, Atum.atumDateBlock.blockID, 0, 0x02);
+            			par1World.setBlock(par3, par4 + l - 1, par5 - 1, AtumBlocks.dateBlock.blockID, 0, 0x02);
             		}
 
                     for (j1 = 0; j1 <= l; ++j1)
@@ -160,7 +156,7 @@ public class WorldGenPalm extends WorldGenerator
 
                         if (k1 == 0 || block == null || block.isLeaves(par1World, par3, par4 + j1, par5))
                         {
-                            this.setBlockAndMetadata(par1World, par3, par4 + j1, par5, Atum.atumLog.blockID, this.metaWood);
+                            this.setBlockAndMetadata(par1World, par3, par4 + j1, par5, AtumBlocks.log.blockID, this.metaWood);
                         }
                     }
 
@@ -184,7 +180,7 @@ public class WorldGenPalm extends WorldGenerator
         Block block = Block.blocksList[j3];
         if (block == null || block.canBeReplacedByLeaves(par1World, x, y, z))
         {
-            this.setBlockAndMetadata(par1World, x, y, z, Atum.atumLeaves.blockID, this.metaLeaves);
+            this.setBlockAndMetadata(par1World, x, y, z, AtumBlocks.leaves.blockID, this.metaLeaves);
         }
     }
 }

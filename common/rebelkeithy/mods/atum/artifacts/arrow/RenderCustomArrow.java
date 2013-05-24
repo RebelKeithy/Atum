@@ -14,13 +14,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderCustomArrow extends Render
 {
-    public void renderArrow(CustomArrow par1EntityFireSpearCombined, double par2, double par4, double par6, float par8, float par9)
+    public void renderArrow(CustomArrow entityArrow, double par2, double par4, double par6, float par8, float par9)
     {
-        this.loadTexture("/item/arrows.png");
+        this.loadTexture(entityArrow.getTexture());
+        
+        
+        
         GL11.glPushMatrix();
         GL11.glTranslatef((float)par2, (float)par4, (float)par6);
-        GL11.glRotatef(par1EntityFireSpearCombined.prevRotationYaw + (par1EntityFireSpearCombined.rotationYaw - par1EntityFireSpearCombined.prevRotationYaw) * par9 - 90.0F, 0.0F, 1.0F, 0.0F);
-        GL11.glRotatef(par1EntityFireSpearCombined.prevRotationPitch + (par1EntityFireSpearCombined.rotationPitch - par1EntityFireSpearCombined.prevRotationPitch) * par9, 0.0F, 0.0F, 1.0F);
+        GL11.glRotatef(entityArrow.prevRotationYaw + (entityArrow.rotationYaw - entityArrow.prevRotationYaw) * par9 - 90.0F, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(entityArrow.prevRotationPitch + (entityArrow.rotationPitch - entityArrow.prevRotationPitch) * par9, 0.0F, 0.0F, 1.0F);
         Tessellator tessellator = Tessellator.instance;
         byte b0 = 0;
         float f2 = 0.0F;
@@ -33,7 +36,7 @@ public class RenderCustomArrow extends Render
         float f9 = (float)(10 + b0 * 10) / 32.0F;
         float f10 = 0.05625F;
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-        float f11 = (float)par1EntityFireSpearCombined.arrowShake - par9;
+        float f11 = (float)entityArrow.arrowShake - par9;
 
         if (f11 > 0.0F)
         {

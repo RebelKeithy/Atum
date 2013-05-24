@@ -2,39 +2,22 @@ package rebelkeithy.mods.atum.entities;
 
 import static net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED;
 import static net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D;
-
-import java.util.Random;
-
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelBox;
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderBiped;
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.boss.BossStatus;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
-import rebelkeithy.mods.atum.Atum;
-
+import rebelkeithy.mods.atum.AtumItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -131,7 +114,7 @@ public class RenderPharaoh extends RenderBiped
                 GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glScalef(-f2, -f2, f2);
             }
-            else if (itemstack.itemID == Atum.itemBow.itemID)
+            else if (itemstack.itemID == AtumItems.bow.itemID)
             {
                 f2 = 0.625F;
                 GL11.glTranslatef(0.0F, 0.125F, 0.3125F);

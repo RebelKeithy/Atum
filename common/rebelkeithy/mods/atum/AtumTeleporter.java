@@ -117,9 +117,9 @@ public class AtumTeleporter extends Teleporter
 
                     for (int i2 = this.worldServerInstance.getActualHeight() - 1; i2 >= 0; --i2)
                     {
-                        if (this.worldServerInstance.getBlockId(k1, i2, l1) == Atum.portal.blockID)
+                        if (this.worldServerInstance.getBlockId(k1, i2, l1) == AtumBlocks.portal.blockID)
                         {
-                            while (this.worldServerInstance.getBlockId(k1, i2 - 1, l1) == Atum.portal.blockID)
+                            while (this.worldServerInstance.getBlockId(k1, i2 - 1, l1) == AtumBlocks.portal.blockID)
                             {
                                 --i2;
                             }
@@ -153,22 +153,22 @@ public class AtumTeleporter extends Teleporter
             d4 = (double)k + 0.5D;
             int j2 = -1;
 
-            if (this.worldServerInstance.getBlockId(i - 1, j, k) == Atum.portal.blockID)
+            if (this.worldServerInstance.getBlockId(i - 1, j, k) == AtumBlocks.portal.blockID)
             {
                 j2 = 2;
             }
 
-            if (this.worldServerInstance.getBlockId(i + 1, j, k) == Atum.portal.blockID)
+            if (this.worldServerInstance.getBlockId(i + 1, j, k) == AtumBlocks.portal.blockID)
             {
                 j2 = 0;
             }
 
-            if (this.worldServerInstance.getBlockId(i, j, k - 1) == Atum.portal.blockID)
+            if (this.worldServerInstance.getBlockId(i, j, k - 1) == AtumBlocks.portal.blockID)
             {
                 j2 = 3;
             }
 
-            if (this.worldServerInstance.getBlockId(i, j, k + 1) == Atum.portal.blockID)
+            if (this.worldServerInstance.getBlockId(i, j, k + 1) == AtumBlocks.portal.blockID)
             {
                 j2 = 1;
             }
@@ -470,7 +470,7 @@ public class AtumTeleporter extends Teleporter
                     j3 = j5 + l2;
                     i4 = j2 + (i3 - 1) * l5;
                     flag = i3 == 0 || i3 == 3 || l2 == -1 || l2 == 3;
-                    this.worldServerInstance.setBlock(k3, j3, i4, flag ? Block.sandStone.blockID : Atum.portal.blockID, 0, 2);
+                    this.worldServerInstance.setBlock(k3, j3, i4, flag ? Block.sandStone.blockID : AtumBlocks.portal.blockID, 0, 2);
                 }
             }
 

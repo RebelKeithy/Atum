@@ -2,18 +2,15 @@ package rebelkeithy.mods.atum.blocks.ores;
 
 import java.util.Random;
 
-import rebelkeithy.mods.atum.Atum;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockRedstoneOre;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import rebelkeithy.mods.atum.AtumBlocks;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockAtumRedstone extends BlockRedstoneOre
 {
@@ -162,7 +159,7 @@ public class BlockAtumRedstone extends BlockRedstoneOre
     @Override
     protected ItemStack createStackedBlock(int par1)
     {
-        return new ItemStack(Atum.atumRedstoneOre);
+        return new ItemStack(AtumBlocks.redstoneOre);
     }
 
 }

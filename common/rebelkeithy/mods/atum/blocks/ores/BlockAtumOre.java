@@ -7,7 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
 
 public class BlockAtumOre extends Block
 {
@@ -22,11 +22,11 @@ public class BlockAtumOre extends Block
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-    	if(this.blockID == Atum.atumCoalOre.blockID)
+    	if(this.blockID == AtumBlocks.coalOre.blockID)
     		return Item.coal.itemID;
-    	else if(this.blockID == Atum.atumDiamondOre.blockID)
+    	else if(this.blockID == AtumBlocks.diamondOre.blockID)
     		return Item.diamond.itemID;
-    	else if(this.blockID == Atum.atumLapisOre.blockID)
+    	else if(this.blockID == AtumBlocks.lapisOre.blockID)
     		return Item.dyePowder.itemID;
     	else 
     		return this.blockID;
@@ -38,7 +38,7 @@ public class BlockAtumOre extends Block
     @Override
     public int quantityDropped(Random par1Random)
     {
-        return this.blockID == Atum.atumLapisOre.blockID ? 4 + par1Random.nextInt(5) : 1;
+        return this.blockID == AtumBlocks.lapisOre.blockID ? 4 + par1Random.nextInt(5) : 1;
     }
 
     /**
@@ -76,15 +76,15 @@ public class BlockAtumOre extends Block
         {
             int j1 = 0;
 
-            if (this.blockID == Atum.atumCoalOre.blockID)
+            if (this.blockID == AtumBlocks.coalOre.blockID)
             {
                 j1 = MathHelper.getRandomIntegerInRange(par1World.rand, 0, 2);
             }
-            else if (this.blockID == Atum.atumDiamondOre.blockID)
+            else if (this.blockID == AtumBlocks.diamondOre.blockID)
             {
                 j1 = MathHelper.getRandomIntegerInRange(par1World.rand, 3, 7);
             }
-            else if (this.blockID == Atum.atumLapisOre.blockID)
+            else if (this.blockID == AtumBlocks.lapisOre.blockID)
             {
                 j1 = MathHelper.getRandomIntegerInRange(par1World.rand, 2, 5);
             }
@@ -99,6 +99,6 @@ public class BlockAtumOre extends Block
     @Override
     public int damageDropped(int par1)
     {
-        return this.blockID == Atum.atumLapisOre.blockID ? 4 : 0;
+        return this.blockID == AtumBlocks.lapisOre.blockID ? 4 : 0;
     }
 }

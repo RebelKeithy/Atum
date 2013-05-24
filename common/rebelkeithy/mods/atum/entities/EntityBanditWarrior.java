@@ -1,7 +1,5 @@
 package rebelkeithy.mods.atum.entities;
 
-import rebelkeithy.mods.atum.Atum;
-import rebelkeithy.mods.atum.ConfigAtum;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
@@ -9,6 +7,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import rebelkeithy.mods.atum.AtumItems;
+import rebelkeithy.mods.atum.ConfigAtum;
 
 public class EntityBanditWarrior extends EntityMob implements IAtumDayMob
 {
@@ -63,7 +63,7 @@ public class EntityBanditWarrior extends EntityMob implements IAtumDayMob
     @Override
     public void initCreature()
     {
-    	this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemScimitar));
+    	this.setCurrentItemOrArmor(0, new ItemStack(AtumItems.scimitar));
         this.func_82162_bC();
     	
         for (int i = 0; i < this.equipmentDropChances.length; ++i)
@@ -101,10 +101,10 @@ public class EntityBanditWarrior extends EntityMob implements IAtumDayMob
         float f = (float)(this.getMaxHealth() - this.getHealth()) / (float)this.getMaxHealth();
         int i = 3 + MathHelper.floor_float(f * 4.0F);
 
-        if (itemstack != null)
+        /*if (itemstack != null)
         {
             i += itemstack.getDamageVsEntity(this);
-        }
+        }*/
 
         return i;
     }
@@ -118,7 +118,7 @@ public class EntityBanditWarrior extends EntityMob implements IAtumDayMob
     {
     	 if(rand.nextInt(20) == 0)
     	 {
-    		 int damage = (int) (Atum.itemScimitar.getMaxDamage() - rand.nextInt(Atum.itemScimitar.getMaxDamage()) * 0.5 + 20);
+    		 int damage = (int) (AtumItems.scimitar.getMaxDamage() - rand.nextInt(AtumItems.scimitar.getMaxDamage()) * 0.5 + 20);
              this.entityDropItem(new ItemStack(ConfigAtum.scimitarID, 1, damage), 0.0F);
     	 }
     	 

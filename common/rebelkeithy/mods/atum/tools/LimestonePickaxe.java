@@ -1,10 +1,10 @@
 package rebelkeithy.mods.atum.tools;
 
-import rebelkeithy.mods.atum.Atum;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import rebelkeithy.mods.atum.AtumBlocks;
 
 public class LimestonePickaxe extends ItemPickaxe 
 {
@@ -20,7 +20,7 @@ public class LimestonePickaxe extends ItemPickaxe
 	@Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
     {
-        return par2ItemStack.itemID == Atum.atumCobble.blockID;
+        return par2ItemStack.itemID == AtumBlocks.cobble.blockID;
     }
 
     @Override

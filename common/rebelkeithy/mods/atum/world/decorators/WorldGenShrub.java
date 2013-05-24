@@ -2,11 +2,9 @@ package rebelkeithy.mods.atum.world.decorators;
 
 import java.util.Random;
 
-import rebelkeithy.mods.atum.Atum;
-
-import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import rebelkeithy.mods.atum.AtumBlocks;
 
 public class WorldGenShrub extends WorldGenerator
 {
@@ -30,7 +28,7 @@ public class WorldGenShrub extends WorldGenerator
             int z = par5 + par2Random.nextInt(range+1) - range/2;
             int y = par1World.getHeightValue(x, z);
             
-            if (par1World.isAirBlock(x, y, z) && Atum.atumShrub.canBlockStay(par1World, x, y, z))
+            if (par1World.isAirBlock(x, y, z) && AtumBlocks.shrub.canBlockStay(par1World, x, y, z))
             {
                 par1World.setBlock(x, y, z, deadBushID);
             }

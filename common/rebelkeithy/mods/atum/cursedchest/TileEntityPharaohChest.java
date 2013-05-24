@@ -251,7 +251,7 @@ public class TileEntityPharaohChest extends TileEntityChest implements IInventor
     private boolean func_94044_a(int par1, int par2, int par3)
     {
         Block block = Block.blocksList[this.worldObj.getBlockId(par1, par2, par3)];
-        return block != null && block instanceof BlockChest ? ((BlockChest)block).field_94443_a == this.func_98041_l() : false;
+        return block != null && block instanceof BlockChest ? ((BlockChest)block).isTrapped == this.func_98041_l() : false;
     }
 
     /**
@@ -407,7 +407,7 @@ public class TileEntityPharaohChest extends TileEntityChest implements IInventor
                 return 0;
             }
 
-            this.field_94046_i = ((BlockChest)this.getBlockType()).field_94443_a;
+            this.field_94046_i = ((BlockChest)this.getBlockType()).isTrapped;
         }
 
         return this.field_94046_i;

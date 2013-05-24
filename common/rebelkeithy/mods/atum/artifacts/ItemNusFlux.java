@@ -31,7 +31,6 @@ public class ItemNusFlux extends ItemSword
 	@Override
     public boolean hitEntity(ItemStack par1ItemStack, EntityLiving entity, EntityLiving player)
     {
-		System.out.println(entity.hurtTime);
 		if(!player.worldObj.isRemote && Math.random() > 0.75 && !(entity instanceof EntityStoneSoldier))
 		{
 			double dx = entity.posX - player.posX;

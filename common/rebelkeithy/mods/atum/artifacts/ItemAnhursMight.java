@@ -2,6 +2,8 @@ package rebelkeithy.mods.atum.artifacts;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import rebelkeithy.mods.atum.Atum;
 
 import net.minecraft.entity.Entity;
@@ -52,13 +54,14 @@ public class ItemAnhursMight extends ItemSword
 		{
 			EntityPlayer player = (EntityPlayer)entity;
 			
-			if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == Atum.anhursMight.itemID)
+			if(player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == this.itemID)
 			{
 				double magnitude = Math.sqrt(player.motionX * player.motionX + player.motionZ * player.motionZ);
 				player.landMovementFactor *= 0.75;
 			}
 		}
     }
+
 
     @SideOnly(Side.CLIENT)
 
@@ -78,7 +81,13 @@ public class ItemAnhursMight extends ItemSword
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
     {
-    	par3List.add("Mighty I");
+    	if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+    	{
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "Mighty I: Slows player,");
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "Chance to stun foes");
+    	} else {
+        	par3List.add("Mighty I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+    	}
     }	
 
     /**

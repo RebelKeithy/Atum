@@ -24,51 +24,48 @@ public class AtumLoot
 		goodLoot = new AtumWeightedLootSet();
 		junkLoot = new AtumWeightedLootSet();
 		
-		ItemStack stack = new ItemStack(Atum.ptahsPick);
-		stack.addEnchantment(Enchantment.fortune, 5);
+		ItemStack stack = new ItemStack(AtumItems.ptahsPick);
 		artifacts.add(stack);
 		
-		stack = new ItemStack(Atum.soteksRage);
-		stack.addEnchantment(Enchantment.knockback, 3);
-		artifacts.add(stack);
+		artifacts.add(new ItemStack(AtumItems.sobeksRage));
+		artifacts.add(new ItemStack(AtumItems.osirisWill));
+		artifacts.add(new ItemStack(AtumItems.akersToil));
+		artifacts.add(new ItemStack(AtumItems.gebsBlessing));
+		artifacts.add(new ItemStack(AtumItems.atensFury));
+		artifacts.add(new ItemStack(AtumItems.rasGlory));
+		artifacts.add(new ItemStack(AtumItems.sekhmetsWrath));
+		artifacts.add(new ItemStack(AtumItems.nutsAgility));
+		artifacts.add(new ItemStack(AtumItems.horusFlight));
+		artifacts.add(new ItemStack(AtumItems.monthusStrike));
+		artifacts.add(new ItemStack(AtumItems.neithsAudacity));
+		artifacts.add(new ItemStack(AtumItems.hedetetsSting));
+		artifacts.add(new ItemStack(AtumItems.nusFlux));
+		artifacts.add(new ItemStack(AtumItems.anhursMight));
+		artifacts.add(new ItemStack(AtumItems.horusSoaring));
+		artifacts.add(new ItemStack(AtumItems.shusBreath));
+		artifacts.add(new ItemStack(AtumItems.hedetetsVenom));
+		artifacts.add(new ItemStack(AtumItems.monthusBlast));
+		artifacts.add(new ItemStack(AtumItems.mnevisHorns));
+		artifacts.add(new ItemStack(AtumItems.isisEmbrace));
+		artifacts.add(new ItemStack(AtumItems.maatsBalance));
+		artifacts.add(new ItemStack(AtumItems.nutsCall));
+		artifacts.add(new ItemStack(AtumItems.ptahsDestruction));
+		artifacts.add(new ItemStack(AtumItems.anuketsBounty));
+		artifacts.add(new ItemStack(AtumItems.anubisMercy));
+		artifacts.add(new ItemStack(AtumItems.amunetsHomecoming));
+		artifacts.add(new ItemStack(AtumItems.isisHealing));
+		artifacts.add(new ItemStack(AtumItems.mafdetsQuickness));
 		
-		stack = new ItemStack(Atum.osirisWill);
-		stack.addEnchantment(Enchantment.smite, 6);
-		artifacts.add(stack);
-		
-		stack = new ItemStack(Atum.akersToil);
-		stack.addEnchantment(Enchantment.efficiency, 6);
-		artifacts.add(stack);
-		
-		stack = new ItemStack(Atum.gebsBlessing);
-		stack.addEnchantment(Enchantment.unbreaking, 10);
-		artifacts.add(stack);
-		
-		stack = new ItemStack(Atum.atensFury);
-		stack.addEnchantment(Enchantment.flame, 2);
-		artifacts.add(stack);
-		
-		stack = new ItemStack(Atum.rasGlory);
-		artifacts.add(stack);
-		
-		stack = new ItemStack(Atum.sekhmetsWrath);
-		artifacts.add(stack);
-		
-		stack = new ItemStack(Atum.nutsAgility);
-		artifacts.add(stack);
-		
-		stack = new ItemStack(Atum.horusFlight);
-		artifacts.add(stack);
 		
 		
 		// Junk Loot Stuff
-		junkLoot.addLoot(new ItemStack(Atum.itemFlaxSeeds), 5, 1, 2);
+		junkLoot.addLoot(new ItemStack(AtumItems.flaxSeeds), 5, 1, 2);
 		junkLoot.addLoot(new ItemStack(Item.stick), 5, 1, 5);
-		junkLoot.addLoot(new ItemStack(Atum.itemDate), 5, 1, 2);
+		junkLoot.addLoot(new ItemStack(AtumItems.date), 5, 1, 2);
 		junkLoot.addLoot(new ItemStack(Item.bone), 10, 1, 3);
 		junkLoot.addLoot(new ItemStack(Item.bread), 10, 1, 4);
-		junkLoot.addLoot(new ItemStack(Atum.atumSand), 20, 1, 64);
-		junkLoot.addLoot(new ItemStack(Atum.itemScimitar), 5, 1, 1);
+		junkLoot.addLoot(new ItemStack(AtumBlocks.sand), 20, 1, 64);
+		junkLoot.addLoot(new ItemStack(AtumItems.scimitar), 5, 1, 1);
 		junkLoot.addLoot(new ItemStack(Item.seeds), 5, 1, 3);
 		junkLoot.addLoot(new ItemStack(Item.leather), 5, 1, 5);
 		junkLoot.addLoot(new ItemStack(Item.dyePowder, 1, 3), 5, 1, 3);
@@ -128,14 +125,19 @@ public class AtumLoot
 				if(roll > 0.20)
 				{
 					stack = goodLoot.getRandomLoot();
-				} else if(roll > 0.02) {
+				} 
+				else if(roll > 0.005) 
+				{
 					stack = ItemLoot.getRandomLoot(rand, true);
-				} else {
+				} 
+				else 
+				{
 					int randomArtifactID = rand.nextInt(artifacts.size());
 					stack = artifacts.get(randomArtifactID).copy();
 				}
-			} else {
-				
+			} 
+			else 
+			{	
 				stack = junkLoot.getRandomLoot();
 			}
 			inventory.setInventorySlotContents(slot, stack);

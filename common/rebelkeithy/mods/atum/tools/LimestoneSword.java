@@ -1,10 +1,10 @@
 package rebelkeithy.mods.atum.tools;
 
-import rebelkeithy.mods.atum.Atum;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import rebelkeithy.mods.atum.AtumBlocks;
 
 public class LimestoneSword extends ItemSword 
 {
@@ -20,7 +20,7 @@ public class LimestoneSword extends ItemSword
 	@Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
     {
-        return par2ItemStack.itemID == Atum.atumCobble.blockID;
+        return par2ItemStack.itemID == AtumBlocks.cobble.blockID;
     }
 
     @Override

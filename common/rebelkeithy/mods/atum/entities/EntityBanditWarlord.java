@@ -1,7 +1,5 @@
 package rebelkeithy.mods.atum.entities;
 
-import rebelkeithy.mods.atum.Atum;
-import rebelkeithy.mods.atum.ConfigAtum;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -9,6 +7,8 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import rebelkeithy.mods.atum.AtumItems;
+import rebelkeithy.mods.atum.ConfigAtum;
 
 public class EntityBanditWarlord extends EntityMob implements IAtumDayMob
 {
@@ -72,7 +72,7 @@ public class EntityBanditWarlord extends EntityMob implements IAtumDayMob
     @Override
     public void initCreature()
     {
-    	this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemScimitar));
+    	this.setCurrentItemOrArmor(0, new ItemStack(AtumItems.scimitar));
         EnchantmentHelper.addRandomEnchantment(this.rand, this.getHeldItem(), 5 + this.worldObj.difficultySetting * this.rand.nextInt(6));
     	
         for (int i = 0; i < this.equipmentDropChances.length; ++i)
@@ -108,7 +108,7 @@ public class EntityBanditWarlord extends EntityMob implements IAtumDayMob
     {
     	 if(rand.nextInt(20) == 0)
     	 {
-    		 int damage = (int) (Atum.itemScimitar.getMaxDamage() - rand.nextInt(Atum.itemScimitar.getMaxDamage()) * 0.5 + 20);
+    		 int damage = (int) (AtumItems.scimitar.getMaxDamage() - rand.nextInt(AtumItems.scimitar.getMaxDamage()) * 0.5 + 20);
              this.entityDropItem(new ItemStack(ConfigAtum.scimitarID, 1, damage), 0.0F);
     	 }
     	 
@@ -123,19 +123,19 @@ public class EntityBanditWarlord extends EntityMob implements IAtumDayMob
     		 int choice = rand.nextInt(4);
         	 if(choice == 0)
         	 {
-        		 this.dropItem(Atum.wandererHelmet.itemID, 1);
+        		 this.dropItem(AtumItems.wandererHelmet.itemID, 1);
         	 }
         	 else if(choice == 1)
         	 {
-        		 this.dropItem(Atum.wandererChest.itemID, 1);
+        		 this.dropItem(AtumItems.wandererChest.itemID, 1);
         	 }
         	 else if(choice == 2)
         	 {
-        		 this.dropItem(Atum.wandererLegs.itemID, 1);
+        		 this.dropItem(AtumItems.wandererLegs.itemID, 1);
         	 }
         	 else if(choice == 3)
         	 {
-        		 this.dropItem(Atum.wandererBoots.itemID, 1);
+        		 this.dropItem(AtumItems.wandererBoots.itemID, 1);
         	 }
     	 }
     }

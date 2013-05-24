@@ -606,4 +606,10 @@ public class EntityArrowVelocity extends CustomArrow implements IProjectile, ITh
 	{
 		shootingEntity = entity;		
 	}
+    
+    @Override
+    public String getTexture()
+    {
+        return "/mods/Atum/textures/projectiles/arrows_velocity.png";
+    }
 }

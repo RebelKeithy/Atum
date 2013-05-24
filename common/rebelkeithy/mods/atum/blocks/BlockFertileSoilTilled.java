@@ -1,23 +1,21 @@
 package rebelkeithy.mods.atum.blocks;
 
-import static net.minecraftforge.common.ForgeDirection.UP;
-
 import java.util.Random;
 
-import rebelkeithy.mods.atum.Atum;
-
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemDye;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import rebelkeithy.mods.atum.AtumBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -34,6 +32,26 @@ public class BlockFertileSoilTilled extends Block
         this.setTickRandomly(true);
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.9375F, 1.0F);
         this.setLightOpacity(255);
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * A randomly called display update to be able to add particles or other items for display
+     */
+    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    {
+    	int enchanted = ((par1World.getBlockMetadata(par2, par3, par4) & 4) & 4) >> 2;
+    	if(enchanted == 1)
+    	{
+	        if(par5Random.nextDouble() > 0.6)
+	        {
+	            double d0 = par5Random.nextGaussian() * 0.02D;
+	            double d1 = par5Random.nextGaussian() * 0.02D;
+	            double d2 = par5Random.nextGaussian() * 0.02D;
+                par1World.spawnParticle("happyVillager", (double)((float)par2 + par5Random.nextFloat()), (double)par3 + (double)par5Random.nextFloat() * this.getBlockBoundsMaxY()*0.4 + 1, (double)((float)par4 + par5Random.nextFloat()), d0, d1, d2);
+	        }
+    	}
     }
 
     /**
@@ -69,7 +87,10 @@ public class BlockFertileSoilTilled extends Block
      */
     public Icon getIcon(int par1, int par2)
     {
-        return par1 == 1 ? (par2 > 0 ? this.field_94441_a : this.field_94440_b) : Atum.atumFertileSoil.getIcon(par1, 1);
+    	if(par2 >> 3 == 0)
+    		return par1 == 1 ? (par2 > 0 ? this.field_94441_a : this.field_94440_b) : AtumBlocks.fertileSoil.getIcon(par1, 1);
+    	else
+    		return Block.tilledField.getIcon(par1, par2);
     }
 
     /**
@@ -77,23 +98,28 @@ public class BlockFertileSoilTilled extends Block
      */
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
+        int meta = par1World.getBlockMetadata(par2, par3, par4);
         if (!this.isWaterNearby(par1World, par2, par3, par4) && !par1World.canLightningStrikeAt(par2, par3 + 1, par4))
         {
-            int l = par1World.getBlockMetadata(par2, par3, par4);
-
-            if (l > 0)
+            if ((meta & 3) > 0 && Math.random() > 0.5)
             {
-                par1World.setBlockMetadataWithNotify(par2, par3, par4, l - 1, 2);
+                par1World.setBlockMetadataWithNotify(par2, par3, par4, meta - 1, 2);
             }
             else if (!this.isCropsNearby(par1World, par2, par3, par4))
             {
-                par1World.setBlock(par2, par3, par4, Atum.atumFertileSoil.blockID);
-                par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 2);
+                this.revertToDirt(par1World, par2, par3, par4);
             }
         }
         else
         {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 7, 2);
+            par1World.setBlockMetadataWithNotify(par2, par3, par4, meta | 3, 2);
+        }
+
+        int cropID = par1World.getBlockId(par2, par3+1, par4);
+        if(cropID != 0)
+        {
+        	for(int i = 0; i < 2; i++)
+        		Block.blocksList[cropID].updateTick(par1World, par2, par3+1, par4, par5Random);
         }
     }
 
@@ -109,8 +135,7 @@ public class BlockFertileSoilTilled extends Block
                 return;
             }
 
-            par1World.setBlock(par2, par3, par4, Atum.atumFertileSoil.blockID);
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 2);
+            this.revertToDirt(par1World, par2, par3, par4);
         }
     }
 
@@ -171,8 +196,7 @@ public class BlockFertileSoilTilled extends Block
 
         if (material.isSolid())
         {
-            par1World.setBlock(par2, par3, par4, Atum.atumFertileSoil.blockID);
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, 1, 2);
+            this.revertToDirt(par1World, par2, par3, par4);
         }
     }
     
@@ -181,18 +205,7 @@ public class BlockFertileSoilTilled extends Block
     {
         EnumPlantType plantType = plant.getPlantType(world, x, y + 1, z);
 
-        switch (plantType)
-        {
-            case Desert: return false;
-            case Nether: return false;
-            case Crop:   return true;
-            case Cave:   return false;
-            case Plains: return false;
-            case Water:  return false;
-            case Beach:  return false;
-        }
-
-        return false;
+        return plantType == EnumPlantType.Crop;
     }
 
     /**
@@ -200,7 +213,22 @@ public class BlockFertileSoilTilled extends Block
      */
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return Atum.atumSand.blockID;//Block.dirt.idDropped(0, par2Random, par3);
+    	if(par1 >> 3 == 0)
+    		return AtumBlocks.sand.blockID;//Block.dirt.idDropped(0, par2Random, par3);
+    	else
+    		return Block.dirt.blockID;
+    }
+    
+    public void revertToDirt(World world, int x, int y, int z)
+    {
+        int type = world.getBlockMetadata(x, y, z) >> 3;
+    	if(type == 0)
+    	{
+    		world.setBlock(x, y, z, AtumBlocks.fertileSoil.blockID);
+    		world.setBlockMetadataWithNotify(x, y, z, 1, 2);
+    	} else {
+    		world.setBlock(x, y, z, Block.dirt.blockID);
+    	}
     }
 
     @SideOnly(Side.CLIENT)
@@ -210,7 +238,11 @@ public class BlockFertileSoilTilled extends Block
      */
     public int idPicked(World par1World, int par2, int par3, int par4)
     {
-        return Block.dirt.blockID;
+    	int type = par1World.getBlockMetadata(par2, par3, par4) >> 3;
+    	if(type == 0)
+    		return AtumBlocks.sand.blockID;//Block.dirt.idDropped(0, par2Random, par3);
+    	else
+    		return Block.dirt.blockID;
     }
 
     @SideOnly(Side.CLIENT)

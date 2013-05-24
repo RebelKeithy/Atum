@@ -48,6 +48,7 @@ public class ItemMonthusBlast extends ItemBow
     public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
     {
         int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
+        j = (int) (j * 0.667);
 
         ArrowLooseEvent event = new ArrowLooseEvent(par3EntityPlayer, par1ItemStack, j);
         MinecraftForge.EVENT_BUS.post(event);
@@ -74,7 +75,7 @@ public class ItemMonthusBlast extends ItemBow
                 f = 1.0F;
             }
 
-            EntityArrowExplosive entityarrow = new EntityArrowExplosive(par2World, par3EntityPlayer, f * 3.0F);
+            EntityArrowExplosive entityarrow = new EntityArrowExplosive(par2World, par3EntityPlayer, f * 1.5F);
             entityarrow.setDamage(entityarrow.getDamage() * 1.5F);
 
             if (f == 1.0F)
@@ -173,19 +174,19 @@ public class ItemMonthusBlast extends ItemBow
     	{
 	    	int j = getMaxItemUseDuration(stack) - useRemaining;
 	
-	        if (j >= 18)
+	        if (j >= 27)
 	        {
-	            return func_94599_c(2);
+	            return getItemIconForUseDuration(2);
 	        }
 	
-	        if (j > 13)
+	        if (j > 18)
 	        {
-	            return func_94599_c(1);
+	            return getItemIconForUseDuration(1);
 	        }
 	
 	        if (j > 0)
 	        {
-	            return func_94599_c(0);
+	            return getItemIconForUseDuration(0);
 	        }
     	}
         return getIcon(stack, renderPass);
@@ -193,7 +194,7 @@ public class ItemMonthusBlast extends ItemBow
 
     @SideOnly(Side.CLIENT)
 	@Override
-    public Icon func_94599_c(int par1)
+    public Icon getItemIconForUseDuration(int par1)
     {
         return this.iconArray[par1];
     }

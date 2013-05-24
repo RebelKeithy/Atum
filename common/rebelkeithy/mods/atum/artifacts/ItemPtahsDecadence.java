@@ -2,12 +2,20 @@ package rebelkeithy.mods.atum.artifacts;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -19,17 +27,41 @@ public class ItemPtahsDecadence extends ItemPickaxe
 		super(par1, par2EnumToolMaterial);
 	}
 
+    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int blockID, int x, int y, int z, EntityLiving par7EntityLiving)
+    {
+        if(blockID == Block.oreDiamond.blockID)
+        {
+        	Block.oreDiamond.dropBlockAsItem(par2World, x, y, z, 0, 0);
+        }
+        
+        return super.onBlockDestroyed(par1ItemStack, par2World, blockID, x, y, z, par7EntityLiving);
+    }
+
     @SideOnly(Side.CLIENT)
 
     /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
+     * allows items to add custom lines of information to the mouseover description
      */
-	@Override
-    public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    @Override
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
     {
-    	ItemStack stack = new ItemStack(par1, 1, 0);
-    	stack.addEnchantment(Enchantment.fortune, 5);
-        par3List.add(stack);
+    	if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+    	{
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "Wealth I: Gain an extra");
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "diamond from each ore");
+    	} else {
+        	par3List.add("Wealth I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+    	}
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * Return an item rarity from EnumRarity
+     */
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return EnumRarity.rare;
     }
 
     /**

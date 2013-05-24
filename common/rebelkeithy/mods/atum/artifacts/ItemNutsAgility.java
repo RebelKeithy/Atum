@@ -2,6 +2,8 @@ package rebelkeithy.mods.atum.artifacts;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
@@ -24,8 +26,23 @@ public class ItemNutsAgility extends ItemArmor implements IArmorTextureProvider
 	public ItemNutsAgility(int par1, EnumArmorMaterial par2EnumArmorMaterial, int par3, int par4) 
 	{
 		super(par1, par2EnumArmorMaterial, par3, par4);
-		// TODO Auto-generated constructor stub
 	}
+
+    public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack itemStack)
+    {
+		if(player.onGround)
+		{
+			if(player.inventory.armorInventory[1] != null)
+			{
+				if(player.inventory.armorInventory[1].itemID == this.itemID)
+				{
+					player.landMovementFactor *= 1.4;
+    	    		//player.motionX *= 1.4;
+    	    		//player.motionZ *= 1.4;    				
+				}
+			}
+		}
+    }
 
     @SideOnly(Side.CLIENT)
 
@@ -38,14 +55,19 @@ public class ItemNutsAgility extends ItemArmor implements IArmorTextureProvider
     }
 
     @SideOnly(Side.CLIENT)
-
     /**
      * allows items to add custom lines of information to the mouseover description
      */
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
     {
-    	par3List.add("Speed II");
+    	if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+    	{
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "Agility I: Increased run");
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "and swinging speed");
+    	} else {
+        	par3List.add("Agility I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+    	}
     }
 
 	public Item setTextureFile(String string) 

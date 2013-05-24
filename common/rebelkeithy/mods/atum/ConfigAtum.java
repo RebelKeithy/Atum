@@ -7,6 +7,8 @@ import net.minecraftforge.common.Configuration;
 
 public class ConfigAtum 
 {
+	public static int dimensionID = 17;
+	
 	public static int portalBlockID = 1024;
 	public static int biomeAtumDesertID = 200;
 	public static int cursedChestID = 1025;
@@ -110,6 +112,16 @@ public class ConfigAtum
 	public static int mnevisHornsID = 5054;
 	public static int isisEmbraceID = 5055;
 	public static int maatsBalanceID = 5056;
+	public static int hedetetsVenomID = 5057;
+	public static int gebsSolidarityID = 5058;
+	public static int nutsCallID = 5059;
+	public static int anuketsBountyID = 5060;
+	public static int mafdetsQuicknessID = 5061;
+	public static int isisHealingID = 5062;
+	public static int amunetsHomecomingID = 5063;
+	public static int anubisMercyID = 5064;
+	
+	public static int itemFishID = 5075;
 	
 	public static void initConfig()
 	{
@@ -128,7 +140,8 @@ public class ConfigAtum
 		Configuration config = new Configuration(cfgFile);
 		config.load();
 
-		biomeAtumDesertID = config.get("Boime", "Atum Biome ID", biomeAtumDesertID).getInt();
+		dimensionID = config.get("~World", "Dimension ID", dimensionID).getInt();
+		biomeAtumDesertID = config.get("~World", "Atum Biome ID", biomeAtumDesertID).getInt();
 	
 		portalBlockID = config.getBlock("Portal Block", portalBlockID).getInt();
 		cursedChestID = config.getBlock("CursedChest", cursedChestID).getInt();
@@ -197,6 +210,14 @@ public class ConfigAtum
 		mnevisHornsID = config.getItem("Mnevis's Horns", mnevisHornsID).getInt();
 		isisEmbraceID = config.getItem("Isis's Embrace", isisEmbraceID).getInt();
 		maatsBalanceID = config.getItem("Ma'at's Balance", maatsBalanceID).getInt();
+		hedetetsVenomID = config.getItem("Hedetet's Venom", hedetetsVenomID).getInt();
+		gebsSolidarityID = config.getItem("Geb's Solidarity", gebsSolidarityID).getInt();
+		nutsCallID = config.getItem("Nut's Call", nutsCallID).getInt();
+		anuketsBountyID = config.getItem("Anuket's Bounty", anuketsBountyID).getInt();
+		mafdetsQuicknessID = config.getItem("mafdetsQuicknessID", mafdetsQuicknessID).getInt();
+		isisHealingID = config.getItem("Isis's Healing", isisHealingID).getInt();
+		amunetsHomecomingID = config.getItem("Amunet's Homecoming", amunetsHomecomingID).getInt();
+		anubisMercyID = config.getItem("Anubis's Mercy", anubisMercyID).getInt();
 		
 		limestoneShovelID = config.getItem("Limestone Shovel", limestoneShovelID).getInt();;
 		limestonePickaxeID = config.getItem("Limestone Pickaxe", limestonePickaxeID).getInt();;
@@ -232,6 +253,7 @@ public class ConfigAtum
 		linenID = config.getItem("Linen", linenID).getInt(linenID);
 		itemFlaxID = config.getItem("Flax", itemFlaxID).getInt(itemFlaxID);
 		itemFlaxSeedsID = config.getItem("Flax Seeds", itemFlaxSeedsID).getInt(itemFlaxSeedsID);
+		itemFishID = config.getItem("Fish", itemFishID).getInt(itemFishID);
 		config.save();
 	}
 }

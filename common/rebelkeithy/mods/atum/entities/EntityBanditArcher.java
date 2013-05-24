@@ -1,12 +1,5 @@
 package rebelkeithy.mods.atum.entities;
 
-import java.util.Calendar;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import rebelkeithy.mods.atum.Atum;
-import rebelkeithy.mods.atum.ConfigAtum;
-import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -15,7 +8,6 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIFleeSun;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -29,13 +21,11 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.stats.AchievementList;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProviderHell;
+import rebelkeithy.mods.atum.AtumItems;
+import rebelkeithy.mods.atum.ConfigAtum;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityBanditArcher extends EntityMob implements IRangedAttackMob, IAtumDayMob
 {
@@ -131,7 +121,7 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob, I
     @Override
     protected void addRandomArmor()
     {
-        this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemBow));
+        this.setCurrentItemOrArmor(0, new ItemStack(AtumItems.bow));
         
         
         for (int i = 0; i < this.equipmentDropChances.length; ++i)
@@ -174,7 +164,7 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob, I
         this.tasks.removeTask(this.aiArrowAttack);
         ItemStack itemstack = this.getHeldItem();
 
-        if (itemstack != null && itemstack.itemID == Atum.itemBow.itemID)
+        if (itemstack != null && itemstack.itemID == AtumItems.bow.itemID)
         {
             this.tasks.addTask(4, this.aiArrowAttack);
         }
@@ -249,7 +239,7 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob, I
 	{
 		if (rand.nextInt(20) == 0)
 		{
-			int damage = (int) (Atum.itemBow.getMaxDamage() - rand.nextInt(Atum.itemBow.getMaxDamage()) * 0.5 + 20);
+			int damage = (int) (AtumItems.bow.getMaxDamage() - rand.nextInt(AtumItems.bow.getMaxDamage()) * 0.5 + 20);
 			this.entityDropItem(new ItemStack(ConfigAtum.bowID, 1, damage), 0.0F);
 		}
 

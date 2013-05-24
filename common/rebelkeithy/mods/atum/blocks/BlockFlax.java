@@ -1,28 +1,22 @@
 package rebelkeithy.mods.atum.blocks;
 
-import static net.minecraftforge.common.EnumPlantType.Cave;
 import static net.minecraftforge.common.EnumPlantType.Crop;
-import static net.minecraftforge.common.EnumPlantType.Desert;
-import static net.minecraftforge.common.EnumPlantType.Nether;
-import static net.minecraftforge.common.EnumPlantType.Plains;
-import static net.minecraftforge.common.EnumPlantType.Water;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import rebelkeithy.mods.atum.Atum;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
+import rebelkeithy.mods.atum.AtumBlocks;
+import rebelkeithy.mods.atum.AtumItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -55,7 +49,7 @@ public class BlockFlax extends BlockFlower
     public boolean canBlockStay(World par1World, int par2, int par3, int par4)
     {
     	if(par1World.getBlockMetadata(par2, par3, par4) >> 3 == 1)
-    		return par1World.getBlockId(par2, par3-1, par4) == Atum.atumFertileSoil.blockID;
+    		return par1World.getBlockId(par2, par3-1, par4) == AtumBlocks.fertileSoil.blockID;
     	
         Block soil = blocksList[par1World.getBlockId(par2, par3 - 1, par4)];
         return (par1World.getFullBlockLightValue(par2, par3, par4) >= 8 || par1World.canBlockSeeTheSky(par2, par3, par4)) && 
@@ -69,7 +63,7 @@ public class BlockFlax extends BlockFlower
 	@Override
     protected boolean canThisPlantGrowOnThisBlockID(int par1)
     {
-        return par1 == Block.tilledField.blockID || par1 == Atum.atumFertileSoilTilled.blockID;
+        return par1 == Block.tilledField.blockID || par1 == AtumBlocks.fertileSoilTilled.blockID;
     }
 
     /**
@@ -197,7 +191,7 @@ public class BlockFlax extends BlockFlower
      */
     protected int getSeedItem()
     {
-        return Atum.itemFlaxSeeds.itemID;
+        return AtumItems.flaxSeeds.itemID;
     }
 
     /**
@@ -205,7 +199,7 @@ public class BlockFlax extends BlockFlower
      */
     protected int getCropItem()
     {
-        return Atum.itemFlax.itemID;
+        return AtumItems.flax.itemID;
     }
 
     /**

@@ -1,17 +1,17 @@
 package rebelkeithy.mods.atum.blocks;
 
-import rebelkeithy.mods.atum.Atum;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import rebelkeithy.mods.atum.AtumBlocks;
 
 public class ItemSandLayered extends ItemBlockWithMetadata
 {
     public ItemSandLayered(int par1)
     {
-        super(par1, Atum.atumSandLayered);
+        super(par1, AtumBlocks.sandLayered);
     }
 
     /**
@@ -33,7 +33,7 @@ public class ItemSandLayered extends ItemBlockWithMetadata
         {
             int i1 = par3World.getBlockId(par4, par5, par6);
 
-            if (i1 == Atum.atumSandLayered.blockID)
+            if (i1 == AtumBlocks.sandLayered.blockID)
             {
                 Block block = Block.blocksList[this.getBlockID()];
                 int j1 = par3World.getBlockMetadata(par4, par5, par6);

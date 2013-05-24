@@ -15,11 +15,14 @@ import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
-import net.minecraft.util.StringTranslate;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
+
+import org.lwjgl.input.Keyboard;
+
+import rebelkeithy.mods.atum.artifacts.arrow.EntityArrowDoubleShot;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -55,7 +58,13 @@ public class ItemNeithsAudacity extends ItemBow
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
     {
-    	par3List.add("Double Shot I");
+    	if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+    	{
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "Double Shot I: Fires ");
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "two arrows");
+    	} else {
+        	par3List.add("Slam I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+    	}
     }
 
     /**
@@ -91,8 +100,8 @@ public class ItemNeithsAudacity extends ItemBow
                 f = 1.0F;
             }
 
-            EntityArrow entityarrow = new EntityArrow(par2World, par3EntityPlayer, f * 2.0F);
-            EntityArrow entityarrow1 = new EntityArrow(par2World, par3EntityPlayer, f * 2.0F);
+            EntityArrowDoubleShot entityarrow = new EntityArrowDoubleShot(par2World, par3EntityPlayer, f * 2.0F);
+            EntityArrowDoubleShot entityarrow1 = new EntityArrowDoubleShot(par2World, par3EntityPlayer, f * 2.0F);
             
             entityarrow.motionX += Math.random() * 0.4 - 0.2;
             entityarrow.motionY += Math.random() * 0.4 - 0.2;

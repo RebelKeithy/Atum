@@ -2,35 +2,23 @@ package rebelkeithy.mods.atum.blocks;
 
 import java.util.Random;
 
-import rebelkeithy.mods.atum.Atum;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockPistonBase;
-import net.minecraft.block.BlockSourceImpl;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
-import net.minecraft.dispenser.IBehaviorDispenseItem;
-import net.minecraft.dispenser.IBlockSource;
-import net.minecraft.dispenser.IPosition;
 import net.minecraft.dispenser.IRegistry;
-import net.minecraft.dispenser.PositionImpl;
 import net.minecraft.dispenser.RegistryDefaulted;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import rebelkeithy.mods.atum.AtumBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -59,7 +47,7 @@ public class BlockArrowTrap extends BlockContainer
 	@Override
     public float getBlockHardness(World par1World, int par2, int par3, int par4)
     {
-    	if(par1World.getBlockId(par2, par3+1, par4) == Atum.atumLargeBrick.blockID && par1World.getBlockMetadata(par2, par3+1, par4) == 1)
+    	if(par1World.getBlockId(par2, par3+1, par4) == AtumBlocks.largeBrick.blockID && par1World.getBlockMetadata(par2, par3+1, par4) == 1)
     		return -1;
     	
     	return this.blockHardness;

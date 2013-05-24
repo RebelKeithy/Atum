@@ -21,6 +21,12 @@ public class CustomArrow extends Entity
 		
 	}
 
+	
+	public String getTexture()
+	{
+	    return "/item/arrows.png";
+	}
+	
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) 
 	{

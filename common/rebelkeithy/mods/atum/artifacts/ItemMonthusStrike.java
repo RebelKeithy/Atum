@@ -74,7 +74,7 @@ public class ItemMonthusStrike extends ItemAxe
     public void onPlayerStoppedUsing(ItemStack par1ItemStack, World world, EntityPlayer player, int par4)
     {
         int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
-        System.out.println("charge strength: " + j);
+        //System.out.println("charge strength: " + j);
         
         if(j <= 21)
         	return;
@@ -117,7 +117,6 @@ public class ItemMonthusStrike extends ItemAxe
      */
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
-    	System.out.println("check");
     	player.setItemInUse(stack, getMaxItemUseDuration(stack));
     	
     	return stack;
@@ -141,14 +140,11 @@ public class ItemMonthusStrike extends ItemAxe
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
     {
-    	//if(par2EntityPlayer.isSneaking())
     	if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
     	{
     		par3List.add(EnumChatFormatting.DARK_PURPLE + "Slam I: Increased damage,");
     		par3List.add(EnumChatFormatting.DARK_PURPLE + "charge for AOE knockback");
-        	//par3List.add("Slam I");
     	} else {
-    		//par3List.add(0, EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.ITALIC + "SHIFT for more info");
         	par3List.add("Slam I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
     	}
     }	

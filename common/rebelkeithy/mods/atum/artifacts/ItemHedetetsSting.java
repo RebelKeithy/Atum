@@ -2,6 +2,8 @@ package rebelkeithy.mods.atum.artifacts;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -54,8 +56,14 @@ public class ItemHedetetsSting extends ItemSword
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
     {
-    	par3List.add("Poison II");
-    }	
+    	if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+    	{
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "Poison II: Chance");
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "to poison foes");
+    	} else {
+        	par3List.add("Poison II " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+    	}
+    }
 
     /**
      * Return whether this item is repairable in an anvil.

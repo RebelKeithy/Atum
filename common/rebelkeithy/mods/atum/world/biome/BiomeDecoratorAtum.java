@@ -1,33 +1,16 @@
 package rebelkeithy.mods.atum.world.biome;
 
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.BIG_SHROOM;
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CACTUS;
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CLAY;
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.DEAD_BUSH;
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.FLOWERS;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.LAKE;
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.LILYPAD;
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.PUMPKIN;
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.REED;
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND_PASS2;
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SHROOM;
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE;
 import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.COAL;
 import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.DIAMOND;
-import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.DIRT;
 import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.GOLD;
-import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.GRAVEL;
 import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.IRON;
 import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.LAPIS;
 import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.REDSTONE;
 
 import java.util.Random;
-
-import rebelkeithy.mods.atum.Atum;
-import rebelkeithy.mods.atum.world.decorators.WorldGenAtumTrees;
-import rebelkeithy.mods.atum.world.decorators.WorldGenShrub;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -35,11 +18,9 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenBigMushroom;
 import net.minecraft.world.gen.feature.WorldGenCactus;
-import net.minecraft.world.gen.feature.WorldGenDeadBush;
 import net.minecraft.world.gen.feature.WorldGenFlowers;
 import net.minecraft.world.gen.feature.WorldGenLiquids;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.world.gen.feature.WorldGenPumpkin;
 import net.minecraft.world.gen.feature.WorldGenReed;
 import net.minecraft.world.gen.feature.WorldGenSand;
 import net.minecraft.world.gen.feature.WorldGenWaterlily;
@@ -48,6 +29,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
+import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
+import rebelkeithy.mods.atum.world.decorators.WorldGenShrub;
 
 public class BiomeDecoratorAtum extends BiomeDecorator
 {    
@@ -57,16 +41,16 @@ public class BiomeDecoratorAtum extends BiomeDecorator
 	public BiomeDecoratorAtum(BiomeGenBase par1BiomeGenBase)
     {
     	super(par1BiomeGenBase);
-        this.sandGen = new WorldGenSand(7, Atum.atumSand.blockID);
+        this.sandGen = new WorldGenSand(7, AtumBlocks.sand.blockID);
         this.gravelAsSandGen = new WorldGenSand(6, Block.gravel.blockID);
         this.dirtGen = new WorldGenMinable(Block.dirt.blockID, 32);
         this.gravelGen = new WorldGenMinable(Block.gravel.blockID, 32);
-        this.coalGen = new WorldGenMinable(Atum.atumCoalOre.blockID, 16, Atum.atumStone.blockID);
-        this.ironGen = new WorldGenMinable(Atum.atumIronOre.blockID, 8, Atum.atumStone.blockID);
-        this.goldGen = new WorldGenMinable(Atum.atumGoldOre.blockID, 8, Atum.atumStone.blockID);
-        this.redstoneGen = new WorldGenMinable(Atum.atumRedstoneOre.blockID, 7, Atum.atumStone.blockID);
-        this.diamondGen = new WorldGenMinable(Atum.atumDiamondOre.blockID, 7, Atum.atumStone.blockID);
-        this.lapisGen = new WorldGenMinable(Atum.atumLapisOre.blockID, 6);
+        this.coalGen = new WorldGenMinable(AtumBlocks.coalOre.blockID, 16, AtumBlocks.stone.blockID);
+        this.ironGen = new WorldGenMinable(AtumBlocks.ironOre.blockID, 8, AtumBlocks.stone.blockID);
+        this.goldGen = new WorldGenMinable(AtumBlocks.goldOre.blockID, 8, AtumBlocks.stone.blockID);
+        this.redstoneGen = new WorldGenMinable(AtumBlocks.redstoneOre.blockID, 7, AtumBlocks.stone.blockID);
+        this.diamondGen = new WorldGenMinable(AtumBlocks.diamondOre.blockID, 7, AtumBlocks.stone.blockID);
+        this.lapisGen = new WorldGenMinable(AtumBlocks.lapisOre.blockID, 6);
         this.plantYellowGen = new WorldGenFlowers(Block.plantYellow.blockID);
         this.plantRedGen = new WorldGenFlowers(Block.plantRed.blockID);
         this.mushroomBrownGen = new WorldGenFlowers(Block.mushroomBrown.blockID);
@@ -195,7 +179,7 @@ public class BiomeDecoratorAtum extends BiomeDecorator
             l = this.randomGenerator.nextInt(128);
             i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
             time = System.nanoTime();
-            (new WorldGenShrub(Atum.atumShrub.blockID, 8)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
+            (new WorldGenShrub(AtumBlocks.shrub.blockID, 8)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
             //System.out.println("Gen Shrub: " + (System.nanoTime() - time));
         }
 
@@ -205,7 +189,7 @@ public class BiomeDecoratorAtum extends BiomeDecorator
             l = this.randomGenerator.nextInt(128);
             i1 = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
             time = System.nanoTime();
-            (new WorldGenShrub(Atum.atumWeed.blockID, 8)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
+            (new WorldGenShrub(AtumBlocks.weed.blockID, 8)).generate(this.currentWorld, this.randomGenerator, k, l, i1);
             //System.out.println("Gen Weeds: " + (System.nanoTime() - time));
         }
 

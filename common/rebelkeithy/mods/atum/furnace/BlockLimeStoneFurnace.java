@@ -18,6 +18,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -53,7 +54,7 @@ public class BlockLimeStoneFurnace extends BlockContainer
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return Atum.furnaceIdle.blockID;
+        return AtumBlocks.furnaceIdle.blockID;
     }
 
     /**
@@ -166,11 +167,11 @@ public class BlockLimeStoneFurnace extends BlockContainer
 
         if (par0)
         {
-            par1World.setBlock(par2, par3, par4, Atum.furnaceBurning.blockID);
+            par1World.setBlock(par2, par3, par4, AtumBlocks.furnaceBurning.blockID);
         }
         else
         {
-            par1World.setBlock(par2, par3, par4, Atum.furnaceIdle.blockID);
+            par1World.setBlock(par2, par3, par4, AtumBlocks.furnaceIdle.blockID);
         }
 
         keepFurnaceInventory = false;
@@ -338,6 +339,6 @@ public class BlockLimeStoneFurnace extends BlockContainer
     @Override
     public int getComparatorInputOverride(World par1World, int par2, int par3, int par4, int par5)
     {
-        return Container.func_94526_b((IInventory)par1World.getBlockTileEntity(par2, par3, par4));
+        return Container.calcRedstoneFromInventory((IInventory)par1World.getBlockTileEntity(par2, par3, par4));
     }
 }

@@ -4,20 +4,18 @@ import static net.minecraftforge.common.ForgeDirection.UP;
 
 import java.util.Random;
 
-import rebelkeithy.mods.atum.Atum;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.Icon;
-import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import rebelkeithy.mods.atum.AtumBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -73,7 +71,7 @@ public class BlockFertileSoil extends Block
                     int k1 = par4 + par5Random.nextInt(3) - 1;
                     int l1 = par1World.getBlockId(i1, j1 + 1, k1);
 
-                    if (par1World.getBlockId(i1, j1, k1) == Atum.atumFertileSoil.blockID && par1World.getBlockMetadata(i1, j1, k1) == 1 && par1World.getBlockLightValue(i1, j1 + 1, k1) >= 4 && par1World.getBlockLightOpacity(i1, j1 + 1, k1) <= 2)
+                    if (par1World.getBlockId(i1, j1, k1) == AtumBlocks.fertileSoil.blockID && par1World.getBlockMetadata(i1, j1, k1) == 1 && par1World.getBlockLightValue(i1, j1 + 1, k1) >= 4 && par1World.getBlockLightOpacity(i1, j1 + 1, k1) <= 2)
                     {
                     	par1World.setBlockMetadataWithNotify(par2, par3, par4, 0, 2);
                         //par1World.setBlock(i1, j1, k1, Block.grass.blockID);
@@ -117,7 +115,7 @@ public class BlockFertileSoil extends Block
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return Atum.atumSand.blockID;//Block.dirt.idDropped(0, par2Random, par3);
+        return AtumBlocks.sand.blockID;//Block.dirt.idDropped(0, par2Random, par3);
     }
 
     @SideOnly(Side.CLIENT)
@@ -140,7 +138,7 @@ public class BlockFertileSoil extends Block
 	        }
 	        else if (par5 == 0)
 	        {
-	            return Atum.atumSand.getBlockTextureFromSide(par5);
+	            return AtumBlocks.sand.getBlockTextureFromSide(par5);
 	        }
 	        else
 	        {
@@ -167,6 +165,6 @@ public class BlockFertileSoil extends Block
     @SideOnly(Side.CLIENT)
     public static Icon getIconSideOverlay()
     {
-        return Atum.atumFertileSoil.iconGrassSideOverlay;
+        return AtumBlocks.fertileSoil.iconGrassSideOverlay;
     }
 }

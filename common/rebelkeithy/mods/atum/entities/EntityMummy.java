@@ -3,11 +3,10 @@ package rebelkeithy.mods.atum.entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumItems;
 
 public class EntityMummy extends EntityMob implements IAtumNightMob
 {
@@ -119,7 +118,7 @@ public class EntityMummy extends EntityMob implements IAtumNightMob
          if(rand.nextInt(4) == 0)
          {
              int amount = rand.nextInt(2) + 1;
-             this.dropItem(Atum.itemClothScrap.itemID, amount);
+             this.dropItem(AtumItems.scrap.itemID, amount);
          }
     }
 }

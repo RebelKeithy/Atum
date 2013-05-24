@@ -2,21 +2,26 @@ package rebelkeithy.mods.atum.artifacts;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import rebelkeithy.mods.atum.artifacts.arrow.EntityArrowFire;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemAtensFury extends ItemBow
 {
@@ -71,7 +76,7 @@ public class ItemAtensFury extends ItemBow
                 f = 1.0F;
             }
 
-            EntityArrow entityarrow = new EntityArrow(par2World, par3EntityPlayer, f * 2.0F);
+            EntityArrowFire entityarrow = new EntityArrowFire(par2World, par3EntityPlayer, f * 2.0F);
             entityarrow.setDamage(entityarrow.getDamage() * 1.5F);
 
             if (f == 1.0F)
@@ -93,10 +98,7 @@ public class ItemAtensFury extends ItemBow
                 entityarrow.setKnockbackStrength(l);
             }
 
-            if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, par1ItemStack) > 0)
-            {
-                entityarrow.setFire(100);
-            }
+            entityarrow.setFire(100);
 
             par1ItemStack.damageItem(1, par3EntityPlayer);
             par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
@@ -131,19 +133,6 @@ public class ItemAtensFury extends ItemBow
         }
     }
 
-	@SideOnly(Side.CLIENT)
-
-    /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-     */
-	@Override
-    public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-    	ItemStack stack = new ItemStack(par1, 1, 0);
-    	stack.addEnchantment(Enchantment.flame, 2);
-        par3List.add(stack);
-    }
-
     /**
      * Player, Render pass, and item usage sensitive version of getIconIndex.
      *
@@ -163,17 +152,17 @@ public class ItemAtensFury extends ItemBow
 	
 	        if (j >= 18)
 	        {
-	            return func_94599_c(2);
+	            return getItemIconForUseDuration(2);
 	        }
 	
 	        if (j > 13)
 	        {
-	            return func_94599_c(1);
+	            return getItemIconForUseDuration(1);
 	        }
 	
 	        if (j > 0)
 	        {
-	            return func_94599_c(0);
+	            return getItemIconForUseDuration(0);
 	        }
     	}
         return getIcon(stack, renderPass);
@@ -181,8 +170,35 @@ public class ItemAtensFury extends ItemBow
 
     @SideOnly(Side.CLIENT)
 	@Override
-    public Icon func_94599_c(int par1)
+    public Icon getItemIconForUseDuration(int par1)
     {
         return this.iconArray[par1];
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * Return an item rarity from EnumRarity
+     */
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return EnumRarity.rare;
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * allows items to add custom lines of information to the mouseover description
+     */
+    @Override
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
+    {
+    	if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+    	{
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "Fire Shot I: Flaming arrow");
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "ignites blocks and foes");
+    	} else {
+        	par3List.add("Fire Shot I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+    	}
     }
 }

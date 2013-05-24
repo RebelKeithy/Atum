@@ -5,14 +5,14 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
 
 public class WorldGenPalace extends WorldGenerator {
 
-	public int largeLimestoneBricks = Atum.atumLargeBrick.blockID;
-	public int smallLimestoneBricks = Atum.atumSmallBrick.blockID;
-	public int carvedLimestone = Atum.atumCarvedBrick.blockID;
-	public int largeLimestoneBricksStairs = Atum.atumLargeStoneStairs.blockID;
+	public int largeLimestoneBricks = AtumBlocks.largeBrick.blockID;
+	public int smallLimestoneBricks = AtumBlocks.smallBrick.blockID;
+	public int carvedLimestone = AtumBlocks.carvedBrick.blockID;
+	public int largeLimestoneBricksStairs = AtumBlocks.largeStoneStairs.blockID;
 
 	public WorldGenPalace() {
 	}

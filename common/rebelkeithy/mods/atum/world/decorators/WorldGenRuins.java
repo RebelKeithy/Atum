@@ -2,12 +2,10 @@ package rebelkeithy.mods.atum.world.decorators;
 
 import java.util.Random;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
 import rebelkeithy.mods.atum.AtumLoot;
 
 public class WorldGenRuins extends WorldGenerator
@@ -53,9 +51,9 @@ public class WorldGenRuins extends WorldGenerator
 						{
 							if(random.nextFloat() > 0.1)
 							{
-								world.setBlock(x, y + height, z, Atum.atumLargeBrick.blockID);
+								world.setBlock(x, y + height, z, AtumBlocks.largeBrick.blockID);
 							} else {
-								world.setBlock(x, y + height, z, Atum.atumSmallBrick.blockID);
+								world.setBlock(x, y + height, z, AtumBlocks.smallBrick.blockID);
 							}
 						} else if(y == wallHeight)
 						{
@@ -63,9 +61,9 @@ public class WorldGenRuins extends WorldGenerator
 							{
 								if(random.nextFloat() > 0.1)
 								{
-									world.setBlock(x, y + height, z, Atum.atumSlabs.blockID, 2, 0);
+									world.setBlock(x, y + height, z, AtumBlocks.slabs.blockID, 2, 0);
 								} else {
-									world.setBlock(x, y + height, z, Atum.atumSlabs.blockID, 3, 0);
+									world.setBlock(x, y + height, z, AtumBlocks.slabs.blockID, 3, 0);
 								}
 							}
 						}
@@ -104,7 +102,7 @@ public class WorldGenRuins extends WorldGenerator
 			}
 		}
 		int chestY = world.getHeightValue(chestX, chestZ);
-		world.setBlock(chestX, chestY, chestZ, Atum.cursedChest.blockID, 0, 2);
+		world.setBlock(chestX, chestY, chestZ, AtumBlocks.cursedChest.blockID, 0, 2);
 		IInventory chest = (IInventory) world.getBlockTileEntity(chestX, chestY, chestZ);
 		AtumLoot.fillChest(chest, 5, 0.5F);
 		

@@ -2,6 +2,8 @@ package rebelkeithy.mods.atum.artifacts;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
@@ -44,7 +46,13 @@ public class ItemRasGlory extends ItemArmor implements IArmorTextureProvider
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
     {
-    	par3List.add("Night Vision I");
+    	if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+    	{
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "Divine Vision I: Night vision, increased");
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "range of vision in Atum");
+    	} else {
+        	par3List.add("Divine Vision I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+    	}
     }
 
 

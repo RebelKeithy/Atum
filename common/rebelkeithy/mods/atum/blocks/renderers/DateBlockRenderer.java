@@ -1,13 +1,11 @@
 package rebelkeithy.mods.atum.blocks.renderers;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCocoa;
-import net.minecraft.block.BlockDirectional;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
-import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
 import rebelkeithy.mods.atum.blocks.BlockDate;
 import rebelkeithy.mods.atum.blocks.models.ModelDate;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
@@ -289,7 +287,7 @@ public class DateBlockRenderer implements ISimpleBlockRenderingHandler
 	@Override
 	public int getRenderId()
 	{
-		return ((BlockDate)(Atum.atumDateBlock)).renderID;
+		return ((BlockDate)(AtumBlocks.dateBlock)).renderID;
 	}
 
 }

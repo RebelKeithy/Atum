@@ -1,14 +1,14 @@
 package rebelkeithy.mods.atum.world;
 
-import rebelkeithy.mods.atum.Atum;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
+import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.ConfigAtum;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class AtumWorldProvider extends WorldProvider
 {
@@ -26,7 +26,7 @@ public class AtumWorldProvider extends WorldProvider
     protected void registerWorldChunkManager()
     {
         worldChunkMgr = new WorldChunkManagerHell(Atum.atumDesert, 0.8F, 0.1F);
-        this.dimensionId = Atum.dimensionID;
+        this.dimensionId = ConfigAtum.dimensionID;
     }
 
     /**

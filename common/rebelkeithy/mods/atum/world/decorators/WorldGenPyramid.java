@@ -11,7 +11,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
 import rebelkeithy.mods.atum.AtumLoot;
 import rebelkeithy.mods.atum.cursedchest.TileEntityPharaohChest;
 
@@ -64,8 +64,8 @@ public class WorldGenPyramid extends WorldGenerator
 				for(int z = y; z <= depth - y; z++)
 				{
 					//int id = world.getBlockId(x+i, y+j+3, z+k);
-					//if(id == 0 || id == Atum.atumSand.blockID)
-					world.setBlock(x+i, y+j+3, z+k, Atum.atumLargeBrick.blockID, 1, 0);
+					//if(id == 0 || id == AtumBlocks.atumSand.blockID)
+					world.setBlock(x+i, y+j+3, z+k, AtumBlocks.largeBrick.blockID, 1, 0);
 				}
 			}
 		}
@@ -76,22 +76,22 @@ public class WorldGenPyramid extends WorldGenerator
 			{
 				if(x >= 0 && x < width && z >= 0 && z < depth)
 				{
-					world.setBlock(x+i, j-1, z+k, Atum.atumStone.blockID);
+					world.setBlock(x+i, j-1, z+k, AtumBlocks.stone.blockID);
 					if(!maze[x][z])
 					{
 						if(random.nextFloat() > 0.1F)
-							world.setBlock(x+i, j, z+k, Atum.atumLargeBrick.blockID, 1, 0);
+							world.setBlock(x+i, j, z+k, AtumBlocks.largeBrick.blockID, 1, 0);
 						else
 							placeTrap(world, x+i, j, z+k);
-						world.setBlock(x+i, j+1, z+k, Atum.atumLargeBrick.blockID, 1, 0);
-						world.setBlock(x+i, j+2, z+k, Atum.atumLargeBrick.blockID, 1, 0);
+						world.setBlock(x+i, j+1, z+k, AtumBlocks.largeBrick.blockID, 1, 0);
+						world.setBlock(x+i, j+2, z+k, AtumBlocks.largeBrick.blockID, 1, 0);
 					} else {
 						int meta = random.nextInt(5);
-						world.setBlock(x+i, j, z+k, Atum.atumSandLayered.blockID, meta, 0);
+						world.setBlock(x+i, j, z+k, AtumBlocks.sandLayered.blockID, meta, 0);
 						world.setBlockToAir(x+i, j+1, z+k);
 						world.setBlockToAir(x+i, j+2, z+k);
 					}
-					world.setBlock(x+i, j+3, z+k, Atum.atumLargeBrick.blockID, 1, 0);
+					world.setBlock(x+i, j+3, z+k, AtumBlocks.largeBrick.blockID, 1, 0);
 				}
 			}
 		}
@@ -119,7 +119,7 @@ public class WorldGenPyramid extends WorldGenerator
 		world.setBlock(i+11, j+6, k+7, Block.torchWood.blockID, 2, 0);
 		world.setBlock(i+11, j+6, k+10, Block.torchWood.blockID, 2, 0);
 		
-		world.setBlock(i+ 10, j + 4, k + 8, Atum.atumPharaohChest.blockID, 0, 2);
+		world.setBlock(i+ 10, j + 4, k + 8, AtumBlocks.pharaohChest.blockID, 0, 2);
 		try
 		{
 			TileEntityPharaohChest te = (TileEntityPharaohChest) world.getBlockTileEntity(i+ 10, j + 4, k + 8);
@@ -184,7 +184,7 @@ public class WorldGenPyramid extends WorldGenerator
             meta = 5;
         }
 
-        world.setBlock(x, y, z, Atum.atumTrapArrow.blockID, meta, 0);
+        world.setBlock(x, y, z, AtumBlocks.trapArrow.blockID, meta, 0);
 	}
 	
 	public void placeLadders(World world, int x, int y, int z, int height)

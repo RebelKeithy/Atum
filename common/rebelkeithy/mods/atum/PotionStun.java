@@ -25,8 +25,8 @@ public class PotionStun extends Potion
 		{
 			if(event.entityLiving.isPotionActive(this))
 			{
-				//ReflectionHelper.setPrivateValue(EntityLiving.class, par1EntityLiving, null, "attackTarget");
-				event.entityLiving.attackTarget = null;
+				ReflectionHelper.setPrivateValue(EntityLiving.class, event.entityLiving, null, "attackTarget", "field_70696_bz", "b0");
+				//event.entityLiving.attackTarget = null;
 			}
 		}
 	}
@@ -35,7 +35,7 @@ public class PotionStun extends Potion
     public void performEffect(EntityLiving par1EntityLiving, int par2)
     {
     	//par1EntityLiving.landMovementFactor = 0;
-    	ReflectionHelper.setPrivateValue(EntityLiving.class, par1EntityLiving, null, "currentTarget");
+    	ReflectionHelper.setPrivateValue(EntityLiving.class, par1EntityLiving, null, "currentTarget", "field_70776_bF", "bY");
     }
 	
 	@Override

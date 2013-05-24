@@ -1,7 +1,5 @@
 package rebelkeithy.mods.atum.blocks;
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -16,8 +14,9 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
 import rebelkeithy.mods.atum.AtumTeleporter;
+import rebelkeithy.mods.atum.ConfigAtum;
 import rebelkeithy.mods.atum.TickHandler;
 import rebelkeithy.mods.particleregistry.ParticleRegistry;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
@@ -138,9 +137,9 @@ public class BlockAtumPortal extends BlockBreakable
             
             if(id1 == id2 && id2 == id3 && id3 == id4 && id4 == id5 && id6 == id7 && id7 == id8 && id8 == id9 && id9 == id10 && id10 == id11 && id11 == id12 && id12 == Block.sandStone.blockID)
             {
-                par1World.setBlock(par2, par3, par4, Atum.portal.blockID, 0, 2);
-                par1World.setBlock(par2, par3 + 1, par4, Atum.portal.blockID, 0, 2);
-                par1World.setBlock(par2, par3 + 2, par4, Atum.portal.blockID, 0, 2);
+                par1World.setBlock(par2, par3, par4, AtumBlocks.portal.blockID, 0, 2);
+                par1World.setBlock(par2, par3 + 1, par4, AtumBlocks.portal.blockID, 0, 2);
+                par1World.setBlock(par2, par3 + 2, par4, AtumBlocks.portal.blockID, 0, 2);
                 return true;
             }
 
@@ -262,15 +261,15 @@ public class BlockAtumPortal extends BlockBreakable
 	        		MinecraftServer minecraftserver = MinecraftServer.getServer();
 	        		int dimID = par5Entity.dimension;
 	                WorldServer worldserver = minecraftserver.worldServerForDimension(0);
-	                WorldServer worldserver1 = minecraftserver.worldServerForDimension(Atum.dimensionID);
-	                if(dimID == Atum.dimensionID)
+	                WorldServer worldserver1 = minecraftserver.worldServerForDimension(ConfigAtum.dimensionID);
+	                if(dimID == ConfigAtum.dimensionID)
 	                {
 	                	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, 0, new AtumTeleporter(worldserver));
 	                	if(par1World.isRemote)
 	                		Minecraft.getMinecraft().gameSettings.renderDistance = TickHandler.defaultFog;
 	                    //par5Entity.travelToDimension(0);
 	                } else {
-	                	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, Atum.dimensionID, new AtumTeleporter(worldserver1));
+	                	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, ConfigAtum.dimensionID, new AtumTeleporter(worldserver1));
 	                    //par5Entity.travelToDimension(Atum.dimensionID);
 	                }
 	                //par5Entity.travelToDimension(Atum.dimensionID);

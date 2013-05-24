@@ -1,16 +1,15 @@
 package rebelkeithy.mods.atum.entities;
 
-import rebelkeithy.mods.atum.Atum;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import rebelkeithy.mods.atum.AtumItems;
 
 public class EntityStoneSoldier extends EntityMob implements IAtumNightMob, IAtumDayMob
 {
@@ -31,7 +30,7 @@ public class EntityStoneSoldier extends EntityMob implements IAtumNightMob, IAtu
     @Override
     public void initCreature()
     {
-    	this.setCurrentItemOrArmor(0, new ItemStack(Atum.itemStoneSoldierSword));
+    	this.setCurrentItemOrArmor(0, new ItemStack(AtumItems.stoneSoldierSword));
     	
         for (int i = 0; i < this.equipmentDropChances.length; ++i)
         {
@@ -140,7 +139,7 @@ public class EntityStoneSoldier extends EntityMob implements IAtumNightMob, IAtu
     	 if (this.rand.nextInt(4) == 0)
          {
     	 	int amount = rand.nextInt(2) + 1;
-    	 	this.dropItem(Atum.itemStoneChunk.itemID, amount);
+    	 	this.dropItem(AtumItems.stoneChunk.itemID, amount);
          }
     }
 

@@ -6,11 +6,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.RenderBiped;
+import net.minecraft.client.renderer.entity.RenderFish;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.client.MinecraftForgeClient;
 import rebelkeithy.mods.atum.artifacts.arrow.CustomArrow;
+import rebelkeithy.mods.atum.artifacts.arrow.EntityAtumFishHook;
+import rebelkeithy.mods.atum.artifacts.arrow.EntityNutsCall;
 import rebelkeithy.mods.atum.artifacts.arrow.RenderCustomArrow;
+import rebelkeithy.mods.atum.artifacts.arrow.RenderNutsCall;
 import rebelkeithy.mods.atum.blocks.BlockDate;
 import rebelkeithy.mods.atum.blocks.BlockPapyrus;
 import rebelkeithy.mods.atum.blocks.renderers.DateBlockRenderer;
@@ -79,16 +83,18 @@ public class ClientProxy extends CommonProxy
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityFireSpearCombined.class, new RenderFireSpear());
 		RenderingRegistry.registerEntityRenderingHandler(CustomArrow.class, new RenderCustomArrow());
+		RenderingRegistry.registerEntityRenderingHandler(EntityNutsCall.class, new RenderNutsCall());
+		RenderingRegistry.registerEntityRenderingHandler(EntityAtumFishHook.class, new RenderFish());
 		
 		RenderManager.instance.entityRenderMap.put(EntityFireSpearCombined.class, new RenderFireSpear());
 		RenderManager.instance.entityRenderMap.put(EntityFireSpearSeperated.class, new RenderFireSpearSeperated());
 
 		//RenderManager.instance.entityRenderMap.put(CustomArrow.class, new RenderCustomArrow());
 		
-		MinecraftForgeClient.registerItemRenderer(Atum.itemBow.itemID, new RendererItemBow());
-		MinecraftForgeClient.registerItemRenderer(Atum.atensFury.itemID, new RendererItemBow());
-		MinecraftForgeClient.registerItemRenderer(Atum.neithsAudacity.itemID, new RendererItemBow());
-		RenderingRegistry.registerBlockHandler(((BlockPapyrus)Atum.atumPapyrus).renderID, new PapyrusBlockRenderer());
-		RenderingRegistry.registerBlockHandler(((BlockDate)(Atum.atumDateBlock)).renderID, new DateBlockRenderer());
+		MinecraftForgeClient.registerItemRenderer(AtumItems.bow.itemID, new RendererItemBow());
+		MinecraftForgeClient.registerItemRenderer(AtumItems.atensFury.itemID, new RendererItemBow());
+		MinecraftForgeClient.registerItemRenderer(AtumItems.neithsAudacity.itemID, new RendererItemBow());
+		RenderingRegistry.registerBlockHandler(((BlockPapyrus)AtumBlocks.papyrus).renderID, new PapyrusBlockRenderer());
+		RenderingRegistry.registerBlockHandler(((BlockDate)(AtumBlocks.dateBlock)).renderID, new DateBlockRenderer());
 	}
 }

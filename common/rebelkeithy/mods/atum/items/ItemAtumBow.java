@@ -61,17 +61,17 @@ public class ItemAtumBow extends ItemBow
 
 			if (j >= 18)
 			{
-				return func_94599_c(2);
+				return getItemIconForUseDuration(2);
 			}
 
 			if (j > 13)
 			{
-				return func_94599_c(1);
+				return getItemIconForUseDuration(1);
 			}
 
 			if (j > 0)
 			{
-				return func_94599_c(0);
+				return getItemIconForUseDuration(0);
 			}
 		}
 		return getIcon(stack, renderPass);
@@ -79,7 +79,7 @@ public class ItemAtumBow extends ItemBow
 
 	@SideOnly(Side.CLIENT)
     @Override
-	public Icon func_94599_c(int par1)
+	public Icon getItemIconForUseDuration(int par1)
 	{
 		return this.iconArray[par1];
 	}

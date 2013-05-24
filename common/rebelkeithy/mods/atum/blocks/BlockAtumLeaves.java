@@ -1,18 +1,13 @@
 package rebelkeithy.mods.atum.blocks;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
-import rebelkeithy.mods.atum.Atum;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.ColorizerFoliage;
@@ -20,6 +15,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.IShearable;
+import rebelkeithy.mods.atum.AtumBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -268,7 +264,7 @@ public class BlockAtumLeaves extends BlockLeavesBase implements IShearable
 	@Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return Atum.atumPalmSapling.blockID;//Block.sapling.blockID;
+        return AtumBlocks.palmSapling.blockID;//Block.sapling.blockID;
     }
 
     /**

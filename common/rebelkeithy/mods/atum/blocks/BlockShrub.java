@@ -2,16 +2,14 @@ package rebelkeithy.mods.atum.blocks;
 
 import java.util.Random;
 
-import rebelkeithy.mods.atum.Atum;
-
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockDeadBush;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
+import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
 
 public class BlockShrub extends BlockDeadBush
 {
@@ -27,7 +25,7 @@ public class BlockShrub extends BlockDeadBush
 	@Override
     public boolean canThisPlantGrowOnThisBlockID(int par1)
     {
-        return par1 == Atum.atumSand.blockID;
+        return par1 == AtumBlocks.sand.blockID;
     }
 
     /**
@@ -49,7 +47,7 @@ public class BlockShrub extends BlockDeadBush
         if (!par1World.isRemote && par2EntityPlayer.getCurrentEquippedItem() != null && par2EntityPlayer.getCurrentEquippedItem().itemID == Item.shears.itemID)
         {
             par2EntityPlayer.addStat(StatList.mineBlockStatArray[this.blockID], 1);
-            this.dropBlockAsItem_do(par1World, par3, par4, par5, new ItemStack(Atum.atumShrub, 1, par6));
+            this.dropBlockAsItem_do(par1World, par3, par4, par5, new ItemStack(AtumBlocks.shrub, 1, par6));
         }
         else
         {

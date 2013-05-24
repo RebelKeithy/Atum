@@ -205,7 +205,7 @@ public class EntityArrowExplosive extends CustomArrow implements IProjectile, IT
 
             if (axisalignedbb != null && axisalignedbb.isVecInside(this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ)))
             {
-                this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 2.0F, true);
+                this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, 2.0F, this.isBurning(), true);
                 this.inGround = true;
             }
         }
@@ -447,7 +447,7 @@ public class EntityArrowExplosive extends CustomArrow implements IProjectile, IT
             this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
             this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
             float f4 = 0.99F;
-            f1 = 0.05F;
+            f1 = 0.15F;
 
             if (this.isInWater())
             {
@@ -614,4 +614,10 @@ public class EntityArrowExplosive extends CustomArrow implements IProjectile, IT
 	{
 		shootingEntity = entity;		
 	}
+    
+    @Override
+    public String getTexture()
+    {
+        return "/mods/Atum/textures/projectiles/arrows_exploding.png";
+    }
 }

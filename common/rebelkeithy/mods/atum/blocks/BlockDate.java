@@ -2,12 +2,17 @@ package rebelkeithy.mods.atum.blocks;
 
 import java.util.Random;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
-
-import rebelkeithy.mods.atum.Atum;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import rebelkeithy.mods.atum.Atum;
+import rebelkeithy.mods.atum.AtumBlocks;
+import rebelkeithy.mods.atum.AtumItems;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDate extends Block
 {
@@ -45,11 +50,25 @@ public class BlockDate extends Block
     {
         return renderID;
     }
+	
+	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborID) 
+	{
+		if (world.getBlockId(x, y + 1, z) != AtumBlocks.leaves.blockID) 
+		{
+			if (!world.isRemote) 
+			{
+				EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(AtumItems.date.itemID, 0, quantityDropped(new Random())));
+				entityItem.dropItem(AtumItems.date.itemID, quantityDropped(new Random()));
+				world.setBlockToAir(x, y, z);
+			}
+		}
+	}
 
 	@Override
     public int idDropped(int par1, Random rand, int par3)
     {
-        return Atum.itemDate.itemID;
+        return AtumItems.date.itemID;
     }
 
 	@Override
@@ -57,4 +76,14 @@ public class BlockDate extends Block
     {
         return rand.nextInt(3) + 1;
     }
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
+     */
+    public int idPicked(World par1World, int par2, int par3, int par4)
+    {
+        return AtumItems.date.itemID;
+    }
+
 }
