@@ -181,15 +181,14 @@ public class BlockPapyrus extends Block implements IPlantable
             return true;
         }
 
-        switch (plantType)
+        if(plantType == EnumPlantType.Beach)
         {
-            case Beach:
-                boolean isBeach = (blockID == Block.grass.blockID || blockID == Block.dirt.blockID || blockID == Block.sand.blockID);
-                boolean hasWater = (world.getBlockMaterial(x - 1, y, z    ) == Material.water ||
-                                    world.getBlockMaterial(x + 1, y, z    ) == Material.water ||
-                                    world.getBlockMaterial(x,     y, z - 1) == Material.water ||
-                                    world.getBlockMaterial(x,     y, z + 1) == Material.water);
-                return isBeach && hasWater;
+            boolean isBeach = (blockID == Block.grass.blockID || blockID == Block.dirt.blockID || blockID == Block.sand.blockID);
+            boolean hasWater = (world.getBlockMaterial(x - 1, y, z    ) == Material.water ||
+                                world.getBlockMaterial(x + 1, y, z    ) == Material.water ||
+                                world.getBlockMaterial(x,     y, z - 1) == Material.water ||
+                                world.getBlockMaterial(x,     y, z + 1) == Material.water);
+            return isBeach && hasWater;
         }
 
         return false;
