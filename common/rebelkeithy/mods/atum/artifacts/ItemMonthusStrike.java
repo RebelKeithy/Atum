@@ -105,11 +105,18 @@ public class ItemMonthusStrike extends ItemAxe
                 
                 ((EntityLiving)entity).attackEntityFrom(DamageSource.generic, this.getDamageVsEntity(entity));
                 
-                Minecraft.getMinecraft().effectRenderer.addEffect(new EntityCrit2FX(world, entity));
+                if(world.isRemote)
+                    spawnParticle(world, entity);
         	}
         }
         
         par1ItemStack.damageItem(4, player);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void spawnParticle(World world, Entity entity)
+    {
+        Minecraft.getMinecraft().effectRenderer.addEffect(new EntityCrit2FX(world, entity));
     }
     
     /**

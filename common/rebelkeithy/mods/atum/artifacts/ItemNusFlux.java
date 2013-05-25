@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityCrit2FX;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -13,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
 
 import org.lwjgl.input.Keyboard;
 
@@ -49,9 +51,22 @@ public class ItemNusFlux extends ItemSword
 	        
 	        ((EntityLiving)entity).attackEntityFrom(DamageSource.generic, this.getDamageVsEntity(entity));
 	        
-	        Minecraft.getMinecraft().effectRenderer.addEffect(new EntityCrit2FX(player.worldObj, entity));
+	        //Minecraft.getMinecraft().effectRenderer.addEffect(new EntityCrit2FX(player.worldObj, entity));
+	        
+	        if(player.worldObj.isRemote)
+	        {
+	            this.spawnParticle(player.worldObj, entity);
+	        }
 		}
+		
+		
 		return super.hitEntity(par1ItemStack, entity, player);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void spawnParticle(World world, Entity entity)
+    {
+        Minecraft.getMinecraft().effectRenderer.addEffect(new EntityCrit2FX(world, entity));
     }
 
     @SideOnly(Side.CLIENT)
