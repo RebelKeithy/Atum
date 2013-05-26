@@ -122,6 +122,8 @@ public class ConfigAtum
 	public static int anubisMercyID = 5064;
 	
 	public static int itemFishID = 5075;
+
+    public static boolean protectBlocksInCreative = true;
 	
 	public static void initConfig()
 	{
@@ -142,7 +144,8 @@ public class ConfigAtum
 
 		dimensionID = config.get("~World", "Dimension ID", dimensionID).getInt();
 		biomeAtumDesertID = config.get("~World", "Atum Biome ID", biomeAtumDesertID).getInt();
-	
+		protectBlocksInCreative = config.get("~World", "Industructable Blocks In Creative Mode", protectBlocksInCreative).getBoolean(protectBlocksInCreative);
+		
 		portalBlockID = config.getBlock("Portal Block", portalBlockID).getInt();
 		cursedChestID = config.getBlock("CursedChest", cursedChestID).getInt();
 		sandID = config.getBlock("Strange Sand", sandID).getInt();

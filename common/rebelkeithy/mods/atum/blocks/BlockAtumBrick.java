@@ -6,11 +6,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class BlockAtumStone extends Block
+public class BlockAtumBrick extends Block
 {
 
 
-    public BlockAtumStone(int par1, Material par2Material) 
+    public BlockAtumBrick(int par1, Material par2Material) 
     {
 		super(par1, par2Material);
 	}
@@ -18,7 +18,10 @@ public class BlockAtumStone extends Block
     @Override
     public boolean removeBlockByPlayer(World world, EntityPlayer player, int x, int y, int z)
     {
-        return false;
+        if(world.getBlockMetadata(x, y, z) == 1)
+            return false;
+        else
+            return super.removeBlockByPlayer(world, player, x, y, z);
     }
 /*
     @Override
