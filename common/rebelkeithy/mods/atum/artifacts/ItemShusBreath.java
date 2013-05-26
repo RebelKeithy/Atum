@@ -2,6 +2,8 @@ package rebelkeithy.mods.atum.artifacts;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -10,6 +12,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -136,8 +139,14 @@ public class ItemShusBreath extends ItemBow
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
     {
-    	par3List.add("Quickdraw I");
-    }	
+        if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+        {
+            par3List.add(EnumChatFormatting.DARK_PURPLE + "Quickdraw I: Reduced");
+            par3List.add(EnumChatFormatting.DARK_PURPLE + "drawback speed");
+        } else {
+            par3List.add("Quickdraw I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+        }
+    }
 
 
 

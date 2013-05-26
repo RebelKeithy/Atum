@@ -80,7 +80,7 @@ public class ItemMonthusStrike extends ItemAxe
         	return;
         
         AxisAlignedBB bb = player.boundingBox.copy();
-        bb = bb.expand(2.5, 2.5, 2.5);
+        bb = bb.expand(3, 3, 3);
         
         List<Entity> list = world.getEntitiesWithinAABB(EntityLiving.class, bb);
         
@@ -95,7 +95,7 @@ public class ItemMonthusStrike extends ItemAxe
         		dz = dz/magnitude;
         		
         		entity.isAirBorne = true;
-        		entity.addVelocity(dx*2, 0.3D, dz*2);
+        		entity.addVelocity(dx*2.5, 0.3D, dz*2.5);
         		//entity.motionY += 2;
         		
                 if (entity.motionY > 0.4000000059604645D)

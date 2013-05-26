@@ -1,10 +1,16 @@
 package rebelkeithy.mods.atum.artifacts;
 
+import java.util.List;
+
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import rebelkeithy.mods.atum.artifacts.arrow.EntityAtumFishHook;
@@ -82,5 +88,42 @@ public class ItemAnuketsBounty extends Item
     public Icon func_94597_g()
     {
         return this.theIcon;
+    }
+    
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * Return an item rarity from EnumRarity
+     */
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return EnumRarity.rare;
+    }
+
+    @SideOnly(Side.CLIENT)
+    /**
+     * allows items to add custom lines of information to the mouseover description
+     */
+    @Override
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
+    {
+        if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+        {
+            par3List.add(EnumChatFormatting.DARK_PURPLE + "Alluring I: Chance to catch");
+            par3List.add(EnumChatFormatting.DARK_PURPLE + "special fish in Atum");
+        } else {
+            par3List.add("Return I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+        }
+        
+        par3List.add((int)(par1ItemStack.getMaxDamage()-par1ItemStack.getItemDamage()) + " Uses Remaining");
+    }
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+    @Override
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return par2ItemStack.itemID == Item.diamond.itemID;
     }
 }

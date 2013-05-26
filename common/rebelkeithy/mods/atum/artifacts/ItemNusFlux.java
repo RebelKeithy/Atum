@@ -42,7 +42,7 @@ public class ItemNusFlux extends ItemSword
 			dz = dz/magnitude;
 			
 			entity.isAirBorne = true;
-			entity.addVelocity(dx/2.0, 1D, dz/2.0);
+			entity.addVelocity(dx/2.0, 1.5D, dz/2.0);
 			
 	        if (entity.motionY > 1.0D)
 	        {

@@ -2,6 +2,7 @@ package rebelkeithy.mods.atum;
 
 import java.util.List;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class AtumFish 
@@ -12,10 +13,11 @@ public class AtumFish
 	{
 		fish = new AtumWeightedLootSet();
 		
-		AtumFish.addFish(new ItemStack(AtumItems.fish, 1, 0), 3);
-		AtumFish.addFish(new ItemStack(AtumItems.fish, 1, 1), 1);
-		AtumFish.addFish(new ItemStack(AtumItems.fish, 1, 2), 5);
-		AtumFish.addFish(new ItemStack(AtumItems.fish, 1, 3), 5);
+		AtumFish.addFish(new ItemStack(Item.fishRaw, 1, 0), 100);
+		AtumFish.addFish(new ItemStack(AtumItems.fish, 1, 0), 30);
+		AtumFish.addFish(new ItemStack(AtumItems.fish, 1, 1), 5);
+		AtumFish.addFish(new ItemStack(AtumItems.fish, 1, 2), 50);
+		AtumFish.addFish(new ItemStack(AtumItems.fish, 1, 3), 50);
 	}
 	
 	public static void addFish(ItemStack fishStack, int probability)

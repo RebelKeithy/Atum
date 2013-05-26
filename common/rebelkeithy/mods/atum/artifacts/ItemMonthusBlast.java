@@ -2,6 +2,8 @@ package rebelkeithy.mods.atum.artifacts;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -139,9 +141,14 @@ public class ItemMonthusBlast extends ItemBow
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
     {
-    	par3List.add("Explosive Shot I");
-    }	
-
+        if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+        {
+            par3List.add(EnumChatFormatting.DARK_PURPLE + "Explosive Shot I: Arrows explode");
+            par3List.add(EnumChatFormatting.DARK_PURPLE + "on impact");
+        } else {
+            par3List.add("Explosive Shot I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+        }
+    }
 
 
     @SideOnly(Side.CLIENT)

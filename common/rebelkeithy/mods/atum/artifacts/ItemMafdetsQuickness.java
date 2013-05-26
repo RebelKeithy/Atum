@@ -86,4 +86,13 @@ public class ItemMafdetsQuickness extends Item
     	par3List.add(((int)((par1ItemStack.getMaxDamage()-par1ItemStack.getItemDamage())/12))/100.0 + " Minutes Remaining");
     }
 
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+    @Override
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return par2ItemStack.itemID == Item.diamond.itemID;
+    }
+
 }

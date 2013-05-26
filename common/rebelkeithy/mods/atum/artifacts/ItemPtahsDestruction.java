@@ -3,6 +3,8 @@ package rebelkeithy.mods.atum.artifacts;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -56,8 +58,14 @@ public class ItemPtahsDestruction extends ItemPickaxe
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
     {
-    	par3List.add("Stonecutter I");
-    }	
+        if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+        {
+            par3List.add(EnumChatFormatting.DARK_PURPLE + "Stonecutter I: Incresed damage");
+            par3List.add(EnumChatFormatting.DARK_PURPLE + "to stone enemies");
+        } else {
+            par3List.add("Stonecutter I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+        }
+    }
 
     /**
      * Return whether this item is repairable in an anvil.

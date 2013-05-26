@@ -2,6 +2,8 @@ package rebelkeithy.mods.atum.artifacts;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import rebelkeithy.mods.atum.artifacts.arrow.EntityNutsCall;
@@ -13,10 +15,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 public class ItemNutsCall extends Item
@@ -93,5 +97,31 @@ public class ItemNutsCall extends Item
     	player.setItemInUse(stack, getMaxItemUseDuration(stack));
     	
     	return stack;
+    }
+
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * Return an item rarity from EnumRarity
+     */
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return EnumRarity.rare;
+    }
+
+    @SideOnly(Side.CLIENT)
+    /**
+     * allows items to add custom lines of information to the mouseover description
+     */
+    @Override
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) 
+    {
+        if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+        {
+            par3List.add(EnumChatFormatting.DARK_PURPLE + "Wrath I: Chance to strike");
+            par3List.add(EnumChatFormatting.DARK_PURPLE + "foe with lightning");
+        } else {
+            par3List.add("Wrath I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+        }
     }
 }
