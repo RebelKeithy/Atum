@@ -3,6 +3,7 @@ package rebelkeithy.mods.atum.entities;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -14,9 +15,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import rebelkeithy.mods.atum.AtumBlocks;
 import rebelkeithy.mods.atum.AtumItems;
 import rebelkeithy.mods.atum.AtumLoot;
 import rebelkeithy.mods.atum.cursedchest.TileEntityPharaohChest;
@@ -229,6 +232,59 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
         return false;
     }
 
+    /**
+     * Destroys all blocks that aren't associated with 'The End' inside the given bounding box.
+     */
+    private boolean destroyBlocksInAABB(AxisAlignedBB par1AxisAlignedBB)
+    {
+        int i = MathHelper.floor_double(par1AxisAlignedBB.minX);
+        int j = MathHelper.floor_double(par1AxisAlignedBB.minY);
+        int k = MathHelper.floor_double(par1AxisAlignedBB.minZ);
+        int l = MathHelper.floor_double(par1AxisAlignedBB.maxX);
+        int i1 = MathHelper.floor_double(par1AxisAlignedBB.maxY);
+        int j1 = MathHelper.floor_double(par1AxisAlignedBB.maxZ);
+        boolean flag = false;
+        boolean flag1 = false;
+
+        for (int k1 = i; k1 <= l; ++k1)
+        {
+            for (int l1 = j; l1 <= i1; ++l1)
+            {
+                for (int i2 = k; i2 <= j1; ++i2)
+                {
+                    int j2 = this.worldObj.getBlockId(k1, l1, i2);
+                    Block block = Block.blocksList[j2];
+
+                    if (block != null)
+                    {
+                        System.out.println("destroy " + j2);
+                        if (j2 != AtumBlocks.largeBrick.blockID && j2 != AtumBlocks.pharaohChest.blockID && Block.blocksList[j2].isBlockSolid(worldObj, k1, l1, i2, 0))
+                        {
+                            Block.blocksList[j2].dropBlockAsItem(worldObj, k1, l1, i2, 0, 0);
+                            flag1 = this.worldObj.setBlockToAir(k1, l1, i2) || flag1;
+                            flag = true;
+                        }
+                        else
+                        {
+                            flag = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (flag1)
+        {
+            System.out.println("explode");
+            double d0 = par1AxisAlignedBB.minX + (par1AxisAlignedBB.maxX - par1AxisAlignedBB.minX) * (double)this.rand.nextFloat();
+            double d1 = par1AxisAlignedBB.minY + (par1AxisAlignedBB.maxY - par1AxisAlignedBB.minY) * (double)this.rand.nextFloat();
+            double d2 = par1AxisAlignedBB.minZ + (par1AxisAlignedBB.maxZ - par1AxisAlignedBB.minZ) * (double)this.rand.nextFloat();
+            this.worldObj.spawnParticle("largeexplode", d0, d1, d2, 0.0D, 0.0D, 0.0D);
+        }
+
+        return flag;
+    }
+
     private void spawnGuards()
     {
         int numSpawned = 0;
@@ -392,6 +448,9 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
         }
 
         super.onLivingUpdate();
+        
+        if(!worldObj.isRemote)
+            this.destroyBlocksInAABB(this.boundingBox.expand(0.1, 0, 0.1));
     }
 
     @Override
