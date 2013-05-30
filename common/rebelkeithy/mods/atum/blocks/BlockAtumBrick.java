@@ -1,6 +1,6 @@
 package rebelkeithy.mods.atum.blocks;
 
-import rebelkeithy.mods.atum.ConfigAtum;
+import rebelkeithy.mods.atum.AtumConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -19,7 +19,7 @@ public class BlockAtumBrick extends Block
     @Override
     public boolean removeBlockByPlayer(World world, EntityPlayer player, int x, int y, int z)
     {
-        if(world.getBlockMetadata(x, y, z) == 1 && ConfigAtum.protectBlocksInCreative)
+        if(world.getBlockMetadata(x, y, z) == 1 && AtumConfig.protectBlocksInCreative)
             return false;
         else
             return super.removeBlockByPlayer(world, player, x, y, z);

@@ -1,7 +1,10 @@
 package rebelkeithy.mods.atum;
 
+import java.io.File;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
+import net.minecraft.client.audio.SoundPoolEntry;
 import net.minecraft.entity.EntityList;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -19,6 +22,7 @@ import rebelkeithy.mods.atum.artifacts.arrow.EntityNutsCall;
 import rebelkeithy.mods.atum.entities.EntityBanditArcher;
 import rebelkeithy.mods.atum.entities.EntityBanditWarlord;
 import rebelkeithy.mods.atum.entities.EntityBanditWarrior;
+import rebelkeithy.mods.atum.entities.EntityBarbarian;
 import rebelkeithy.mods.atum.entities.EntityDesertWolf;
 import rebelkeithy.mods.atum.entities.EntityDustySkeleton;
 import rebelkeithy.mods.atum.entities.EntityGhost;
@@ -61,21 +65,33 @@ public class Atum
 
 	public static Potion stun;
 
+    public static SoundPoolEntry music;
+
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		ConfigAtum.initConfig();
+		AtumConfig.initConfig();
 		
 		AtumBlocks.init();
 		AtumBlocks.registerBlocks();
 		
 		AtumItems.init();
 		
+		try
+        {
+		    System.out.println("Does file exist, " + (new File("C:/Users/Keithy/Documents/Atum 1.5.1/source/resources/mods/Atum/music")).exists());
+            music = new SoundPoolEntry("AtumMusic", (new File("C:/Users/Keithy/Documents/Atum 1.5.1/source/resources/mods/Atum/music")).toURI().toURL());
+        } catch (MalformedURLException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+		
 		ArrayList<BiomeGenBase> biomeList = new ArrayList<BiomeGenBase>();
 		for(int i = 0; i < BiomeGenBase.biomeList.length; i++)
 		{
-			if(BiomeGenBase.biomeList[i] != null && BiomeGenBase.biomeList[i].biomeID != ConfigAtum.biomeAtumDesertID)
+			if(BiomeGenBase.biomeList[i] != null && BiomeGenBase.biomeList[i].biomeID != AtumConfig.biomeAtumDesertID)
 			{
 				biomeList.add(BiomeGenBase.biomeList[i]);
 			}
@@ -118,6 +134,9 @@ public class Atum
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(EntityBanditWarlord.class, "AtumBanditWarlord", entityID);
 		EntityList.addMapping(EntityBanditWarlord.class, "AtumBanditWarlord", entityID, 0x918354, 0x695D37);
+		
+        EntityRegistry.registerModEntity(EntityBarbarian.class, "AtumBarbarian", 29, this, 64, 1, true);
+        EntityList.addMapping(EntityBarbarian.class, "AtumBarbarian", entityID, 0x918354, 0x695D37);
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerModEntity(EntityFireSpearCombined.class, "FireSpearCombined", entityID, this, 64, 1, true);
@@ -137,13 +156,14 @@ public class Atum
 		
 		//EntityList.addMapping(EntityBandit.class, "AtumBanditArcher", ConfigAtum.banditArcherID, 0xC2C2C2, 0x070C0C);
 		
-		atumDesert = (new BiomeGenAtumDesert(ConfigAtum.biomeAtumDesertID)).setColor(16421912).setBiomeName("AtumDesert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.1F, 0.2F);
+		atumDesert = (new BiomeGenAtumDesert(AtumConfig.biomeAtumDesertID)).setColor(16421912).setBiomeName("AtumDesert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.1F, 0.2F);
 		
 		proxy.registerModelRenderers();
 		proxy.registerTickHandlers();
 		proxy.preloadImages();
 		proxy.registerParticles();
 		MinecraftForge.EVENT_BUS.register(new AtumEventListener());
+		MinecraftForge.EVENT_BUS.register(new AtumMusicListener());
 		//MinecraftForge.EVENT_BUS.register(new MobSpawnController());
 		NetworkRegistry.instance().registerGuiHandler(this, new AtumGuiHandler());
 	}
@@ -151,8 +171,8 @@ public class Atum
 	@Init
 	public void init(FMLInitializationEvent event)
 	{
-		DimensionManager.registerProviderType(ConfigAtum.dimensionID, AtumWorldProvider.class, true);
-		DimensionManager.registerDimension(ConfigAtum.dimensionID , ConfigAtum.dimensionID);
+		DimensionManager.registerProviderType(AtumConfig.dimensionID, AtumWorldProvider.class, true);
+		DimensionManager.registerDimension(AtumConfig.dimensionID , AtumConfig.dimensionID);
 
 		stun = new PotionStun(21, true, 8171462).setPotionName("potion.stun").setIconIndex(0, 0);
 		

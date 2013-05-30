@@ -4,14 +4,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
-import rebelkeithy.mods.atum.Atum;
 
 public class RendererItemBow implements IItemRenderer
 {
@@ -42,8 +41,22 @@ public class RendererItemBow implements IItemRenderer
 		EntityLiving e = (EntityLiving) data[1];
 
         GL11.glPopMatrix();
-		if(Minecraft.getMinecraft().gameSettings.thirdPersonView != 0)
-		{
+        
+        boolean renderFirstPerson = false;
+        
+        if(e instanceof EntityPlayer)
+        {
+            if(((EntityPlayer)e).username.equals(Minecraft.getMinecraft().thePlayer.username))
+            {
+                if(Minecraft.getMinecraft().gameSettings.thirdPersonView == 0)
+                {
+                    renderFirstPerson = true;
+                }
+            }
+        }
+        
+        if(!renderFirstPerson)
+        {
 	        float f22 = 0.375F;
 	        GL11.glRotatef(-20.0F, 0.0F, 0.0F, 1.0F);
 	        GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
@@ -57,7 +70,7 @@ public class RendererItemBow implements IItemRenderer
 	        GL11.glScalef(f2, -f2, f2);
 	        GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
 	        GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-		}
+        }
 		
 		this.renderItem(e, item, 0);
         GL11.glPushMatrix();

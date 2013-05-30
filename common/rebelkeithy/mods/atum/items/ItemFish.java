@@ -29,6 +29,12 @@ public class ItemFish extends Item
         return icons[par1];
     }
 
+    @Override
+    public String getUnlocalizedName(ItemStack par1ItemStack)
+    {
+        return super.getUnlocalizedName() + "." + par1ItemStack.getItemDamage();
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)

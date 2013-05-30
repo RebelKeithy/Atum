@@ -76,7 +76,7 @@ public class ItemAkersToil extends ItemSpade
     		par3List.add(EnumChatFormatting.DARK_PURPLE + "Performance I: Faster, does");
     		par3List.add(EnumChatFormatting.DARK_PURPLE + "not consume fatique");
     	} else {
-        	par3List.add("Preformance I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
+        	par3List.add("Performance I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
     	}
     }
 

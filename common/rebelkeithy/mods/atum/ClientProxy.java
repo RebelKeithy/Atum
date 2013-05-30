@@ -22,6 +22,7 @@ import rebelkeithy.mods.atum.blocks.renderers.PapyrusBlockRenderer;
 import rebelkeithy.mods.atum.entities.EntityBanditArcher;
 import rebelkeithy.mods.atum.entities.EntityBanditWarlord;
 import rebelkeithy.mods.atum.entities.EntityBanditWarrior;
+import rebelkeithy.mods.atum.entities.EntityBarbarian;
 import rebelkeithy.mods.atum.entities.EntityDesertWolf;
 import rebelkeithy.mods.atum.entities.EntityDustySkeleton;
 import rebelkeithy.mods.atum.entities.EntityGhost;
@@ -39,6 +40,9 @@ import rebelkeithy.mods.atum.entities.projectiles.EntityFireSpearSeperated;
 import rebelkeithy.mods.atum.entities.projectiles.RenderFireSpear;
 import rebelkeithy.mods.atum.entities.projectiles.RenderFireSpearSeperated;
 import rebelkeithy.mods.atum.items.RendererItemBow;
+import rebelkeithy.mods.atum.particles.EntityCritFX;
+import rebelkeithy.mods.atum.particles.EntitySandFX;
+import rebelkeithy.mods.atum.particles.EntitySandPortalFX;
 import rebelkeithy.mods.particleregistry.ParticleRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
@@ -50,6 +54,7 @@ public class ClientProxy extends CommonProxy
 	{
 		ParticleRegistry.registerParticle("sand", EntitySandFX.class);
 		ParticleRegistry.registerParticle("sandportal", EntitySandPortalFX.class);
+		ParticleRegistry.registerParticle("coloredcrit", EntityCritFX.class);
 	}
 	
 	public File getMinecraftDir() 
@@ -72,6 +77,7 @@ public class ClientProxy extends CommonProxy
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityMummy.class, new RenderLiving(new ModelZombie(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBanditWarrior.class, new RenderBiped(new ModelBiped(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBarbarian.class, new RenderBiped(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBanditArcher.class, new RenderBandit(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBanditWarlord.class, new RenderBiped(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityPharaoh.class, new RenderPharaoh(new ModelBiped(), 0.5F));
@@ -93,7 +99,11 @@ public class ClientProxy extends CommonProxy
 		
 		MinecraftForgeClient.registerItemRenderer(AtumItems.bow.itemID, new RendererItemBow());
 		MinecraftForgeClient.registerItemRenderer(AtumItems.atensFury.itemID, new RendererItemBow());
+        MinecraftForgeClient.registerItemRenderer(AtumItems.horusSoaring.itemID, new RendererItemBow());
 		MinecraftForgeClient.registerItemRenderer(AtumItems.neithsAudacity.itemID, new RendererItemBow());
+		MinecraftForgeClient.registerItemRenderer(AtumItems.shusBreath.itemID, new RendererItemBow());
+		MinecraftForgeClient.registerItemRenderer(AtumItems.hedetetsVenom.itemID, new RendererItemBow());
+		MinecraftForgeClient.registerItemRenderer(AtumItems.monthusBlast.itemID, new RendererItemBow());
 		RenderingRegistry.registerBlockHandler(((BlockPapyrus)AtumBlocks.papyrus).renderID, new PapyrusBlockRenderer());
 		RenderingRegistry.registerBlockHandler(((BlockDate)(AtumBlocks.dateBlock)).renderID, new DateBlockRenderer());
 	}

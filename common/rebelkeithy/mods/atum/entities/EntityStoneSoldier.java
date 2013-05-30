@@ -11,7 +11,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import rebelkeithy.mods.atum.AtumItems;
 
-public class EntityStoneSoldier extends EntityMob implements IAtumNightMob, IAtumDayMob
+public class EntityStoneSoldier extends EntityStone implements IAtumNightMob, IAtumDayMob
 {
 
 	public EntityStoneSoldier(World par1World) 

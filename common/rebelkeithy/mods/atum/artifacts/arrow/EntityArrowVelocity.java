@@ -2,6 +2,8 @@ package rebelkeithy.mods.atum.artifacts.arrow;
 
 import java.util.List;
 
+import rebelkeithy.mods.particleregistry.ParticleRegistry;
+
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentThorns;
 import net.minecraft.entity.Entity;
@@ -402,11 +404,12 @@ public class EntityArrowVelocity extends CustomArrow implements IProjectile, ITh
                 }
             }
 
-            if (this.getIsCritical())
+            if (this.getIsCritical() && worldObj.isRemote)
             {
                 for (l = 0; l < 4; ++l)
                 {
-                    this.worldObj.spawnParticle("crit", this.posX + this.motionX * (double)l / 4.0D, this.posY + this.motionY * (double)l / 4.0D, this.posZ + this.motionZ * (double)l / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
+                    //this.worldObj.spawnParticle("crit", this.posX + this.motionX * (double)l / 4.0D, this.posY + this.motionY * (double)l / 4.0D, this.posZ + this.motionZ * (double)l / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
+                    ParticleRegistry.spawnParticle("coloredcrit", worldObj, this.posX + this.motionX * (double)l / 4.0D, this.posY + this.motionY * (double)l / 4.0D, this.posZ + this.motionZ * (double)l / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, 0.2, 0.2, 0.2);
                 }
             }
 

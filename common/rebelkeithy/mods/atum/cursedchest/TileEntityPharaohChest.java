@@ -473,6 +473,12 @@ public class TileEntityPharaohChest extends TileEntityChest implements IInventor
 				p.sendChatToPlayer(pharaoh.getEntityName() + " was summoned by " + player.getEntityName());
 			}
 		}
+		
+		if(!worldObj.isRemote)
+		{
+		    System.out.println("Playing Sound");
+		    worldObj.playSoundAtEntity(pharaoh, "Atum.pharaohspawn", 1, 1);
+		}
 	}
 
 	public void setPharaohDespawned() {

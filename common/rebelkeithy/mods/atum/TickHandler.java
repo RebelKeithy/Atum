@@ -62,7 +62,7 @@ public class TickHandler implements ITickHandler
 		       
 			}
 			
-			if(player.dimension == ConfigAtum.dimensionID)
+			if(player.dimension == AtumConfig.dimensionID)
 			{
 				if(Minecraft.getMinecraft().gameSettings.renderDistance < (nightvision ? 1 : 2))
 				{

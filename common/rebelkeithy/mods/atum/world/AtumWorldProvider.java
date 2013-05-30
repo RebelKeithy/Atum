@@ -6,7 +6,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import rebelkeithy.mods.atum.Atum;
-import rebelkeithy.mods.atum.ConfigAtum;
+import rebelkeithy.mods.atum.AtumConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -26,7 +26,7 @@ public class AtumWorldProvider extends WorldProvider
     protected void registerWorldChunkManager()
     {
         worldChunkMgr = new WorldChunkManagerHell(Atum.atumDesert, 0.8F, 0.1F);
-        this.dimensionId = ConfigAtum.dimensionID;
+        this.dimensionId = AtumConfig.dimensionID;
     }
 
     /**

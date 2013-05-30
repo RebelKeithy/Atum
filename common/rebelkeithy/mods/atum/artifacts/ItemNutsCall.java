@@ -72,9 +72,8 @@ public class ItemNutsCall extends Item
         if(j > 21)
         	j = 21;
         
-        System.out.println("firing " + (j/36.0 + 0.25F));
-        EntityNutsCall spear = new EntityNutsCall(world, player, j/42.0F + 0.25F);
-        spear.setDamage(spear.getDamage() * 1.5F);
+        EntityNutsCall spear = new EntityNutsCall(world, player, j/37.0F + 0.25F);
+        spear.setDamage(spear.getDamage() * 2F);
         spear.setStack(par1ItemStack);
         
         if (!world.isRemote)

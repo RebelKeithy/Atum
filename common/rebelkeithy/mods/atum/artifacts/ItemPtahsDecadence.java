@@ -1,6 +1,7 @@
 package rebelkeithy.mods.atum.artifacts;
 
 import java.util.List;
+import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
 
@@ -29,7 +30,8 @@ public class ItemPtahsDecadence extends ItemPickaxe
 
     public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int blockID, int x, int y, int z, EntityLiving par7EntityLiving)
     {
-        if(blockID == Block.oreDiamond.blockID)
+        int dropID = Block.blocksList[blockID].idDropped(par2World.getBlockMetadata(x, y, z), new Random(), 0);
+        if(dropID == Item.diamond.itemID)
         {
         	Block.oreDiamond.dropBlockAsItem(par2World, x, y, z, 0, 0);
         }

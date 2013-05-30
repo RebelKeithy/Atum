@@ -11,6 +11,7 @@ import rebelkeithy.mods.atum.AtumBlocks;
 import rebelkeithy.mods.atum.entities.EntityBanditArcher;
 import rebelkeithy.mods.atum.entities.EntityBanditWarlord;
 import rebelkeithy.mods.atum.entities.EntityBanditWarrior;
+import rebelkeithy.mods.atum.entities.EntityBarbarian;
 import rebelkeithy.mods.atum.entities.EntityDesertWolf;
 import rebelkeithy.mods.atum.entities.EntityDustySkeleton;
 import rebelkeithy.mods.atum.entities.EntityGhost;
@@ -52,7 +53,8 @@ public class BiomeGenAtumDesert extends BiomeGenBase
         
         this.spawnableMonsterList.add(new SpawnListEntry(EntityMummy.class, 8, 4, 4));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditWarlord.class, 1, 1, 1));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditWarrior.class, 8, 4, 4));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditWarrior.class, 4, 2, 2));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityBarbarian.class, 8, 4, 4));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditArcher.class, 8, 4, 4));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityDustySkeleton.class, 8, 4, 4));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityGhost.class, 8, 4, 4));

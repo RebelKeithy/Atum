@@ -23,7 +23,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import rebelkeithy.mods.atum.AtumItems;
-import rebelkeithy.mods.atum.ConfigAtum;
+import rebelkeithy.mods.atum.AtumConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -240,7 +240,7 @@ public class EntityBanditArcher extends EntityMob implements IRangedAttackMob, I
 		if (rand.nextInt(20) == 0)
 		{
 			int damage = (int) (AtumItems.bow.getMaxDamage() - rand.nextInt(AtumItems.bow.getMaxDamage()) * 0.5 + 20);
-			this.entityDropItem(new ItemStack(ConfigAtum.bowID, 1, damage), 0.0F);
+			this.entityDropItem(new ItemStack(AtumConfig.bowID, 1, damage), 0.0F);
 		}
 
 		if (rand.nextInt(10) == 0)

@@ -2,6 +2,8 @@ package rebelkeithy.mods.atum.artifacts.arrow;
 
 import java.util.List;
 
+import rebelkeithy.mods.particleregistry.ParticleRegistry;
+
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentThorns;
 import net.minecraft.entity.Entity;
@@ -405,17 +407,18 @@ public class EntityArrowExplosive extends CustomArrow implements IProjectile, IT
                 }
             }
 
-            if (this.getIsCritical())
+            if (this.getIsCritical() && worldObj.isRemote)
             {
                 for (l = 0; l < 4; ++l)
                 {
-                    this.worldObj.spawnParticle("crit", this.posX + this.motionX * (double)l / 4.0D, this.posY + this.motionY * (double)l / 4.0D, this.posZ + this.motionZ * (double)l / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
+                    //this.worldObj.spawnParticle("crit", this.posX + this.motionX * (double)l / 4.0D, this.posY + this.motionY * (double)l / 4.0D, this.posZ + this.motionZ * (double)l / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
+                    ParticleRegistry.spawnParticle("coloredcrit", worldObj, this.posX + this.motionX * (double)l / 4.0D, this.posY + this.motionY * (double)l / 4.0D, this.posZ + this.motionZ * (double)l / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, 0.5, 0.1, 0.5);
                 }
             }
             
             if(Math.random() > 0.0)
             {
-            	worldObj.spawnParticle("crit", this.posX + this.motionX * (double)l / 4.0D, this.posY + this.motionY * (double)l / 4.0D, this.posZ + this.motionZ * (double)l / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
+            	worldObj.spawnParticle("smoke", this.posX + this.motionX * (double)l / 4.0D, this.posY + this.motionY * (double)l / 4.0D, this.posZ + this.motionZ * (double)l / 4.0D, -this.motionX/10F, (-this.motionY + 0.2D)/10F, -this.motionZ/10F);
             }
 
             this.posX += this.motionX;

@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import rebelkeithy.mods.atum.AtumItems;
-import rebelkeithy.mods.atum.ConfigAtum;
+import rebelkeithy.mods.atum.AtumConfig;
 
 public class EntityBanditWarrior extends EntityMob implements IAtumDayMob
 {
@@ -119,7 +119,7 @@ public class EntityBanditWarrior extends EntityMob implements IAtumDayMob
     	 if(rand.nextInt(20) == 0)
     	 {
     		 int damage = (int) (AtumItems.scimitar.getMaxDamage() - rand.nextInt(AtumItems.scimitar.getMaxDamage()) * 0.5 + 20);
-             this.entityDropItem(new ItemStack(ConfigAtum.scimitarID, 1, damage), 0.0F);
+             this.entityDropItem(new ItemStack(AtumConfig.scimitarID, 1, damage), 0.0F);
     	 }
     	 
     	 if(rand.nextInt(10) == 0)

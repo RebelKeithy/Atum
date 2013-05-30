@@ -20,7 +20,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import rebelkeithy.mods.atum.AtumFish;
 import rebelkeithy.mods.atum.AtumItems;
-import rebelkeithy.mods.atum.ConfigAtum;
+import rebelkeithy.mods.atum.AtumConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

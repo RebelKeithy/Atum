@@ -257,7 +257,6 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
 
                     if (block != null)
                     {
-                        System.out.println("destroy " + j2);
                         if (j2 != AtumBlocks.largeBrick.blockID && j2 != AtumBlocks.pharaohChest.blockID && Block.blocksList[j2].isBlockSolid(worldObj, k1, l1, i2, 0))
                         {
                             Block.blocksList[j2].dropBlockAsItem(worldObj, k1, l1, i2, 0, 0);

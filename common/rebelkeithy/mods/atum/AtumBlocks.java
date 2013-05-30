@@ -93,53 +93,53 @@ public class AtumBlocks
 	public static void init()
 	{
 		
-		portal = new BlockAtumPortal(ConfigAtum.portalBlockID);
-		cursedChest = new BlockChestSpawner(ConfigAtum.cursedChestID).setUnlocalizedName("AtumCursedChest").setHardness(4.0F).setCreativeTab(Atum.tabs);
-		pharaohChest = new PharaohChest(ConfigAtum.pharaohChestID).setUnlocalizedName("AtumPharaohChest").setHardness(4.0F).setCreativeTab(Atum.tabs);
-		sand = new BlockAtumSand(ConfigAtum.sandID).setUnlocalizedName("Atum:AtumSand").setStepSound(Block.soundSandFootstep).setHardness(0.5F).setCreativeTab(Atum.tabs);
-		stone = new AtumStone(ConfigAtum.stoneID).setUnlocalizedName("Atum:AtumStone").setHardness(1.5F).setCreativeTab(Atum.tabs);
-		cobble = new Block(ConfigAtum.cobbleID, Material.rock).setUnlocalizedName("Atum:AtumCobble").setHardness(2.0F).setCreativeTab(Atum.tabs);
-		crackedLargeBrick = new Block(ConfigAtum.crackedLargeBrickID, Material.rock).setUnlocalizedName("Atum:AtumCrackedLargeBrick").setHardness(2.0F).setCreativeTab(Atum.tabs);
-		largeBrick = new BlockAtumBrick(ConfigAtum.largeBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickLarge").setHardness(2.0F).setCreativeTab(Atum.tabs);
-		smallBrick = new BlockAtumBrick(ConfigAtum.smallBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickSmall").setHardness(2.0F).setCreativeTab(Atum.tabs);
-		carvedBrick = new BlockAtumBrick(ConfigAtum.carvedBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickCarved").setHardness(2.0F).setCreativeTab(Atum.tabs);
-		slabs = (BlockAtumSlab) new BlockAtumSlab(ConfigAtum.slabID, false, Material.rock).setUnlocalizedName("Atum:AtumSlab").setHardness(2.0F).setCreativeTab(Atum.tabs);
-		doubleSlab = (BlockAtumSlab) new BlockAtumSlab(ConfigAtum.doubleSlabID, true, Material.rock).setUnlocalizedName("Atum:AtumDoubleSlab").setHardness(2.0F);
-		smoothStairs = (new BlockAtumStairs(ConfigAtum.smoothStairsID, stone, 0)).setUnlocalizedName("Atum:SmoothStair").setCreativeTab(Atum.tabs);
-		cobbleStairs = (new BlockAtumStairs(ConfigAtum.cobbleStairsID, cobble, 0)).setUnlocalizedName("Atum:CobbleStair").setCreativeTab(Atum.tabs);
-		largeStoneStairs = (new BlockAtumStairs(ConfigAtum.largeStoneStairsID, largeBrick, 0)).setUnlocalizedName("Atum:LargeStoneStair").setCreativeTab(Atum.tabs);
-		smallStoneStairs = (new BlockAtumStairs(ConfigAtum.smallStoneStairsID, smallBrick, 0)).setUnlocalizedName("Atum:SmallStoneStair").setCreativeTab(Atum.tabs);
-		shrub = (new BlockShrub(ConfigAtum.shrubID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Shrub").setCreativeTab(Atum.tabs);
-		weed = (new BlockShrub(ConfigAtum.weedID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Weed").setCreativeTab(Atum.tabs);
-		papyrus = (new BlockPapyrus(ConfigAtum.papyrusBlockID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:AtumPapyrus");
-		wall = (new BlockAtumWall(ConfigAtum.wallID, stone)).setUnlocalizedName("Atum:AtumStoneWall").setHardness(0.3F).setCreativeTab(Atum.tabs);
-		crystalGlass = (new BlockAtumGlass(ConfigAtum.crystalGlassID, "Atum:AtumCrystalGlass", Material.glass, false)).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("Atum:AtumCrystalGlass").setHardness(0.3F).setCreativeTab(Atum.tabs);
-		framedGlass = (new BlockAtumGlass(ConfigAtum.framedGlassID, "Atum:AtumFramedGlass", Material.glass, false)).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("Atum:AtumFramedGlass").setCreativeTab(Atum.tabs);
-		palmSapling = (new BlockPalmSapling(ConfigAtum.palmSaplingID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:AtumPalmSapling").setCreativeTab(Atum.tabs);
-		dateBlock = (new BlockDate(ConfigAtum.blockDateID, Material.plants)).setHardness(0.0F).setUnlocalizedName("Atum:AtumDate");
-		flax = (new BlockFlax(ConfigAtum.flaxBlockID)).setUnlocalizedName("Atum:FlaxBlock").setCreativeTab(Atum.tabs);
+		portal = new BlockAtumPortal(AtumConfig.portalBlockID);
+		cursedChest = new BlockChestSpawner(AtumConfig.cursedChestID).setUnlocalizedName("AtumCursedChest").setHardness(4.0F).setCreativeTab(Atum.tabs);
+		pharaohChest = new PharaohChest(AtumConfig.pharaohChestID).setUnlocalizedName("AtumPharaohChest").setHardness(4.0F).setCreativeTab(Atum.tabs);
+		sand = new BlockAtumSand(AtumConfig.sandID).setUnlocalizedName("Atum:AtumSand").setStepSound(Block.soundSandFootstep).setHardness(0.5F).setCreativeTab(Atum.tabs);
+		stone = new AtumStone(AtumConfig.stoneID).setUnlocalizedName("Atum:AtumStone").setHardness(1.5F).setCreativeTab(Atum.tabs);
+		cobble = new Block(AtumConfig.cobbleID, Material.rock).setUnlocalizedName("Atum:AtumCobble").setHardness(2.0F).setCreativeTab(Atum.tabs);
+		crackedLargeBrick = new Block(AtumConfig.crackedLargeBrickID, Material.rock).setUnlocalizedName("Atum:AtumCrackedLargeBrick").setHardness(2.0F).setCreativeTab(Atum.tabs);
+		largeBrick = new BlockAtumBrick(AtumConfig.largeBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickLarge").setHardness(2.0F).setCreativeTab(Atum.tabs);
+		smallBrick = new BlockAtumBrick(AtumConfig.smallBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickSmall").setHardness(2.0F).setCreativeTab(Atum.tabs);
+		carvedBrick = new BlockAtumBrick(AtumConfig.carvedBrickID, Material.rock).setUnlocalizedName("Atum:AtumBrickCarved").setHardness(2.0F).setCreativeTab(Atum.tabs);
+		slabs = (BlockAtumSlab) new BlockAtumSlab(AtumConfig.slabID, false, Material.rock).setUnlocalizedName("Atum:AtumSlab").setHardness(2.0F).setCreativeTab(Atum.tabs);
+		doubleSlab = (BlockAtumSlab) new BlockAtumSlab(AtumConfig.doubleSlabID, true, Material.rock).setUnlocalizedName("Atum:AtumDoubleSlab").setHardness(2.0F);
+		smoothStairs = (new BlockAtumStairs(AtumConfig.smoothStairsID, stone, 0)).setUnlocalizedName("Atum:SmoothStair").setCreativeTab(Atum.tabs);
+		cobbleStairs = (new BlockAtumStairs(AtumConfig.cobbleStairsID, cobble, 0)).setUnlocalizedName("Atum:CobbleStair").setCreativeTab(Atum.tabs);
+		largeStoneStairs = (new BlockAtumStairs(AtumConfig.largeStoneStairsID, largeBrick, 0)).setUnlocalizedName("Atum:LargeStoneStair").setCreativeTab(Atum.tabs);
+		smallStoneStairs = (new BlockAtumStairs(AtumConfig.smallStoneStairsID, smallBrick, 0)).setUnlocalizedName("Atum:SmallStoneStair").setCreativeTab(Atum.tabs);
+		shrub = (new BlockShrub(AtumConfig.shrubID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Shrub").setCreativeTab(Atum.tabs);
+		weed = (new BlockShrub(AtumConfig.weedID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:Weed").setCreativeTab(Atum.tabs);
+		papyrus = (new BlockPapyrus(AtumConfig.papyrusBlockID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:AtumPapyrus");
+		wall = (new BlockAtumWall(AtumConfig.wallID, stone)).setUnlocalizedName("Atum:AtumStoneWall").setHardness(0.3F).setCreativeTab(Atum.tabs);
+		crystalGlass = (new BlockAtumGlass(AtumConfig.crystalGlassID, "Atum:AtumCrystalGlass", Material.glass, false)).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("Atum:AtumCrystalGlass").setHardness(0.3F).setCreativeTab(Atum.tabs);
+		framedGlass = (new BlockAtumGlass(AtumConfig.framedGlassID, "Atum:AtumFramedGlass", Material.glass, false)).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("Atum:AtumFramedGlass").setCreativeTab(Atum.tabs);
+		palmSapling = (new BlockPalmSapling(AtumConfig.palmSaplingID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("Atum:AtumPalmSapling").setCreativeTab(Atum.tabs);
+		dateBlock = (new BlockDate(AtumConfig.blockDateID, Material.plants)).setHardness(0.0F).setUnlocalizedName("Atum:AtumDate");
+		flax = (new BlockFlax(AtumConfig.flaxBlockID)).setUnlocalizedName("Atum:FlaxBlock").setCreativeTab(Atum.tabs);
 
-	    thinCrystalGlass = (new BlockAtumPane(ConfigAtum.thinCrystalGlassID, "Atum:AtumCrystalGlass", "thinglass_top", Material.glass, false)).setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("thinCrystalGlass").setCreativeTab(Atum.tabs);
-	    thinFramedGlass = (new BlockAtumPane(ConfigAtum.thinFramedGlassID, "Atum:AtumFramedGlass", "Atum:thinglass_top", Material.glass, false)).setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("thinFramedGlass").setCreativeTab(Atum.tabs);
+	    thinCrystalGlass = (new BlockAtumPane(AtumConfig.thinCrystalGlassID, "Atum:AtumCrystalGlass", "thinglass_top", Material.glass, false)).setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("thinCrystalGlass").setCreativeTab(Atum.tabs);
+	    thinFramedGlass = (new BlockAtumPane(AtumConfig.thinFramedGlassID, "Atum:AtumFramedGlass", "Atum:thinglass_top", Material.glass, false)).setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("thinFramedGlass").setCreativeTab(Atum.tabs);
 		
-	    sandLayered = (new BlockSandLayered(ConfigAtum.sandLayeredID)).setHardness(0.1F).setStepSound(Block.soundSnowFootstep).setUnlocalizedName("SandLayered").setLightOpacity(0).setCreativeTab(Atum.tabs);
+	    sandLayered = (new BlockSandLayered(AtumConfig.sandLayeredID)).setHardness(0.1F).setStepSound(Block.soundSnowFootstep).setUnlocalizedName("SandLayered").setLightOpacity(0).setCreativeTab(Atum.tabs);
 	    
-	    fertileSoil = (BlockFertileSoil) new BlockFertileSoil(ConfigAtum.fertileSoilID).setUnlocalizedName("Atum:FertileSoil").setHardness(0.5F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Atum.tabs);
-		fertileSoilTilled = new BlockFertileSoilTilled(ConfigAtum.fertileSoilTillID).setUnlocalizedName("Atum:FertileSoilTilled").setHardness(0.5F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Atum.tabs);
-	    log = new BlockPalmLog(ConfigAtum.logID).setUnlocalizedName("AtumLogs").setHardness(2F).setStepSound(Block.soundWoodFootstep).setCreativeTab(Atum.tabs);
-		leaves = new BlockAtumLeaves(ConfigAtum.leavesID).setUnlocalizedName("AtumLeaves").setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("AtumLeaves").setCreativeTab(Atum.tabs);
-	    planks = (new Block(ConfigAtum.plankID, Material.wood)).setUnlocalizedName("AtumPlanks").setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("Atum:Planks").setCreativeTab(Atum.tabs);
+	    fertileSoil = (BlockFertileSoil) new BlockFertileSoil(AtumConfig.fertileSoilID).setUnlocalizedName("Atum:FertileSoil").setHardness(0.5F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Atum.tabs);
+		fertileSoilTilled = new BlockFertileSoilTilled(AtumConfig.fertileSoilTillID).setUnlocalizedName("Atum:FertileSoilTilled").setHardness(0.5F).setStepSound(Block.soundGrassFootstep).setCreativeTab(Atum.tabs);
+	    log = new BlockPalmLog(AtumConfig.logID).setUnlocalizedName("AtumLogs").setHardness(2F).setStepSound(Block.soundWoodFootstep).setCreativeTab(Atum.tabs);
+		leaves = new BlockAtumLeaves(AtumConfig.leavesID).setUnlocalizedName("AtumLeaves").setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("AtumLeaves").setCreativeTab(Atum.tabs);
+	    planks = (new Block(AtumConfig.plankID, Material.wood)).setUnlocalizedName("AtumPlanks").setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("Atum:Planks").setCreativeTab(Atum.tabs);
 		
-		trapArrow = new BlockArrowTrap(ConfigAtum.trapArrowID).setUnlocalizedName("FireTrap").setHardness(0.2F).setCreativeTab(Atum.tabs);
-	    furnaceIdle = (new BlockLimeStoneFurnace(ConfigAtum.furnaceIdleID, false)).setHardness(3.5F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("limestonefurnaceidle").setCreativeTab(Atum.tabs);
-	    furnaceBurning = (new BlockLimeStoneFurnace(ConfigAtum.furnaceBurningID, true)).setHardness(3.5F).setStepSound(Block.soundStoneFootstep).setLightValue(0.875F).setUnlocalizedName("limestonefurnaceactive");
+		trapArrow = new BlockArrowTrap(AtumConfig.trapArrowID).setUnlocalizedName("FireTrap").setHardness(0.2F).setCreativeTab(Atum.tabs);
+	    furnaceIdle = (new BlockLimeStoneFurnace(AtumConfig.furnaceIdleID, false)).setHardness(3.5F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("limestonefurnaceidle").setCreativeTab(Atum.tabs);
+	    furnaceBurning = (new BlockLimeStoneFurnace(AtumConfig.furnaceBurningID, true)).setHardness(3.5F).setStepSound(Block.soundStoneFootstep).setLightValue(0.875F).setUnlocalizedName("limestonefurnaceactive");
 		
-	    redstoneOre = new BlockAtumRedstone(ConfigAtum.redstoneOreID).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumRedstone").setCreativeTab(Atum.tabs);
-	    goldOre = (new BlockAtumOre(ConfigAtum.goldOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumGold").setCreativeTab(Atum.tabs);
-	    ironOre = (new BlockAtumOre(ConfigAtum.ironOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumIron").setCreativeTab(Atum.tabs);
-	    coalOre = (new BlockAtumOre(ConfigAtum.coalOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumCoal").setCreativeTab(Atum.tabs);
-	    lapisOre = (new BlockAtumOre(ConfigAtum.lapisOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumLapis").setCreativeTab(Atum.tabs);
-	    diamondOre = (new BlockAtumOre(ConfigAtum.diamondOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumDiamond").setCreativeTab(Atum.tabs);
+	    redstoneOre = new BlockAtumRedstone(AtumConfig.redstoneOreID).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumRedstone").setCreativeTab(Atum.tabs);
+	    goldOre = (new BlockAtumOre(AtumConfig.goldOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumGold").setCreativeTab(Atum.tabs);
+	    ironOre = (new BlockAtumOre(AtumConfig.ironOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumIron").setCreativeTab(Atum.tabs);
+	    coalOre = (new BlockAtumOre(AtumConfig.coalOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumCoal").setCreativeTab(Atum.tabs);
+	    lapisOre = (new BlockAtumOre(AtumConfig.lapisOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumLapis").setCreativeTab(Atum.tabs);
+	    diamondOre = (new BlockAtumOre(AtumConfig.diamondOreID)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("Atum:AtumDiamond").setCreativeTab(Atum.tabs);
 
 		ForgeHooks.canToolHarvestBlock(sand, 0, new ItemStack(Item.shovelIron));
 		MinecraftForge.setBlockHarvestLevel(sand, "shovel", 0);
@@ -151,8 +151,8 @@ public class AtumBlocks
 		MinecraftForge.setBlockHarvestLevel(AtumBlocks.diamondOre, "pickaxe", 2);
 		MinecraftForge.setBlockHarvestLevel(AtumBlocks.redstoneOre, "pickaxe", 2);
 		
-		Block.setBurnProperties(ConfigAtum.plankID, 5, 20);
-		Block.setBurnProperties(ConfigAtum.leavesID, 30, 60);
+		Block.setBurnProperties(AtumConfig.plankID, 5, 20);
+		Block.setBurnProperties(AtumConfig.leavesID, 30, 60);
 	}
 	
 	public static void registerBlocks()

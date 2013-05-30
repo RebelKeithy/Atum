@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import rebelkeithy.mods.atum.AtumBlocks;
 import rebelkeithy.mods.atum.AtumTeleporter;
-import rebelkeithy.mods.atum.ConfigAtum;
+import rebelkeithy.mods.atum.AtumConfig;
 import rebelkeithy.mods.atum.TickHandler;
 import rebelkeithy.mods.particleregistry.ParticleRegistry;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
@@ -261,15 +261,15 @@ public class BlockAtumPortal extends BlockBreakable
 	        		MinecraftServer minecraftserver = MinecraftServer.getServer();
 	        		int dimID = par5Entity.dimension;
 	                WorldServer worldserver = minecraftserver.worldServerForDimension(0);
-	                WorldServer worldserver1 = minecraftserver.worldServerForDimension(ConfigAtum.dimensionID);
-	                if(dimID == ConfigAtum.dimensionID)
+	                WorldServer worldserver1 = minecraftserver.worldServerForDimension(AtumConfig.dimensionID);
+	                if(dimID == AtumConfig.dimensionID)
 	                {
 	                	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, 0, new AtumTeleporter(worldserver));
 	                	if(par1World.isRemote)
 	                		Minecraft.getMinecraft().gameSettings.renderDistance = TickHandler.defaultFog;
 	                    //par5Entity.travelToDimension(0);
 	                } else {
-	                	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, ConfigAtum.dimensionID, new AtumTeleporter(worldserver1));
+	                	minecraftserver.getConfigurationManager().transferPlayerToDimension((EntityPlayerMP) par5Entity, AtumConfig.dimensionID, new AtumTeleporter(worldserver1));
 	                    //par5Entity.travelToDimension(Atum.dimensionID);
 	                }
 	                //par5Entity.travelToDimension(Atum.dimensionID);

@@ -3,8 +3,8 @@ package rebelkeithy.mods.atum;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.Event.Result;
+import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
@@ -15,6 +15,7 @@ import rebelkeithy.mods.atum.entities.EntityDustySkeleton;
 import rebelkeithy.mods.atum.entities.EntityGhost;
 import rebelkeithy.mods.atum.entities.EntityMummy;
 import rebelkeithy.mods.atum.entities.EntityPharaoh;
+import rebelkeithy.mods.atum.entities.EntityStone;
 import rebelkeithy.mods.atum.entities.EntityStoneSoldier;
 
 public class AtumEventListener 
@@ -22,16 +23,14 @@ public class AtumEventListener
 	 @ForgeSubscribe
 	 public void onFallDamage(LivingFallEvent event)
 	 {
-		 if(event.entity instanceof EntityGhost ||
-		         event.entity instanceof EntityPharaoh ||
-		         event.entity instanceof EntityStoneSoldier)
+		 if(event.entity instanceof EntityGhost || event.entity instanceof EntityPharaoh)
 		 {
 		     event.distance = 0;
 		 }
 	 }
 	 
 	 @ForgeSubscribe
-	 public void onFallDamage(LivingHurtEvent event)
+	 public void onLivingHurt(LivingHurtEvent event)
 	 {
 		if (event.source.getDamageType().equals("drown")) 
 		{

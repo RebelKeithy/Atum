@@ -46,8 +46,8 @@ public class ItemGebsSolidarity extends ItemArmor implements IArmorTextureProvid
 	        if (par1Entity instanceof EntityLiving)
 	        {
 	            j += EnchantmentHelper.getKnockbackModifier((EntityLiving)par1Entity, event.entityLiving);
-                
-	            if (j > 0)
+                System.out.println("undo knockback " + j);
+	            if (j >= 0)
 	            {
 	                event.entityLiving.motionX /= 0.6D;
 	                event.entityLiving.motionZ /= 0.6D;
@@ -55,11 +55,37 @@ public class ItemGebsSolidarity extends ItemArmor implements IArmorTextureProvid
 	            }
 	        }
 	        
-	       
+	        EntityLiving player = event.entityLiving;
+	        
+
+            double d0 = par1DamageSource.getEntity().posX - player.posX;
+            double d1;
+
+            for (d1 = par1DamageSource.getEntity().posZ - player.posZ; d0 * d0 + d1 * d1 < 1.0E-4D; d1 = (Math.random() - Math.random()) * 0.01D)
+            {
+                d0 = (Math.random() - Math.random()) * 0.01D;
+            }
+	        
+	        player.isAirBorne = true;
+	        float f = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
+	        float f1 = 0.2F;
+            player.motionX += d0 / (double)f * (double)f1;
+            //this.motionY += (double)f1;
+            player.motionZ += d1 / (double)f * (double)f1;
+	        player.motionX *= 2.0D;
+	        player.motionY *= 2.0D;
+	        player.motionZ *= 2.0D;
+
+	        if (player.motionY > 0.4000000059604645D)
+	        {
+	            player.motionY = 0.4000000059604645D;
+	        }
 
 		}
 	}
-
+	
+	
+	
     /**
      * Called each tick as long the item is on a player inventory. Uses by maps to check if is on a player hand and
      * update it's contents.
@@ -92,7 +118,7 @@ public class ItemGebsSolidarity extends ItemArmor implements IArmorTextureProvid
     	if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
     	{
     		par3List.add(EnumChatFormatting.DARK_PURPLE + "Stalwart I: Decreased movement");
-    		par3List.add(EnumChatFormatting.DARK_PURPLE + "speed, decreased knockback");
+    		par3List.add(EnumChatFormatting.DARK_PURPLE + "speed, decreased knockback (WIP)");
     	} else {
         	par3List.add("Stalwart I " + EnumChatFormatting.DARK_GRAY + "[SHIFT]");
     	}

@@ -48,11 +48,11 @@ public class AtumRecipes
 		GameRegistry.addRecipe(new ItemStack(Item.expBottle), " X ", "XBX", " X ", 'X', AtumItems.ectoplasm, 'B', Item.potion);
 
 		// Limestone tool recipes
-		GameRegistry.addRecipe(new ItemStack(AtumItems.limestoneSword), "L", "L", "S", 'L', AtumBlocks.stone, 'S', Item.stick);
-		GameRegistry.addRecipe(new ItemStack(AtumItems.limestoneShovel), "L", "S", "S", 'L', AtumBlocks.stone, 'S', Item.stick);
-		GameRegistry.addRecipe(new ItemStack(AtumItems.limestonePickaxe), "LLL", " S ", " S ", 'L', AtumBlocks.stone, 'S', Item.stick);
-		GameRegistry.addRecipe(new ItemStack(AtumItems.limestoneAxe), "LL", "LS", " S", 'L', AtumBlocks.stone, 'S', Item.stick);
-		GameRegistry.addRecipe(new ItemStack(AtumItems.limestoneHoe), "LL", " S", " S", 'L', AtumBlocks.stone, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(AtumItems.limestoneSword), "L", "L", "S", 'L', AtumBlocks.cobble, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(AtumItems.limestoneShovel), "L", "S", "S", 'L', AtumBlocks.cobble, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(AtumItems.limestonePickaxe), "LLL", " S ", " S ", 'L', AtumBlocks.cobble, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(AtumItems.limestoneAxe), "LL", "LS", " S", 'L', AtumBlocks.cobble, 'S', Item.stick);
+		GameRegistry.addRecipe(new ItemStack(AtumItems.limestoneHoe), "LL", " S", " S", 'L', AtumBlocks.cobble, 'S', Item.stick);
 		
 		// Mummy armor recipes
 		GameRegistry.addRecipe(new ItemStack(AtumItems.mummyHelmet), "XXX", "X X", 'X', AtumItems.scrap);

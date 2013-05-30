@@ -22,6 +22,26 @@ public class ParticleRegistry
 	}
 
     @SideOnly(Side.CLIENT)
+    public static void spawnParticle(String string, World par1World, double x, double y, double z, double dx, double dy, double dz, double r, double g, double b) 
+    {
+        Class entityClass = particleList.get(string);
+        if(entityClass != null)
+        {
+            Constructor entityConstructor;
+            try {
+                entityConstructor = entityClass.getConstructor(World.class, Double.TYPE, Double.TYPE, Double.TYPE, Double.TYPE, Double.TYPE, Double.TYPE, Double.TYPE, Double.TYPE, Double.TYPE);
+                if(entityConstructor != null)
+                {
+                    EntityFX entity = (EntityFX) entityConstructor.newInstance(par1World, x, y, z, dx, dy, dz, r, g, b);
+                    Minecraft.getMinecraft().effectRenderer.addEffect(entity);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }   
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
 	public static void spawnParticle(String string, World par1World, double x, double y, double z, double r, double g, double b) 
 	{
 		Class entityClass = particleList.get(string);
