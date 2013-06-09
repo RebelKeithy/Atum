@@ -22,4 +22,6 @@ public class CommonProxy
 	public void preloadImages() {}
 	
 	public void registerModelRenderers() {}
+
+    public void registerMusic() {}
 }

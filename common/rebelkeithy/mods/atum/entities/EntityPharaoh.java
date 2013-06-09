@@ -237,36 +237,34 @@ public class EntityPharaoh extends EntityMob implements IBossDisplayData
      */
     private boolean destroyBlocksInAABB(AxisAlignedBB par1AxisAlignedBB)
     {
-        int i = MathHelper.floor_double(par1AxisAlignedBB.minX);
-        int j = MathHelper.floor_double(par1AxisAlignedBB.minY);
-        int k = MathHelper.floor_double(par1AxisAlignedBB.minZ);
-        int l = MathHelper.floor_double(par1AxisAlignedBB.maxX);
-        int i1 = MathHelper.floor_double(par1AxisAlignedBB.maxY);
-        int j1 = MathHelper.floor_double(par1AxisAlignedBB.maxZ);
+        int minX = MathHelper.floor_double(par1AxisAlignedBB.minX);
+        int minY = MathHelper.floor_double(par1AxisAlignedBB.minY);
+        int minZ = MathHelper.floor_double(par1AxisAlignedBB.minZ);
+        int maxX = MathHelper.floor_double(par1AxisAlignedBB.maxX);
+        int maxY = MathHelper.floor_double(par1AxisAlignedBB.maxY);
+        int maxZ = MathHelper.floor_double(par1AxisAlignedBB.maxZ);
         boolean flag = false;
         boolean flag1 = false;
 
-        for (int k1 = i; k1 <= l; ++k1)
+        for (int x = minX; x <= maxX; ++x)
         {
-            for (int l1 = j; l1 <= i1; ++l1)
+            for (int y = minY; y <= maxY; ++y)
             {
-                for (int i2 = k; i2 <= j1; ++i2)
+                for (int z = minZ; z <= maxZ; ++z)
                 {
-                    int j2 = this.worldObj.getBlockId(k1, l1, i2);
-                    Block block = Block.blocksList[j2];
+                    int id = this.worldObj.getBlockId(x, y, z);
+                    int metadata = this.worldObj.getBlockMetadata(x, y, z);
+                    Block block = Block.blocksList[id];
 
                     if (block != null)
                     {
-                        if (j2 != AtumBlocks.largeBrick.blockID && j2 != AtumBlocks.pharaohChest.blockID && Block.blocksList[j2].isBlockSolid(worldObj, k1, l1, i2, 0))
+                        if (id != AtumBlocks.largeBrick.blockID && id != AtumBlocks.pharaohChest.blockID && Block.blocksList[id].isBlockSolid(worldObj, x, y, z, 0))
                         {
-                            Block.blocksList[j2].dropBlockAsItem(worldObj, k1, l1, i2, 0, 0);
-                            flag1 = this.worldObj.setBlockToAir(k1, l1, i2) || flag1;
-                            flag = true;
+                            Block.blocksList[id].dropBlockAsItem(worldObj, x, y, z, metadata, 0);
+                            flag1 = this.worldObj.setBlockToAir(x, y, z) || flag1;
                         }
-                        else
-                        {
-                            flag = true;
-                        }
+                        
+                        flag = true;
                     }
                 }
             }

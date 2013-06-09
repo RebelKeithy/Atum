@@ -51,15 +51,15 @@ public class BiomeGenAtumDesert extends BiomeGenBase
         this.spawnableWaterCreatureList.clear();
         this.spawnableCaveCreatureList.clear();
         
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityMummy.class, 8, 4, 4));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityMummy.class, 6, 4, 4));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditWarlord.class, 1, 1, 1));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditWarrior.class, 4, 2, 2));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityBarbarian.class, 8, 4, 4));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditArcher.class, 8, 4, 4));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityDustySkeleton.class, 8, 4, 4));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityGhost.class, 8, 4, 4));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityDesertWolf.class, 8, 4, 4));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityStoneSoldier.class, 8, 4, 4));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditWarrior.class, 6, 2, 2));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityBarbarian.class, 2, 4, 4));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityBanditArcher.class, 6, 4, 4));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityDustySkeleton.class, 6, 4, 4));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityGhost.class, 6, 4, 4));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityDesertWolf.class, 6, 4, 4));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityStoneSoldier.class, 6, 4, 4));
     }
 
 

@@ -49,7 +49,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 // Start of post-modjam branch
 
-@Mod(modid="Atum", name="Atum", version="0.0.0.1")
+@Mod(modid="Atum", name="Atum", version="0.4.4B")
 @NetworkMod(channels = {"Atum"}, clientSideRequired = true, serverSideRequired = false)
 public class Atum 
 {
@@ -65,7 +65,7 @@ public class Atum
 
 	public static Potion stun;
 
-    public static SoundPoolEntry music;
+    //public static SoundPoolEntry music;
 
 	
 	@PreInit
@@ -78,6 +78,7 @@ public class Atum
 		
 		AtumItems.init();
 		
+		/*
 		try
         {
 		    System.out.println("Does file exist, " + (new File("C:/Users/Keithy/Documents/Atum 1.5.1/source/resources/mods/Atum/music")).exists());
@@ -86,7 +87,7 @@ public class Atum
         {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/		
 		
 		ArrayList<BiomeGenBase> biomeList = new ArrayList<BiomeGenBase>();
 		for(int i = 0; i < BiomeGenBase.biomeList.length; i++)
@@ -101,42 +102,50 @@ public class Atum
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		//EntityRegistry.registerGlobalEntityID(EntityMummy.class, "AtumMummy", entityID);
 		EntityRegistry.registerModEntity(EntityMummy.class, "AtumMummy", 20, this, 64, 1, true);
-		EntityList.addMapping(EntityMummy.class, "AtumMummy", entityID, 0x515838, 0x868F6B);
+		EntityList.addMapping(EntityMummy.class, "AtumMummy", 20, 0x515838, 0x868F6B);
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
-		EntityRegistry.registerGlobalEntityID(EntityBanditWarrior.class, "AtumBanditWarrior", entityID);
-		EntityList.addMapping(EntityBanditWarrior.class, "AtumBanditWarrior", entityID, 0xC2C2C2, 0x040F85);
+		//EntityRegistry.registerGlobalEntityID(EntityBanditWarrior.class, "AtumBanditWarrior", entityID);
+        EntityRegistry.registerModEntity(EntityBanditWarrior.class, "AtumBanditWarrior", 21, this, 64, 1, true);
+		EntityList.addMapping(EntityBanditWarrior.class, "AtumBanditWarrior", 21, 0xC2C2C2, 0x040F85);
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
-		EntityRegistry.registerGlobalEntityID(EntityBanditArcher.class, "AtumBanditArcher", entityID);
-		EntityList.addMapping(EntityBanditArcher.class, "AtumBanditArcher", entityID, 0xC2C2C2, 0x7E0C0C);
+		//EntityRegistry.registerGlobalEntityID(EntityBanditArcher.class, "AtumBanditArcher", entityID);
+        EntityRegistry.registerModEntity(EntityBanditArcher.class, "AtumBanditArcher", 22, this, 64, 1, true);
+		EntityList.addMapping(EntityBanditArcher.class, "AtumBanditArcher", 22, 0xC2C2C2, 0x7E0C0C);
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
-		EntityRegistry.registerGlobalEntityID(EntityPharaoh.class, "AtumPharaoh", entityID);
-		EntityList.addMapping(EntityPharaoh.class, "AtumPharaoh", entityID, 0xD4BC37, 0x3A4BE0);
+		//EntityRegistry.registerGlobalEntityID(EntityPharaoh.class, "AtumPharaoh", entityID);
+        EntityRegistry.registerModEntity(EntityPharaoh.class, "AtumPharaoh", 23, this, 64, 1, true);
+		EntityList.addMapping(EntityPharaoh.class, "AtumPharaoh", 23, 0xD4BC37, 0x3A4BE0);
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
-		EntityRegistry.registerGlobalEntityID(EntityDustySkeleton.class, "AtumDustySkeleton", entityID);
-		EntityList.addMapping(EntityDustySkeleton.class, "AtumDustySkeleton", entityID, 0xB59C7D, 0x6F5C43);
+		//EntityRegistry.registerGlobalEntityID(EntityDustySkeleton.class, "AtumDustySkeleton", entityID);
+        EntityRegistry.registerModEntity(EntityDustySkeleton.class, "AtumDustySkeleton", 24, this, 64, 1, true);
+		EntityList.addMapping(EntityDustySkeleton.class, "AtumDustySkeleton", 24, 0xB59C7D, 0x6F5C43);
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
-		EntityRegistry.registerGlobalEntityID(EntityGhost.class, "AtumDesertGhost", entityID);
-		EntityList.addMapping(EntityGhost.class, "AtumDesertGhost", entityID, 0xE7DBC8, 0xAD9467);
+		//EntityRegistry.registerGlobalEntityID(EntityGhost.class, "AtumDesertGhost", entityID);
+        EntityRegistry.registerModEntity(EntityGhost.class, "AtumDesertGhost", 25, this, 64, 1, true);
+		EntityList.addMapping(EntityGhost.class, "AtumDesertGhost", 25, 0xE7DBC8, 0xAD9467);
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
-		EntityRegistry.registerGlobalEntityID(EntityStoneSoldier.class, "AtumStoneSoldier", entityID);
-		EntityList.addMapping(EntityStoneSoldier.class, "AtumStoneSoldier", entityID, 0x918354, 0x695D37);
+		//EntityRegistry.registerGlobalEntityID(EntityStoneSoldier.class, "AtumStoneSoldier", entityID);
+        EntityRegistry.registerModEntity(EntityStoneSoldier.class, "AtumStoneSoldier", 26, this, 64, 1, true);
+		EntityList.addMapping(EntityStoneSoldier.class, "AtumStoneSoldier", 26, 0x918354, 0x695D37);
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
-		EntityRegistry.registerGlobalEntityID(EntityDesertWolf.class, "AtumDesertWolf", entityID);
-		EntityList.addMapping(EntityDesertWolf.class, "AtumDesertWolf", entityID, 0x918354, 0x695D37);
+		//EntityRegistry.registerGlobalEntityID(EntityDesertWolf.class, "AtumDesertWolf", entityID);
+        EntityRegistry.registerModEntity(EntityDesertWolf.class, "AtumDesertWolf", 27, this, 64, 1, true);
+		EntityList.addMapping(EntityDesertWolf.class, "AtumDesertWolf", 27, 0x918354, 0x695D37);
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
-		EntityRegistry.registerGlobalEntityID(EntityBanditWarlord.class, "AtumBanditWarlord", entityID);
-		EntityList.addMapping(EntityBanditWarlord.class, "AtumBanditWarlord", entityID, 0x918354, 0x695D37);
+		//EntityRegistry.registerGlobalEntityID(EntityBanditWarlord.class, "AtumBanditWarlord", entityID);
+        EntityRegistry.registerModEntity(EntityBanditWarlord.class, "AtumBanditWarlord", 28, this, 64, 1, true);
+		EntityList.addMapping(EntityBanditWarlord.class, "AtumBanditWarlord", 28, 0x918354, 0x695D37);
 		
         EntityRegistry.registerModEntity(EntityBarbarian.class, "AtumBarbarian", 29, this, 64, 1, true);
-        EntityList.addMapping(EntityBarbarian.class, "AtumBarbarian", entityID, 0x918354, 0x695D37);
+        EntityList.addMapping(EntityBarbarian.class, "AtumBarbarian", 29, 0x918354, 0x695D37);
 
 		entityID = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerModEntity(EntityFireSpearCombined.class, "FireSpearCombined", entityID, this, 64, 1, true);
@@ -162,8 +171,8 @@ public class Atum
 		proxy.registerTickHandlers();
 		proxy.preloadImages();
 		proxy.registerParticles();
+		proxy.registerMusic();
 		MinecraftForge.EVENT_BUS.register(new AtumEventListener());
-		MinecraftForge.EVENT_BUS.register(new AtumMusicListener());
 		//MinecraftForge.EVENT_BUS.register(new MobSpawnController());
 		NetworkRegistry.instance().registerGuiHandler(this, new AtumGuiHandler());
 	}

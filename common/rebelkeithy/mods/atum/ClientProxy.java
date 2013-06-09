@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.entity.RenderFish;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 import rebelkeithy.mods.atum.artifacts.arrow.CustomArrow;
 import rebelkeithy.mods.atum.artifacts.arrow.EntityAtumFishHook;
 import rebelkeithy.mods.atum.artifacts.arrow.EntityNutsCall;
@@ -106,5 +107,11 @@ public class ClientProxy extends CommonProxy
 		MinecraftForgeClient.registerItemRenderer(AtumItems.monthusBlast.itemID, new RendererItemBow());
 		RenderingRegistry.registerBlockHandler(((BlockPapyrus)AtumBlocks.papyrus).renderID, new PapyrusBlockRenderer());
 		RenderingRegistry.registerBlockHandler(((BlockDate)(AtumBlocks.dateBlock)).renderID, new DateBlockRenderer());
+	}
+	
+	@Override
+	public void registerMusic()
+	{
+        MinecraftForge.EVENT_BUS.register(new AtumMusicListener());
 	}
 }
